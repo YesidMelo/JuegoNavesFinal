@@ -46,6 +46,50 @@ MonoBehaviour:
   maxLasers: 2
   minLasers: 1
   lasersType: 0000000000000000
+--- !u!1 &1033058954352974940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8450207045395220156}
+  - component: {fileID: 5333280384926738508}
+  m_Layer: 0
+  m_Name: storage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8450207045395220156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033058954352974940}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5227028717575772533}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5333280384926738508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033058954352974940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8e3aa37fd0d8c4496c6fc2e80c6e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStorage: 1
 --- !u!1 &2034025121639909870
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 2034025121639909870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5227028717575772533}
   m_RootOrder: 1
@@ -119,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6574522290111081437}
   - component: {fileID: 3777969258470567777}
+  - component: {fileID: 1746006000174899536}
   m_Layer: 0
   m_Name: structure
   m_TagString: Untagged
@@ -191,6 +236,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1746006000174899536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5241946697292219550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b19980135bc2454cb409d8e3142ce44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStructure: 1
+--- !u!1 &5431361221848798018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8981273171289021250}
+  - component: {fileID: 456124378968805951}
+  m_Layer: 0
+  m_Name: radar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8981273171289021250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5431361221848798018}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5227028717575772533}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &456124378968805951
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5431361221848798018}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
 --- !u!1 &8603463097829641113
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +327,8 @@ Transform:
   - {fileID: 6574522290111081437}
   - {fileID: 8947839445323093229}
   - {fileID: 6416963603588554651}
+  - {fileID: 8450207045395220156}
+  - {fileID: 8981273171289021250}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,3 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSpaceCraft: 1
   shield: {fileID: 2034025121639909870}
+  laser: {fileID: 406445070287932636}
+  radar: {fileID: 5431361221848798018}
+  structure: {fileID: 5241946697292219550}
+  storage: {fileID: 1033058954352974940}

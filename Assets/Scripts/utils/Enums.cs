@@ -33,6 +33,14 @@ public enum Move {
     STOP
 }
 
+public enum Radar {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
 public enum Shield
 {
     TYPE_1,
@@ -58,6 +66,14 @@ public enum StatusGame {
 }
 
 public enum Storage { 
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
+public enum Structure {
     TYPE_1,
     TYPE_2,
     TYPE_3,

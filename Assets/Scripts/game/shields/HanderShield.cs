@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface HanderShieldDelegate {
-    void impactIncomeShield();
-    void impactGoneShield();
+    void impactIncomeShield(Collider2D collision);
+    void impactGoneShield(Collider2D collision);
 }
 
 public class HanderShield : MonoBehaviour
@@ -43,12 +43,12 @@ public class HanderShield : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (_myDelegate == null) { return; }
-        _myDelegate.impactIncomeShield();
+        _myDelegate.impactIncomeShield(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (_myDelegate == null) { return; }
-        _myDelegate.impactGoneShield();
+        _myDelegate.impactGoneShield(collision);
     }
 }
