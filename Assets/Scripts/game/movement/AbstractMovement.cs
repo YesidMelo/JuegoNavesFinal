@@ -1,21 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class AbstractMovement : MonoBehaviour
+public abstract class AbstractMovement 
 {
+    protected Move currentMove;
+    protected Action currentAction;
+    protected StatusGame currentStatusGame;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public abstract void movement();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    protected abstract void movement();
+    public Move move { set { currentMove = value; } }
+    public Action action { set { currentAction = value; } }
+    public StatusGame current { set { currentStatusGame = value; } }
 }

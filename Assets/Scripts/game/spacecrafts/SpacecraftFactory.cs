@@ -9,19 +9,6 @@ public class SpacecraftFactory : MonoBehaviour
     public List<GameObject> prefabs = new List<GameObject>();
 
 
-    private void Update()
-    {
-        createSpaceCraftMethod();
-    }
-
-    private void createSpaceCraftMethod() {
-        if (!createSpaceCraft) {
-            return;
-        }
-        createSpaceCraft = false;
-        spacecraftSelectedGame(Spacecraft.SPACECRAFT_1);
-    }
-
     public GameObject spacecraftSelectedGame(Spacecraft spaceCraftSelected) {
         GameObject selected;
         switch (spaceCraftSelected) {
@@ -42,8 +29,7 @@ public class SpacecraftFactory : MonoBehaviour
                 selected = prefabs[0];
                 break;
         }
-        GameObject instantiated = Instantiate(selected);
-        return instantiated;
+        return selected;
     }
 
     public GameObject spacecraftSelectedGamer(Spacecraft spaceCraftSelected)
@@ -68,7 +54,6 @@ public class SpacecraftFactory : MonoBehaviour
                 selected = prefabs[0];
                 break;
         }
-        GameObject instantiated = Instantiate(selected);
-        return instantiated;
+        return selected;
     }
 }

@@ -395,7 +395,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1909908899
+--- !u!1 &1839754743
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -403,41 +403,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1909908901}
-  - component: {fileID: 1909908900}
+  - component: {fileID: 1839754745}
+  - component: {fileID: 1839754744}
   m_Layer: 0
-  m_Name: spacecraftFactory
+  m_Name: spacecraftWithMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1909908900
+--- !u!114 &1839754744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1909908899}
+  m_GameObject: {fileID: 1839754743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640bf7e00d28dd5489f5986282ba91bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1411aff2d377c5b418f586cd03be98e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createSpaceCraft: 0
-  prefabs:
-  - {fileID: 5165936042687663634, guid: d6485f95ef9bee544af8416040e5ad3f, type: 3}
-  - {fileID: 8603463097829641113, guid: fe2fb870af6b3df4baad3da6a2e77348, type: 3}
-  - {fileID: 7925086701244007263, guid: 30e5b8992d4e1d145a610d9340e29390, type: 3}
-  - {fileID: 1348718130560302509, guid: b9186da9a1960464b99172db81a33f0b, type: 3}
-  - {fileID: 7530061937267445259, guid: a864ead58377f7b4093dd67a52fe84a3, type: 3}
---- !u!4 &1909908901
+  spacecraftFactory: {fileID: 5612138748763016831, guid: f72308b68a0cbb241b4afbded16a22ce, type: 3}
+  currentMove: 3
+  currentAction: 1
+  currentStatusGame: 2
+  currentSideSpacecraft: 1
+--- !u!4 &1839754745
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1909908899}
+  m_GameObject: {fileID: 1839754743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

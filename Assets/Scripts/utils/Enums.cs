@@ -41,6 +41,12 @@ public enum Radar {
     TYPE_5,
 }
 
+public enum SideSpacecraft
+{
+    PLAYER,
+    ENEMY,
+}
+
 public enum Shield
 {
     TYPE_1,
