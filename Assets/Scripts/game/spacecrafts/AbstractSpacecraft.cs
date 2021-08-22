@@ -7,19 +7,26 @@ abstract public class AbstractSpacecraft : MonoBehaviour
     public Spacecraft currentSpaceCraft = Spacecraft.SPACECRAFT_1;
     public GameObject shield;
     public GameObject laser;
+    public GameObject motor;
     public GameObject radar;
     public GameObject structure;
     public GameObject storage;
 
-    private void Start()
+    protected void Awake()
     {
         initListeners();
+    }
+
+    protected void Start()
+    {
+        
     }
 
     // delegates
     private void initListeners() {
         initListenerShield();
         initListenerLaser();
+        initListenerMotor();
         initListenerStorage();
         initListenerStructure();
         initListenerRadar();
@@ -33,6 +40,11 @@ abstract public class AbstractSpacecraft : MonoBehaviour
     private void initListenerLaser() {
         HandlerLaser handler = laser.GetComponent<HandlerLaser>();
         handler.myDelegate = new HandlerLaserListener(this);
+    }
+
+    private void initListenerMotor() {
+        HandlerMotor handler = motor.GetComponent<HandlerMotor>();
+        handler.myDelegate = new HandlerMotorListener(this);
     }
 
     private void initListenerRadar()

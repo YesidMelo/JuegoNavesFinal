@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3793908047071215640}
   - component: {fileID: 1248888128190001062}
+  - component: {fileID: 1259283275371001371}
   m_Layer: 0
   m_Name: radar
   m_TagString: Untagged
@@ -91,6 +92,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &1259283275371001371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217183825106674284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec6582d5f315494aadb49629db57734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRadar: 0
 --- !u!1 &3413399971841765240
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4083795938136442007}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 41.776546}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7999760729430433825}
@@ -233,6 +247,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStructure: 0
+--- !u!1 &7817341083845129141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3349026161615954151}
+  - component: {fileID: 6598480718718871410}
+  m_Layer: 0
+  m_Name: motor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3349026161615954151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817341083845129141}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7999760729430433825}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6598480718718871410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817341083845129141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf47a8101b42db34898130497db40491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMotorType: 2
 --- !u!1 &7925086701244007263
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +324,7 @@ Transform:
   - {fileID: 2558941605747355854}
   - {fileID: 7157234147897227828}
   - {fileID: 3793908047071215640}
+  - {fileID: 3349026161615954151}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -284,6 +343,7 @@ MonoBehaviour:
   currentSpaceCraft: 2
   shield: {fileID: 8927305286445080683}
   laser: {fileID: 3413399971841765240}
+  motor: {fileID: 7817341083845129141}
   radar: {fileID: 3217183825106674284}
   structure: {fileID: 4083795938136442007}
   storage: {fileID: 1420683143995056355}

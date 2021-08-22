@@ -56,6 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3967407685828552672}
   - component: {fileID: 392683786456756423}
+  - component: {fileID: 3763240599496077172}
   m_Layer: 0
   m_Name: radar
   m_TagString: Untagged
@@ -93,6 +94,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &3763240599496077172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3452644192821580911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec6582d5f315494aadb49629db57734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRadar: 0
 --- !u!1 &4088782526399043041
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +247,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStructure: 4
+--- !u!1 &6269563740069670990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1151136643466482211}
+  - component: {fileID: 8433027353150193161}
+  m_Layer: 0
+  m_Name: motor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1151136643466482211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269563740069670990}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4645623424734448564}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8433027353150193161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269563740069670990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf47a8101b42db34898130497db40491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMotorType: 4
 --- !u!1 &6601330196380002621
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +387,7 @@ Transform:
   - {fileID: 5853404895844705417}
   - {fileID: 1892616551714100023}
   - {fileID: 3967407685828552672}
+  - {fileID: 1151136643466482211}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -347,6 +406,7 @@ MonoBehaviour:
   currentSpaceCraft: 4
   shield: {fileID: 6601330196380002621}
   laser: {fileID: 2452320237321452304}
+  motor: {fileID: 6269563740069670990}
   radar: {fileID: 3452644192821580911}
   structure: {fileID: 5880005661561226896}
   storage: {fileID: 4088782526399043041}

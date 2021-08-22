@@ -424,11 +424,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1411aff2d377c5b418f586cd03be98e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spacecraftFactory: {fileID: 5612138748763016831, guid: f72308b68a0cbb241b4afbded16a22ce, type: 3}
-  currentMove: 3
+  spacecraftSelected: 2
   currentAction: 1
-  currentStatusGame: 2
+  currentMove: 3
   currentSideSpacecraft: 1
+  currentStatusGame: 1
+  spacecraftFactory: {fileID: 5612138748763016831, guid: f72308b68a0cbb241b4afbded16a22ce, type: 3}
 --- !u!4 &1839754745
 Transform:
   m_ObjectHideFlags: 0

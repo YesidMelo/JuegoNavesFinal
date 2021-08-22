@@ -5,31 +5,61 @@ using UnityEngine;
 public class HandlerSpacecraftMovement : MonoBehaviour
 {
 
-    public GameObject spacecraftFactory;
-    public Move currentMove = Move.STOP;
-    public Action currentAction = Action.DEFENSE;
-    public StatusGame currentStatusGame = StatusGame.PAUSE;
-    public SideSpacecraft currentSideSpacecraft = SideSpacecraft.ENEMY;
-    public AbstractMovement currentMovement;
+    private GameObject spacecraft;
 
-    // Start is called before the first frame update
-    void Start()
+    public Spacecraft spacecraftSelected = Spacecraft.SPACECRAFT_1;
+    public Action currentAction = Action.DEFENSE;
+    public Move currentMove = Move.STOP;
+    public AbstractMovement currentMovement;
+    public SideSpacecraft currentSideSpacecraft = SideSpacecraft.ENEMY;
+    public StatusGame currentStatusGame = StatusGame.PAUSE;
+    public GameObject spacecraftFactory;
+
+    public AbstractSpacecraft currentSpacecraft;
+
+    private void Awake()
     {
+        createInstantanceGameobject();
+    }
+
+    void Update() => checkMovements();
+
+    //private methods
+
+    void createInstantanceGameobject() {
+        GameObject spacecraftSelected = createSpacecraftBasedInSide();
+        spacecraft = Instantiate(spacecraftSelected);
+        //spacecraft.name = Constants.nameSpacecraft;
+        spacecraft.transform.parent = transform;
         initElementsGameObject();
     }
 
-    // Update is called once per frame
-    void Update()
+    void checkMovements()
     {
-        if (currentMovement == null) { 
-            return; 
-        }
+        if (currentMovement == null) return;
+
+        currentMovement.action = currentAction;
+        currentMovement.statusGame = currentStatusGame;
+        currentMovement.move = currentMove;
         currentMovement.movement();
     }
 
-    //private methods
     void initElementsGameObject() {
         if (currentMovement != null) { return; }
-        currentMovement = (new MovementFactory()).getMovement(currentSideSpacecraft);
+        currentMovement = (new MovementFactory()).getMovement(
+            side: currentSideSpacecraft, 
+            spacecraft: gameObject
+        );
+    }
+
+    GameObject createSpacecraftBasedInSide() {
+        SpacecraftFactory factory = spacecraftFactory.GetComponent<SpacecraftFactory>();
+        switch (currentSideSpacecraft) {
+            case SideSpacecraft.PLAYER:
+                return factory.spacecraftSelectedPlayer(spacecraftSelected);
+            case SideSpacecraft.ENEMY:
+            default:
+                return factory.spacecraftSelectedGame(spacecraftSelected);
+        }
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class MovementFactory 
 {
-    public AbstractMovement getMovement(SideSpacecraft side) {
+    public AbstractMovement getMovement(SideSpacecraft side, GameObject spacecraft) {
         switch (side) {
             case SideSpacecraft.PLAYER:
-                return new PlayerMovement();
+                return new PlayerMovement(spacecraft);
             case SideSpacecraft.ENEMY:
             default:
-                return new EnemyMovement();
+                return new EnemyMovement(spacecraft);
         }
     }
 }

@@ -1,7 +1,8 @@
 public enum Action
 {
     ATTACK,
-    DEFENSE
+    CHANGE_ENEMY,
+    DEFENSE,
 }
 
 public enum CanvasAvailable
@@ -27,10 +28,20 @@ public enum Laser {
 }
 
 public enum Move { 
-    UP,
+    FORWARD,
     LEFT,
     RIGT,
-    STOP
+    STOP,
+    POINER_ENEMY,
+    POINTER_PLAYER,
+}
+
+public enum Motor {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
 }
 
 public enum Radar {

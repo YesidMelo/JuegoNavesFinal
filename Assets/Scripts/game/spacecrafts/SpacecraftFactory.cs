@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class SpacecraftFactory : MonoBehaviour
 {
-
-    public bool createSpaceCraft = false;
     public List<GameObject> prefabs = new List<GameObject>();
-
 
     public GameObject spacecraftSelectedGame(Spacecraft spaceCraftSelected) {
         GameObject selected;
@@ -32,7 +29,7 @@ public class SpacecraftFactory : MonoBehaviour
         return selected;
     }
 
-    public GameObject spacecraftSelectedGamer(Spacecraft spaceCraftSelected)
+    public GameObject spacecraftSelectedPlayer(Spacecraft spaceCraftSelected)
     {
         GameObject selected;
         switch (spaceCraftSelected)

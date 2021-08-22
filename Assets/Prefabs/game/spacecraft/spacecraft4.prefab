@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8759731148432599568}
   - component: {fileID: 3591316159221140919}
+  - component: {fileID: 1525272876370814006}
   m_Layer: 0
   m_Name: radar
   m_TagString: Untagged
@@ -47,6 +48,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &1525272876370814006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479122209431247499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec6582d5f315494aadb49629db57734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRadar: 0
 --- !u!1 &1348718130560302509
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +94,7 @@ Transform:
   - {fileID: 4986574227859197279}
   - {fileID: 5548331226319640803}
   - {fileID: 8759731148432599568}
+  - {fileID: 8721280173070983533}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -98,6 +113,7 @@ MonoBehaviour:
   currentSpaceCraft: 3
   shield: {fileID: 2443312588733117828}
   laser: {fileID: 3957495059140096037}
+  motor: {fileID: 6910890465558990773}
   radar: {fileID: 479122209431247499}
   structure: {fileID: 2558732105737187731}
   storage: {fileID: 4156133195144638502}
@@ -350,3 +366,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStorage: 3
+--- !u!1 &6910890465558990773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8721280173070983533}
+  - component: {fileID: 5868512289062317602}
+  m_Layer: 0
+  m_Name: motor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8721280173070983533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910890465558990773}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4205101883077547973}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5868512289062317602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910890465558990773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf47a8101b42db34898130497db40491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMotorType: 3
