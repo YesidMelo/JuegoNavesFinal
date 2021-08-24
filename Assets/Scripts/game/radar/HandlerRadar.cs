@@ -14,10 +14,14 @@ public class HandlerRadar : MonoBehaviour
     public Radar currentRadar = Radar.TYPE_1;
     public AbstractRadar radar;
 
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject> enemy = new List<GameObject>();
+    public GameObject currentEnemy;
+
+    private string _currentSideGameObject;
+
+    private void Start()
     {
-        
+        _currentSideGameObject = transform.parent.parent.name;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,6 +29,7 @@ public class HandlerRadar : MonoBehaviour
         if (_myDelegate == null) {
             return;
         }
+        addSideEnemy(collision);
         _myDelegate.enterGameObject(collision);
     }
 
@@ -34,6 +39,41 @@ public class HandlerRadar : MonoBehaviour
         {
             return;
         }
+        if (enemy.Contains(collision.gameObject))
+        {
+            enemy.Remove(collision.gameObject);
+        }
         _myDelegate.enterGameObject(collision);
+    }
+
+    private void addSideEnemy(Collider2D collision) {
+        if (_currentSideGameObject == Constants.namePlayer) {
+            captureEnemyFromPlayer(collision);
+            return;
+        }
+        captureEnemyFromCPU(collision);
+        
+    }
+
+    private void captureEnemyFromPlayer(Collider2D collision) {
+        if (collision.transform.parent.parent.name == Constants.namePlayer) {
+            return;
+        }
+        if (!enemy.Contains(collision.gameObject))
+        {
+            enemy.Add(collision.gameObject);
+        }
+    }
+
+    private void captureEnemyFromCPU(Collider2D collision)
+    {
+        if (collision.transform.parent.parent.name == Constants.nameEnemy)
+        {
+            return;
+        }
+        if (!enemy.Contains(collision.gameObject))
+        {
+            enemy.Add(collision.gameObject);
+        }
     }
 }

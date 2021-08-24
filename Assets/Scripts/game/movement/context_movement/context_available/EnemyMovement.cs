@@ -18,6 +18,18 @@ public class EnemyMovement : AbstractMovement
             case Move.FORWARD:
                 forwardMovement.move();
                 return;
+            case Move.LEFT:
+                leftMovement.move();
+                return;
+            case Move.RIGT:
+                rigthMovement.move();
+                return;
+            case Move.POINER_ENEMY:
+                pointingEnemy.move();
+                return;
+            case Move.POINTER_PLAYER:
+                pointingEnemy.move();
+                return;
             case Move.STOP:
             default:
                 return;

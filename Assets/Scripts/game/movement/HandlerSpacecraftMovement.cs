@@ -29,7 +29,7 @@ public class HandlerSpacecraftMovement : MonoBehaviour
     void createInstantanceGameobject() {
         GameObject spacecraftSelected = createSpacecraftBasedInSide();
         spacecraft = Instantiate(spacecraftSelected);
-        //spacecraft.name = Constants.nameSpacecraft;
+        spacecraft.name = Constants.nameSpacecraft;
         spacecraft.transform.parent = transform;
         initElementsGameObject();
     }

@@ -8,6 +8,6 @@ public class PointingPlayer : AbstractMovementSpacecraft
 
     public override void move()
     {
-        
+        loadEnemy();
     }
 }
