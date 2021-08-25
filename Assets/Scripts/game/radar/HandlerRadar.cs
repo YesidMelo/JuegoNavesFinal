@@ -56,7 +56,7 @@ public class HandlerRadar : MonoBehaviour
     }
 
     private void captureEnemyFromPlayer(Collider2D collision) {
-        if (collision.transform.parent.parent.name == Constants.namePlayer) {
+        if (collision.transform.parent.parent.name.Contains(Constants.namePlayer)) {
             return;
         }
         if (!enemy.Contains(collision.gameObject))
@@ -67,7 +67,7 @@ public class HandlerRadar : MonoBehaviour
 
     private void captureEnemyFromCPU(Collider2D collision)
     {
-        if (collision.transform.parent.parent.name == Constants.nameEnemy)
+        if (collision.transform.parent.parent.name.Contains(Constants.nameEnemy))
         {
             return;
         }

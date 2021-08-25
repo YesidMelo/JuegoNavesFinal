@@ -11,11 +11,6 @@ public class PlayerMovement : AbstractMovement
         
     }
 
-    public override void movementChangeEnemy()
-    {
-        
-    }
-
     public override void movementDefence()
     {
         

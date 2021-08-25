@@ -37,7 +37,6 @@ public class HandlerSpacecraftMovement : MonoBehaviour
     void checkMovements()
     {
         if (currentMovement == null) return;
-
         currentMovement.action = currentAction;
         currentMovement.statusGame = currentStatusGame;
         currentMovement.move = currentMove;
@@ -50,6 +49,7 @@ public class HandlerSpacecraftMovement : MonoBehaviour
             side: currentSideSpacecraft, 
             spacecraft: gameObject
         );
+        currentMovement.myDelegate = new MovementListener(this);
     }
 
     GameObject createSpacecraftBasedInSide() {
@@ -62,4 +62,6 @@ public class HandlerSpacecraftMovement : MonoBehaviour
                 return factory.spacecraftSelectedGame(spacecraftSelected);
         }
     }
+
+    
 }

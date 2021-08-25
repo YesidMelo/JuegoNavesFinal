@@ -1,11 +1,17 @@
 using UnityEngine;
 
-public abstract class AbstractMovement 
+public interface AbstractMovementDelegate {
+    void updateAction(Action currentAction);
+    void updateMove(Move move);
+}
+
+public abstract class AbstractMovement
 {
-    
+
     private StatusGame currentStatusGame;
-    private Action previousAction;
     private Action currentAction;
+    private Action previousAction;
+    private AbstractMovementDelegate _delegate;
 
     protected Move currentMove;
     protected GameObject spacecraft;
@@ -17,17 +23,12 @@ public abstract class AbstractMovement
     protected AbstractMovementSpacecraft rigthMovement;
     protected AbstractMovementSpacecraft stopMovement;
 
-    public Action action
-    {
-        set
-        {
-            previousAction = currentAction;
-            currentAction = value;
-        }
-    }
+    public Action action { set { currentAction = value; } }
 
     public Move move { set { currentMove = value; } }
     public StatusGame statusGame { set { currentStatusGame = value; } }
+
+    public AbstractMovementDelegate myDelegate { set { _delegate = value; } }
 
     public AbstractMovement(
         GameObject spacecraft
@@ -50,7 +51,6 @@ public abstract class AbstractMovement
 
     public abstract void movementAttack();
     public abstract void movementDefence();
-    public abstract void movementChangeEnemy();
 
     void initMovementsAvailables() {
         MovementSpacecraftFactory factory = new MovementSpacecraftFactory();
@@ -69,7 +69,7 @@ public abstract class AbstractMovement
                 movementAttack();
                 return;
             case Action.CHANGE_ENEMY:
-                movementChangeEnemy();
+                changeEnemy();
                 return;
             case Action.DEFENSE:
             default:
@@ -77,5 +77,46 @@ public abstract class AbstractMovement
                 return;
         }
     }
-   
+
+    void changeEnemy()
+    {
+        changeToPreviousAction();
+        GameObject spacecraftLocal = spacecraft.transform.GetChild(0).gameObject;
+        GameObject radar = spacecraftLocal.transform.FindChild(Constants.nameRadar).gameObject;
+        HandlerRadar handler = radar.GetComponent<HandlerRadar>();
+        if (handler.enemy.Count == 0)
+        {
+            return;
+        }
+
+        if (handler.currentEnemy == null || handler.enemy.Count == 1)
+        {
+            handler.currentEnemy = handler.enemy[0];
+            return;
+        }
+
+        GameObject currentEnemy = handler.currentEnemy;
+        handler.enemy.Remove(currentEnemy);
+        handler.currentEnemy = handler.enemy[0];
+        handler.enemy.Add(currentEnemy);
+
+    }
+
+    void changeToPreviousAction()
+    {
+
+        if (previousAction != null && previousAction != Action.CHANGE_ENEMY)
+        {
+            currentAction = previousAction;
+        }
+        else
+        {
+            currentAction = Action.ATTACK;
+        }
+        if (_delegate == null) {
+            return;
+        }
+        _delegate.updateAction(currentAction);
+    }
+
 }
