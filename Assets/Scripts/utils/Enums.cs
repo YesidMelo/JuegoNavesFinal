@@ -44,6 +44,13 @@ public enum Motor {
     TYPE_5,
 }
 
+public enum Quadrant { 
+    QUADRANT_1,
+    QUADRANT_2,
+    QUADRANT_3,
+    QUADRANT_4,
+}
+
 public enum Radar {
     TYPE_1,
     TYPE_2,

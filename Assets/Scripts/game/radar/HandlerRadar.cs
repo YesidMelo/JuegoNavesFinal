@@ -43,6 +43,9 @@ public class HandlerRadar : MonoBehaviour
         {
             enemy.Remove(collision.gameObject);
         }
+        if (collision.gameObject == currentEnemy) {
+            currentEnemy = null;
+        }
         _myDelegate.enterGameObject(collision);
     }
 
