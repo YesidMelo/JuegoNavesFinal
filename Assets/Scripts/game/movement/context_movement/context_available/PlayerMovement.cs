@@ -8,11 +8,13 @@ public class PlayerMovement : AbstractMovement
 
     public override void movementAttack()
     {
-        
+        pointingPlayer.move();
+        forwardMovement.move();
     }
 
-    public override void movementDefence()
-    {
-        
-    }
+    public override void movementDefence() => forwardMovement.move();
+
+    public override void movementFordward() => forwardMovement.move();
+
+    public override void movementStop() => stopMovement.move();
 }

@@ -16,8 +16,4 @@ public class MovementListener : AbstractMovementDelegate
         spacecraftMovement.currentAction = currentAction;
     }
 
-    public void updateMove(Move move)
-    {
-        spacecraftMovement.currentMove = move;
-    }
 }

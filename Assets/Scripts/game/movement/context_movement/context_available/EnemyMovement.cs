@@ -5,57 +5,18 @@ using UnityEngine;
 public class EnemyMovement : AbstractMovement
 {
     public EnemyMovement(GameObject spacecraft) : base(spacecraft) { }
-    
+
 
     public override void movementAttack()
     {
-        switch (currentMove)
-        {
-            case Move.FORWARD:
-                forwardMovement.move();
-                return;
-            case Move.LEFT:
-                leftMovement.move();
-                return;
-            case Move.RIGT:
-                rigthMovement.move();
-                return;
-            case Move.POINER_ENEMY:
-                pointingEnemy.move();
-                return;
-            case Move.POINTER_PLAYER:
-                pointingPlayer.move();
-                return;
-            case Move.STOP:
-            default:
-                return;
-        }
+        pointingEnemy.move();
+        forwardMovement.move();
     }
 
-    public override void movementDefence()
-    {
+    public override void movementDefence() => forwardMovement.move();
 
-        switch (currentMove)
-        {
-            case Move.FORWARD:
-                forwardMovement.move();
-                return;
-            case Move.LEFT:
-                leftMovement.move();
-                return;
-            case Move.RIGT:
-                rigthMovement.move();
-                return;
-            case Move.POINER_ENEMY:
-                pointingEnemy.move();
-                return;
-            case Move.POINTER_PLAYER:
-                pointingPlayer.move();
-                return;
-            case Move.STOP:
-            default:
-                return;
-        }
-        
-    }
+    public override void movementFordward() => forwardMovement.move();
+
+    public override void movementStop() => stopMovement.move();
+
 }

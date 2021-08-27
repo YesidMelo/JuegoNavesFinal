@@ -3,6 +3,8 @@ public enum Action
     ATTACK,
     CHANGE_ENEMY,
     DEFENSE,
+    FORDWARD,
+    STOP,
 }
 
 public enum CanvasAvailable

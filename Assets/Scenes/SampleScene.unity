@@ -256,12 +256,12 @@ GameObject:
   m_Component:
   - component: {fileID: 477188983}
   m_Layer: 0
-  m_Name: enemy (1)
+  m_Name: player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &477188983
 Transform:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477188982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.57, y: 3.16, z: -13.45746}
+  m_LocalPosition: {x: 2.54, y: -2.29, z: -13.45746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 517817544}
@@ -378,15 +378,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2927628737252005429, guid: d6485f95ef9bee544af8416040e5ad3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3242352
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2927628737252005429, guid: d6485f95ef9bee544af8416040e5ad3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.276432
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2927628737252005429, guid: d6485f95ef9bee544af8416040e5ad3f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.45746
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2927628737252005429, guid: d6485f95ef9bee544af8416040e5ad3f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -560,12 +560,12 @@ GameObject:
   m_Component:
   - component: {fileID: 986473379}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &986473379
 Transform:
   m_ObjectHideFlags: 0
@@ -574,7 +574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986473378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20576471, y: 4.0464315, z: -13.45746}
+  m_LocalPosition: {x: 0.43, y: 1.98, z: -13.45746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 705063213}
@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 1839754745}
   - component: {fileID: 1839754744}
   m_Layer: 0
-  m_Name: player
+  m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,8 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spacecraftSelected: 2
-  currentAction: 0
-  currentMove: 4
+  currentAction: 4
   currentSideSpacecraft: 1
   currentStatusGame: 1
   spacecraftFactory: {fileID: 5612138748763016831, guid: f72308b68a0cbb241b4afbded16a22ce, type: 3}
@@ -646,7 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1945562156}
   m_Layer: 0
-  m_Name: enemy (2)
+  m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,69 +14,56 @@ public class HandlerRadar : MonoBehaviour
     public Radar currentRadar = Radar.TYPE_1;
     public AbstractRadar radar;
 
-    public List<GameObject> enemy = new List<GameObject>();
-    public GameObject currentEnemy;
+    public List<GameObject> enemy {
+        get {
+            if (radar == null) {
+                return new List<GameObject>();
+            }
+            return radar.listEnemy;
+        }
+    }
 
-    private string _currentSideGameObject;
+    public GameObject currentEnemy {
+        get {
+            if (radar == null) {
+                return null;
+            }
+            return radar.currentEnemy;
+        }
+    }
+
+    public void changeEnemy() {
+        if (radar == null) { return; }
+        radar.changeEnemy();
+    }
+
+    private void Awake()
+    {
+        createRadar();
+    }
 
     private void Start()
     {
-        _currentSideGameObject = transform.parent.parent.name;
+        if (radar == null) {
+            return;
+        }
+        radar.currentSideGameObject = transform.parent.parent.name;
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_myDelegate == null) {
-            return;
-        }
-        addSideEnemy(collision);
+        if (radar == null || _myDelegate == null) {return;}
+        radar.addSideEnemy(collision);
         _myDelegate.enterGameObject(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (_myDelegate == null)
-        {
-            return;
-        }
-        if (enemy.Contains(collision.gameObject))
-        {
-            enemy.Remove(collision.gameObject);
-        }
-        if (collision.gameObject == currentEnemy) {
-            currentEnemy = null;
-        }
+        if(radar == null || _myDelegate == null) { return; }
+        radar.removeEnemy(collision.gameObject);
         _myDelegate.enterGameObject(collision);
     }
 
-    private void addSideEnemy(Collider2D collision) {
-        if (_currentSideGameObject == Constants.namePlayer) {
-            captureEnemyFromPlayer(collision);
-            return;
-        }
-        captureEnemyFromCPU(collision);
-        
-    }
-
-    private void captureEnemyFromPlayer(Collider2D collision) {
-        if (collision.transform.parent.parent.name.Contains(Constants.namePlayer)) {
-            return;
-        }
-        if (!enemy.Contains(collision.gameObject))
-        {
-            enemy.Add(collision.gameObject);
-        }
-    }
-
-    private void captureEnemyFromCPU(Collider2D collision)
-    {
-        if (collision.transform.parent.parent.name.Contains(Constants.nameEnemy))
-        {
-            return;
-        }
-        if (!enemy.Contains(collision.gameObject))
-        {
-            enemy.Add(collision.gameObject);
-        }
-    }
+    private void createRadar() => radar = (new RadarFactory()).getRadar(currentRadar);
 }

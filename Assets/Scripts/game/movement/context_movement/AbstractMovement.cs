@@ -2,18 +2,16 @@ using UnityEngine;
 
 public interface AbstractMovementDelegate {
     void updateAction(Action currentAction);
-    void updateMove(Move move);
 }
 
 public abstract class AbstractMovement
 {
 
     private StatusGame currentStatusGame;
-    private Action currentAction;
-    private Action previousAction;
+    private Action currentAction = Action.STOP;
+    private Action previousAction = Action.STOP;
     private AbstractMovementDelegate _delegate;
 
-    protected Move currentMove;
     protected GameObject spacecraft;
 
     protected AbstractMovementSpacecraft forwardMovement;
@@ -23,9 +21,13 @@ public abstract class AbstractMovement
     protected AbstractMovementSpacecraft rigthMovement;
     protected AbstractMovementSpacecraft stopMovement;
 
-    public Action action { set { currentAction = value; } }
+    public Action action { 
+        set {
+            previousAction = currentAction;
+            currentAction = value; 
+        } 
+    }
 
-    public Move move { set { currentMove = value; } }
     public StatusGame statusGame { set { currentStatusGame = value; } }
 
     public AbstractMovementDelegate myDelegate { set { _delegate = value; } }
@@ -52,6 +54,10 @@ public abstract class AbstractMovement
     public abstract void movementAttack();
     public abstract void movementDefence();
 
+    public abstract void movementFordward();
+
+    public abstract void movementStop();
+
     void initMovementsAvailables() {
         MovementSpacecraftFactory factory = new MovementSpacecraftFactory();
         forwardMovement = factory.getMovementSpacecraft(Move.FORWARD, spacecraft );
@@ -72,8 +78,14 @@ public abstract class AbstractMovement
                 changeEnemy();
                 return;
             case Action.DEFENSE:
-            default:
                 movementDefence();
+                return;
+            case Action.FORDWARD:
+                movementFordward();
+                return;
+            case Action.STOP:
+            default:
+                movementStop();
                 return;
         }
     }
@@ -84,35 +96,15 @@ public abstract class AbstractMovement
         GameObject spacecraftLocal = spacecraft.transform.GetChild(0).gameObject;
         GameObject radar = spacecraftLocal.transform.FindChild(Constants.nameRadar).gameObject;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();
-        if (handler.enemy.Count == 0)
-        {
-            return;
-        }
-
-        if (handler.currentEnemy == null || handler.enemy.Count == 1)
-        {
-            handler.currentEnemy = handler.enemy[0];
-            return;
-        }
-
-        GameObject currentEnemy = handler.currentEnemy;
-        handler.enemy.Remove(currentEnemy);
-        handler.currentEnemy = handler.enemy[0];
-        handler.enemy.Add(currentEnemy);
+        handler.changeEnemy();
 
     }
 
     void changeToPreviousAction()
     {
 
-        if (previousAction != null && previousAction != Action.CHANGE_ENEMY)
-        {
-            currentAction = previousAction;
-        }
-        else
-        {
-            currentAction = Action.ATTACK;
-        }
+        if (previousAction != Action.CHANGE_ENEMY) { action = previousAction; }
+        else { currentAction = Action.ATTACK; }
         if (_delegate == null) {
             return;
         }

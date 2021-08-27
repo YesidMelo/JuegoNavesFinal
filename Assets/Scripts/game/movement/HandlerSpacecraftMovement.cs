@@ -8,8 +8,7 @@ public class HandlerSpacecraftMovement : MonoBehaviour
     private GameObject spacecraft;
 
     public Spacecraft spacecraftSelected = Spacecraft.SPACECRAFT_1;
-    public Action currentAction = Action.DEFENSE;
-    public Move currentMove = Move.STOP;
+    public Action currentAction = Action.STOP;
     public AbstractMovement currentMovement;
     public SideSpacecraft currentSideSpacecraft = SideSpacecraft.ENEMY;
     public StatusGame currentStatusGame = StatusGame.PAUSE;
@@ -39,7 +38,6 @@ public class HandlerSpacecraftMovement : MonoBehaviour
         if (currentMovement == null) return;
         currentMovement.action = currentAction;
         currentMovement.statusGame = currentStatusGame;
-        currentMovement.move = currentMove;
         currentMovement.movement();
     }
 
