@@ -449,5 +449,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRadar: 0
-  enemy: []
-  currentEnemy: {fileID: 0}

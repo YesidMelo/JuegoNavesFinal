@@ -13,10 +13,12 @@ public abstract class AbstractMovement
     private AbstractMovementDelegate _delegate;
 
     protected GameObject spacecraft;
+    protected GameObject _currentEnemy;
 
     protected AbstractMovementSpacecraft forwardMovement;
     protected AbstractMovementSpacecraft leftMovement;
     protected AbstractMovementSpacecraft pointingEnemy;
+    protected AbstractMovementSpacecraft pointingPatrol;
     protected AbstractMovementSpacecraft pointingPlayer;
     protected AbstractMovementSpacecraft rigthMovement;
     protected AbstractMovementSpacecraft stopMovement;
@@ -24,7 +26,9 @@ public abstract class AbstractMovement
     public Action action { 
         set {
             previousAction = currentAction;
-            currentAction = value; 
+            currentAction = value;
+            if (_delegate == null) { return; }
+            _delegate.updateAction(currentAction);
         } 
     }
 
@@ -56,13 +60,17 @@ public abstract class AbstractMovement
 
     public abstract void movementFordward();
 
+    public abstract void movementPatrol();
+
     public abstract void movementStop();
+    
 
     void initMovementsAvailables() {
         MovementSpacecraftFactory factory = new MovementSpacecraftFactory();
         forwardMovement = factory.getMovementSpacecraft(Move.FORWARD, spacecraft );
         leftMovement = factory.getMovementSpacecraft(Move.LEFT, spacecraft );
         pointingEnemy = factory.getMovementSpacecraft(Move.POINER_ENEMY, spacecraft );
+        pointingPatrol = factory.getMovementSpacecraft(Move.POINTER_PATROL, spacecraft );
         pointingPlayer = factory.getMovementSpacecraft(Move.POINTER_PLAYER, spacecraft );
         rigthMovement = factory.getMovementSpacecraft(Move.RIGT, spacecraft );
         stopMovement = factory.getMovementSpacecraft(Move.STOP, spacecraft );
@@ -82,6 +90,9 @@ public abstract class AbstractMovement
                 return;
             case Action.FORDWARD:
                 movementFordward();
+                return;
+            case Action.PATROL:
+                movementPatrol();
                 return;
             case Action.STOP:
             default:
@@ -103,12 +114,23 @@ public abstract class AbstractMovement
     void changeToPreviousAction()
     {
 
-        if (previousAction != Action.CHANGE_ENEMY) { action = previousAction; }
-        else { currentAction = Action.ATTACK; }
-        if (_delegate == null) {
+        if (previousAction != Action.CHANGE_ENEMY) { 
+            action = previousAction; 
+        } else { 
+            currentAction = Action.ATTACK; 
+        }
+    }
+
+
+    protected void loadEnemy()
+    {
+        if (spacecraft == null) {
             return;
         }
-        _delegate.updateAction(currentAction);
+        GameObject spacecraftLocal = spacecraft.transform.GetChild(0).gameObject;
+        GameObject radar = spacecraftLocal.transform.FindChild(Constants.nameRadar).gameObject;
+        HandlerRadar handler = radar.GetComponent<HandlerRadar>();
+        _currentEnemy = handler.currentEnemy;
     }
 
 }

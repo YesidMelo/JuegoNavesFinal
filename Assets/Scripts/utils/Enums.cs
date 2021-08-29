@@ -4,6 +4,7 @@ public enum Action
     CHANGE_ENEMY,
     DEFENSE,
     FORDWARD,
+    PATROL,
     STOP,
 }
 
@@ -36,6 +37,7 @@ public enum Move {
     STOP,
     POINER_ENEMY,
     POINTER_PLAYER,
+    POINTER_PATROL,
 }
 
 public enum Motor {

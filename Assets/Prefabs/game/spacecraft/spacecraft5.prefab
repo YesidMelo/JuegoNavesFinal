@@ -107,8 +107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRadar: 0
-  enemy: []
-  currentEnemy: {fileID: 0}
 --- !u!1 &4088782526399043041
 GameObject:
   m_ObjectHideFlags: 0
