@@ -13,11 +13,14 @@ public class HandlerMotor : MonoBehaviour
 
     public HandlerMotorDelegate myDelegate { set { _delegate = value; } }
 
-    private void Awake()
-    {
+    private void Awake() => initMotor();
+
+    public void updateMotor(Motor currentMotor) {
+        currentMotorType = currentMotor;
         initMotor();
     }
 
+    // private methods
 
     private void initMotor() {
         currentMotor = (new MotorFactory()).getMotor(currentMotorType);

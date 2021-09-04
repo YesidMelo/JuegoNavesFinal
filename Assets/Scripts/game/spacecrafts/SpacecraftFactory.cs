@@ -6,7 +6,9 @@ public class SpacecraftFactory : MonoBehaviour
 {
     public List<GameObject> prefabs = new List<GameObject>();
 
-    public GameObject spacecraftSelectedGame(Spacecraft spaceCraftSelected) {
+    public GameObject spacecraftSelectedGame(
+        Spacecraft spaceCraftSelected
+    ) {
         GameObject selected;
         switch (spaceCraftSelected) {
             case Spacecraft.SPACECRAFT_2:
@@ -29,8 +31,9 @@ public class SpacecraftFactory : MonoBehaviour
         return selected;
     }
 
-    public GameObject spacecraftSelectedPlayer(Spacecraft spaceCraftSelected)
-    {
+    public GameObject spacecraftSelectedPlayer(
+        Spacecraft spaceCraftSelected
+    ) {
         GameObject selected;
         switch (spaceCraftSelected)
         {

@@ -15,6 +15,8 @@ public interface InteractionGameUIViewModel {
     StatusGame currentStatusGame { set; }
     Action currentAction { set;  }
 
+    Vector3 getInitialPosition { get; }
+
     void moveUp();
     void stop();
     void moveLeft();
@@ -34,11 +36,14 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private Move _currentMove;
     private StatusGame _currentStatusGame;
     private Action _currentAction;
+    private Vector3 _currentPosition = new Vector3(0, 0, 0);
 
     public InteractionGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
     public Move currentMove { set => _currentMove = value; }
     public StatusGame currentStatusGame { set => _currentStatusGame = value; }
     public Action currentAction { set => _currentAction = value; }
+
+    public Vector3 getInitialPosition { get { return _currentPosition; } }
 
     public void changeAction()
     {

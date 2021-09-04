@@ -6,8 +6,5 @@ public class StopMovement : AbstractMovementSpacecraft
 {
     public StopMovement(GameObject spaceCraftToMove) : base(spaceCraftToMove){}
 
-    public override void move()
-    {
-        
-    }
+    public override void move() {}
 }

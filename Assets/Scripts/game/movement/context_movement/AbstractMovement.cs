@@ -20,6 +20,7 @@ public abstract class AbstractMovement
     protected AbstractMovementSpacecraft pointingEnemy;
     protected AbstractMovementSpacecraft pointingPatrol;
     protected AbstractMovementSpacecraft pointingPlayer;
+    protected AbstractMovementSpacecraft pointingStructureToEnemy;
     protected AbstractMovementSpacecraft rigthMovement;
     protected AbstractMovementSpacecraft stopMovement;
 
@@ -72,6 +73,7 @@ public abstract class AbstractMovement
         pointingEnemy = factory.getMovementSpacecraft(Move.POINER_ENEMY, spacecraft );
         pointingPatrol = factory.getMovementSpacecraft(Move.POINTER_PATROL, spacecraft );
         pointingPlayer = factory.getMovementSpacecraft(Move.POINTER_PLAYER, spacecraft );
+        pointingStructureToEnemy = factory.getMovementSpacecraft(Move.POINTER_STRUCTURE_TO_ENEMY, spacecraft );
         rigthMovement = factory.getMovementSpacecraft(Move.RIGT, spacecraft );
         stopMovement = factory.getMovementSpacecraft(Move.STOP, spacecraft );
     }

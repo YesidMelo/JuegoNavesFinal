@@ -38,7 +38,7 @@ public abstract class AbstractMovementSpacecraft
     public abstract void move();
 
     protected void loadEnemy() {
-        GameObject spacecraft = spaceCraftToMove.transform.GetChild(0).gameObject;
+        GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
         GameObject radar = spacecraft.transform.FindChild(Constants.nameRadar).gameObject;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();
         _enemy = handler.enemy;
@@ -46,7 +46,7 @@ public abstract class AbstractMovementSpacecraft
     }
 
     private void loadSpeedSpacecraft() {
-        GameObject spacecraft = spaceCraftToMove.transform.GetChild(0).gameObject;
+        GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
         GameObject motor = spacecraft.transform.FindChild(Constants.nameMotor).gameObject;
         HandlerMotor handler = motor.GetComponent<HandlerMotor>();
         AbstractMotor currentMotor = handler.currentMotor;

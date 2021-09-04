@@ -18,6 +18,8 @@ public class MovementSpacecraftFactory
                 return new PointingPlayer(spacecraft);
             case Move.POINTER_PATROL:
                 return new PointingPatrol(spacecraft);
+            case Move.POINTER_STRUCTURE_TO_ENEMY:
+                return new PointStructureToEnemyMovement(spacecraft);
             case Move.STOP:
             default:
                 return new StopMovement(spacecraft);

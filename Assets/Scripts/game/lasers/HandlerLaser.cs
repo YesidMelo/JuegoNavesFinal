@@ -27,6 +27,12 @@ public class HandlerLaser : MonoBehaviour
         calculateFinalValueLaser();
     }
 
+    //Public methods
+    public void updateLasers(List<Laser> currentLasers) {
+        lasersType = currentLasers;
+        initLasersDefaults();
+        calculateFinalValueLaser();
+    }
 
     // private methods
     void initLasersDefaults() {

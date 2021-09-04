@@ -21,15 +21,12 @@ public class HanderShield : MonoBehaviour
     private HanderShieldDelegate _myDelegate;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        fillShieldsByDefault();
-    }
+    void Start() => fillShieldsByDefault();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    // public methods
+    public void updateListShields(List<Shield> listShields) {
+        this.shields = listShields;
+        fillShieldsByDefault();
     }
 
     // Private Methods

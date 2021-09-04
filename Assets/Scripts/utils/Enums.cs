@@ -38,6 +38,7 @@ public enum Move {
     POINER_ENEMY,
     POINTER_PLAYER,
     POINTER_PATROL,
+    POINTER_STRUCTURE_TO_ENEMY
 }
 
 public enum Motor {

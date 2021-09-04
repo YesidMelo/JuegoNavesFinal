@@ -6,22 +6,21 @@ public class HandlerSpacecraftMovement : MonoBehaviour
 {
 
     private GameObject spacecraft;
-
-    public Spacecraft spacecraftSelected = Spacecraft.SPACECRAFT_1;
-    public Action currentAction = Action.STOP;
-    public AbstractMovement currentMovement;
-    public SideSpacecraft currentSideSpacecraft = SideSpacecraft.ENEMY;
-    public StatusGame currentStatusGame = StatusGame.PAUSE;
+    //-> creation
     public GameObject spacecraftFactory;
+    public Spacecraft spacecraftSelected = Spacecraft.SPACECRAFT_1;
+
+    //-> movement
+    public StatusGame currentStatusGame = StatusGame.PAUSE;
+    public Action currentAction = Action.STOP;
+    public SideSpacecraft currentSideSpacecraft = SideSpacecraft.ENEMY;
+    public AbstractMovement currentMovement;
 
     public AbstractSpacecraft currentSpacecraft;
 
-    private void Awake()
-    {
-        createInstantanceGameobject();
-    }
+    private void Awake() => createInstantanceGameobject();
 
-    void Update() => checkMovements();
+    void Update() => checkMovements(); 
 
     //private methods
 

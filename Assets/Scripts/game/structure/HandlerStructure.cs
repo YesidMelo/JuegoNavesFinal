@@ -12,10 +12,7 @@ public class HandlerStructure : MonoBehaviour
     public AbstractStructure structure;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        initVariables();    
-    }
+    void Start() => initVariables();
 
     public void updateStructure(Structure structure) {
         currentStructure = structure;

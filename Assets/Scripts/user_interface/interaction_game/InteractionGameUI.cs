@@ -18,6 +18,15 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     private InteractionGameUIDelegate _myDelegate;
     private InteractionGameUIViewModel viewModel = new InteractionGameUIViewModelImpl();
 
+    public GameObject prefabPlayer;
+
+
+    private void Awake()
+    {
+        GameObject currentPlayer = Instantiate(prefabPlayer, viewModel.getInitialPosition, Quaternion.identity);
+        currentPlayer.transform.name = Constants.namePlayer;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

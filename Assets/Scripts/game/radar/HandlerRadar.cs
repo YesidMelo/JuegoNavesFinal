@@ -65,5 +65,13 @@ public class HandlerRadar : MonoBehaviour
         _myDelegate.enterGameObject(collision);
     }
 
+    //public methods
+    public void updateRadar(Radar currentRadar) {
+        this.currentRadar = currentRadar;
+        createRadar();
+    }
+
+    // private methods
+
     private void createRadar() => radar = (new RadarFactory()).getRadar(currentRadar);
 }

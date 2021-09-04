@@ -6,5 +6,8 @@ public interface AbstractCanvasUIDelegate {
     void showProgress();
 }
 
-public abstract class AbstractCanvas : MonoBehaviour{}
+public abstract class AbstractCanvas : MonoBehaviour{
+
+    
+}
 
