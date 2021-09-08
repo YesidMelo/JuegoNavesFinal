@@ -6,6 +6,8 @@ public class MovementSpacecraftFactory
 {
     public AbstractMovementSpacecraft getMovementSpacecraft(Move move, GameObject spacecraft) {
         switch (move) {
+            case Move.BOTTOM:
+                return new BottomMovement(spacecraft);
             case Move.FORWARD:
                 return new ForwardMovement(spacecraft);
             case Move.LEFT:
@@ -20,6 +22,8 @@ public class MovementSpacecraftFactory
                 return new PointingPatrol(spacecraft);
             case Move.POINTER_STRUCTURE_TO_ENEMY:
                 return new PointStructureToEnemyMovement(spacecraft);
+            case Move.TOP:
+                return new TopMovement(spacecraft);
             case Move.STOP:
             default:
                 return new StopMovement(spacecraft);

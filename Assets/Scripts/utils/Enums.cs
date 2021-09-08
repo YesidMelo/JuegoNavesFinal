@@ -31,10 +31,12 @@ public enum Laser {
 }
 
 public enum Move { 
+    BOTTOM,
     FORWARD,
     LEFT,
     RIGT,
     STOP,
+    TOP,
     POINER_ENEMY,
     POINTER_PLAYER,
     POINTER_PATROL,

@@ -8,6 +8,13 @@ public abstract class AbstractMovementSpacecraft
     private List<GameObject> _enemy = new List<GameObject>();
     private GameObject _currentEnemy;
     private int _speedSpacecraft;
+    private int _speedRotationSpacecraft;
+
+    protected int speedRotationSpacecraft {
+        get {
+            return _speedRotationSpacecraft;
+        }
+    }
 
     protected int speedSpacecraft { 
         get {
@@ -51,6 +58,7 @@ public abstract class AbstractMovementSpacecraft
         HandlerMotor handler = motor.GetComponent<HandlerMotor>();
         AbstractMotor currentMotor = handler.currentMotor;
         _speedSpacecraft = currentMotor.speed;
+        _speedRotationSpacecraft = currentMotor.speedRotation;
     }
 
 }

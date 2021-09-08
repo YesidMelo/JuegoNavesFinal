@@ -46,6 +46,6 @@ MonoBehaviour:
   spacecraftFactory: {fileID: 5612138748763016831, guid: f72308b68a0cbb241b4afbded16a22ce, type: 3}
   spacecraftSelected: 2
   currentStatusGame: 1
-  currentAction: 4
+  currentAction: 3
   currentSideSpacecraft: 0
   currentSpacecraft: {fileID: 0}

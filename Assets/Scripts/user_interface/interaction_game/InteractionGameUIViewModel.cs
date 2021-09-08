@@ -38,6 +38,10 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private Action _currentAction;
     private Vector3 _currentPosition = new Vector3(0, 0, 0);
 
+    ///Uses cases
+    private UpdateCurrentMoveUseCase updateCurrentMoveUseCase = new UpdateCurrentMoveUseCaseImpl();
+
+
     public InteractionGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
     public Move currentMove { set => _currentMove = value; }
     public StatusGame currentStatusGame { set => _currentStatusGame = value; }
@@ -72,25 +76,16 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
         _myDelegate.goToPause();
     }
 
-    public void moveLeft()
-    {
-        
+    public void moveLeft() => updateCurrentMoveUseCase.invoke(Move.LEFT);
+
+    public void moveRight() => updateCurrentMoveUseCase.invoke(Move.RIGT);
+
+    public void moveUp() { 
+        updateCurrentMoveUseCase.invoke(Move.TOP); 
     }
 
-    public void moveRight()
-    {
-        
-    }
 
-    public void moveUp()
-    {
-        
-    }
-
-    public void stop()
-    {
-        
-    }
+    public void stop() => updateCurrentMoveUseCase.invoke(Move.STOP);
 
     // private methods
 

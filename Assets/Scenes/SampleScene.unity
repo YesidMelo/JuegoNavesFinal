@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: main_camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,6 +402,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5964348336227486136, guid: 19da538d3c16a2642a0309a4be2da10d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5964348336367005681, guid: 19da538d3c16a2642a0309a4be2da10d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -493,6 +497,14 @@ PrefabInstance:
     - target: {fileID: 5964348336368010921, guid: 19da538d3c16a2642a0309a4be2da10d, type: 3}
       propertyPath: m_Name
       value: interaction_game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964348337296753521, guid: 19da538d3c16a2642a0309a4be2da10d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964348337931656316, guid: 19da538d3c16a2642a0309a4be2da10d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.5000305
       objectReference: {fileID: 0}
     - target: {fileID: 9157296856703300902, guid: 19da538d3c16a2642a0309a4be2da10d, type: 3}
       propertyPath: m_AnchoredPosition.y
