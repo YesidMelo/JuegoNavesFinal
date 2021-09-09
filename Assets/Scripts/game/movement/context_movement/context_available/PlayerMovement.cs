@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovement
 {
-
+    private Move previousMove = Move.STOP;
     private CurrentMoveUseCase currentMovementUseCase = new CurrentMoveUseCaseImpl();
 
     public PlayerMovement(GameObject spacecraft) : base(spacecraft) {}
@@ -28,16 +28,25 @@ public class PlayerMovement : AbstractMovement
     private void selectMovement() {
         switch (currentMovementUseCase.invoke()) {
             case Move.TOP:
+                previousMove = Move.TOP;
                 topMovement.move();
                 return;
             case Move.LEFT:
+                if (previousMove == Move.TOP) {
+                    topMovement.move();
+                }
                 leftMovement.move();
                 return;
             case Move.RIGT:
+                if (previousMove == Move.TOP)
+                {
+                    topMovement.move();
+                }
                 rigthMovement.move();
                 return;
             case Move.STOP:
             default:
+                previousMove = Move.STOP;
                 stopMovement.move();
                 return;
         }
