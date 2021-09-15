@@ -25,6 +25,7 @@ public abstract class AbstractMovement
     protected AbstractMovementSpacecraft rigthMovement;
     protected AbstractMovementSpacecraft stopMovement;
     protected AbstractMovementSpacecraft topMovement;
+    protected AbstractMovementSpacecraft joysticMovement;
 
     public Action action { 
         set {
@@ -72,6 +73,7 @@ public abstract class AbstractMovement
         MovementSpacecraftFactory factory = new MovementSpacecraftFactory();
         bottomMovement = factory.getMovementSpacecraft(Move.BOTTOM, spacecraft );
         forwardMovement = factory.getMovementSpacecraft(Move.FORWARD, spacecraft );
+        joysticMovement = factory.getMovementSpacecraft(Move.JOYSTIC, spacecraft );
         leftMovement = factory.getMovementSpacecraft(Move.LEFT, spacecraft );
         pointingEnemy = factory.getMovementSpacecraft(Move.POINER_ENEMY, spacecraft );
         pointingPatrol = factory.getMovementSpacecraft(Move.POINTER_PATROL, spacecraft );

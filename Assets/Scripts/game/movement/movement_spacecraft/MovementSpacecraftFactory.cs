@@ -10,6 +10,8 @@ public class MovementSpacecraftFactory
                 return new BottomMovement(spacecraft);
             case Move.FORWARD:
                 return new ForwardMovement(spacecraft);
+            case Move.JOYSTIC:
+                return new JoysticMovement(spacecraft);
             case Move.LEFT:
                 return new LeftMovement(spacecraft);
             case Move.RIGT:

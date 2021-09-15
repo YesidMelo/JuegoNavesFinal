@@ -33,14 +33,15 @@ public enum Laser {
 public enum Move { 
     BOTTOM,
     FORWARD,
+    JOYSTIC,
     LEFT,
-    RIGT,
-    STOP,
-    TOP,
     POINER_ENEMY,
     POINTER_PLAYER,
     POINTER_PATROL,
-    POINTER_STRUCTURE_TO_ENEMY
+    POINTER_STRUCTURE_TO_ENEMY,
+    RIGT,
+    STOP,
+    TOP,
 }
 
 public enum Motor {

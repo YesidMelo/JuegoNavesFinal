@@ -19,12 +19,19 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     private InteractionGameUIViewModel viewModel = new InteractionGameUIViewModelImpl();
 
     public GameObject prefabPlayer;
+    public VariableJoystick joystic;
 
-
+    // lifecycle
     private void Awake()
     {
         GameObject currentPlayer = Instantiate(prefabPlayer, viewModel.getInitialPosition, Quaternion.identity);
         currentPlayer.transform.name = Constants.namePlayer;
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 direction = joystic.Direction;
+        viewModel.updateDirectionJoystic(direction);
     }
 
     // Start is called before the first frame update
@@ -34,13 +41,7 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     }
 
     // clicks
-    public void clickMoveToUp() => viewModel.moveUp();
-
-    public void clickMoveToDown() => viewModel.stop();
-
-    public void clickMoveToLeft() => viewModel.moveLeft();
-
-    public void clickMoveToRight() => viewModel.moveRight();
+    
 
     public void clickPause() => viewModel.goToPause();
 

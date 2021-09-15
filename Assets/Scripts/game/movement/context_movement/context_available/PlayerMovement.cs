@@ -4,53 +4,46 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovement
 {
-    private Move previousMove = Move.STOP;
-    private CurrentMoveUseCase currentMovementUseCase = new CurrentMoveUseCaseImpl();
+    
+    private CurrentMovementJoysticUseCase currentMovementJoysticUseCase = new CurrentMovementJoysticUseCaseImpl();
 
     public PlayerMovement(GameObject spacecraft) : base(spacecraft) {}
 
     public override void movementAttack()
     {
-       //pointingStructureToEnemy.move();
+        rotateSpacecraftInDirectionJoyistic();
     }
 
-    public override void movementDefence() { }
+    public override void movementDefence() {
+        rotateSpacecraftInDirectionJoyistic();
+    }
 
     public override void movementFordward() {
-        selectMovement();
+        forwardMovement.move();
+        rotateSpacecraftInDirectionJoyistic();
     }
 
     public override void movementPatrol() => action = Action.ATTACK;
 
-    public override void movementStop() => stopMovement.move();
-
-    /// private method
-    private void selectMovement() {
-        switch (currentMovementUseCase.invoke()) {
-            case Move.TOP:
-                previousMove = Move.TOP;
-                topMovement.move();
-                return;
-            case Move.LEFT:
-                if (previousMove == Move.TOP) {
-                    topMovement.move();
-                }
-                leftMovement.move();
-                return;
-            case Move.RIGT:
-                if (previousMove == Move.TOP)
-                {
-                    topMovement.move();
-                }
-                rigthMovement.move();
-                return;
-            case Move.STOP:
-            default:
-                previousMove = Move.STOP;
-                stopMovement.move();
-                return;
-        }
-
+    public override void movementStop() {
+        stopMovement.move(); 
+        rotateSpacecraftInDirectionJoyistic();
     }
 
+
+    // private methods
+    private void rotateSpacecraftInDirectionJoyistic() {
+        Vector2 directionJoystic = currentMovementJoysticUseCase.invoke();
+        Vector3 directionSpacecraft;
+        if (directionJoystic.x == 0 && directionJoystic.y == 0)
+        {
+            directionSpacecraft = new Vector3(0, 0, directionJoystic.getAngle());
+        }
+        else {
+            directionSpacecraft = new Vector3(0, 0, directionJoystic.getAngle() - 90);
+        }
+        spacecraft.transform.rotation = Quaternion.Euler(directionSpacecraft);
+    }
+
+  
 }

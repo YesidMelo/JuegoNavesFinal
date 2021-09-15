@@ -9,6 +9,7 @@ public interface InteractionGameUIViewModelDelegate {
 
 public interface InteractionGameUIViewModel {
 
+    // get and sets
     InteractionGameUIViewModelDelegate myDelegate { set; }
 
     Move currentMove { set; }
@@ -17,15 +18,15 @@ public interface InteractionGameUIViewModel {
 
     Vector3 getInitialPosition { get; }
 
-    void moveUp();
-    void stop();
-    void moveLeft();
-    void moveRight();
-    void goToPause();
-    void goToConfigSpaceCraft();
+    // public methods
+
     void changeAction();
     void changeEnemy();
     void changeLaser();
+    void goToPause();
+    void goToConfigSpaceCraft();
+
+    void updateDirectionJoystic(Vector2 direction);
 
 }
 
@@ -37,11 +38,9 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private StatusGame _currentStatusGame;
     private Action _currentAction;
     private Vector3 _currentPosition = new Vector3(0, 0, 0);
+    private UpdateMovementJoysticUseCase _updateMovementJoysticUseCase = new UpdateMovementJoysticUseCaseImpl();
 
-    ///Uses cases
-    private UpdateCurrentMoveUseCase updateCurrentMoveUseCase = new UpdateCurrentMoveUseCaseImpl();
-
-
+    // get and sets
     public InteractionGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
     public Move currentMove { set => _currentMove = value; }
     public StatusGame currentStatusGame { set => _currentStatusGame = value; }
@@ -49,20 +48,13 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 
     public Vector3 getInitialPosition { get { return _currentPosition; } }
 
-    public void changeAction()
-    {
-        
-    }
+    // public methods
 
-    public void changeEnemy()
-    {
-        
-    }
+    public void changeAction() {}
 
-    public void changeLaser()
-    {
-        
-    }
+    public void changeEnemy() {}
+
+    public void changeLaser() {}
 
     public void goToConfigSpaceCraft()
     {
@@ -76,16 +68,8 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
         _myDelegate.goToPause();
     }
 
-    public void moveLeft() => updateCurrentMoveUseCase.invoke(Move.LEFT);
+    public void updateDirectionJoystic(Vector2 direction) => _updateMovementJoysticUseCase.invoke(direction);
 
-    public void moveRight() => updateCurrentMoveUseCase.invoke(Move.RIGT);
-
-    public void moveUp() { 
-        updateCurrentMoveUseCase.invoke(Move.TOP); 
-    }
-
-
-    public void stop() => updateCurrentMoveUseCase.invoke(Move.STOP);
 
     // private methods
 
