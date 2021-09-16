@@ -34,23 +34,38 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 {
 
     private InteractionGameUIViewModelDelegate _myDelegate;
+    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
     private Move _currentMove;
     private StatusGame _currentStatusGame;
-    private Action _currentAction;
     private Vector3 _currentPosition = new Vector3(0, 0, 0);
+    private UpdateActionSpacecraftUseCase _updateActionSpacecraftUseCase = new UpdateActionSpacecraftUseCaseImpl();
     private UpdateMovementJoysticUseCase _updateMovementJoysticUseCase = new UpdateMovementJoysticUseCaseImpl();
 
     // get and sets
     public InteractionGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
     public Move currentMove { set => _currentMove = value; }
     public StatusGame currentStatusGame { set => _currentStatusGame = value; }
-    public Action currentAction { set => _currentAction = value; }
+    public Action currentAction { set => _updateActionSpacecraftUseCase.invoke(value); }
 
     public Vector3 getInitialPosition { get { return _currentPosition; } }
 
     // public methods
 
-    public void changeAction() {}
+    public void changeAction() {
+        Debug.Log("Accion actual: "+ _currentActionSpacecraftUseCase.invoke());
+        switch (_currentActionSpacecraftUseCase.invoke()) {
+            case Action.ATTACK:
+                _updateActionSpacecraftUseCase.invoke(Action.DEFENSE);
+                return;
+            case Action.DEFENSE:
+                _updateActionSpacecraftUseCase.invoke(Action.ATTACK);
+                return;
+            default:
+                _updateActionSpacecraftUseCase.invoke(Action.DEFENSE);
+                return;
+        }
+        
+    }
 
     public void changeEnemy() {}
 

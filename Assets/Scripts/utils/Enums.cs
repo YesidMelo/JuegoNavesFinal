@@ -30,6 +30,11 @@ public enum Laser {
     TYPE_5,
 }
 
+public enum LaguageAvailable
+{
+    SPAIN
+}
+
 public enum Move { 
     BOTTOM,
     FORWARD,
@@ -50,6 +55,13 @@ public enum Motor {
     TYPE_3,
     TYPE_4,
     TYPE_5,
+}
+
+public enum NameTagLanguage
+{
+    //Generic
+    NAME_GAME,
+    CONTINUE
 }
 
 public enum Quadrant { 

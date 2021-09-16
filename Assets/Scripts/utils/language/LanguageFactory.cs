@@ -24,6 +24,3 @@ public class LanguageFactory{
     }
 }
 
-public enum LaguageAvailable { 
-    SPAIN
-}

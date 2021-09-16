@@ -8,7 +8,7 @@ public interface UpdateMovementJoysticUseCase {
 
 public class UpdateMovementJoysticUseCaseImpl : UpdateMovementJoysticUseCase
 {
-    private JoysticRepository joysticRepository = new JoysticRepositoryImpl();
+    private InteractionInterfaceUserRepository joysticRepository = new InteractionInterfaceUserRepositoryImpl();
 
     public void invoke(Vector2 direction) => joysticRepository.updateMovementJoystic(direction);
 }

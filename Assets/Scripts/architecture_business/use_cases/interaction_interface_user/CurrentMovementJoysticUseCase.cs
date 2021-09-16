@@ -7,7 +7,7 @@ public interface CurrentMovementJoysticUseCase {
 }
 public class CurrentMovementJoysticUseCaseImpl : CurrentMovementJoysticUseCase
 {
-    private JoysticRepository joysticRepository = new JoysticRepositoryImpl();
+    private InteractionInterfaceUserRepository joysticRepository = new InteractionInterfaceUserRepositoryImpl();
 
     public Vector2 invoke() => joysticRepository.currentMovementJoystic;
 }

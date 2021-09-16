@@ -4,46 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovement
 {
-    
+
     private CurrentMovementJoysticUseCase currentMovementJoysticUseCase = new CurrentMovementJoysticUseCaseImpl();
+
 
     public PlayerMovement(GameObject spacecraft) : base(spacecraft) {}
 
     public override void movementAttack()
     {
-        rotateSpacecraftInDirectionJoyistic();
+        joysticMovement.move();
     }
 
     public override void movementDefence() {
-        rotateSpacecraftInDirectionJoyistic();
+        joysticMovement.move();
     }
 
-    public override void movementFordward() {
-        forwardMovement.move();
-        rotateSpacecraftInDirectionJoyistic();
-    }
+    public override void movementFordward() => action = Action.DEFENSE;
 
-    public override void movementPatrol() => action = Action.ATTACK;
+    public override void movementPatrol() => action = Action.DEFENSE;
 
-    public override void movementStop() {
-        stopMovement.move(); 
-        rotateSpacecraftInDirectionJoyistic();
-    }
+    public override void movementStop() => action = Action.DEFENSE;
 
-
-    // private methods
-    private void rotateSpacecraftInDirectionJoyistic() {
-        Vector2 directionJoystic = currentMovementJoysticUseCase.invoke();
-        Vector3 directionSpacecraft;
-        if (directionJoystic.x == 0 && directionJoystic.y == 0)
-        {
-            directionSpacecraft = new Vector3(0, 0, directionJoystic.getAngle());
-        }
-        else {
-            directionSpacecraft = new Vector3(0, 0, directionJoystic.getAngle() - 90);
-        }
-        spacecraft.transform.rotation = Quaternion.Euler(directionSpacecraft);
-    }
-
-  
 }
