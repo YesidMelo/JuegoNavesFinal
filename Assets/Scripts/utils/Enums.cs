@@ -60,8 +60,10 @@ public enum Motor {
 public enum NameTagLanguage
 {
     //Generic
+    ATTACK,
+    DEFENSE,
+    CONTINUE,
     NAME_GAME,
-    CONTINUE
 }
 
 public enum Quadrant { 

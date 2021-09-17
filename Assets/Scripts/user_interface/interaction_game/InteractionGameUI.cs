@@ -20,6 +20,7 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
 
     public GameObject prefabPlayer;
     public VariableJoystick joystic;
+    public TextMeshProUGUI textAction;
 
     // lifecycle
     private void Awake()
@@ -30,8 +31,8 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
 
     private void FixedUpdate()
     {
-        Vector2 direction = joystic.Direction;
-        viewModel.updateDirectionJoystic(direction);
+        updateMovementJoystic();
+        updateTexts();
     }
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     }
 
     // clicks
-    
+
 
     public void clickPause() => viewModel.goToPause();
 
@@ -56,6 +57,15 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     // private methods
 
     private bool notExistsDelegate() => _myDelegate == null;
+
+    private void updateMovementJoystic() {
+        Vector2 direction = joystic.Direction;
+        viewModel.updateDirectionJoystic(direction);
+    }
+
+    public void updateTexts() {
+        textAction.text = viewModel.textButtonAction;
+    }
 
 
     // delegates

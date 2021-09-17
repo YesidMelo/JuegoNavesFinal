@@ -10,13 +10,16 @@ public interface InteractionGameUIViewModelDelegate {
 public interface InteractionGameUIViewModel {
 
     // get and sets
-    InteractionGameUIViewModelDelegate myDelegate { set; }
 
+    InteractionGameUIViewModelDelegate myDelegate { set; }
     Move currentMove { set; }
     StatusGame currentStatusGame { set; }
     Action currentAction { set;  }
 
     Vector3 getInitialPosition { get; }
+
+    // texts
+    string textButtonAction { get; }
 
     // public methods
 
@@ -35,6 +38,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 
     private InteractionGameUIViewModelDelegate _myDelegate;
     private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
+    private CurrentLangajeUseCase _currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
     private Move _currentMove;
     private StatusGame _currentStatusGame;
     private Vector3 _currentPosition = new Vector3(0, 0, 0);
@@ -49,10 +53,23 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 
     public Vector3 getInitialPosition { get { return _currentPosition; } }
 
+
+    //texts
+    public string textButtonAction {
+        get {
+            switch (_currentActionSpacecraftUseCase.invoke()) {
+                case Action.DEFENSE:
+                    return _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.ATTACK);
+                default:
+                    return _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.DEFENSE);
+            }
+        }
+    }
+
+
     // public methods
 
     public void changeAction() {
-        Debug.Log("Accion actual: "+ _currentActionSpacecraftUseCase.invoke());
         switch (_currentActionSpacecraftUseCase.invoke()) {
             case Action.ATTACK:
                 _updateActionSpacecraftUseCase.invoke(Action.DEFENSE);
@@ -64,7 +81,6 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
                 _updateActionSpacecraftUseCase.invoke(Action.DEFENSE);
                 return;
         }
-        
     }
 
     public void changeEnemy() {}

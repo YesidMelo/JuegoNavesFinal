@@ -12,8 +12,10 @@ public class SpainLanguage : AbstractLanguage
     protected override void initMap()
     {
         //Generic
-        values[NameTagLanguage.NAME_GAME] = "Juego Galactico";
+        values[NameTagLanguage.ATTACK] = "Atacar";
+        values[NameTagLanguage.DEFENSE] = "Defender";
         values[NameTagLanguage.CONTINUE] = "Continuar";
+        values[NameTagLanguage.NAME_GAME] = "Juego Galactico";
 
     }
 }

@@ -5,7 +5,7 @@ public class LanguageFactory{
         setLanguageByDefault();
     }
 
-    AbstractLanguage getLanguageSelected() {
+    public AbstractLanguage getLanguageSelected() {
         if (abstractLanguage != null) {
             return abstractLanguage;
         }
@@ -13,8 +13,8 @@ public class LanguageFactory{
         return abstractLanguage;
     }
 
-    public void setLanguageByDefault(LaguageAvailable language= LaguageAvailable.SPAIN) {
-        switch (language)
+    public void setLanguageByDefault(LaguageAvailable languaje= LaguageAvailable.SPAIN) {
+        switch (languaje)
         {
             case LaguageAvailable.SPAIN:
             default:
