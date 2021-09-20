@@ -38,11 +38,13 @@ public abstract class AbstractRadar {
     }
 
     public void removeEnemy(GameObject enemy) {
+        if (listEnemy.Count == 0) return;
         if (listEnemy.Contains(enemy)) { listEnemy.Remove(enemy); }
         if (enemy == currentEnemy && listEnemy.Count == 0) { 
             currentEnemy = null;
             return;
         }
+       
         currentEnemy = listEnemy[0];
     }
 

@@ -508,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2396297354117673045, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4381164514130799869, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: spacecraftSelected
@@ -524,11 +524,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8408747179362629642, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 8408747179362629642, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8408747179362629642, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: m_LocalPosition.z

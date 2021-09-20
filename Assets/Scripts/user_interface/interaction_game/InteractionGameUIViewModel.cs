@@ -54,6 +54,10 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     public Vector3 getInitialPosition { get { return _currentPosition; } }
 
 
+    public InteractionGameUIViewModelImpl() {
+        _updateActionSpacecraftUseCase.invoke(Action.DEFENSE);
+    }
+
     //texts
     public string textButtonAction {
         get {

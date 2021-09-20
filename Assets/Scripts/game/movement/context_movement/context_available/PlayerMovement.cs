@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerMovement : AbstractMovement
 {
-
-    private CurrentMovementJoysticUseCase currentMovementJoysticUseCase = new CurrentMovementJoysticUseCaseImpl();
-
+    private CurrentActionSpacecraftUseCase currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
 
     public PlayerMovement(GameObject spacecraft) : base(spacecraft) {}
 
     public override void movementAttack()
     {
+        action = currentActionSpacecraftUseCase.invoke();
+        if (currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
+        Debug.Log("Movimiento ataque");
+        pointingEnemy.move();
         joysticMovement.move();
     }
 
     public override void movementDefence() {
+        action = currentActionSpacecraftUseCase.invoke();
+        Debug.Log("Movimiento Defensa");
+        if (currentActionSpacecraftUseCase.invoke() != Action.DEFENSE) return;
         joysticMovement.move();
     }
 

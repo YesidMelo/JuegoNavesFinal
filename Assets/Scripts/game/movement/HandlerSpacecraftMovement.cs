@@ -29,6 +29,7 @@ public class HandlerSpacecraftMovement : MonoBehaviour
         spacecraft = Instantiate(spacecraftSelected);
         spacecraft.name = Constants.nameSpacecraft;
         spacecraft.transform.parent = transform;
+        spacecraft.transform.localPosition = new Vector3(0,0,0);
         initElementsGameObject();
     }
 
