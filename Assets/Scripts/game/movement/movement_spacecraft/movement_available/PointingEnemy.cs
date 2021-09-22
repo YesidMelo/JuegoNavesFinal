@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PointingEnemy : AbstractMovementSpacecraft
 {
+    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
 
     public PointingEnemy(GameObject spaceCraftToMove) : base(spaceCraftToMove){}
 
@@ -14,16 +15,21 @@ public class PointingEnemy : AbstractMovementSpacecraft
     }
 
     private void rotateToEnemy() {
-        if (enemy == null || currentEnemy == null) return;
-        GameObject spaceCraft = spaceCraftToMove.transform.GetChild(0).gameObject;
+        GameObject spaceCraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
+
+        if (enemy == null || currentEnemy == null) {
+            spaceCraft.transform.localEulerAngles = new Vector3(0, 0, 0);
+            return;
+        }
         GameObject enemyToPoint = currentEnemy;
-        spaceCraftToMove.transform.eulerAngles = new Vector3(
-                0, 
-                0, 
-                Functions.getAngleLookAt(
-                    spaceCraft.transform.position, 
-                    enemyToPoint.transform.position
-                )
-            );
+        spaceCraft.transform.eulerAngles = new Vector3(
+               0,
+               0,
+               Functions.getAngleLookAt(
+                   spaceCraft.transform.position,
+                   enemyToPoint.transform.position
+               )
+           );
     }
+
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,26 +39,21 @@ public abstract class AbstractRadar {
     }
 
     public void removeEnemy(GameObject enemy) {
-        if (listEnemy.Count == 0) return;
         if (listEnemy.Contains(enemy)) { listEnemy.Remove(enemy); }
         if (enemy == currentEnemy && listEnemy.Count == 0) { 
             currentEnemy = null;
             return;
         }
-       
+        if (listEnemy.Count == 0) return;
         currentEnemy = listEnemy[0];
+
     }
 
     private void captureEnemyFromPlayer(Collider2D collision)
     {
-        if (collision.transform.parent.parent.name.Contains(Constants.namePlayer))
-        {
-            return;
-        }
-        if (!listEnemy.Contains(collision.gameObject))
-        {
-            listEnemy.Add(collision.gameObject);
-        }
+        if (collision.transform.parent.parent.name.Contains(Constants.namePlayer)) return;
+        if (listEnemy.Contains(collision.gameObject)) return;
+        listEnemy.Add(collision.gameObject);
     }
 
     private void captureEnemyFromCPU(Collider2D collision)

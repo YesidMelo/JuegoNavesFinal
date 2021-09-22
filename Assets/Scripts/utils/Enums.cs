@@ -44,6 +44,7 @@ public enum Move {
     POINTER_PLAYER,
     POINTER_PATROL,
     POINTER_STRUCTURE_TO_ENEMY,
+    RESTORE_ROTATION,
     RIGT,
     STOP,
     TOP,

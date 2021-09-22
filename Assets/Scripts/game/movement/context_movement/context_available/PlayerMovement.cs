@@ -12,7 +12,6 @@ public class PlayerMovement : AbstractMovement
     {
         action = currentActionSpacecraftUseCase.invoke();
         if (currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
-        Debug.Log("Movimiento ataque");
         pointingEnemy.move();
         joysticMovement.move();
     }
@@ -21,6 +20,7 @@ public class PlayerMovement : AbstractMovement
         action = currentActionSpacecraftUseCase.invoke();
         Debug.Log("Movimiento Defensa");
         if (currentActionSpacecraftUseCase.invoke() != Action.DEFENSE) return;
+        restoreRotationMovement.move();
         joysticMovement.move();
     }
 

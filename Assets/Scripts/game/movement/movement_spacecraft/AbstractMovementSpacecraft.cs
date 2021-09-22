@@ -10,6 +10,8 @@ public abstract class AbstractMovementSpacecraft
     private int _speedSpacecraft;
     private int _speedRotationSpacecraft;
 
+    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
+
     protected int speedRotationSpacecraft {
         get {
             return _speedRotationSpacecraft;
@@ -48,6 +50,10 @@ public abstract class AbstractMovementSpacecraft
         GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
         GameObject radar = spacecraft.transform.FindChild(Constants.nameRadar).gameObject;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();
+        _enemy = handler.enemy;
+        _currentEnemy = handler.currentEnemy;
+        if (currentEnemy != null && _currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
+        handler.changeEnemy();
         _enemy = handler.enemy;
         _currentEnemy = handler.currentEnemy;
     }

@@ -24,6 +24,8 @@ public class MovementSpacecraftFactory
                 return new PointingPatrol(spacecraft);
             case Move.POINTER_STRUCTURE_TO_ENEMY:
                 return new PointStructureToEnemyMovement(spacecraft);
+            case Move.RESTORE_ROTATION:
+                return new RestoreRotationMovement(spacecraft);
             case Move.TOP:
                 return new TopMovement(spacecraft);
             case Move.STOP:
