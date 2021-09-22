@@ -19,12 +19,18 @@ public class HandlerLaser : MonoBehaviour
 
     private HandlerLaserDelegate _myDelegate;
     private int _finalValueLaser = 0;
+    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
 
 
     void Start()
     {
         initLasersDefaults();
         calculateFinalValueLaser();
+    }
+
+    private void Update()
+    {
+        checkShoot();
     }
 
     //Public methods
@@ -35,15 +41,30 @@ public class HandlerLaser : MonoBehaviour
     }
 
     // private methods
-    void initLasersDefaults() {
+    private void initLasersDefaults() {
         lasers.Clear();
         foreach (Laser currentLaser in lasersType) {
             lasers.Add((new LaserFactory()).getLaser(currentLaser));
         }
     }
 
-    void calculateFinalValueLaser() { 
+    private void calculateFinalValueLaser() { 
 
+    }
+
+    private void checkShoot() {
+        switch (_currentActionSpacecraftUseCase.invoke()) {
+            case Action.ATTACK:
+                shoot();
+                return;
+            default:
+                return;
+        }
+    }
+
+    private void shoot() {
+        GameObject parent = transform.parent.gameObject;
+        GameObject spacecraft = parent.transform.FindChild(Constants.nameSpacecraft).gameObject;
     }
 
 }
