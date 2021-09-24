@@ -17,4 +17,11 @@ public static class Constants
     public static float dimensionHeightBackground = 100;
     public static float dimensionWidthBackground = 100;
 
+    //impact damage laser
+    public static float laserType1 = 10;
+    public static float laserType2 = 20;
+    public static float laserType3 = 30;
+    public static float laserType4 = 40;
+    public static float laserType5 = 50;
+
 }

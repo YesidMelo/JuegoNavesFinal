@@ -46,6 +46,7 @@ MonoBehaviour:
   maxLasers: 5
   minLasers: 1
   lasersType: 0000000000000000000000000000000000000000
+  prefabLaser: {fileID: 4556810893516742243, guid: 39b93693639e1244c88353ba2deb885c, type: 3}
 --- !u!1 &3452644192821580911
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,9 +405,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpaceCraft: 4
-  shield: {fileID: 6601330196380002621}
   laser: {fileID: 2452320237321452304}
   motor: {fileID: 6269563740069670990}
   radar: {fileID: 3452644192821580911}
+  shield: {fileID: 6601330196380002621}
   structure: {fileID: 5880005661561226896}
   storage: {fileID: 4088782526399043041}

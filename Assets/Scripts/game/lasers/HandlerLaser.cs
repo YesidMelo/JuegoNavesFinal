@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public interface HandlerLaserDelegate { }
@@ -8,18 +9,19 @@ public class HandlerLaser : MonoBehaviour
 {
     [Range(1, 5)]
     public int maxLasers = 1;
-
     [Range(1, 5)]
     public int minLasers = 1;
-
     public List<Laser> lasersType = new List<Laser>();
     public List<AbstractLaser> lasers = new List<AbstractLaser>();
     public HandlerLaserDelegate myDelegate { set { _myDelegate = value; } }
-    public int getFinalValueLaser { get { return _finalValueLaser; } }
-
-    private HandlerLaserDelegate _myDelegate;
-    private int _finalValueLaser = 0;
+    public GameObject prefabLaser;
+    
     private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
+    private AbstractLaser finalLaser;
+    private HandlerLaserDelegate _myDelegate;
+    private bool shooting = false;
+    private Thread shootThread;
+    private IEnumerator corutineShoot;
 
 
     void Start()
@@ -48,23 +50,87 @@ public class HandlerLaser : MonoBehaviour
         }
     }
 
-    private void calculateFinalValueLaser() { 
-
+    private void calculateFinalValueLaser() {
+        if (lasersType == null || lasersType.Count == 0) return;
+        float finalValue = 0;
+        for (int index = 0; index< lasersType.Count; index++) {
+            AbstractLaser currentLaser = generateLaser(lasersType[index]);
+            finalValue = finalValue + currentLaser.impactDamage;
+        }
+        finalLaser = new LaserFinal();
+        finalLaser.impactDamage = finalValue;
     }
 
-    private void checkShoot() {
-        switch (_currentActionSpacecraftUseCase.invoke()) {
-            case Action.ATTACK:
-                shoot();
-                return;
+    private AbstractLaser generateLaser(Laser laser) {
+        switch (laser) {
+            case Laser.TYPE_2:
+                return new LaserType2();
+            case Laser.TYPE_3:
+                return new LaserType3();
+            case Laser.TYPE_4:
+                return new LaserType4();
+            case Laser.TYPE_5:
+                return new LaserType5();
+            case Laser.TYPE_1:
             default:
-                return;
+                return new LaserType1();
         }
     }
 
-    private void shoot() {
-        GameObject parent = transform.parent.gameObject;
-        GameObject spacecraft = parent.transform.FindChild(Constants.nameSpacecraft).gameObject;
+    private void checkShoot() {
+        GameObject parent = transform.parent.parent.gameObject;
+        if (parent.name.Contains(Constants.nameEnemy)) {
+            shootEnemy();
+            return;
+        }
+        shootPlayer();
     }
 
+    private void shootEnemy()
+    {
+    }
+
+    private void shootPlayer() {
+        if (_currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
+        if (shooting) { return; }
+        shooting = true;
+        corutineShoot = generateLaser();
+        StartCoroutine(corutineShoot);
+    }
+
+    private IEnumerator generateLaser() {
+        while (shooting) {
+            GameObject laser = Instantiate(prefabLaser);
+            laser.transform.position = transform.position;
+            laser.transform.eulerAngles = transform.eulerAngles;
+            HandlerAmmunitionLaser handler = laser.transform.GetChild(0).GetComponent<HandlerAmmunitionLaser>();
+
+            if (handler == null) {
+                Debug.Log("handler es nulo");
+                break; 
+            }
+            handler.laserSelected = getFinalLaser();
+            handler.changeAmmountLaser(finalLaser);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield return null;
+    }
+
+    private Laser getFinalLaser() {
+        Laser laserSelected;
+        float totalAttack = finalLaser.impactDamage / lasersType.Count;
+        if (totalAttack <= Constants.laserType1) {
+            laserSelected = Laser.TYPE_1;
+        } else if (totalAttack < Constants.laserType1 && totalAttack <= Constants.laserType2 ) {
+            laserSelected = Laser.TYPE_2;
+        } else if (totalAttack < Constants.laserType2 && totalAttack <= Constants.laserType3 ) {
+            laserSelected = Laser.TYPE_3;
+        } else if (totalAttack < Constants.laserType3 && totalAttack <= Constants.laserType4 ) {
+            laserSelected = Laser.TYPE_4;
+        } else {
+            laserSelected = Laser.TYPE_5;
+        }
+        return laserSelected;
+    }
 }
