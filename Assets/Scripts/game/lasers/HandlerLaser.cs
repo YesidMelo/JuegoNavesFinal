@@ -91,7 +91,10 @@ public class HandlerLaser : MonoBehaviour
     }
 
     private void shootPlayer() {
-        if (_currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
+        if (_currentActionSpacecraftUseCase.invoke() != Action.ATTACK) {
+            shooting = false;
+            return; 
+        }
         if (shooting) { return; }
         shooting = true;
         corutineShoot = generateLaser();
@@ -105,10 +108,8 @@ public class HandlerLaser : MonoBehaviour
             laser.transform.eulerAngles = transform.eulerAngles;
             HandlerAmmunitionLaser handler = laser.transform.GetChild(0).GetComponent<HandlerAmmunitionLaser>();
 
-            if (handler == null) {
-                Debug.Log("handler es nulo");
-                break; 
-            }
+            if (handler == null) break;
+            finalLaser.parent = transform.parent.gameObject;
             handler.laserSelected = getFinalLaser();
             handler.changeAmmountLaser(finalLaser);
 

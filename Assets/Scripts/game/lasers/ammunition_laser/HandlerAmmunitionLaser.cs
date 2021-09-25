@@ -15,13 +15,13 @@ public class HandlerAmmunitionLaser : MonoBehaviour
 
     private AbstractLaser _finalLaser;
 
-    public AbstractLaser finalLaser { get { return finalLaser; } }
+    public AbstractLaser finalLaser { get { return _finalLaser; } }
 
     // Update is called once per frame
     void Update()
     {
         updateRenderer();
-        
+        transform.parent.transform.Translate(Vector2.up * 2.0f * Time.deltaTime);
     }
 
     // public methods

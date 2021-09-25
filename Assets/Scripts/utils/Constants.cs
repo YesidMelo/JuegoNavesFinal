@@ -9,6 +9,8 @@ public static class Constants
     public static string nameRadar = "radar";
     public static string nameSpacecraft = "spacecraft";
     public static string namePatrolPoint = "patrolPoint";
+    public static string nameLaserWeapon = "laser";
+
 
 
     //Dimension

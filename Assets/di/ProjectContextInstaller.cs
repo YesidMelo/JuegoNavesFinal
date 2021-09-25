@@ -7,7 +7,7 @@ public class ProjectContextInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Debug.Log("HE llegado a installBindings de ProjectContextInstaller");
+        //Debug.Log("HE llegado a installBindings de ProjectContextInstaller");
 
         // ViewModels
         Container.Bind<UserInterfaceHandlerViewModel>().To<UserInterfaceHandlerViewModelImpl>().AsSingle();
