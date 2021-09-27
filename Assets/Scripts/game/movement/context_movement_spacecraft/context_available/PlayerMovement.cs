@@ -11,7 +11,7 @@ public class PlayerMovement : AbstractMovement
     public override void movementAttack()
     {
         action = currentActionSpacecraftUseCase.invoke();
-        if (currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
+        if (currentAction != Action.ATTACK) return;
         pointingEnemy.move();
         joysticMovement.move();
     }

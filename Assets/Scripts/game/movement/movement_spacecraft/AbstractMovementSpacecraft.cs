@@ -5,66 +5,51 @@ using UnityEngine;
 public abstract class AbstractMovementSpacecraft 
 {
     protected GameObject spaceCraftToMove;
-    private List<GameObject> _enemy = new List<GameObject>();
-    private GameObject _currentEnemy;
-    private int _speedSpacecraft;
-    private int _speedRotationSpacecraft;
-
-    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
+    private BaseHelperMovementSpacecraft _contextMovement;
 
     protected int speedRotationSpacecraft {
-        get {
-            return _speedRotationSpacecraft;
-        }
+        get => _contextMovement != null ? _contextMovement.speedRotationSpacecraft : 1;
     }
 
     protected int speedSpacecraft { 
-        get {
-            return _speedSpacecraft;
-        } 
+        get => _contextMovement != null ? _contextMovement.speedSpacecraft : 1;
     }
 
     protected List<GameObject> enemy {
-        get {
-            return _enemy;
-        }
+        get => _contextMovement != null ? _contextMovement.enemy : new List<GameObject>();
     }
 
     protected GameObject currentEnemy
     {
-        get {
-            return _currentEnemy;
-        }
+        get => _contextMovement != null ? _contextMovement.currentEnemy : null;
     }
 
     public AbstractMovementSpacecraft(
         GameObject spaceCraftToMove
     ) {
         this.spaceCraftToMove = spaceCraftToMove;
+        selectContextMovement();
         loadSpeedSpacecraft();
     }
 
     public abstract void move();
 
     protected void loadEnemy() {
-        GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
-        GameObject radar = spacecraft.transform.FindChild(Constants.nameRadar).gameObject;
-        HandlerRadar handler = radar.GetComponent<HandlerRadar>();
-        _enemy = handler.objetives;
-        _currentEnemy = handler.currentObjetive;
-        if (currentEnemy != null && _currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
-        handler.changeEnemy();
-        _enemy = handler.objetives;
-        _currentEnemy = handler.currentObjetive;
+        if (_contextMovement == null) return;
+        _contextMovement.loadEnemy();
     }
 
     private void loadSpeedSpacecraft() {
-        GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
-        GameObject motor = spacecraft.transform.FindChild(Constants.nameMotor).gameObject;
-        HandlerMotor handler = motor.GetComponent<HandlerMotor>();
-        AbstractMotor currentMotor = handler.currentMotor;
-        _speedSpacecraft = currentMotor.speed;
-        _speedRotationSpacecraft = currentMotor.speedRotation;
+        if (_contextMovement == null) return;
+        _contextMovement.loadSpeedSpacecraft();
+    }
+
+    private void selectContextMovement() {
+        if (spaceCraftToMove.name.Contains(Constants.nameEnemy)) {
+            _contextMovement = new HelperMovementEnemy(spaceCraftToMove);
+            return;
+        }
+        _contextMovement = new HelperMovementPlayer(spaceCraftToMove);
     }
 
 }

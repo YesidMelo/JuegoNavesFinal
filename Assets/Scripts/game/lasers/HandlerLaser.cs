@@ -113,7 +113,7 @@ public class HandlerLaser : MonoBehaviour
             handler.laserSelected = getFinalLaser();
             handler.changeAmmountLaser(finalLaser);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(Constants.speedFiring);
         }
         yield return null;
     }

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JoysticMovement : AbstractMovementSpacecraft
+public class JoysticMovementPlayer : AbstractMovementSpacecraft
 {
 
     private Vector3 previousDirection = new Vector3(0,0,0);
     private CurrentMovementJoysticUseCase currentMovementJoysticUseCase = new CurrentMovementJoysticUseCaseImpl();
-    private ForwardMovement forwardMovement;
-    private StopMovement stopMovement;
+    private ForwardMovementPlayer forwardMovementPlayer;
+    private StopMovementPlayer stopMovementPlayer;
 
-    public JoysticMovement(GameObject spaceCraftToMove) : base(spaceCraftToMove) {
-        forwardMovement = new ForwardMovement(spaceCraftToMove);
-        stopMovement = new StopMovement(spaceCraftToMove);
+    public JoysticMovementPlayer(GameObject spaceCraftToMove) : base(spaceCraftToMove) {
+        forwardMovementPlayer = new ForwardMovementPlayer(spaceCraftToMove);
+        stopMovementPlayer = new StopMovementPlayer(spaceCraftToMove);
     }
 
     public override void move()
@@ -43,9 +43,9 @@ public class JoysticMovement : AbstractMovementSpacecraft
     {
         if (_fordward)
         {
-            forwardMovement.move();
+            forwardMovementPlayer.move();
             return;
         }
-        stopMovement.move();
+        stopMovementPlayer.move();
     }
 }

@@ -6,7 +6,7 @@ public static class GameObjectExtentions
 {
     public static bool minimunDistance(this GameObject currentObject, GameObject otherObject) {
         float distance = Vector2.Distance(currentObject.transform.position, otherObject.transform.position);
-        return distance <= 1.5f;
+        return distance <= Constants.minimunDistaceBetweenPlayerEnemy;
     }
 
     public static void changeCurrentPositionToRandom(this GameObject currentObject) {

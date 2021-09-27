@@ -7,7 +7,40 @@ public class EnemyMovement : AbstractMovement
 
     public EnemyMovement(GameObject spacecraft) : base(spacecraft) { }
 
+    public override void movementAttack()
+    {
+        if (!_existsPlayerInRange()) return;
+        pointingPlayer.move();
+        if (spacecraft.minimunDistance(_currentEnemy)) return;
+        forwardMovementEnemy.move();
+    }
 
+    public override void movementDefence() => _existsPlayerInRange();
+
+    public override void movementFordward() => _existsPlayerInRange();
+
+    public override void movementPatrol() {
+        if (_existsPlayerInRange()) return;
+    }
+
+    public override void movementStop()
+    {
+        if (_existsPlayerInRange()) return;
+        stopMovement.move();
+    }
+
+    //methods private
+    private bool _existsPlayerInRange() {
+        loadEnemy();
+        if (_currentEnemy != null) {
+            action = Action.ATTACK;
+            return true;
+        }
+        action = Action.PATROL;
+        return false;
+    }
+
+    /*
     public override void movementAttack()
     {
         loadEnemy();
@@ -54,5 +87,5 @@ public class EnemyMovement : AbstractMovement
     }
 
     public override void movementStop() => stopMovement.move();
-
+    */
 }

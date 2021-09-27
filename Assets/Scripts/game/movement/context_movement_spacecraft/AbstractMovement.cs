@@ -8,7 +8,7 @@ public abstract class AbstractMovement
 {
 
     private StatusGame currentStatusGame;
-    private Action currentAction = Action.STOP;
+    protected Action currentAction = Action.STOP;
     private Action previousAction = Action.STOP;
     private AbstractMovementDelegate _delegate;
 
@@ -16,13 +16,13 @@ public abstract class AbstractMovement
     protected GameObject _currentEnemy;
 
     protected AbstractMovementSpacecraft bottomMovement;
-    protected AbstractMovementSpacecraft forwardMovement;
+    protected AbstractMovementSpacecraft forwardMovementEnemy;
+    protected AbstractMovementSpacecraft forwardMovementPlayer;
     protected AbstractMovementSpacecraft joysticMovement;
     protected AbstractMovementSpacecraft leftMovement;
     protected AbstractMovementSpacecraft pointingEnemy;
     protected AbstractMovementSpacecraft pointingPatrol;
     protected AbstractMovementSpacecraft pointingPlayer;
-    protected AbstractMovementSpacecraft pointingStructureToEnemy;
     protected AbstractMovementSpacecraft restoreRotationMovement;
     protected AbstractMovementSpacecraft rigthMovement;
     protected AbstractMovementSpacecraft stopMovement;
@@ -73,13 +73,13 @@ public abstract class AbstractMovement
     void initMovementsAvailables() {
         MovementSpacecraftFactory factory = new MovementSpacecraftFactory();
         bottomMovement = factory.getMovementSpacecraft(Move.BOTTOM, spacecraft );
-        forwardMovement = factory.getMovementSpacecraft(Move.FORWARD, spacecraft );
+        forwardMovementEnemy= factory.getMovementSpacecraft(Move.FORWARD_ENEMY, spacecraft );
+        forwardMovementPlayer = factory.getMovementSpacecraft(Move.FORWARD_PLAYER, spacecraft );
         joysticMovement = factory.getMovementSpacecraft(Move.JOYSTIC, spacecraft );
         leftMovement = factory.getMovementSpacecraft(Move.LEFT, spacecraft );
         pointingEnemy = factory.getMovementSpacecraft(Move.POINER_ENEMY, spacecraft );
         pointingPatrol = factory.getMovementSpacecraft(Move.POINTER_PATROL, spacecraft );
         pointingPlayer = factory.getMovementSpacecraft(Move.POINTER_PLAYER, spacecraft );
-        pointingStructureToEnemy = factory.getMovementSpacecraft(Move.POINTER_STRUCTURE_TO_ENEMY, spacecraft );
         restoreRotationMovement = factory.getMovementSpacecraft(Move.RESTORE_ROTATION, spacecraft );
         rigthMovement = factory.getMovementSpacecraft(Move.RIGT, spacecraft );
         stopMovement = factory.getMovementSpacecraft(Move.STOP, spacecraft );

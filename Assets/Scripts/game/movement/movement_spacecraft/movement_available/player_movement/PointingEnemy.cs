@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PointingEnemy : AbstractMovementSpacecraft
 {
-    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
-
+    
     public PointingEnemy(GameObject spaceCraftToMove) : base(spaceCraftToMove){}
 
     public override void move()

@@ -11,7 +11,8 @@ public static class Constants
     public static string namePatrolPoint = "patrolPoint";
     public static string nameLaserWeapon = "laser";
 
-
+    //Distance
+    public static float minimunDistaceBetweenPlayerEnemy = 5f;
 
     //Dimension
     public static float safeAreaHeigth = 480;
@@ -27,6 +28,7 @@ public static class Constants
     public static float laserType5 = 50;
 
     //speeds
-    public static float speedLaser = 2.0f;
+    public static float speedLaser = 100.0f;
+    public static float speedFiring = 0.1f;
 
 }

@@ -37,13 +37,13 @@ public enum LaguageAvailable
 
 public enum Move { 
     BOTTOM,
-    FORWARD,
+    FORWARD_ENEMY,
+    FORWARD_PLAYER,
     JOYSTIC,
     LEFT,
     POINER_ENEMY,
     POINTER_PLAYER,
     POINTER_PATROL,
-    POINTER_STRUCTURE_TO_ENEMY,
     RESTORE_ROTATION,
     RIGT,
     STOP,

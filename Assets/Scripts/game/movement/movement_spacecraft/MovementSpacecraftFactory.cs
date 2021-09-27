@@ -8,10 +8,12 @@ public class MovementSpacecraftFactory
         switch (move) {
             case Move.BOTTOM:
                 return new BottomMovement(spacecraft);
-            case Move.FORWARD:
-                return new ForwardMovement(spacecraft);
+            case Move.FORWARD_ENEMY:
+                return new FordwardMovementEnemy(spacecraft);
+            case Move.FORWARD_PLAYER:
+                return new ForwardMovementPlayer(spacecraft);
             case Move.JOYSTIC:
-                return new JoysticMovement(spacecraft);
+                return new JoysticMovementPlayer(spacecraft);
             case Move.LEFT:
                 return new LeftMovement(spacecraft);
             case Move.RIGT:
@@ -22,15 +24,13 @@ public class MovementSpacecraftFactory
                 return new PointingPlayer(spacecraft);
             case Move.POINTER_PATROL:
                 return new PointingPatrol(spacecraft);
-            case Move.POINTER_STRUCTURE_TO_ENEMY:
-                return new PointStructureToEnemyMovement(spacecraft);
             case Move.RESTORE_ROTATION:
-                return new RestoreRotationMovement(spacecraft);
+                return new RestoreRotationMovementPlayer(spacecraft);
             case Move.TOP:
                 return new TopMovement(spacecraft);
             case Move.STOP:
             default:
-                return new StopMovement(spacecraft);
+                return new StopMovementPlayer(spacecraft);
         }
     }
 }

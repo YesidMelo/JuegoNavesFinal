@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RestoreRotationMovement : AbstractMovementSpacecraft
+public class RestoreRotationMovementPlayer : AbstractMovementSpacecraft
 {
-    public RestoreRotationMovement(GameObject spaceCraftToMove) : base(spaceCraftToMove) { }
+    public RestoreRotationMovementPlayer(GameObject spaceCraftToMove) : base(spaceCraftToMove) { }
 
     public override void move() {
         GameObject spaceCraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
