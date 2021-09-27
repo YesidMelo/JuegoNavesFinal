@@ -16,7 +16,7 @@ public class RadarFactory {
                 return new RadarType5();
             case Radar.TYPE_1:
             default:
-                return new RadarType1();
+                return new RadarType1Enemies();
         }
     }
 }

@@ -26,4 +26,7 @@ public static class Constants
     public static float laserType4 = 40;
     public static float laserType5 = 50;
 
+    //speeds
+    public static float speedLaser = 2.0f;
+
 }

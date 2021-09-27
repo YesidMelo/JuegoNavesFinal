@@ -114,7 +114,7 @@ public abstract class AbstractMovement
     void changeEnemy()
     {
         changeToPreviousAction();
-        GameObject spacecraftLocal = spacecraft.transform.GetChild(0).gameObject;
+        GameObject spacecraftLocal = spacecraft.transform.FindChild(Constants.nameSpacecraft).gameObject;
         GameObject radar = spacecraftLocal.transform.FindChild(Constants.nameRadar).gameObject;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();
         handler.changeEnemy();
@@ -137,10 +137,10 @@ public abstract class AbstractMovement
         if (spacecraft == null) {
             return;
         }
-        GameObject spacecraftLocal = spacecraft.transform.GetChild(0).gameObject;
+        GameObject spacecraftLocal = spacecraft.transform.FindChild(Constants.nameSpacecraft).gameObject;
         GameObject radar = spacecraftLocal.transform.FindChild(Constants.nameRadar).gameObject;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();
-        _currentEnemy = handler.currentEnemy;
+        _currentEnemy = handler.currentObjetive;
     }
 
 }

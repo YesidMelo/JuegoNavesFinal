@@ -21,7 +21,7 @@ public class HandlerAmmunitionLaser : MonoBehaviour
     void Update()
     {
         updateRenderer();
-        transform.parent.transform.Translate(Vector2.up * 2.0f * Time.deltaTime);
+        transform.parent.transform.Translate(Vector2.up * Constants.speedLaser * Time.deltaTime);
     }
 
     // public methods

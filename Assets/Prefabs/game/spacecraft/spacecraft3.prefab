@@ -86,7 +86,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -420,6 +420,7 @@ GameObject:
   - component: {fileID: 3399651359037854747}
   - component: {fileID: 5032849291704049900}
   - component: {fileID: 579951230301344622}
+  - component: {fileID: 9095489716814249317}
   m_Layer: 0
   m_Name: shield
   m_TagString: Untagged
@@ -472,3 +473,24 @@ MonoBehaviour:
   maxShield: 3
   minShield: 1
   shields: 000000000000000000000000
+--- !u!50 &9095489716814249317
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927305286445080683}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

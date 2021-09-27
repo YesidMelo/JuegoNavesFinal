@@ -5,14 +5,32 @@ using UnityEngine;
 
 public abstract class AbstractRadar {
 
+    protected string _currentObject;
+    protected BaseRadarHelper _baseRadar;
+
+    public string currentSideGameObject {
+        set { 
+            _currentObject = value;
+            selectContextRadar();
+        }
+    }
+    public abstract GameObject currentObjetive { get; }
+
+    public abstract List<GameObject> listObjetives { get; }
+
+    public abstract void changeObjetive();
+    public abstract void addObjetive(Collider2D collision);
+    public abstract void removeEnemy(Collider2D collision);
+
+    protected abstract void selectContextRadar();
+
+    /*
     public List<GameObject> listEnemy = new List<GameObject>();
     public GameObject currentEnemy;
 
     private string _currentSideGameObject;
     public string currentSideGameObject { 
-        set {
-            _currentSideGameObject = value;
-        } 
+        set => _currentSideGameObject = value; 
     }
 
     public void changeEnemy() {
@@ -51,6 +69,7 @@ public abstract class AbstractRadar {
 
     private void captureEnemyFromPlayer(Collider2D collision)
     {
+        if (collision.transform.parent.parent == null) return;
         if (collision.transform.parent.parent.name.Contains(Constants.namePlayer)) return;
         if (listEnemy.Contains(collision.gameObject)) return;
         listEnemy.Add(collision.gameObject);
@@ -71,4 +90,5 @@ public abstract class AbstractRadar {
             currentEnemy = listEnemy[0];
         }
     }
+    */
 }

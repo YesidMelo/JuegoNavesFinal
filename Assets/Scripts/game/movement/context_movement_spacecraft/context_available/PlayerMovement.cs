@@ -18,7 +18,6 @@ public class PlayerMovement : AbstractMovement
 
     public override void movementDefence() {
         action = currentActionSpacecraftUseCase.invoke();
-        Debug.Log("Movimiento Defensa");
         if (currentActionSpacecraftUseCase.invoke() != Action.DEFENSE) return;
         restoreRotationMovement.move();
         joysticMovement.move();

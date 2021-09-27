@@ -50,12 +50,12 @@ public abstract class AbstractMovementSpacecraft
         GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
         GameObject radar = spacecraft.transform.FindChild(Constants.nameRadar).gameObject;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();
-        _enemy = handler.enemy;
-        _currentEnemy = handler.currentEnemy;
+        _enemy = handler.objetives;
+        _currentEnemy = handler.currentObjetive;
         if (currentEnemy != null && _currentActionSpacecraftUseCase.invoke() != Action.ATTACK) return;
         handler.changeEnemy();
-        _enemy = handler.enemy;
-        _currentEnemy = handler.currentEnemy;
+        _enemy = handler.objetives;
+        _currentEnemy = handler.currentObjetive;
     }
 
     private void loadSpeedSpacecraft() {

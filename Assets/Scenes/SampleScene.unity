@@ -508,11 +508,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2396297354117673045, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4381164514130799869, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: spacecraftSelected
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4381164514130799869, guid: db8b8be5ee2b8cc43a7fd81fa17a8ee0, type: 3}
       propertyPath: currentSideSpacecraft
