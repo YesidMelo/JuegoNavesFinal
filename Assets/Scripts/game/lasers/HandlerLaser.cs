@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface HandlerLaserDelegate { }
 
-public class HandlerLaser : MonoBehaviour
+public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
 {
     [Range(1, 5)]
     public int maxLasers = 1;
@@ -15,112 +15,52 @@ public class HandlerLaser : MonoBehaviour
     public List<AbstractLaser> lasers = new List<AbstractLaser>();
     public HandlerLaserDelegate myDelegate { set { _myDelegate = value; } }
     public GameObject prefabLaser;
-    
-    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
-    private AbstractLaser finalLaser;
-    private HandlerLaserDelegate _myDelegate;
-    private bool shooting = false;
-    private Thread shootThread;
-    private IEnumerator corutineShoot;
 
+    private BaseContextLaser contextLaser;
+    private HandlerLaserDelegate _myDelegate;
+
+    private IEnumerator corutineShoot;
 
     void Start()
     {
-        initLasersDefaults();
-        calculateFinalValueLaser();
+        selectContext();
+        contextLaser.initLasersDefaults();
+        contextLaser.calculateFinalValueLaser();
     }
 
     private void Update()
     {
-        checkShoot();
+        if (contextLaser == null) return;
+        contextLaser.shoot();
     }
 
     //Public methods
     public void updateLasers(List<Laser> currentLasers) {
         lasersType = currentLasers;
-        initLasersDefaults();
-        calculateFinalValueLaser();
+        contextLaser.updateLasers(lasersType);
     }
 
-    // private methods
-    private void initLasersDefaults() {
-        lasers.Clear();
-        foreach (Laser currentLaser in lasersType) {
-            lasers.Add((new LaserFactory()).getLaser(currentLaser));
-        }
-    }
-
-    private void calculateFinalValueLaser() {
-        if (lasersType == null || lasersType.Count == 0) return;
-        float finalValue = 0;
-        for (int index = 0; index< lasersType.Count; index++) {
-            AbstractLaser currentLaser = generateLaser(lasersType[index]);
-            finalValue = finalValue + currentLaser.impactDamage;
-        }
-        finalLaser = new LaserFinal();
-        finalLaser.impactDamage = finalValue;
-    }
-
-    private AbstractLaser generateLaser(Laser laser) {
-        switch (laser) {
-            case Laser.TYPE_2:
-                return new LaserType2();
-            case Laser.TYPE_3:
-                return new LaserType3();
-            case Laser.TYPE_4:
-                return new LaserType4();
-            case Laser.TYPE_5:
-                return new LaserType5();
-            case Laser.TYPE_1:
-            default:
-                return new LaserType1();
-        }
-    }
-
-    private void checkShoot() {
-        GameObject parent = transform.parent.parent.gameObject;
-        if (parent.name.Contains(Constants.nameEnemy)) {
-            shootEnemy();
-            return;
-        }
-        shootPlayer();
-    }
-
-    private void shootEnemy()
-    {
-    }
-
-    private void shootPlayer() {
-        if (_currentActionSpacecraftUseCase.invoke() != Action.ATTACK) {
-            shooting = false;
-            return; 
-        }
-        if (shooting) { return; }
-        shooting = true;
-        corutineShoot = generateLaser();
-        StartCoroutine(corutineShoot);
-    }
-
+    
     private IEnumerator generateLaser() {
-        while (shooting) {
+        while (contextLaser.shooting) {
             GameObject laser = Instantiate(prefabLaser);
             laser.transform.position = transform.position;
             laser.transform.eulerAngles = transform.eulerAngles;
             HandlerAmmunitionLaser handler = laser.transform.GetChild(0).GetComponent<HandlerAmmunitionLaser>();
 
             if (handler == null) break;
-            finalLaser.parent = transform.parent.gameObject;
+            contextLaser.finalLaser.parent = transform.parent.gameObject;
             handler.laserSelected = getFinalLaser();
-            handler.changeAmmountLaser(finalLaser);
+            handler.changeAmmountLaser(contextLaser.finalLaser);
 
             yield return new WaitForSeconds(Constants.speedFiring);
         }
         yield return null;
     }
-
+    
     private Laser getFinalLaser() {
         Laser laserSelected;
-        float totalAttack = finalLaser.impactDamage / lasersType.Count;
+        float totalAttack = contextLaser.finalLaser.impactDamage / lasersType.Count;
         if (totalAttack <= Constants.laserType1) {
             laserSelected = Laser.TYPE_1;
         } else if (totalAttack < Constants.laserType1 && totalAttack <= Constants.laserType2 ) {
@@ -133,5 +73,33 @@ public class HandlerLaser : MonoBehaviour
             laserSelected = Laser.TYPE_5;
         }
         return laserSelected;
+    }
+
+    private void selectContext() {
+        if (contextLaser != null) {
+            return;
+        }
+        corutineShoot = generateLaser();
+        GameObject parent = transform.parent.parent.gameObject;
+        if (parent.name.Contains(Constants.nameEnemy))
+        {
+            contextLaser = new ContextLaserEnemy(
+                lasers: lasers,
+                lasersType: lasersType,
+                myDelegate: this
+            );
+            return;
+        }
+        contextLaser = new ContextLaserPlayer(
+            lasers: lasers,
+            lasersType: lasersType,
+            myDelegate: this
+        );
+        Debug.Log("Hola mundo");
+    }
+
+    public void startCorutine()
+    {
+        StartCoroutine(corutineShoot);
     }
 }
