@@ -19,8 +19,6 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
     private BaseContextLaser contextLaser;
     private HandlerLaserDelegate _myDelegate;
 
-    private IEnumerator corutineShoot;
-
     void Start()
     {
         selectContext();
@@ -79,27 +77,28 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
         if (contextLaser != null) {
             return;
         }
-        corutineShoot = generateLaser();
         GameObject parent = transform.parent.parent.gameObject;
         if (parent.name.Contains(Constants.nameEnemy))
         {
             contextLaser = new ContextLaserEnemy(
                 lasers: lasers,
                 lasersType: lasersType,
-                myDelegate: this
+                myDelegate: this,
+                gameObject: transform.gameObject
+                
             );
             return;
         }
         contextLaser = new ContextLaserPlayer(
             lasers: lasers,
             lasersType: lasersType,
-            myDelegate: this
+            myDelegate: this,
+            gameObject: transform.gameObject
         );
-        Debug.Log("Hola mundo");
     }
 
     public void startCorutine()
     {
-        StartCoroutine(corutineShoot);
+        StartCoroutine(generateLaser());
     }
 }

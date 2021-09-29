@@ -13,6 +13,7 @@ public abstract class BaseContextLaser
     protected List<Laser> _lasersType = new List<Laser>();
     protected IEnumerator corutineShoot;
     protected AbstractLaser _finalLaser;
+    protected GameObject _gameObject;
 
     protected bool _shooting = false;
     protected BaseContextLaserDelegate myDelegate;
@@ -20,12 +21,14 @@ public abstract class BaseContextLaser
     public BaseContextLaser(
         List<AbstractLaser> lasers,
         List<Laser> lasersType,
-        BaseContextLaserDelegate myDelegate
+        BaseContextLaserDelegate myDelegate,
+        GameObject gameObject
     ) {
         this.corutineShoot = corutineShoot;
         this._lasers = lasers;
         this._lasersType = lasersType;
         this.myDelegate = myDelegate;
+        this._gameObject = gameObject;
     }
 
     // Abstracts

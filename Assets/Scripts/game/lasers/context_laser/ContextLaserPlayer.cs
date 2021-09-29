@@ -9,8 +9,9 @@ public class ContextLaserPlayer : BaseContextLaser
     public ContextLaserPlayer (
         List<AbstractLaser> lasers, 
         List<Laser> lasersType,
-        BaseContextLaserDelegate myDelegate
-    ) : base(lasers, lasersType, myDelegate){}
+        BaseContextLaserDelegate myDelegate,
+        GameObject gameObject
+    ) : base(lasers, lasersType, myDelegate,gameObject){}
 
     public override void calculateFinalValueLaser()
     {
