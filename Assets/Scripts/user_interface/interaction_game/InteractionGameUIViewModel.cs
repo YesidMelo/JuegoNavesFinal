@@ -20,6 +20,7 @@ public interface InteractionGameUIViewModel {
 
     // texts
     string textButtonAction { get; }
+    string textLife { get; }
 
     // public methods
 
@@ -44,6 +45,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private Vector3 _currentPosition = new Vector3(0, 0, 0);
     private UpdateActionSpacecraftUseCase _updateActionSpacecraftUseCase = new UpdateActionSpacecraftUseCaseImpl();
     private UpdateMovementJoysticUseCase _updateMovementJoysticUseCase = new UpdateMovementJoysticUseCaseImpl();
+    private SpacecraftPlayerGetLifeUseCase _spacecraftPlayerGetLifeUseCase = new SpacecraftPlayerGetLifeUseCaseImpl();
 
     // get and sets
     public InteractionGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
@@ -70,6 +72,10 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
         }
     }
 
+    public string textLife => string.Format(
+        _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.LIFE_PLAYER),
+        _spacecraftPlayerGetLifeUseCase.invoke()
+    );
 
     // public methods
 

@@ -15,6 +15,7 @@ public class SpainLanguage : AbstractLanguage
         values[NameTagLanguage.ATTACK] = "Atacar";
         values[NameTagLanguage.DEFENSE] = "Defender";
         values[NameTagLanguage.CONTINUE] = "Continuar";
+        values[NameTagLanguage.LIFE_PLAYER] = "Vida: {0}";
         values[NameTagLanguage.NAME_GAME] = "Juego Galactico";
 
     }

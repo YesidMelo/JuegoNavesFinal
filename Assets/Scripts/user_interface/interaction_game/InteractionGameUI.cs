@@ -21,6 +21,7 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     public GameObject prefabPlayer;
     public VariableJoystick joystic;
     public TextMeshProUGUI textAction;
+    public TextMeshProUGUI textLife;
 
     // lifecycle
     private void Awake()
@@ -65,6 +66,7 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
 
     public void updateTexts() {
         textAction.text = viewModel.textButtonAction;
+        textLife.text = viewModel.textLife;
     }
 
 

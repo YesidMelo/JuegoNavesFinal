@@ -64,6 +64,7 @@ public enum NameTagLanguage
     ATTACK,
     DEFENSE,
     CONTINUE,
+    LIFE_PLAYER,
     NAME_GAME,
 }
 

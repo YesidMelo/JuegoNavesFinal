@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ContextShieldPlayer : BaseContextShield
 {
+    private SpacecraftPlayerQuitLifeUseCase spacecraftPlayerQuitLifeUseCase = new SpacecraftPlayerQuitLifeUseCaseImpl();
+    private SpacecraftPlayerUpdateLifeUseCase spacecraftPlayerUpdateLifeUseCase = new SpacecraftPlayerUpdateLifeUseCaseImpl();
+
     public ContextShieldPlayer(
         List<Shield> listShields,
         HanderShieldDelegate myDelegate,
@@ -12,7 +15,9 @@ public class ContextShieldPlayer : BaseContextShield
             listShields, 
             myDelegate,
             baseContextShieldDelegate
-        ){}
+        ){
+        spacecraftPlayerUpdateLifeUseCase.invoke(1000);
+    }
 
     public override void fillShieldsByDefault()
     {
@@ -50,6 +55,7 @@ public class ContextShieldPlayer : BaseContextShield
         if (parentLaser == null) return;
         if (_baseContextShieldDelegate == null) return;
         _baseContextShieldDelegate.deleteLaser(parentLaser.gameObject);
+        spacecraftPlayerQuitLifeUseCase.invoke(1);
     }
 
 }
