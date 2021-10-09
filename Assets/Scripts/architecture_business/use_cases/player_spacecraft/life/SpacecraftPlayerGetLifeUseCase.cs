@@ -9,7 +9,7 @@ public interface SpacecraftPlayerGetLifeUseCase
 
 public class SpacecraftPlayerGetLifeUseCaseImpl : SpacecraftPlayerGetLifeUseCase
 {
-    private SpacecraftPlayerRepository spacecraftRepository = new SpacecraftPlayerRepositoryImpl();
+    private SpacecraftPlayerLifeRepository spacecraftRepository = new SpacecraftPlayerLifeRepositoryImpl();
 
     public float invoke() => spacecraftRepository.life;
 }

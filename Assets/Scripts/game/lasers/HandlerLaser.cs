@@ -18,10 +18,14 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
 
     private BaseContextLaser contextLaser;
     private HandlerLaserDelegate _myDelegate;
+    private HandlerLaserViewModel _viewModel;
 
     void Start()
     {
         selectContext();
+        _viewModel.setListLasers(lasersType);
+        lasersType = _viewModel.listLasers;
+
         contextLaser.initLasersDefaults();
         contextLaser.calculateFinalValueLaser();
     }
@@ -35,6 +39,7 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
     //Public methods
     public void updateLasers(List<Laser> currentLasers) {
         lasersType = currentLasers;
+        _viewModel.setListLasers(lasersType);
         contextLaser.updateLasers(lasersType);
     }
 
@@ -48,29 +53,13 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
 
             if (handler == null) break;
             contextLaser.finalLaser.parent = transform.parent.gameObject;
-            handler.laserSelected = getFinalLaser();
+            handler.laserSelected = _viewModel.finalLaser;
+            contextLaser.finalLaser.impactDamage = _viewModel.mediaImpactLaser;
             handler.changeAmmountLaser(contextLaser.finalLaser);
 
             yield return new WaitForSeconds(Constants.speedFiring);
         }
         yield return null;
-    }
-    
-    private Laser getFinalLaser() {
-        Laser laserSelected;
-        float totalAttack = contextLaser.finalLaser.impactDamage / lasersType.Count;
-        if (totalAttack <= Constants.laserType1) {
-            laserSelected = Laser.TYPE_1;
-        } else if (totalAttack < Constants.laserType1 && totalAttack <= Constants.laserType2 ) {
-            laserSelected = Laser.TYPE_2;
-        } else if (totalAttack < Constants.laserType2 && totalAttack <= Constants.laserType3 ) {
-            laserSelected = Laser.TYPE_3;
-        } else if (totalAttack < Constants.laserType3 && totalAttack <= Constants.laserType4 ) {
-            laserSelected = Laser.TYPE_4;
-        } else {
-            laserSelected = Laser.TYPE_5;
-        }
-        return laserSelected;
     }
 
     private void selectContext() {
@@ -80,15 +69,24 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
         GameObject parent = transform.parent.parent.gameObject;
         if (parent.name.Contains(Constants.nameEnemy))
         {
-            contextLaser = new ContextLaserEnemy(
-                lasers: lasers,
-                lasersType: lasersType,
-                myDelegate: this,
-                gameObject: transform.gameObject
-                
-            );
+            createComponentsEnemy();
             return;
         }
+        createComponentPlayer();
+    }
+
+    void createComponentsEnemy() {
+        _viewModel = new HandlerLaserEnemyViewModelImpl();
+        contextLaser = new ContextLaserEnemy(
+            lasers: lasers,
+            lasersType: lasersType,
+            myDelegate: this,
+            gameObject: transform.gameObject
+        );
+    }
+
+    void createComponentPlayer() {
+        _viewModel = new HandlerLaserPlayerViewModelImpl();
         contextLaser = new ContextLaserPlayer(
             lasers: lasers,
             lasersType: lasersType,

@@ -5,10 +5,12 @@ using UnityEngine;
 public interface SpacecraftPlayerLifeCache
 {
     public float life { get; }
-    public void setMaxLife(float life);
+    public float maxLife { get; }
 
-    public void addLife(float life);
+
+    public void addLife(float life); 
     public void quitLife(float life);
+    public void setMaxLife(float life);
 }
 
 public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
@@ -21,10 +23,16 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         }
         return instance;
     }
+
     private float _maxLife = 1000;
     private float _life = 0;
 
+    private SpacecraftPlayerLifeCacheImpl() {}
+
     public float life => _life;
+
+    public float maxLife => _maxLife;
+
 
     public void setMaxLife(float life) { 
         _maxLife = life;
@@ -52,4 +60,5 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         }
         _life = finalLife;
     }
+
 }

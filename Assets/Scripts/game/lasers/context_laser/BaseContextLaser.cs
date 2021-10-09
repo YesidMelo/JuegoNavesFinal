@@ -24,7 +24,6 @@ public abstract class BaseContextLaser
         BaseContextLaserDelegate myDelegate,
         GameObject gameObject
     ) {
-        this.corutineShoot = corutineShoot;
         this._lasers = lasers;
         this._lasersType = lasersType;
         this.myDelegate = myDelegate;

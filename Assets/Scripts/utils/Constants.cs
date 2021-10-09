@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public static class Constants 
 {
@@ -30,5 +31,8 @@ public static class Constants
     //speeds
     public static float speedLaser = 100.0f;
     public static float speedFiring = 0.1f;
+
+    //life bar
+    public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);
 
 }

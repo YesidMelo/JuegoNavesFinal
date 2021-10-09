@@ -8,6 +8,6 @@ public interface SpacecraftPlayerAddLifeUseCase {
 
 public class SpacecraftPlayerAddLifeUseCaseImpl : SpacecraftPlayerAddLifeUseCase
 {
-    private SpacecraftPlayerRepository repo = new SpacecraftPlayerRepositoryImpl();
+    private SpacecraftPlayerLifeRepository repo = new SpacecraftPlayerLifeRepositoryImpl();
     public void invoke(float life) => repo.addLife(life);
 }

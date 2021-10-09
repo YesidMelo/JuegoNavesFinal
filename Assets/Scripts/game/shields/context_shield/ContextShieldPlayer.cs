@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContextShieldPlayer : BaseContextShield
 {
     private SpacecraftPlayerQuitLifeUseCase spacecraftPlayerQuitLifeUseCase = new SpacecraftPlayerQuitLifeUseCaseImpl();
-    private SpacecraftPlayerUpdateLifeUseCase spacecraftPlayerUpdateLifeUseCase = new SpacecraftPlayerUpdateLifeUseCaseImpl();
+    private SpacecraftPlayerSetMaxLifeUseCase spacecraftPlayerUpdateLifeUseCase = new SpacecraftPlayerSetMaxLifeUseCaseImpl();
 
     public ContextShieldPlayer(
         List<Shield> listShields,
@@ -53,9 +53,18 @@ public class ContextShieldPlayer : BaseContextShield
         Transform laser = collision.transform;
         Transform parentLaser = laser.transform.parent.transform;
         if (parentLaser == null) return;
+        HandlerAmmunitionLaser handlerAmmunitionLaser = laser.gameObject.GetComponent<HandlerAmmunitionLaser>();
+        if (laserIsFromPlayer(handlerAmmunitionLaser: handlerAmmunitionLaser)) return;
         if (_baseContextShieldDelegate == null) return;
         _baseContextShieldDelegate.deleteLaser(parentLaser.gameObject);
-        spacecraftPlayerQuitLifeUseCase.invoke(1);
+        spacecraftPlayerQuitLifeUseCase.invoke(handlerAmmunitionLaser.finalLaser.impactDamage);
+    }
+
+    private bool laserIsFromPlayer(HandlerAmmunitionLaser handlerAmmunitionLaser) {
+        if (handlerAmmunitionLaser == null) return false;
+        if (handlerAmmunitionLaser.finalLaser == null) return false;
+        if (handlerAmmunitionLaser.finalLaser.nameParent == null) return false;
+        return handlerAmmunitionLaser.finalLaser.nameParent.Contains(Constants.namePlayer); 
     }
 
 }

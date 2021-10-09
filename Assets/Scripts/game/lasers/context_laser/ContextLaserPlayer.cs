@@ -24,6 +24,7 @@ public class ContextLaserPlayer : BaseContextLaser
         }
         _finalLaser = new LaserFinal();
         _finalLaser.impactDamage = finalValue;
+        _finalLaser.nameParent = _gameObject.transform.parent.parent.name;
     }
 
     public override void initLasersDefaults()
