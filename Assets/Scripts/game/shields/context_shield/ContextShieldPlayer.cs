@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContextShieldPlayer : BaseContextShield
 {
     private SpacecraftPlayerQuitLifeUseCase spacecraftPlayerQuitLifeUseCase = new SpacecraftPlayerQuitLifeUseCaseImpl();
-    private SpacecraftPlayerSetMaxLifeUseCase spacecraftPlayerUpdateLifeUseCase = new SpacecraftPlayerSetMaxLifeUseCaseImpl();
+    private SpacecraftPlayerSetMaxLifeUseCase spacecraftPlayerMaxLifeUseCase = new SpacecraftPlayerSetMaxLifeUseCaseImpl();
 
     public ContextShieldPlayer(
         List<Shield> listShields,
@@ -16,7 +16,8 @@ public class ContextShieldPlayer : BaseContextShield
             myDelegate,
             baseContextShieldDelegate
         ){
-        spacecraftPlayerUpdateLifeUseCase.invoke(1000);
+        notifyIdentificator();
+        spacecraftPlayerMaxLifeUseCase.invoke(1000);
     }
 
     public override void fillShieldsByDefault()
@@ -65,6 +66,12 @@ public class ContextShieldPlayer : BaseContextShield
         if (handlerAmmunitionLaser.finalLaser == null) return false;
         if (handlerAmmunitionLaser.finalLaser.nameParent == null) return false;
         return handlerAmmunitionLaser.finalLaser.nameParent.Contains(Constants.namePlayer); 
+    }
+
+    private void notifyIdentificator()
+    {
+        if (_baseContextShieldDelegate == null) return;
+        _baseContextShieldDelegate.listenerIdentificatorShield(identificator);
     }
 
 }

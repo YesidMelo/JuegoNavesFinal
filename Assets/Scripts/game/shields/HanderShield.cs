@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public interface HanderShieldDelegate {
     void impactIncomeShield(Collider2D collision);
     void impactGoneShield(Collider2D collision);
+    void notifyIdentificatorShield(IdentificatorModel identificatorModel);
 }
 
 public class HanderShield : MonoBehaviour, BaseContextShieldDelegate
@@ -15,11 +17,12 @@ public class HanderShield : MonoBehaviour, BaseContextShieldDelegate
     [Range(1, 5)]
     public int minShield = 1;
     public List<Shield> shields = new List<Shield>();
-    
+
     public HanderShieldDelegate myDelegate { set { _myDelegate = value; } }
 
     private HanderShieldDelegate _myDelegate;
     private BaseContextShield contextShield;
+
 
     // Start is called before the first frame update
     void Start() => selectContext();
@@ -32,12 +35,12 @@ public class HanderShield : MonoBehaviour, BaseContextShieldDelegate
     }
 
     // Private Methods
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (contextShield == null) return;
         contextShield.OnTriggerEnter2D(collision: collision);
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -54,7 +57,7 @@ public class HanderShield : MonoBehaviour, BaseContextShieldDelegate
         if (grandParent.name.Contains(Constants.nameEnemy)) {
             contextShield = new ContextShieldEnemy(
                 listShields: shields,
-                myDelegate : _myDelegate,
+                myDelegate: _myDelegate,
                 baseContextShieldDelegate: this
             );
             return;
@@ -71,5 +74,8 @@ public class HanderShield : MonoBehaviour, BaseContextShieldDelegate
         Destroy(ammounitionLaser);
     }
 
-    // get and sets
+    public void listenerIdentificatorShield(IdentificatorModel identificatorModel) { 
+        if (_myDelegate == null) return;
+        _myDelegate.notifyIdentificatorShield(identificatorModel);
+    }
 }

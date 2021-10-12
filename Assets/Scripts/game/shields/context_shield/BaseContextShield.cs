@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface BaseContextShieldDelegate {
     public void deleteLaser(GameObject ammounitionLaser);
+    public void listenerIdentificatorShield(IdentificatorModel identificatorModel);
 }
 
 public abstract class BaseContextShield 
@@ -12,6 +13,7 @@ public abstract class BaseContextShield
     protected List<AbstractShield> _listShieldsDefault = new List<AbstractShield>();
     protected HanderShieldDelegate _handlerShieldDelegate;
     protected BaseContextShieldDelegate _baseContextShieldDelegate;
+    protected IdentificatorModel identificator = new IdentificatorModel();
 
     public BaseContextShield(
         List<Shield> listShields,

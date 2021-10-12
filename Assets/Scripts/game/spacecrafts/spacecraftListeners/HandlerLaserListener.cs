@@ -6,5 +6,5 @@ public class HandlerLaserListener : HandlerLaserDelegate
         AbstractSpacecraft spacecraft
     ) {
         this.spacecraft = spacecraft;
-    }
+    }      
 }

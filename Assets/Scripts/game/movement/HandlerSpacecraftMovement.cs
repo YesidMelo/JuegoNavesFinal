@@ -5,7 +5,6 @@ using UnityEngine;
 public class HandlerSpacecraftMovement : MonoBehaviour
 {
 
-    private GameObject spacecraft;
     //-> creation
     public GameObject spacecraftFactory;
     public Spacecraft spacecraftSelected = Spacecraft.SPACECRAFT_1;
@@ -16,7 +15,7 @@ public class HandlerSpacecraftMovement : MonoBehaviour
     public SideSpacecraft currentSideSpacecraft = SideSpacecraft.ENEMY;
     public AbstractMovement currentMovement;
 
-    public AbstractSpacecraft currentSpacecraft;
+    private GameObject _spacecraft;
 
     private void Awake() => createInstantanceGameobject();
 
@@ -26,10 +25,10 @@ public class HandlerSpacecraftMovement : MonoBehaviour
 
     void createInstantanceGameobject() {
         GameObject spacecraftSelected = createSpacecraftBasedInSide();
-        spacecraft = Instantiate(spacecraftSelected);
-        spacecraft.name = Constants.nameSpacecraft;
-        spacecraft.transform.parent = transform;
-        spacecraft.transform.localPosition = new Vector3(0,0,0);
+        _spacecraft = Instantiate(spacecraftSelected);
+        _spacecraft.name = Constants.nameSpacecraft;
+        _spacecraft.transform.parent = transform;
+        _spacecraft.transform.localPosition = new Vector3(0,0,0);
         initElementsGameObject();
     }
 
@@ -61,5 +60,9 @@ public class HandlerSpacecraftMovement : MonoBehaviour
         }
     }
 
+    //gets and sets
+    public GameObject spacecraft { 
+        get => _spacecraft; 
+    }
     
 }

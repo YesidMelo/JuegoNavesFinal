@@ -33,6 +33,17 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
 
     public float maxLife => _maxLife;
 
+    public void addLife(float life)
+    {
+        if (_life == _maxLife) return;
+        float finalLife = _life + life;
+        if (finalLife >= _maxLife)
+        {
+            _life = _maxLife;
+            return;
+        }
+        _life = finalLife;
+    }
 
     public void setMaxLife(float life) { 
         _maxLife = life;
@@ -49,16 +60,4 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         }
         _life = finalLife;
     }
-
-    public void addLife(float life)
-    {
-        if (_life == _maxLife) return;
-        float finalLife = _life + life;
-        if (finalLife >= _maxLife) {
-            _life = _maxLife;
-            return;
-        }
-        _life = finalLife;
-    }
-
 }

@@ -6,6 +6,7 @@ public abstract class AbstractShield {
 
     protected float _percentageOfDefense = 0f;
     protected float _percentageOfDefenseSuccess = 100f;
+    protected int _maxLife = Constants.baseLife;
 
     // public methods
     public float percentageOfDefense {
@@ -15,4 +16,9 @@ public abstract class AbstractShield {
     public float percentageOfDefenseSuccess {
         get => _percentageOfDefenseSuccess;
     }
+
+    public int maxLife {
+        get => _maxLife;
+    }
+
 }

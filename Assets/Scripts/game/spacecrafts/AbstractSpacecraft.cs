@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 abstract public class AbstractSpacecraft : MonoBehaviour
@@ -11,6 +13,11 @@ abstract public class AbstractSpacecraft : MonoBehaviour
     public GameObject shield;
     public GameObject structure;
     public GameObject storage;
+
+    public delegate void listenerIdentificator(IdentificatorModel identificatorModel);
+    public listenerIdentificator listenerIdentificatorShield;
+  
+
 
     protected void Awake() => initListeners();
 
@@ -48,7 +55,8 @@ abstract public class AbstractSpacecraft : MonoBehaviour
         return this;
     }
 
-    public AbstractSpacecraft updateStructure(Structure currentStructure) {
+    public AbstractSpacecraft updateStructure(Structure currentStructure)
+    {
         HandlerStructure handler = structure.GetComponent<HandlerStructure>();
         handler.updateStructure(currentStructure);
         initListenerStructure();
@@ -84,7 +92,12 @@ abstract public class AbstractSpacecraft : MonoBehaviour
 
     private void initListenerShield() {
         HanderShield hander = shield.GetComponent<HanderShield>();
-        hander.myDelegate = new HandlerShieldListener(this);
+        hander.myDelegate = new HandlerShieldListener(
+            this,
+            (IdentificatorModel identificator) => {
+                notifyIdentificator(listenerIdentificatorShield, identificator);
+            }
+        );
     }
 
     private void initListenerStorage() {
@@ -97,5 +110,16 @@ abstract public class AbstractSpacecraft : MonoBehaviour
         handler.myDelegate = new HandlerStructureListener(this);
     }
 
-   
+    private void notifyIdentificator(
+        listenerIdentificator listener, 
+        IdentificatorModel identificator
+    ) {
+        Task.Run(() => {
+            while (listenerIdentificatorShield == null)
+            {
+                Task.Delay(200);
+            }
+            listener(identificator);
+        });
+    }
 }

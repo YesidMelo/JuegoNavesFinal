@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public interface HandlerLaserDelegate { }
+public interface HandlerLaserDelegate {}
 
 public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
 {
@@ -19,6 +19,7 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
     private BaseContextLaser contextLaser;
     private HandlerLaserDelegate _myDelegate;
     private HandlerLaserViewModel _viewModel;
+
 
     void Start()
     {
@@ -43,6 +44,9 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
         contextLaser.updateLasers(lasersType);
     }
 
+    public void deleteLasers() => _viewModel.deleteLasers();
+
+    //private methods
     
     private IEnumerator generateLaser() {
         while (contextLaser.shooting) {

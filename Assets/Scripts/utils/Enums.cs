@@ -35,6 +35,10 @@ public enum LaguageAvailable
     SPAIN
 }
 
+public enum Level { 
+    LEVEL_1
+}
+
 public enum Move { 
     BOTTOM,
     FORWARD_ENEMY,

@@ -32,6 +32,9 @@ public static class Constants
     public static float speedLaser = 100.0f;
     public static float speedFiring = 0.1f;
 
+    //Life
+    public static int baseLife = 500;
+
     //life bar
     public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);
 

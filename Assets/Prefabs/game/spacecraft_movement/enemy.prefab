@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8408747179362629642}
   - component: {fileID: 4381164514130799869}
+  - component: {fileID: 2654576749908067784}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -50,6 +51,19 @@ MonoBehaviour:
   currentAction: 4
   currentSideSpacecraft: 1
   currentSpacecraft: {fileID: 0}
+--- !u!114 &2654576749908067784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2396297354117673045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831a4c7c6a2b5a34896066b2d221b650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeBar: {fileID: 2022935525434491412}
 --- !u!1001 &7732323892642099713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,5 +124,10 @@ PrefabInstance:
 --- !u!4 &179908227150164309 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7580000213285602132, guid: cfe8fe72ffd233e40a57211e8ca36ea7, type: 3}
+  m_PrefabInstance: {fileID: 7732323892642099713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2022935525434491412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8600840341420519445, guid: cfe8fe72ffd233e40a57211e8ca36ea7, type: 3}
   m_PrefabInstance: {fileID: 7732323892642099713}
   m_PrefabAsset: {fileID: 0}

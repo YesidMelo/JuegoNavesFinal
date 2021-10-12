@@ -8,6 +8,7 @@ public interface HandlerLaserViewModel
     List<Laser> listLasers { get; }
     Laser finalLaser { get; }
     void setListLasers(List<Laser> listLasers);
+    void deleteLasers();
 
 }
 
@@ -24,20 +25,28 @@ public class HandlerLaserPlayerViewModelImpl : HandlerLaserViewModel
 
     public Laser finalLaser => spacecraftPlayerGetFinalLaser.invoke();
 
+    public void deleteLasers() {}
+
     public void setListLasers(List<Laser> listLasers) => spacecraftPlayerSetListLasers.invoke(listLasers);
 }
 
 public class HandlerLaserEnemyViewModelImpl : HandlerLaserViewModel {
 
-    List<Laser> _listLasers = new List<Laser>();
-    public HandlerLaserEnemyViewModelImpl() { 
-    }
+    private IdentificatorModel _identificator = new IdentificatorModel();
 
-    public int mediaImpactLaser => 1;
+    private SpacecraftEnemyAddLasersUseCase addLasersUseCase = new SpacecraftEnemyAddLasersUseCaseImpl();
+    private SpacecraftEnemyDeleteLasersUseCase deleteLasersUseCase = new SpacecraftEnemyDeleteLasersUseCaseImpl();
+    private SpacecraftEnemyGetListLasersUseCase getListLasersUseCase = new SpacecraftEnemyGetListLasersUseCaseImpl();
+    private SpacecraftEnemyGetMediaImpactLaserUseCase getMediaImpactUseCase = new SpacecraftEnemyGetMediaImpactLaserUseCaseImpl();
+    private SpacecraftEnemyGetFinalImpactLaserUseCase finalImpactUseCase = new SpacecraftEnemyGetFinalImpactLaserUseCaseImpl();
 
-    public List<Laser> listLasers => _listLasers;
+    public int mediaImpactLaser => getMediaImpactUseCase.invoke(_identificator);
 
-    public Laser finalLaser => Laser.TYPE_1;
+    public List<Laser> listLasers => getListLasersUseCase.invoke(_identificator);
 
-    public void setListLasers(List<Laser> listLasers) => this._listLasers = listLasers;
+    public Laser finalLaser => finalImpactUseCase.invoke(_identificator);
+
+    public void deleteLasers() => deleteLasersUseCase.invoke(_identificator);
+
+    public void setListLasers(List<Laser> listLasers) => addLasersUseCase.invoke(listLasers, _identificator);
 }
