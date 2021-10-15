@@ -55,7 +55,7 @@ public class ContextLaserEnemy : BaseContextLaser
     //private methods
     private bool IHaveEnemiesNearby() {
         GameObject parent = _gameObject.transform.parent.gameObject;
-        GameObject radar = parent.transform.FindChild(Constants.nameRadar).gameObject;
+        GameObject radar = parent.transform.Find(Constants.nameRadar).gameObject;
 
         if (radar == null) return false;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();

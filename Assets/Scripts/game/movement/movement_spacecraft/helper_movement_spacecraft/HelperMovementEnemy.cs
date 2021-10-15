@@ -8,8 +8,8 @@ public class HelperMovementEnemy : BaseHelperMovementSpacecraft
 
     public override void loadEnemy()
     {
-        GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
-        GameObject radar = spacecraft.transform.FindChild(Constants.nameRadar).gameObject;
+        GameObject spacecraft = spaceCraftToMove.transform.Find(Constants.nameSpacecraft).gameObject;
+        GameObject radar = spacecraft.transform.Find(Constants.nameRadar).gameObject;
         HandlerRadar handler = radar.GetComponent<HandlerRadar>();
         _enemy = handler.objetives;
         _currentEnemy = handler.currentObjetive;
@@ -17,8 +17,8 @@ public class HelperMovementEnemy : BaseHelperMovementSpacecraft
 
     public override void loadSpeedSpacecraft()
     {
-        GameObject spacecraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
-        GameObject motor = spacecraft.transform.FindChild(Constants.nameMotor).gameObject;
+        GameObject spacecraft = spaceCraftToMove.transform.Find(Constants.nameSpacecraft).gameObject;
+        GameObject motor = spacecraft.transform.Find(Constants.nameMotor).gameObject;
         HandlerMotor handler = motor.GetComponent<HandlerMotor>();
         AbstractMotor currentMotor = handler.currentMotor;
         _speedSpacecraft = currentMotor.speed;

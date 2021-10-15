@@ -14,7 +14,7 @@ public class PointingEnemy : AbstractMovementSpacecraft
     }
 
     private void rotateToEnemy() {
-        GameObject spaceCraft = spaceCraftToMove.transform.FindChild(Constants.nameSpacecraft).gameObject;
+        GameObject spaceCraft = spaceCraftToMove.transform.Find(Constants.nameSpacecraft).gameObject;
 
         if (enemy == null || currentEnemy == null) {
             spaceCraft.transform.localEulerAngles = new Vector3(0, 0, 0);
