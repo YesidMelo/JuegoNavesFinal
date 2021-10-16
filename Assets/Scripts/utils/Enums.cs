@@ -71,7 +71,17 @@ public enum Move {
     TOP,
 }
 
+//TODO eliminar este numerador ya que se ha creado por rol
 public enum Motor {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
+public enum MotorPlayer
+{
     TYPE_1,
     TYPE_2,
     TYPE_3,
