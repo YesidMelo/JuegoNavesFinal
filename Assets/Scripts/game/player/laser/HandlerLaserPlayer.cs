@@ -82,7 +82,9 @@ public class HandlerLaserPlayer : MonoBehaviour, HandlerLaserPlayerViewModelDele
 
     public void lasersLoaded()
     {
-        if (_detailLaserPlayer == null) return;
+        if (_detailLaserPlayer == null) {
+            _detailLaserPlayer = new DetailLaserPlayer();
+        }
         _detailLaserPlayer.impactDamage = viewModel.impactDamage;
         _detailLaserPlayer.nameParent = transform.name;
         _detailLaserPlayer.parent = transform.gameObject;
