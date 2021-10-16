@@ -26,8 +26,11 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     // lifecycle
     private void Awake()
     {
+        //TODO actualizar con el nuevo objeto prefab Player
+        /*
         GameObject currentPlayer = Instantiate(prefabPlayer, viewModel.getInitialPosition, Quaternion.identity);
         currentPlayer.transform.name = Constants.namePlayer;
+        */
     }
 
     private void FixedUpdate()

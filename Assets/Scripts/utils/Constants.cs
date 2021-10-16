@@ -10,7 +10,9 @@ public static class Constants
     public static string nameRadar = "radar";
     public static string nameSpacecraft = "spacecraft";
     public static string namePatrolPoint = "patrolPoint";
+    //TODO eliminar este nombre ya no sera usado
     public static string nameLaserWeapon = "laser";
+    public static string nameAmmunitionLaserPlayer = "ammunitionLaserPlayer";
 
     //Distance
     public static float minimunDistaceBetweenPlayerEnemy = 5f;
@@ -29,8 +31,8 @@ public static class Constants
     public static float laserType5 = 50;
 
     //speeds
-    public static float speedLaser = 100.0f;
-    public static float speedFiring = 0.1f;
+    public static float speedLaser = 25.0f;
+    public static float speedFiring = 3f;
 
     //Life
     public static int baseLife = 500;

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftPlayerGetFinalLaserUseCase {
-    Laser invoke();
+    LaserPlayer invoke();
 }
 
 public class SpacecraftPlayerGetFinalLaserUseCaseImpl : SpacecraftPlayerGetFinalLaserUseCase {
 
     private SpacecraftPlayerLaserRepository repo = new SpacecraftPlayerLaserRepositoryImpl();
 
-    public Laser invoke() => repo.finalLaser;
+    public LaserPlayer invoke() => repo.finalLaser;
 }

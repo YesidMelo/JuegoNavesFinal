@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
+//TODO Este documento se debe eliminar junto con su prfab cuando se estabilice el funcionamiento del prefab player
 public interface HandlerLaserDelegate {}
 
 public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
@@ -90,13 +91,15 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
     }
 
     void createComponentPlayer() {
-        _viewModel = new HandlerLaserPlayerViewModelImpl();
+        
+        _viewModel = new HandlerLaserPlayerToDeleteViewModelImpl();
         contextLaser = new ContextLaserPlayer(
             lasers: lasers,
             lasersType: lasersType,
             myDelegate: this,
             gameObject: transform.gameObject
         );
+        
     }
 
     public void startCorutine()

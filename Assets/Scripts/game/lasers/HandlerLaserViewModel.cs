@@ -12,7 +12,8 @@ public interface HandlerLaserViewModel
 
 }
 
-public class HandlerLaserPlayerViewModelImpl : HandlerLaserViewModel
+//TODO este documento se debe eliminar
+public class HandlerLaserPlayerToDeleteViewModelImpl : HandlerLaserViewModel
 {
     private SpacecraftPlayerSetListLasersUseCase spacecraftPlayerSetListLasers = new SpacecraftPlayerSetListLasersUseCaseImpl();
     private SpacecraftPlayerMediaImpactLaserUseCase spacecraftPlayerMediaImpactLaser = new SpacecraftPlayerMediaImpactLaserUseCaseImpl();
@@ -21,13 +22,13 @@ public class HandlerLaserPlayerViewModelImpl : HandlerLaserViewModel
 
     public int mediaImpactLaser => spacecraftPlayerMediaImpactLaser.invoke();
 
-    public List<Laser> listLasers => spacecraftPlayerGetListLasers.invoke();
+    public List<Laser> listLasers => new List<Laser>();
 
-    public Laser finalLaser => spacecraftPlayerGetFinalLaser.invoke();
+    public Laser finalLaser => Laser.TYPE_1;
 
     public void deleteLasers() {}
 
-    public void setListLasers(List<Laser> listLasers) => spacecraftPlayerSetListLasers.invoke(listLasers);
+    public void setListLasers(List<Laser> listLasers) => spacecraftPlayerSetListLasers.invoke(new List<LaserPlayer>());
 }
 
 public class HandlerLaserEnemyViewModelImpl : HandlerLaserViewModel {

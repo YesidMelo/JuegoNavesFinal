@@ -22,7 +22,24 @@ public enum CanvasAvailable
     SPLASH
 }
 
+//TODO: Eliminar este enumerador dado que se va a separar la logica del jugador respecto al enemigo
 public enum Laser { 
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
+public enum LaserPlayer {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
+public enum LaserEnemy {
     TYPE_1,
     TYPE_2,
     TYPE_3,

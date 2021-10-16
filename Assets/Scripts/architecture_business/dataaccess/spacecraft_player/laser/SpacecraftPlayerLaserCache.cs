@@ -5,9 +5,11 @@ using UnityEngine;
 public interface SpacecraftPlayerLaserCache {
 
     public int mediaImpactLaser { get; }
-    public List<Laser> listLasers { get; }
-    public Laser finalImpactLaser { get; }
-    public void setListLasers(List<Laser> listLasers);
+    public List<LaserPlayer> listLasers { get; }
+    public LaserPlayer finalImpactLaser { get; }
+    public bool loadLasers();
+    public void setListLasers(List<LaserPlayer> listLasers);
+
 
 }
 
@@ -22,22 +24,26 @@ public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
         return _instance;
     }
 
-    private List<Laser> _listLasers = new List<Laser>();
+    private List<LaserPlayer> _listLasers = new List<LaserPlayer>();
     private int _mediaImpactLaser = 1;
-    private Laser _finalImpactLaser = Laser.TYPE_1;
+    private LaserPlayer _finalImpactLaser = LaserPlayer.TYPE_1;
 
-    public SpacecraftPlayerLaserCacheImpl() {
-        _listLasers.Add(Laser.TYPE_1);
-    }
+    public SpacecraftPlayerLaserCacheImpl() {}
 
-    public List<Laser> listLasers => _listLasers;
+    public List<LaserPlayer> listLasers => _listLasers;
 
     public int mediaImpactLaser => _mediaImpactLaser;
 
-    public Laser finalImpactLaser => _finalImpactLaser;
+    public LaserPlayer finalImpactLaser => _finalImpactLaser;
 
+    public bool loadLasers()
+    {
+        if (listLasers.Count != 0) return true;
+        _listLasers.Add(LaserPlayer.TYPE_1);
+        return true;
+    }
 
-    public void setListLasers(List<Laser> listLasers)
+    public void setListLasers(List<LaserPlayer> listLasers)
     {
         if (listLasers.Count == 0) return;
         _listLasers = listLasers;
@@ -58,31 +64,32 @@ public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
         return finalMediaImpactLaser / _listLasers.Count;
     }
 
-    int getImpactLaserFromType(Laser laser)
+    int getImpactLaserFromType(LaserPlayer laser)
     {
         switch (laser)
         {
-            case Laser.TYPE_2:
+            case LaserPlayer.TYPE_2:
                 return (int)Constants.laserType2;
-            case Laser.TYPE_3:
+            case LaserPlayer.TYPE_3:
                 return (int)Constants.laserType3;
-            case Laser.TYPE_4:
+            case LaserPlayer.TYPE_4:
                 return (int)Constants.laserType4;
-            case Laser.TYPE_5:
+            case LaserPlayer.TYPE_5:
                 return (int)Constants.laserType5;
-            case Laser.TYPE_1:
+            case LaserPlayer.TYPE_1:
             default:
                 return (int)Constants.laserType1;
         }
     }
 
-    Laser calculateFinalImpactLaser()
+    LaserPlayer calculateFinalImpactLaser()
     {
-        if (_mediaImpactLaser > 0 && _mediaImpactLaser < Constants.laserType2) return Laser.TYPE_1;
-        if (Constants.laserType2 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType3) return Laser.TYPE_2;
-        if (Constants.laserType3 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType4) return Laser.TYPE_3;
-        if (Constants.laserType4 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType5) return Laser.TYPE_4;
-        return Laser.TYPE_5;
+        if (_mediaImpactLaser > 0 && _mediaImpactLaser < Constants.laserType2) return LaserPlayer.TYPE_1;
+        if (Constants.laserType2 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType3) return LaserPlayer.TYPE_2;
+        if (Constants.laserType3 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType4) return LaserPlayer.TYPE_3;
+        if (Constants.laserType4 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType5) return LaserPlayer.TYPE_4;
+        return LaserPlayer.TYPE_5;
     }
 
+    
 }
