@@ -31,7 +31,7 @@ public class HandlerLaserPlayerToDeleteViewModelImpl : HandlerLaserViewModel
     public void setListLasers(List<Laser> listLasers) => spacecraftPlayerSetListLasers.invoke(new List<LaserPlayer>());
 }
 
-public class HandlerLaserEnemyViewModelImpl : HandlerLaserViewModel {
+public class HandlerLaserEnemyToDeleteViewModelImpl : HandlerLaserViewModel {
 
     private IdentificatorModel _identificator = new IdentificatorModel();
 

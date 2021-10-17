@@ -34,14 +34,11 @@ public class HandlerMotorPlayerViewModelImpl : HandlerMotorPlayerViewModel
 
     public void move()
     {
-        Debug.Log("Move");
         if (_myDelegate == null) return;
         if (currentActionSpacecraftUseCase.invoke() == Action.ATTACK) {
-            Debug.Log("Attack");
             _myDelegate.notifyMovementAttack();
             return;
         }
-        Debug.Log("Defence");
         _myDelegate.notifyMovementDefence();
     }
 

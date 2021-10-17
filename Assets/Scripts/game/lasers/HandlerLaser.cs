@@ -81,7 +81,7 @@ public class HandlerLaser : MonoBehaviour, BaseContextLaserDelegate
     }
 
     void createComponentsEnemy() {
-        _viewModel = new HandlerLaserEnemyViewModelImpl();
+        _viewModel = new HandlerLaserEnemyToDeleteViewModelImpl();
         contextLaser = new ContextLaserEnemy(
             lasers: lasers,
             lasersType: lasersType,

@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public interface SpacecraftPlayerLoadLasersUseCase
 {
-    bool invoke(); 
+    bool invoke();
 }
 
 public class SpacecraftPlayerLoadLasersUseCaseImpl : SpacecraftPlayerLoadLasersUseCase
