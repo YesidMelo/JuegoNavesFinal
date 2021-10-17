@@ -15,4 +15,9 @@ public class MotorFordwardMovementPlayer : BaseMotorMovementPlayer
     }
 
     public void move() => _currentMotor.transform.Translate(0, _speedSpacecraft * Time.deltaTime, 0);
+
+    public void updateSpeedMotor(int speedMotor) {
+        if (speedMotor == 0) return;
+        _speedSpacecraft = speedMotor; 
+    }
 }

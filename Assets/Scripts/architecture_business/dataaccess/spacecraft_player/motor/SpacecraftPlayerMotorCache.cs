@@ -39,5 +39,41 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
     {
         if (motorPlayers.Count == 0) return;
         _listMotors = motorPlayers;
+        calculateSpeedMotor();
     }
+
+    //Private functions
+    public void calculateSpeedMotor() {
+        if (_listMotors.Count == 0) return;
+        int finalSpeed = 0;
+
+        foreach(MotorPlayer currentMotor in _listMotors) {
+            finalSpeed = speedMotor + getSpeedMotor(currentMotor);
+        }
+        _speedMotor = finalSpeed;
+    }
+
+    int getSpeedMotor(MotorPlayer motor) {
+        int speed = 1;
+        switch (motor) {
+            case MotorPlayer.TYPE_2:
+                speed = Constants.speedMotorPlayerType2;
+                break;
+            case MotorPlayer.TYPE_3:
+                speed = Constants.speedMotorPlayerType3;
+                break;
+            case MotorPlayer.TYPE_4:
+                speed = Constants.speedMotorPlayerType4;
+                break;
+            case MotorPlayer.TYPE_5:
+                speed = Constants.speedMotorPlayerType5;
+                break;
+            case MotorPlayer.TYPE_1:
+            default:
+                speed = Constants.speedMotorPlayerType1;
+                break;
+        }
+        return speed;
+    }
+
 }

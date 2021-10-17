@@ -8,7 +8,6 @@ public class HandlerMotorPlayer : MonoBehaviour, HandlerMotorPlayerViewModelDele
     public bool updateMotorsUI = false;
 
     private HandlerMotorPlayerViewModel viewModel = new HandlerMotorPlayerViewModelImpl();
-    
     private BaseMotorMovementPlayer currentMovement;
 
     void Start()
@@ -47,12 +46,17 @@ public class HandlerMotorPlayer : MonoBehaviour, HandlerMotorPlayerViewModelDele
 
     private void updateMotorsFromUIUnity() {
         if (!updateMotorsUI) return;
+        updateMotorsUI = false;
         if (listMotors == null || listMotors.Count == 0) return;
         updateMotors(listMotors);
     }
 
     //delegate methods
-    public void notifyLoadListMotors() => listMotors = viewModel.listMotors;
+    public void notifyLoadListMotors() { 
+        listMotors = viewModel.listMotors;
+        if (currentMovement == null) return;
+        currentMovement.updateSpeedMotor(viewModel.speedMotor);
+    }
 
     public void notifyMovementAttack()
     {

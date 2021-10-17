@@ -27,6 +27,13 @@ public class MotorJoysticMovementPlayer: BaseMotorMovementPlayer
         startFordward();
     }
 
+    public void updateSpeedMotor(int speedMotor) {
+        if (speedMotor == 0) return;
+        _speedMotor = speedMotor;
+        motorFordwardmovement.updateSpeedMotor(speedMotor);
+        motorStopmovement.updateSpeedMotor(speedMotor);
+    }
+
     private void captureDirection() {
         Vector2 directionJoystic = currentMovementJoysticUseCase.invoke();
         Vector3 directionSpacecraft;

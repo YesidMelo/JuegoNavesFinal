@@ -16,4 +16,8 @@ public class MotorStopMovementPlayer : BaseMotorMovementPlayer
     }
 
     public void move(){}
+
+    public void updateSpeedMotor(int speedMotor) {
+        _speedMotor = speedMotor;
+    }
 }
