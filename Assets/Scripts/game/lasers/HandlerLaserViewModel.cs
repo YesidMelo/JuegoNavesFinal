@@ -31,6 +31,7 @@ public class HandlerLaserPlayerToDeleteViewModelImpl : HandlerLaserViewModel
     public void setListLasers(List<Laser> listLasers) => spacecraftPlayerSetListLasers.invoke(new List<LaserPlayer>());
 }
 
+//TODO este documento se va a eliminar
 public class HandlerLaserEnemyToDeleteViewModelImpl : HandlerLaserViewModel {
 
     private IdentificatorModel _identificator = new IdentificatorModel();
@@ -41,13 +42,13 @@ public class HandlerLaserEnemyToDeleteViewModelImpl : HandlerLaserViewModel {
     private SpacecraftEnemyGetMediaImpactLaserUseCase getMediaImpactUseCase = new SpacecraftEnemyGetMediaImpactLaserUseCaseImpl();
     private SpacecraftEnemyGetFinalImpactLaserUseCase finalImpactUseCase = new SpacecraftEnemyGetFinalImpactLaserUseCaseImpl();
 
-    public int mediaImpactLaser => getMediaImpactUseCase.invoke(_identificator);
+    public int mediaImpactLaser => 0;
 
-    public List<Laser> listLasers => getListLasersUseCase.invoke(_identificator);
+    public List<Laser> listLasers => new List<Laser>();
 
-    public Laser finalLaser => finalImpactUseCase.invoke(_identificator);
+    public Laser finalLaser => Laser.TYPE_1;
 
-    public void deleteLasers() => deleteLasersUseCase.invoke(_identificator);
+    public void deleteLasers() => Debug.Log("Se elimino el laser");
 
-    public void setListLasers(List<Laser> listLasers) => addLasersUseCase.invoke(listLasers, _identificator);
+    public void setListLasers(List<Laser> listLasers) => Debug.Log("Se actualizaron los lasers");
 }

@@ -31,6 +31,7 @@ public enum Laser {
     TYPE_5,
 }
 
+//TODO No eliminar
 public enum LaserPlayer {
     TYPE_1,
     TYPE_2,
@@ -38,7 +39,7 @@ public enum LaserPlayer {
     TYPE_4,
     TYPE_5,
 }
-
+//TODO No eliminar
 public enum LaserEnemy {
     TYPE_1,
     TYPE_2,
@@ -152,7 +153,17 @@ public enum Storage {
     TYPE_5,
 }
 
+//TODO Eliminar este enumerador
 public enum Structure {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+//TODO No eliminar este enumerador
+public enum StructurePlayer
+{
     TYPE_1,
     TYPE_2,
     TYPE_3,

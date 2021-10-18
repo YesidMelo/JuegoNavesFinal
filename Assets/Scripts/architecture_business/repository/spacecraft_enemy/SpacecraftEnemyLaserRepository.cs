@@ -4,10 +4,11 @@ using UnityEngine;
 
 public interface SpacecraftEnemyLaserRepository {
     public void deleteLaser(IdentificatorModel identificatorModel);
-    public Laser finalImpactLaser(IdentificatorModel identificatorModel);
-    public List<Laser> listLasers(IdentificatorModel identificatorModel);
+    public LaserEnemy finalImpactLaser(IdentificatorModel identificatorModel);
+    public List<LaserEnemy> listLasers(IdentificatorModel identificatorModel);
     public int mediaImpactLaser(IdentificatorModel identificatorModel);
-    public void setListLasers(List<Laser> listLasers, IdentificatorModel identificatorModel);
+    public void setListLasers(List<LaserEnemy> listLasers, IdentificatorModel identificatorModel);
+    public bool loadListLasers(IdentificatorModel identificator);
 }
 public class SpacecraftEnemyLaserRepositoryImpl : SpacecraftEnemyLaserRepository
 {
@@ -16,11 +17,13 @@ public class SpacecraftEnemyLaserRepositoryImpl : SpacecraftEnemyLaserRepository
 
     public void deleteLaser(IdentificatorModel identificatorModel) => cache.deleteLaser(identificatorModel);
 
-    public Laser finalImpactLaser(IdentificatorModel identificatorModel) => cache.finalImpactLaser(identificatorModel);
+    public LaserEnemy finalImpactLaser(IdentificatorModel identificatorModel) => cache.finalImpactLaser(identificatorModel);
 
-    public List<Laser> listLasers(IdentificatorModel identificatorModel) => cache.listLasers(identificatorModel);
+    public List<LaserEnemy> listLasers(IdentificatorModel identificatorModel) => cache.listLasers(identificatorModel);
+
+    public bool loadListLasers(IdentificatorModel identificator) => cache.loadLasers(identificator);
 
     public int mediaImpactLaser(IdentificatorModel identificatorModel) => cache.mediaImpactLaser(identificatorModel);
 
-    public void setListLasers(List<Laser> listLasers, IdentificatorModel identificatorModel) => cache.setListLasers(listLasers, identificatorModel);
+    public void setListLasers(List<LaserEnemy> listLasers, IdentificatorModel identificatorModel) => cache.setListLasers(listLasers, identificatorModel);
 }

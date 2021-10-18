@@ -13,6 +13,7 @@ public static class Constants
     //TODO eliminar este nombre ya no sera usado
     public static string nameLaserWeapon = "laser";
     public static string nameAmmunitionLaserPlayer = "ammunitionLaserPlayer";
+    public static string nameAmmunitionLaserEnemy = "ammunitionLaserEnemy";
 
     //Distance
     public static float minimunDistaceBetweenPlayerEnemy = 5f;
