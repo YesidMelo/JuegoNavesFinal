@@ -145,7 +145,17 @@ public enum StatusGame {
     PAUSE,
 }
 
+//TODO eliminar este enumeradod
 public enum Storage { 
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
+//TODO No eliminar este enumeradod
+public enum StoragePlayer { 
     TYPE_1,
     TYPE_2,
     TYPE_3,
