@@ -83,19 +83,24 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         {
             case StructurePlayer.TYPE_2:
                 _maxLife = Constants.lifePlayerStructureType2;
+                _life = _maxLife;
                 return;
             case StructurePlayer.TYPE_3:
                 _maxLife = Constants.lifePlayerStructureType3;
+                _life = _maxLife;
                 return;
             case StructurePlayer.TYPE_4:
                 _maxLife = Constants.lifePlayerStructureType4;
+                _life = _maxLife;
                 return;
             case StructurePlayer.TYPE_5:
                 _maxLife = Constants.lifePlayerStructureType5;
+                _life = _maxLife;
                 return;
             case StructurePlayer.TYPE_1:
             default:
                 _maxLife = Constants.lifePlayerStructureType1;
+                _life = _maxLife;
                 return;
         }
     }

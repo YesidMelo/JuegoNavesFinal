@@ -50,7 +50,8 @@ public static class Constants
     public static int lifePlayerStructureType5 = 2500;
 
 
-    //life bar
+    //life bar player
+    public static float lifeBarPlayer = 0.3f;
     public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);
 
 }

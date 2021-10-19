@@ -10,6 +10,7 @@ public interface HandlerLifePlayerViewModel {
     int currentLife{ get; }
     StructurePlayer currentStructureLife { get; }
     HandlerLifePlayerViewModelDelegate myDelegate { get; set; }
+    float percentage();
     void updateCurrentLife(int life);
     void loadLife();
     void setStructurePlayer(StructurePlayer structure);
@@ -28,6 +29,7 @@ public class HandlerLifePlayerViewModelImpl : HandlerLifePlayerViewModel
     public int maxLife => (int)getMaxLifeUseCase.invoke();
 
     public int currentLife => (int)getLifeUseCase.invoke();
+    
 
     public HandlerLifePlayerViewModelDelegate myDelegate { 
         get => _myDelegate; 
@@ -53,5 +55,9 @@ public class HandlerLifePlayerViewModelImpl : HandlerLifePlayerViewModel
     {
         updateCurrentLifeUseCase.invoke(life);
         loadLife();
+    }
+
+    public float percentage() {
+        return Constants.lifeBarPlayer * (((float)currentLife) / ((float) maxLife));
     }
 }

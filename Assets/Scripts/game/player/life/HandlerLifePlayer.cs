@@ -26,6 +26,8 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
         loadLifeFromUIUnity();
         updateStructureLifeFromUIUnity();
         updateCurrentLifeFromUIUnity();
+        checkCurrentLife();
+        checkCurrentScale();
     }
 
     //public methods
@@ -41,6 +43,14 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
     }
 
     //private methods
+    private void checkCurrentLife() {
+        currentLife = viewModel.currentLife;
+        maxLife = viewModel.maxLife;
+    }
+
+    private void checkCurrentScale() {
+        transform.localScale = new Vector3(viewModel.percentage(), Constants.lifeBarPlayer, 0f);
+    }
 
     //ui unity methods
     private void loadLifeFromUIUnity() {
@@ -53,7 +63,7 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
     private void updateCurrentLifeFromUIUnity() {
         if (!updateCurrentLife) return;
         updateCurrentLife = false;
-        updateCurrentStructureLife(currentLife);
+        updateCurrentStructureLife(300);
     }
 
     private void updateStructureLifeFromUIUnity() {
@@ -66,7 +76,5 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
     public void notifyLoadLife()
     {
         currentStructure = viewModel.currentStructureLife;
-        currentLife = viewModel.currentLife;
-        maxLife = viewModel.maxLife;
     }
 }
