@@ -5,11 +5,12 @@ using UnityEngine;
 public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDelegate
 {
     public bool loadRadarFromUI = false;
+    public bool updateRadarFromUI = false;
     public List<GameObject> listObjectsInRadar = new List<GameObject>();
+    public RadarPlayer currentRadar = RadarPlayer.TYPE_2;
+    public float currentRadius = 2f;
 
     private HandlerRadarPlayerViewModel viewModel = new HandlerRadarPlayerViewModelImpl();
-    private bool loadRadar = false;
-
     
     void Start()
     {
@@ -19,6 +20,8 @@ public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDele
 
     void Update()
     {
+        loadRadarFromUIUnity();
+        updateCurrentRadarFromUIUnity();
         checkCurrentObjects();
     }
 
@@ -34,15 +37,42 @@ public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDele
         viewModel.removeElementFromRadar(collision.gameObject);
     }
 
+    //public methods
+    public void updateCurrentRadar(RadarPlayer radarPlayer) {
+        if (viewModel == null) return;
+        viewModel.updateCurrentRadar(radarPlayer);
+    }
+
     //private methods
     private void checkCurrentObjects() {
         if (viewModel == null) return;
         listObjectsInRadar = viewModel.listObjects;
     }
+
+    private void checkCurrentRadiusRadar() {
+        CircleCollider2D currentCollider = GetComponent<CircleCollider2D>();
+        currentCollider.radius = currentRadius;
+    }
+
+    //ui methods
+    private void loadRadarFromUIUnity() {
+        if (!loadRadarFromUI) return;
+        loadRadarFromUI = false;
+        viewModel.loadRadar();
+    }
+
+    private void updateCurrentRadarFromUIUnity() {
+        if (!updateRadarFromUI) return;
+        updateRadarFromUI = false;
+        updateCurrentRadar(currentRadar);
+    }
+
     //delegates
     public void notifyLoadRadar()
     {
-        loadRadar = true;
+        currentRadar = viewModel.currentRadar;
+        currentRadius = viewModel.currentRadiusRadar;
+        checkCurrentRadiusRadar();
     }
 
 }

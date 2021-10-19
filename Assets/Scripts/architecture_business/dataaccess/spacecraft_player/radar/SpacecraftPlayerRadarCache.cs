@@ -5,10 +5,14 @@ using UnityEngine;
 public interface SpacecraftPlayerRadarCache {
 
     List<GameObject> getListObjectsRadar { get; }
+    RadarPlayer currentRadarPlayer { get; }
+
+    float radiusRadar { get; }
     void addElementToRadar(GameObject gameObject);
+    void clearElementsRadar();
     void removeElementFromRadar(GameObject gameObject);
     bool loadElementsRadar();
-    void clearElementsRadar();
+    void updateCurrentRadar(RadarPlayer radar);
 }
 
 public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
@@ -25,8 +29,14 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
     }
 
     private List<GameObject> _listElementsRadar = new List<GameObject>();
+    private RadarPlayer _currentRadarPlayer = RadarPlayer.TYPE_1;
+    private float _currentRadiusRadar = 1f;
 
     public List<GameObject> getListObjectsRadar => _listElementsRadar;
+
+    public float radiusRadar => _currentRadiusRadar;
+
+    public RadarPlayer currentRadarPlayer => _currentRadarPlayer;
 
     public void addElementToRadar(GameObject gameObject)
     {
@@ -42,5 +52,33 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
     {
         if (!_listElementsRadar.Contains(gameObject)) return;
         _listElementsRadar.Remove(gameObject);
+    }
+
+    public void updateCurrentRadar(RadarPlayer radar)
+    {
+        _currentRadarPlayer = radar;
+        calculateRadiusRadar();
+    }
+
+    //private methods
+    private void calculateRadiusRadar() {
+        switch (_currentRadarPlayer) {
+            case RadarPlayer.TYPE_2:
+                _currentRadiusRadar = Constants.radarPlayerRadiusRadarType2;
+                return;
+            case RadarPlayer.TYPE_3:
+                _currentRadiusRadar = Constants.radarPlayerRadiusRadarType3;
+                return;
+            case RadarPlayer.TYPE_4:
+                _currentRadiusRadar = Constants.radarPlayerRadiusRadarType4;
+                return;
+            case RadarPlayer.TYPE_5:
+                _currentRadiusRadar = Constants.radarPlayerRadiusRadarType5;
+                return;
+            case RadarPlayer.TYPE_1:
+            default:
+                _currentRadiusRadar = Constants.radarPlayerRadiusRadarType1;
+                return;
+        }
     }
 }

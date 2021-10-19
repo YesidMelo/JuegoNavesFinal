@@ -10,8 +10,6 @@ public static class Constants
     public static string nameRadar = "radar";
     public static string nameSpacecraft = "spacecraft";
     public static string namePatrolPoint = "patrolPoint";
-    //TODO eliminar este nombre ya no sera usado
-    public static string nameLaserWeapon = "laser";
     public static string nameAmmunitionLaserPlayer = "ammunitionLaserPlayer";
     public static string nameAmmunitionLaserEnemy = "ammunitionLaserEnemy";
 
@@ -49,9 +47,15 @@ public static class Constants
     public static int lifePlayerStructureType4 = 2000;
     public static int lifePlayerStructureType5 = 2500;
 
-
     //life bar player
     public static float lifeBarPlayer = 0.3f;
     public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);
+
+    //RadarPlayer
+    public static float radarPlayerRadiusRadarType1 = 1f;
+    public static float radarPlayerRadiusRadarType2 = 2f;
+    public static float radarPlayerRadiusRadarType3 = 3f;
+    public static float radarPlayerRadiusRadarType4 = 4f;
+    public static float radarPlayerRadiusRadarType5 = 5f;
 
 }
