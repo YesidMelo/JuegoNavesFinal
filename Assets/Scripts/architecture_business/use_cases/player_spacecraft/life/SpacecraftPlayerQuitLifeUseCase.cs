@@ -4,11 +4,11 @@ using UnityEngine;
 
 public interface SpacecraftPlayerQuitLifeUseCase 
 {
-    public void invoke(float life);
+    public void invoke(int life);
 }
 
 public class SpacecraftPlayerQuitLifeUseCaseImpl : SpacecraftPlayerQuitLifeUseCase
 {
     private SpacecraftPlayerLifeRepository repo = new SpacecraftPlayerLifeRepositoryImpl();
-    public void invoke(float life) => repo.quitLife(life);
+    public void invoke(int life) => repo.quitLife(life);
 }

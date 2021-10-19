@@ -42,8 +42,13 @@ public static class Constants
     public static int speedMotorPlayerType4 = 8;
     public static int speedMotorPlayerType5 = 9;
 
-    //Life
-    public static int baseLife = 500;
+    //LifePlayer
+    public static int lifePlayerStructureType1 = 500;
+    public static int lifePlayerStructureType2 = 1000;
+    public static int lifePlayerStructureType3 = 1500;
+    public static int lifePlayerStructureType4 = 2000;
+    public static int lifePlayerStructureType5 = 2500;
+
 
     //life bar
     public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);

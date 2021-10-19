@@ -1,1 +1,0 @@
-public class StructureType5 : AbstractStructure {}

@@ -9,7 +9,6 @@ public class HandlerPositionBarInSpacecraft : MonoBehaviour
 
     private BaseContextBar contextBar;
     private HandlerBar handlerBar;
-    private AbstractSpacecraft currentSpacecraft;
 
     private IdentificatorModel _identificatorShield;
 
@@ -40,9 +39,7 @@ public class HandlerPositionBarInSpacecraft : MonoBehaviour
             //contextBar = new ContextBarPlayer(this);
             return;
         }
-        currentSpacecraft.listenerIdentificatorShield = (IdentificatorModel identificator) => {
-            this.Invoke("initContextBarEnemy", identificator, 0f);
-        };
+       
     }
 
     void updateLife() {
@@ -59,8 +56,7 @@ public class HandlerPositionBarInSpacecraft : MonoBehaviour
 
     void loadCurrentSpacecraft()
     {
-        HandlerSpacecraftMovement handlerSpacecraftMovement = transform.GetComponent<HandlerSpacecraftMovement>();
-        currentSpacecraft = handlerSpacecraftMovement.spacecraft.GetComponent<AbstractSpacecraft>();
+       
     }
 
     void initContextBarEnemy(IdentificatorModel identificator) {

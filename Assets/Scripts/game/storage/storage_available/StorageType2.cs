@@ -1,1 +1,0 @@
-public class StorageType2 : AbstractStorage { }

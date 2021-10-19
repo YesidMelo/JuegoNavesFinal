@@ -4,13 +4,14 @@ using UnityEngine;
 
 public interface SpacecraftPlayerLifeCache
 {
-    public float life { get; }
-    public float maxLife { get; }
-
-
-    public void addLife(float life); 
-    public void quitLife(float life);
-    public void setMaxLife(float life);
+    public int life { get; }
+    public StructurePlayer currentStructure { get; }
+    public int maxLife { get; }
+    public void addLife(int life); 
+    public void addStructureLife(StructurePlayer structure);
+    public bool loadLife();
+    public void quitLife(int life);
+    public void updateCurrentLife(int currentLife);
 }
 
 public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
@@ -24,19 +25,22 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         return instance;
     }
 
-    private float _maxLife = 1000;
-    private float _life = 0;
+    private int _maxLife = 1000;
+    private int _life = 0;
+    private StructurePlayer _currentStructure = StructurePlayer.TYPE_1;
 
     private SpacecraftPlayerLifeCacheImpl() {}
 
-    public float life => _life;
+    public int life => _life;
 
-    public float maxLife => _maxLife;
+    public int maxLife => _maxLife;
 
-    public void addLife(float life)
+    public StructurePlayer currentStructure => _currentStructure;
+
+    public void addLife(int life)
     {
         if (_life == _maxLife) return;
-        float finalLife = _life + life;
+        int finalLife = _life + life;
         if (finalLife >= _maxLife)
         {
             _life = _maxLife;
@@ -45,19 +49,56 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         _life = finalLife;
     }
 
-    public void setMaxLife(float life) { 
-        _maxLife = life;
-        if (_life != 0) return;
-        _life = life;
+    public void addStructureLife(StructurePlayer structure)
+    {
+        _currentStructure = structure;
+        elementsLife();
     }
 
-    public void quitLife(float life) {
+    public bool loadLife()
+    {
+        return true;
+    }
+
+    public void quitLife(int life)
+    {
         if (_life == 0) return;
-        float finalLife = _life - life;
-        if (finalLife <= 0) {
+        int finalLife = _life - life;
+        if (finalLife <= 0)
+        {
             _life = 0;
             return;
         }
         _life = finalLife;
     }
+
+    public void updateCurrentLife(int currentLife)
+    {
+        _life = currentLife;
+    }
+
+    //private methods
+    private void elementsLife() {
+        switch (_currentStructure)
+        {
+            case StructurePlayer.TYPE_2:
+                _maxLife = Constants.lifePlayerStructureType2;
+                return;
+            case StructurePlayer.TYPE_3:
+                _maxLife = Constants.lifePlayerStructureType3;
+                return;
+            case StructurePlayer.TYPE_4:
+                _maxLife = Constants.lifePlayerStructureType4;
+                return;
+            case StructurePlayer.TYPE_5:
+                _maxLife = Constants.lifePlayerStructureType5;
+                return;
+            case StructurePlayer.TYPE_1:
+            default:
+                _maxLife = Constants.lifePlayerStructureType1;
+                return;
+        }
+    }
+
+    
 }
