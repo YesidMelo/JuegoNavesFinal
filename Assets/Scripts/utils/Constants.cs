@@ -52,10 +52,10 @@ public static class Constants
     public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);
 
     //RadarPlayer
-    public static float radarPlayerRadiusRadarType1 = 1f;
-    public static float radarPlayerRadiusRadarType2 = 2f;
-    public static float radarPlayerRadiusRadarType3 = 3f;
-    public static float radarPlayerRadiusRadarType4 = 4f;
-    public static float radarPlayerRadiusRadarType5 = 5f;
+    public static float radarPlayerRadiusRadarType1 = 5f;
+    public static float radarPlayerRadiusRadarType2 = 5.5f;
+    public static float radarPlayerRadiusRadarType3 = 6f;
+    public static float radarPlayerRadiusRadarType4 = 6.5f;
+    public static float radarPlayerRadiusRadarType5 = 7f;
 
 }

@@ -46,7 +46,10 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
 
     public void clearElementsRadar()=> _listElementsRadar.Clear();
 
-    public bool loadElementsRadar() => true;
+    public bool loadElementsRadar() {
+        calculateRadiusRadar();
+        return true; 
+    }
 
     public void removeElementFromRadar(GameObject gameObject)
     {
