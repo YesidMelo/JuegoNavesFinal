@@ -2,44 +2,70 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandlerSpacecraftPlayer : MonoBehaviour, HandlerSpacecraftPlayerViewModelDelegate
+public class HandlerSpacecraftPlayer : 
+    MonoBehaviour, 
+    HandlerSpacecraftPlayerViewModelDelegate
 {
-    public bool boolLoadSpacecraft = false;
+    public HandlerLaserPlayer handlerLaserPlayer;
+    public HandlerLifePlayer handlerLifePlayer;
+    public HandlerMotorPlayer handlerMotorPlayer;
+    public HandlerPositionBarLifePlayer handlerPositionBarLifePlayer;
+    public HandlerRadarPlayer handlerRadarPlayer;
+    public HandlerStoragePlayer handlerStoragePlayer;
+    public HandlerStructurePlayer handlerStructurePlayer;
 
     private HandlerSpacecraftPlayerViewModel viewModel = new HandlerSpacecraftPlayerViewModelImpl();
-    private bool startCoroutineLoadSpacecraftFromViewModel = false;
     
     void Start()
     {
         viewModel.myDelegate = this;
-        loadSpacecraft();
+        initParts();
     }
 
-    
-    void Update()
-    {
-        loadSpacecraftFromUIUnity();
-    }
 
-    //Public methods
     //Private methods
-    private void loadSpacecraft() {
-        if (startCoroutineLoadSpacecraftFromViewModel) return;
-        Debug.Log("Empezo carga");
-        startCoroutineLoadSpacecraftFromViewModel = true;
-        StartCoroutine(viewModel.loadSpacecraft());
+
+    private void initParts() {
+        initLaser();
+        initLife();
+        initMotor();
+        initRadar();
+        initStorage();
+        initStructure();
+    }
+
+    private void initMotor() {
+        handlerMotorPlayer.parent = transform.gameObject;
+    }
+
+    private void initLaser() {
+        handlerLaserPlayer.parent = transform.gameObject;
+    }
+
+    private void initLife() {
+        handlerLifePlayer.parent = transform.gameObject;
+        handlerPositionBarLifePlayer.parent = transform.gameObject;
+    }
+
+    private void initRadar() {
+        handlerRadarPlayer.parent = transform.gameObject;
+    }
+
+    private void initStorage() {
+        handlerStoragePlayer.parent = transform.gameObject;
+    }
+
+    private void initStructure() {
+        handlerStructurePlayer.parent = transform.gameObject;
     }
 
     //UI Unity
-    private void loadSpacecraftFromUIUnity() {
-        if (!boolLoadSpacecraft) return;
-        boolLoadSpacecraft = false;
-        loadSpacecraft();
-    }
-    //Delegates
+    
+
+    //Delegates viewModel
     public void notifiesLoadSpacecraft()
     {
-        startCoroutineLoadSpacecraftFromViewModel = false;
-        Debug.Log("Ha cargado");
+
     }
+
 }

@@ -57,6 +57,7 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
 
     public bool loadLife()
     {
+        elementsLife();
         return true;
     }
 

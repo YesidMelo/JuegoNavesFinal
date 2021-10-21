@@ -7,6 +7,7 @@ public class HandlerStoragePlayer : MonoBehaviour, HandlerStoragePlayerViewModel
     public StoragePlayer currentStorage = StoragePlayer.TYPE_2;
     public bool loadStorageUI = false;
     public bool updateStorageUI = false;
+    public GameObject parent;
 
     private HandlerStoragePlayerViewModel viewModel = new HandlerStoragePlayerViewModelImpl();
     private bool updateStorageFromViewModel = false;

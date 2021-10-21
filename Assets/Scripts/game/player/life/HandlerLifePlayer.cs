@@ -10,6 +10,7 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
     public bool updateCurrentLife = false;
     public int maxLife = 0;
     public int currentLife = 0;
+    public GameObject parent;
 
     private HandlerLifePlayerViewModel viewModel = new HandlerLifePlayerViewModelImpl();
 

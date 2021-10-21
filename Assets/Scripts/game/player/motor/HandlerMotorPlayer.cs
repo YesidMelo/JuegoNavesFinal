@@ -6,6 +6,7 @@ public class HandlerMotorPlayer : MonoBehaviour, HandlerMotorPlayerViewModelDele
 {
     public List<MotorPlayer> listMotors;
     public bool updateMotorsUI = false;
+    public GameObject parent;
 
     private HandlerMotorPlayerViewModel viewModel = new HandlerMotorPlayerViewModelImpl();
     private BaseMotorMovementPlayer currentMovement;
@@ -37,10 +38,10 @@ public class HandlerMotorPlayer : MonoBehaviour, HandlerMotorPlayerViewModelDele
 
     private bool initMovements() {
         if (currentMovement != null) return true;
-        currentMovement = new MotorJoysticMovementPlayer(transform.gameObject, viewModel.speedMotor);
+        if (parent == null) return true;
+        currentMovement = new MotorJoysticMovementPlayer(parent, viewModel.speedMotor);
         return true;
     }
-
 
     //unity interaction methods
 

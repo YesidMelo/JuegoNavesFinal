@@ -9,6 +9,7 @@ public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDele
     public List<GameObject> listObjectsInRadar = new List<GameObject>();
     public RadarPlayer currentRadar = RadarPlayer.TYPE_2;
     public float currentRadius = 2f;
+    public GameObject parent;
 
     private HandlerRadarPlayerViewModel viewModel = new HandlerRadarPlayerViewModelImpl();
     

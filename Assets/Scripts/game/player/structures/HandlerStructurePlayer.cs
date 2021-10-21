@@ -14,6 +14,7 @@ public class HandlerStructurePlayer : MonoBehaviour, HandlerStructurePlayerViewM
     public Sprite spacecraftPlayer5;
     public bool loadStructureUI = false;
     public bool updateStructureUI = false;
+    public GameObject parent;
 
     private HandlerStructurePlayerViewModel viewModel = new HandlerStructurePlayerViewModelImpl();
     private bool _updateStructure = false;

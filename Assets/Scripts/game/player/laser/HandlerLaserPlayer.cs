@@ -8,6 +8,7 @@ public class HandlerLaserPlayer : MonoBehaviour, HandlerLaserPlayerViewModelDele
     public List<LaserPlayer> listLasers;
     public bool updateLasersFromUI = false;
     public GameObject prefabLaserPlayer;
+    public GameObject parent;
 
     private HandlerLaserPlayerViewModel viewModel = new HandlerLaserPlayerViewModelImpl();
     private Action _currentActionSpacecraft;
