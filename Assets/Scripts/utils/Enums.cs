@@ -111,7 +111,7 @@ public enum Shield
     TYPE_5,
 }
 
-public enum Spacecraft
+public enum SpacecraftEnemy
 {
     SPACECRAFT_1,
     SPACECRAFT_2,

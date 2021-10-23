@@ -31,9 +31,9 @@ public class SpacecraftEnemyLaserCacheImpl : SpacecraftEnemyLaserCache
 
     public void deleteLaser(IdentificatorModel identificatorModel)
     {
-        deleteElementFromDictonary<LaserEnemy>(_allFinalImpactLaser, identificatorModel);
-        deleteElementFromDictonary<List<LaserEnemy>>(_allListLasers, identificatorModel);
-        deleteElementFromDictonary<int>(_allMediaImpactLaser, identificatorModel);
+        deleteElementFromDictonary(_allFinalImpactLaser, identificatorModel);
+        deleteElementFromDictonary(_allListLasers, identificatorModel);
+        deleteElementFromDictonary(_allMediaImpactLaser, identificatorModel);
     }
 
     public LaserEnemy finalImpactLaser(IdentificatorModel identificatorModel)
