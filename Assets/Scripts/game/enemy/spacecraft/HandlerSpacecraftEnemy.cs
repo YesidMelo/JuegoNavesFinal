@@ -7,7 +7,13 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
     public bool loadSpacecraftFromUi = false;
     public bool updateSpacecraftFromUI = false;
     public SpacecraftEnemy currentSpacecraft = SpacecraftEnemy.SPACECRAFT_1;
-
+    public HandlerLaserEnemy handlerLaserEnemy;
+    public HandlerMotorsEnemy handlerMotorsEnemy;
+    public HandlerLifeEnemy handlerLifeEnemy;
+    public HandlerRadarEnemy handlerRadarEnemy;
+    public HandlerShieldEnemy handlerShieldEnemy;
+    public HandlerStorageEnemy handlerStorageEnemy;
+    public HandlerStructureEnemy handlerStructureEnemy;
 
     private HandlerSpacecraftEnemyViewModel viewModel = new HandlerSpacecraftEnemyViewModelImpl();
 
@@ -31,6 +37,41 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
     }
 
     //private methods
+    private void loadLasers() {
+        if (handlerLaserEnemy == null) return;
+        handlerLaserEnemy.loadCurrentSpacecraft(viewModel.identificator);
+    }
+
+    private void loadLife() {
+        if (handlerLifeEnemy == null) return;
+        handlerLifeEnemy.loadCurrentSpacecraft(viewModel.identificator);
+    }
+
+    private void loadMotors() {
+        if (handlerMotorsEnemy == null) return;
+        handlerMotorsEnemy.loadSpacecraft(viewModel.identificator);
+    }
+
+    private void loadRadar() {
+        if (handlerRadarEnemy == null) return;
+        handlerRadarEnemy.loadCurrentSpacecraft(viewModel.identificator);
+    }
+
+    private void loadShield() {
+        if (handlerShieldEnemy == null) return;
+        handlerShieldEnemy.loadCurrentSpacecraft(viewModel.identificator);
+    }
+
+    private void loadStorage() {
+        if (handlerStorageEnemy == null) return;
+        handlerStorageEnemy.loadSpacecraft(viewModel.identificator);
+    }
+
+    private void loadStructure() {
+        if (handlerStructureEnemy == null) return;
+        handlerStructureEnemy.loadSpacecraft(viewModel.identificator);
+    }
+
     //ui unity
     private void loadFromUIUnity() {
         if (!loadSpacecraftFromUi) return;
@@ -48,5 +89,12 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
     public void notifyLoadEnemy()
     {
         currentSpacecraft = viewModel.currentSpacecraft;
+        loadLasers();
+        loadMotors();
+        loadLife();
+        loadRadar();
+        loadShield();
+        loadStorage();
+        loadStructure();
     }
 }
