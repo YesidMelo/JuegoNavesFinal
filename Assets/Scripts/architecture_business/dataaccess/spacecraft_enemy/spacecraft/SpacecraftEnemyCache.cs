@@ -34,7 +34,7 @@ public class SpacecraftEnemyCacheImpl : SpacecraftEnemyCache
     public bool loadSpacecraft(IdentificatorModel identificator)
     {
         if (!_dictionarySpacecrafts.ContainsKey(identificator)) {
-            setSpacecraft(identificator, SpacecraftEnemy.SPACECRAFT_3);
+            setSpacecraft(identificator, SpacecraftEnemy.NIVEL1_SPACECRAFT3);
             return true;
         }
         return true;

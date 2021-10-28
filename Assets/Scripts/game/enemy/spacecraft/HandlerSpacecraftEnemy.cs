@@ -6,7 +6,7 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
 {
     public bool loadSpacecraftFromUi = false;
     public bool updateSpacecraftFromUI = false;
-    public SpacecraftEnemy currentSpacecraft = SpacecraftEnemy.SPACECRAFT_1;
+    public SpacecraftEnemy currentSpacecraft = SpacecraftEnemy.NIVEL1_SPACECRAFT1;
     public HandlerLaserEnemy handlerLaserEnemy;
     public HandlerMotorsEnemy handlerMotorsEnemy;
     public HandlerLifeEnemy handlerLifeEnemy;
@@ -17,7 +17,7 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
 
     private HandlerSpacecraftEnemyViewModel viewModel = new HandlerSpacecraftEnemyViewModelImpl();
 
-    void Start()
+    private void Start()
     {
         viewModel.myDelegate = this;
         viewModel.loadSpacecraft();

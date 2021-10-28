@@ -113,11 +113,11 @@ public enum Shield
 
 public enum SpacecraftEnemy
 {
-    SPACECRAFT_1,
-    SPACECRAFT_2,
-    SPACECRAFT_3,
-    SPACECRAFT_4,
-    SPACECRAFT_5,
+    NIVEL1_SPACECRAFT1,
+    NIVEL1_SPACECRAFT2,
+    NIVEL1_SPACECRAFT3,
+    NIVEL1_SPACECRAFT4,
+    NIVEL1_SPACECRAFT5,
 }
 
 public enum StatusGame { 
@@ -135,6 +135,14 @@ public enum StoragePlayer {
 }
 
 public enum StructurePlayer
+{
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+public enum StructureEnemy
 {
     TYPE_1,
     TYPE_2,

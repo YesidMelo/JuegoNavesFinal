@@ -5,13 +5,14 @@ using UnityEngine;
 public class HandlerLaserEnemy : MonoBehaviour, HandlerLaserEnemyViewModelDelegate
 {
     public SpacecraftEnemy currentSpacecraft;
+    public int currentImpact;
+    public LaserEnemy currentLaser;
     
     private HandlerLaserEnemyViewModel viewModel = new HandlerLaserEnemyViewModelImpl();
-    
 
-    void Start()
+    private void Awake()
     {
-        viewModel.myDelegate = this;    
+        viewModel.myDelegate = this;
     }
 
     //public methods
@@ -25,7 +26,8 @@ public class HandlerLaserEnemy : MonoBehaviour, HandlerLaserEnemyViewModelDelega
     //delegates
     public void notifyLoadLasers()
     {
-        
+        currentImpact = viewModel.impactLaser;
+        currentLaser = viewModel.currentLaser;
     }
 
     public void notifyLoadSpacecraft() => currentSpacecraft = viewModel.currentSpacecraft;

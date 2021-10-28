@@ -22,12 +22,19 @@ public static class Constants
     public static float dimensionHeightBackground = 100;
     public static float dimensionWidthBackground = 100;
 
-    //impact damage laser
-    public static float laserType1 = 10;
-    public static float laserType2 = 20;
-    public static float laserType3 = 30;
-    public static float laserType4 = 40;
-    public static float laserType5 = 50;
+    //impact damage laser player
+    public static float laserPlayerType1 = 10;
+    public static float laserPlayerType2 = 20;
+    public static float laserPlayerType3 = 30;
+    public static float laserPlayerType4 = 40;
+    public static float laserPlayerType5 = 50;
+
+    //impact damage laser enemy
+    public static int laserEnemyType1 = 10;
+    public static int laserEnemyType2 = 20;
+    public static int laserEnemyType3 = 30;
+    public static int laserEnemyType4 = 40;
+    public static int laserEnemyType5 = 50;
 
     //speeds
     public static float speedLaser = 25.0f;

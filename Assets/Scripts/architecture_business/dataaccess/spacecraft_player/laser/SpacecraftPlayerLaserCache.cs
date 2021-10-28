@@ -69,25 +69,25 @@ public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
         switch (laser)
         {
             case LaserPlayer.TYPE_2:
-                return (int)Constants.laserType2;
+                return (int)Constants.laserPlayerType2;
             case LaserPlayer.TYPE_3:
-                return (int)Constants.laserType3;
+                return (int)Constants.laserPlayerType3;
             case LaserPlayer.TYPE_4:
-                return (int)Constants.laserType4;
+                return (int)Constants.laserPlayerType4;
             case LaserPlayer.TYPE_5:
-                return (int)Constants.laserType5;
+                return (int)Constants.laserPlayerType5;
             case LaserPlayer.TYPE_1:
             default:
-                return (int)Constants.laserType1;
+                return (int)Constants.laserPlayerType1;
         }
     }
 
     LaserPlayer calculateFinalImpactLaser()
     {
-        if (_mediaImpactLaser > 0 && _mediaImpactLaser < Constants.laserType2) return LaserPlayer.TYPE_1;
-        if (Constants.laserType2 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType3) return LaserPlayer.TYPE_2;
-        if (Constants.laserType3 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType4) return LaserPlayer.TYPE_3;
-        if (Constants.laserType4 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserType5) return LaserPlayer.TYPE_4;
+        if (_mediaImpactLaser > 0 && _mediaImpactLaser < Constants.laserPlayerType2) return LaserPlayer.TYPE_1;
+        if (Constants.laserPlayerType2 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserPlayerType3) return LaserPlayer.TYPE_2;
+        if (Constants.laserPlayerType3 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserPlayerType4) return LaserPlayer.TYPE_3;
+        if (Constants.laserPlayerType4 <= _mediaImpactLaser && _mediaImpactLaser < Constants.laserPlayerType5) return LaserPlayer.TYPE_4;
         return LaserPlayer.TYPE_5;
     }
 
