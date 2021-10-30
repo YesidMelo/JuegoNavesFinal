@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public interface SpacecraftEnemyMotorRepository {
+    int currentSpeed(IdentificatorModel identificator);
+    MotorEnemy currentMotor(IdentificatorModel identificator);
+    bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
+    void removeMotor(IdentificatorModel identificator);
+}
+public class SpacecraftEnemyMotorRepositoryImpl: SpacecraftEnemyMotorRepository {
+
+    private SpacecraftEnemyMotorCache cache = SpacecraftEnemyMotorCacheImpl.getInstance();
+
+    public MotorEnemy currentMotor(IdentificatorModel identificator) => cache.currentMotor(identificator);
+
+    public int currentSpeed(IdentificatorModel identificator) => cache.currentSpeed(identificator);
+
+    public bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft) => cache.loadMotor(identificator, spacecraft);
+
+    public void removeMotor(IdentificatorModel identificator) => cache.removeMotor(identificator);
+}

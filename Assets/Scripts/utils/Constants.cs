@@ -40,6 +40,13 @@ public static class Constants
     public static float speedLaser = 25.0f;
     public static float speedFiring = 3f;
 
+    //Speeds enemy spacecraft
+    public static int speedMotorEnemyType1 = 5;
+    public static int speedMotorEnemyType2 = 6;
+    public static int speedMotorEnemyType3 = 7;
+    public static int speedMotorEnemyType4 = 8;
+    public static int speedMotorEnemyType5 = 9;
+    
     //Speeds player spacecraft
     public static int speedMotorPlayerType1 = 5;
     public static int speedMotorPlayerType2 = 6;

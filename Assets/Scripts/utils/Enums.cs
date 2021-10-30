@@ -62,6 +62,15 @@ public enum Move {
     TOP,
 }
 
+public enum MotorEnemy
+{
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
 public enum MotorPlayer
 {
     TYPE_1,

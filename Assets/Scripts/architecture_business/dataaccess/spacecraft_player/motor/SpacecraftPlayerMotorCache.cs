@@ -13,7 +13,10 @@ public interface SpacecraftPlayerMotorCache
 
 public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
 {
+    //static methods
     private static SpacecraftPlayerMotorCacheImpl instance;
+
+    //static methods
     public static SpacecraftPlayerMotorCacheImpl getInstance() {
         if (instance == null) {
             instance = new SpacecraftPlayerMotorCacheImpl();

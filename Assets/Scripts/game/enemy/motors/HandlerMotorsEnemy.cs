@@ -5,11 +5,14 @@ using UnityEngine;
 public class HandlerMotorsEnemy : MonoBehaviour, HandlerMotorsEnemyViewModelDelegate
 {
     public SpacecraftEnemy currentSpacecraft;
+    public MotorEnemy currentMotor;
+    public int currentSpeed;
+
     private HandlerMotorsEnemyViewModel viewModel = new HandlerMotorsEnemyViewModelImpl();
-    
-    void Start()
+
+    private void Awake()
     {
-        viewModel.myDelegate = this;    
+        viewModel.myDelegate = this;
     }
 
     void Update()
@@ -33,6 +36,7 @@ public class HandlerMotorsEnemy : MonoBehaviour, HandlerMotorsEnemyViewModelDele
 
     public void notifyLoadMotor()
     {
-        
+        currentMotor = viewModel.currentMotor;
+        currentSpeed = viewModel.currentSpeed;
     }
 }
