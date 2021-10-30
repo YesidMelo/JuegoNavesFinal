@@ -5,19 +5,20 @@ using UnityEngine;
 public class HandlerLifeEnemy : MonoBehaviour, HandlerLifeEnemyViewModelDelegate
 {
     public SpacecraftEnemy currentSpacecraft;
+    public int maxLife;
+    public int currentLife;
 
     private HandlerLifeEnemyViewModel viewModel = new HandlerLifeEnemyViewModelImpl();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        viewModel.myDelegate = this;        
+        viewModel.myDelegate = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        loaDetailLifeSpacecraft();
     }
 
     //public methods
@@ -27,6 +28,11 @@ public class HandlerLifeEnemy : MonoBehaviour, HandlerLifeEnemyViewModelDelegate
     }
 
     //private methods
+    private void loaDetailLifeSpacecraft() {
+        if (viewModel == null) return;
+        maxLife = viewModel.maxLife;
+        currentLife = viewModel.currentLife;
+    }
     //ui methods
 
     //delegates
