@@ -97,6 +97,14 @@ public enum Quadrant {
     QUADRANT_4,
 }
 
+public enum RadarEnemy {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
 public enum RadarPlayer {
     TYPE_1,
     TYPE_2,

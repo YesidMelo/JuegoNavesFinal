@@ -5,14 +5,16 @@ using UnityEngine;
 public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelegate
 {
     public SpacecraftEnemy currentSpacecraf;
+    public RadarEnemy currentRadar;
+    public int currentRadiusRadar;
 
     private HandlerRadarEnemyViewModel viewModel = new HandlerRadarEnemyViewModelImpl();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         viewModel.myDelegate = this;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -37,6 +39,7 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
 
     public void notifyLoadRadar()
     {
-        
+        currentRadar = viewModel.currentRadar;
+        currentRadiusRadar = viewModel.currentRadiusRadar;
     }
 }
