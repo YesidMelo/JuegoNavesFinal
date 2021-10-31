@@ -7,6 +7,7 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
     public SpacecraftEnemy currentSpacecraf;
     public RadarEnemy currentRadar;
     public int currentRadiusRadar;
+    public List<GameObject> currentListInRadar;
 
     private HandlerRadarEnemyViewModel viewModel = new HandlerRadarEnemyViewModelImpl();
 
@@ -15,11 +16,16 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
         viewModel.myDelegate = this;
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (viewModel == null) return;
+        viewModel.addGameObjectToRadar(collision.gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (viewModel == null) return;
+        viewModel.removeGameObjectFromRadar(collision.gameObject);
     }
 
     //public method
@@ -41,5 +47,6 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
     {
         currentRadar = viewModel.currentRadar;
         currentRadiusRadar = viewModel.currentRadiusRadar;
+        currentListInRadar = viewModel.currentGameobjectInRadar;
     }
 }

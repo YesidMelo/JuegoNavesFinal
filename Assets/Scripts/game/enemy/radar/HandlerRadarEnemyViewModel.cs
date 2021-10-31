@@ -7,13 +7,17 @@ public interface HandlerRadarEnemyViewModelDelegate {
     void notifyLoadRadar();
 }
 
-public interface HandlerRadarEnemyViewModel { 
+public interface HandlerRadarEnemyViewModel {
     SpacecraftEnemy currentSpacecraft { get; }
     RadarEnemy currentRadar { get; }
     int currentRadiusRadar { get; }
+    List<GameObject> currentGameobjectInRadar{ get;}
 
     HandlerRadarEnemyViewModelDelegate myDelegate { get; set; }
     void loadSpacecraft(IdentificatorModel identificator);
+    void addGameObjectToRadar(GameObject gameObject);
+    void removeGameObjectFromRadar(GameObject gameObject);
+
 }
 
 public class HandlerRadarEnemyViewModelImpl : HandlerRadarEnemyViewModel
@@ -23,12 +27,16 @@ public class HandlerRadarEnemyViewModelImpl : HandlerRadarEnemyViewModel
     private SpacecraftEnemyLoadRadarUseCase loadRadarUseCase = new SpacecraftEnemyLoadRadarUseCaseImpl();
     private SpacecraftEnemyCurrentRadarUseCase currentRadarUseCase = new SpacecraftEnemyCurrentRadarUseCaseImpl();
     private SpacecraftEnemyCurrentRadiusRadarUseCase currentRadiusRadarUseCase = new SpacecraftEnemyCurrentRadiusRadarUseCaseImpl();
+    private SpacecraftEnemyAddGameobjectToRadarUseCase addGameobjectToRadarUseCase = new SpacecraftEnemyAddGameobjectToRadarUseCaseImpl();
+    private SpacecraftEnemyRemoveGameobjectFromRadarUseCase removeGameobjectFromRadarUseCase = new SpacecraftEnemyRemoveGameobjectFromRadarUseCaseImpl();
+    private SpacecraftEnemyGetListGameobjectsInRadarUseCase getListGameobjectsInRadarUseCase = new SpacecraftEnemyGetListGameobjectsInRadarUseCaseImpl();
 
     private SpacecraftEnemy _currentSpacecraft;
     private HandlerRadarEnemyViewModelDelegate _myDelegate;
     private RadarEnemy _currentRadar;
     private int _currentRadiusRadar;
     private IdentificatorModel identificatorModel;
+    private List<GameObject> _gameobjectsInRadar;
 
     public SpacecraftEnemy currentSpacecraft => _currentSpacecraft;
 
@@ -41,6 +49,14 @@ public class HandlerRadarEnemyViewModelImpl : HandlerRadarEnemyViewModel
 
     public int currentRadiusRadar => _currentRadiusRadar;
 
+    public List<GameObject> currentGameobjectInRadar => _gameobjectsInRadar;
+
+    public void addGameObjectToRadar(GameObject gameObject)
+    {
+        if (identificatorModel == null) return;
+        addGameobjectToRadarUseCase.invoke(identificatorModel, gameObject);
+    }
+
     public void loadSpacecraft(IdentificatorModel identificator)
     {
         identificatorModel = identificator;
@@ -50,12 +66,19 @@ public class HandlerRadarEnemyViewModelImpl : HandlerRadarEnemyViewModel
         loadRadar();
     }
 
+    public void removeGameObjectFromRadar(GameObject gameObject)
+    {
+        if (identificatorModel == null) return;
+        removeGameobjectFromRadarUseCase.invoke(identificatorModel, gameObject);
+    }
+
     //private methods
     private void loadRadar() {
         if (identificatorModel == null) return;
         if (!loadRadarUseCase.invoke(identificatorModel)) return;
         _currentRadar = currentRadarUseCase.invoke(identificatorModel);
         _currentRadiusRadar = currentRadiusRadarUseCase.invoke(identificatorModel) ;
+        _gameobjectsInRadar = getListGameobjectsInRadarUseCase.invoke(identificatorModel);
         _myDelegate.notifyLoadRadar();
     }
 }
