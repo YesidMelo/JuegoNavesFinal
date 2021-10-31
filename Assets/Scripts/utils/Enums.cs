@@ -143,6 +143,14 @@ public enum StatusGame {
     PAUSE,
 }
 
+public enum StorageEnemy { 
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
 public enum StoragePlayer { 
     TYPE_1,
     TYPE_2,
@@ -151,7 +159,7 @@ public enum StoragePlayer {
     TYPE_5,
 }
 
-public enum StructurePlayer
+public enum StructureEnemy
 {
     TYPE_1,
     TYPE_2,
@@ -159,7 +167,8 @@ public enum StructurePlayer
     TYPE_4,
     TYPE_5,
 }
-public enum StructureEnemy
+
+public enum StructurePlayer
 {
     TYPE_1,
     TYPE_2,

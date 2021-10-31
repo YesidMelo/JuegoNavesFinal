@@ -5,19 +5,13 @@ using UnityEngine;
 public class HandlerStorageEnemy : MonoBehaviour, HandlerStorageEnemyViewModelDelegate
 {
     public SpacecraftEnemy currentSpacecraft;
+    public StorageEnemy currentStorage;
 
     private HandlerStorageEnemyViewModel viewModel = new HandlerStorageEnemyViewModelImpl();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         viewModel.myDelegate = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     //public methods
@@ -35,6 +29,6 @@ public class HandlerStorageEnemy : MonoBehaviour, HandlerStorageEnemyViewModelDe
 
     public void notifyLoadStorage()
     {
-        
+        currentStorage = viewModel.currentStorage;
     }
 }
