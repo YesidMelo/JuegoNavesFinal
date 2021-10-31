@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftEnemyMotorRepository {
-    int currentSpeed(IdentificatorModel identificator);
+    float currentSpeed(IdentificatorModel identificator);
     MotorEnemy currentMotor(IdentificatorModel identificator);
     bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeMotor(IdentificatorModel identificator);
@@ -14,7 +14,7 @@ public class SpacecraftEnemyMotorRepositoryImpl: SpacecraftEnemyMotorRepository 
 
     public MotorEnemy currentMotor(IdentificatorModel identificator) => cache.currentMotor(identificator);
 
-    public int currentSpeed(IdentificatorModel identificator) => cache.currentSpeed(identificator);
+    public float currentSpeed(IdentificatorModel identificator) => cache.currentSpeed(identificator);
 
     public bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft) => cache.loadMotor(identificator, spacecraft);
 

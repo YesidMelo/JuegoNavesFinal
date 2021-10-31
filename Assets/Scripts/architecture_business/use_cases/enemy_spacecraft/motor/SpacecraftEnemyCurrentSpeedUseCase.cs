@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftEnemyCurrentSpeedUseCase {
-    int invoke(IdentificatorModel identificator);
+    float invoke(IdentificatorModel identificator);
 }
 
 public class SpacecraftEnemyCurrentSpeedUseCaseImpl : SpacecraftEnemyCurrentSpeedUseCase
 {
     private SpacecraftEnemyMotorRepository repo = new SpacecraftEnemyMotorRepositoryImpl();
-    public int invoke(IdentificatorModel identificator) => repo.currentSpeed(identificator);
+    public float invoke(IdentificatorModel identificator) => repo.currentSpeed(identificator);
 }

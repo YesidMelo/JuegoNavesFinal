@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftPlayerMotorRepository {
-    public int speedMotor { get; }
+    public float speedMotor { get; }
     public List<MotorPlayer> listMotors { get; }
 
     public bool loadMotors();
@@ -14,7 +14,7 @@ public class SpacecraftPlayerMotorRepositoryImpl : SpacecraftPlayerMotorReposito
 {
     private SpacecraftPlayerMotorCache cache = SpacecraftPlayerMotorCacheImpl.getInstance();
 
-    public int speedMotor => cache.speedMotor;
+    public float speedMotor => cache.speedMotor;
 
     public List<MotorPlayer> listMotors => cache.listMotors;
 

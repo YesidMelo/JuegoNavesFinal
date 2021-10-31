@@ -6,7 +6,7 @@ public class HandlerMotorsEnemy : MonoBehaviour, HandlerMotorsEnemyViewModelDele
 {
     public SpacecraftEnemy currentSpacecraft;
     public MotorEnemy currentMotor;
-    public int currentSpeed;
+    public float currentSpeed;
 
     private HandlerMotorsEnemyViewModel viewModel = new HandlerMotorsEnemyViewModelImpl();
 
@@ -24,6 +24,12 @@ public class HandlerMotorsEnemy : MonoBehaviour, HandlerMotorsEnemyViewModelDele
     public void loadSpacecraft(IdentificatorModel identificator) {
         if (viewModel == null) return;
         viewModel.loadSpacecraft(identificator);
+    }
+
+    public IdentificatorModel identificator {
+        get {
+            return viewModel.identificator;
+        }
     }
 
     //private methods

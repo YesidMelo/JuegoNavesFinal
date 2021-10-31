@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface SpacecraftPlayerMotorCache
 {
-    public int speedMotor { get; }
+    public float speedMotor { get; }
     public List<MotorPlayer> listMotors{ get; }
 
     public bool loadMotors();
@@ -24,10 +24,10 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
         return instance;
     }
 
-    private int _speedMotor = 1;
+    private float _speedMotor = 1;
     private List<MotorPlayer> _listMotors = new List<MotorPlayer>();
 
-    public int speedMotor => _speedMotor;
+    public float speedMotor => _speedMotor;
 
     public List<MotorPlayer> listMotors => _listMotors;
 
@@ -48,7 +48,7 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
     //Private functions
     public void calculateSpeedMotor() {
         if (_listMotors.Count == 0) return;
-        int finalSpeed = 0;
+        float finalSpeed = 0;
 
         foreach(MotorPlayer currentMotor in _listMotors) {
             finalSpeed = speedMotor + getSpeedMotor(currentMotor);
@@ -56,8 +56,8 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
         _speedMotor = finalSpeed;
     }
 
-    int getSpeedMotor(MotorPlayer motor) {
-        int speed = 1;
+    float getSpeedMotor(MotorPlayer motor) {
+        float speed = 1;
         switch (motor) {
             case MotorPlayer.TYPE_2:
                 speed = Constants.speedMotorPlayerType2;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MotorJoysticMovementPlayer: BaseMotorMovementPlayer
 {
     private GameObject _currentMotor;
-    private int _speedMotor;
+    private float _speedMotor;
     private Vector3 previousDirection = new Vector3(0, 0, 0);
     private CurrentMovementJoysticUseCase currentMovementJoysticUseCase = new CurrentMovementJoysticUseCaseImpl();
     private BaseMotorMovementPlayer motorFordwardmovement;
@@ -13,7 +13,7 @@ public class MotorJoysticMovementPlayer: BaseMotorMovementPlayer
 
     public MotorJoysticMovementPlayer(
         GameObject currentMotor,
-        int speedMotor
+        float speedMotor
     ) {
         _currentMotor = currentMotor;
         _speedMotor = speedMotor;
@@ -27,7 +27,7 @@ public class MotorJoysticMovementPlayer: BaseMotorMovementPlayer
         startFordward();
     }
 
-    public void updateSpeedMotor(int speedMotor) {
+    public void updateSpeedMotor(float speedMotor) {
         if (speedMotor == 0) return;
         _speedMotor = speedMotor;
         motorFordwardmovement.updateSpeedMotor(speedMotor);

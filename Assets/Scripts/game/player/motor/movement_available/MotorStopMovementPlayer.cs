@@ -5,11 +5,11 @@ using UnityEngine;
 public class MotorStopMovementPlayer : BaseMotorMovementPlayer
 {
     private GameObject _currentMotor;
-    private int _speedMotor;
+    private float _speedMotor;
 
     public MotorStopMovementPlayer(
         GameObject currentMotor,
-        int speedMotor
+        float speedMotor
     ) {
         _currentMotor = currentMotor;
         _speedMotor = speedMotor;
@@ -17,7 +17,7 @@ public class MotorStopMovementPlayer : BaseMotorMovementPlayer
 
     public void move(){}
 
-    public void updateSpeedMotor(int speedMotor) {
+    public void updateSpeedMotor(float speedMotor) {
         _speedMotor = speedMotor;
     }
 }

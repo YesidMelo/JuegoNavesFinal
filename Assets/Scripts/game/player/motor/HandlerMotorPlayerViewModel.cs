@@ -8,7 +8,7 @@ public interface HandlerMotorPlayerViewModelDelegate {
     void notifyMovementDefence();
 }
 public interface HandlerMotorPlayerViewModel {
-    int speedMotor { get; }
+    float speedMotor { get; }
     List<MotorPlayer> listMotors{ get; }
     bool loadMotors();
     HandlerMotorPlayerViewModelDelegate myDelegate { get; set; }
@@ -23,7 +23,7 @@ public class HandlerMotorPlayerViewModelImpl : HandlerMotorPlayerViewModel
     private SpacecraftPlayerUpdateListMotorsUseCase updateListMotorsUseCase = new SpacecraftPlayerUpdateListMotorsUseCaseImpl();
     private HandlerMotorPlayerViewModelDelegate _myDelegate;
     private CurrentActionSpacecraftUseCase currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
-    public int speedMotor => getSpeedMotorUseCase.invoke();
+    public float speedMotor => getSpeedMotorUseCase.invoke();
 
     public List<MotorPlayer> listMotors => getListMotorUseCase.invoke();
 

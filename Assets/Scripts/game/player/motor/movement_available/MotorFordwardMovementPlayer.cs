@@ -5,10 +5,10 @@ using UnityEngine;
 public class MotorFordwardMovementPlayer : BaseMotorMovementPlayer
 {
     private GameObject _currentMotor;
-    private int _speedSpacecraft;
+    private float _speedSpacecraft;
     public MotorFordwardMovementPlayer(
         GameObject currentMotor,
-        int speedSpacecraft
+        float speedSpacecraft
     ) {
         _currentMotor = currentMotor;
         _speedSpacecraft = speedSpacecraft;
@@ -16,7 +16,7 @@ public class MotorFordwardMovementPlayer : BaseMotorMovementPlayer
 
     public void move() => _currentMotor.transform.Translate(0, _speedSpacecraft * Time.deltaTime, 0);
 
-    public void updateSpeedMotor(int speedMotor) {
+    public void updateSpeedMotor(float speedMotor) {
         if (speedMotor == 0) return;
         _speedSpacecraft = speedMotor; 
     }

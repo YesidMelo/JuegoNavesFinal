@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftEnemyMotorCache {
-    int currentSpeed(IdentificatorModel identificator);
+    float currentSpeed(IdentificatorModel identificator);
     MotorEnemy currentMotor(IdentificatorModel identificator);
     bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeMotor(IdentificatorModel identificator);
@@ -21,13 +21,13 @@ public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
         return instance;
     }
 
-    private Dictionary<IdentificatorModel, int> _dictionarySpeed = new Dictionary<IdentificatorModel, int>();
+    private Dictionary<IdentificatorModel, float> _dictionarySpeed = new Dictionary<IdentificatorModel, float>();
     private Dictionary<IdentificatorModel, MotorEnemy> _dictionaryMotors = new Dictionary<IdentificatorModel, MotorEnemy>();
     private Dictionary<IdentificatorModel, SpacecraftEnemy> _dictionarySpacecraft = new Dictionary<IdentificatorModel, SpacecraftEnemy>();
 
     public MotorEnemy currentMotor(IdentificatorModel identificator) => _dictionaryMotors[identificator];
 
-    public int currentSpeed(IdentificatorModel identificator) => _dictionarySpeed[identificator];
+    public float currentSpeed(IdentificatorModel identificator) => _dictionarySpeed[identificator];
 
     public bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft)
     {
@@ -45,8 +45,8 @@ public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
     }
 
     //private methods
-    private int currentSpeed(SpacecraftEnemy spacecraft) {
-        int finalSpeed = 0;
+    private float currentSpeed(SpacecraftEnemy spacecraft) {
+        float finalSpeed = 0;
         switch (spacecraft) {
             case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
                 finalSpeed = Constants.speedMotorEnemyType2;

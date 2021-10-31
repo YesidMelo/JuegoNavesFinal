@@ -14,7 +14,7 @@ public static class Constants
     public static string nameAmmunitionLaserEnemy = "ammunitionLaserEnemy";
 
     //Distance
-    public static float minimunDistaceBetweenPlayerEnemy = 5f;
+    public static float minimunDistaceBetweenPlayerEnemy = 1f;
 
     //Dimension
     public static float safeAreaHeigth = 480;
@@ -41,18 +41,18 @@ public static class Constants
     public static float speedFiring = 3f;
 
     //Speeds enemy spacecraft
-    public static int speedMotorEnemyType1 = 5;
-    public static int speedMotorEnemyType2 = 6;
-    public static int speedMotorEnemyType3 = 7;
-    public static int speedMotorEnemyType4 = 8;
-    public static int speedMotorEnemyType5 = 9;
+    public static float speedMotorEnemyType1 = 1f;
+    public static float speedMotorEnemyType2 = 1.5f;
+    public static float speedMotorEnemyType3 = 2f;
+    public static float speedMotorEnemyType4 = 2.5f;
+    public static float speedMotorEnemyType5 = 3f;
     
     //Speeds player spacecraft
-    public static int speedMotorPlayerType1 = 5;
-    public static int speedMotorPlayerType2 = 6;
-    public static int speedMotorPlayerType3 = 7;
-    public static int speedMotorPlayerType4 = 8;
-    public static int speedMotorPlayerType5 = 9;
+    public static float speedMotorPlayerType1 = 1f;
+    public static float speedMotorPlayerType2 = 1.5f;
+    public static float speedMotorPlayerType3 = 2;
+    public static float speedMotorPlayerType4 = 2.5f;
+    public static float speedMotorPlayerType5 = 3f;
 
     //LifeEnemy
     public static int lifeEnemyStructureType1 = 500;
