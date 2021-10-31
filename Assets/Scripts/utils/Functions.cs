@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class Functions 
 {
@@ -28,5 +29,9 @@ public static class Functions
     public static float getAngle(this Vector2 currentVector) {
         float currentAngle = (float)(Math.Atan2(currentVector.y, currentVector.x) * (180 / Math.PI)) ;
         return currentAngle;
+    }
+
+    public static float generateRandomNumberBetween(float number1, float number2) {
+        return Random.Range(number1, number2);
     }
 }

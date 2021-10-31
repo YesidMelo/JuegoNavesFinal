@@ -8,8 +8,10 @@ public class HandlerMovementEnemy : MonoBehaviour, HandlerMovementEnemyViewModel
     public List<GameObject> listGameObjects;
     public GameObject currentPlayer;
     public GameObject spacecraft;
+    public GameObject prefabPatrolPoint;
 
     private HandlerMovementEnemyViewModel viewModel = new HandlerMovementEnemyViewModelImpl();
+    private GameObject patrolPoint;
 
     private void Awake()
     {
@@ -40,12 +42,40 @@ public class HandlerMovementEnemy : MonoBehaviour, HandlerMovementEnemyViewModel
             pointToPlayer();
             return;
         }
+        if (patrolPoint == null) {
+            createPatrolPoint();
+            return;
+        }
         pointToPatrolPoint();
+        moveForwardPatrolPoint();
+    }
+
+    private void changePositionPatrolPoint() {
+        patrolPoint.transform.position = new Vector3(
+            Functions.generateRandomNumberBetween(-Constants.dimensionWidthBackground, Constants.dimensionWidthBackground),
+            Functions.generateRandomNumberBetween(-Constants.dimensionHeightBackground, Constants.dimensionHeightBackground),
+            0
+        );
+    }
+
+    private void createPatrolPoint() {
+        patrolPoint = Instantiate(prefabPatrolPoint);
+        changePositionPatrolPoint();
     }
 
     private void moveForwardPlayer() {
         float distance = Vector3.Distance(spacecraft.transform.position, currentPlayer.transform.position);
         if (distance <= Constants.minimunDistaceBetweenPlayerEnemy) return;
+        spacecraft.transform.Translate(Vector3.up * Time.deltaTime * handlerMotor.currentSpeed, Space.Self); 
+    }
+    
+
+    private void moveForwardPatrolPoint() {
+        float distance = Vector3.Distance(spacecraft.transform.position, patrolPoint.transform.position);
+        if (distance <= Constants.minimunDistaceBetweenPlayerEnemy) {
+            changePositionPatrolPoint();
+            return;
+        }
         spacecraft.transform.Translate(Vector3.up * Time.deltaTime * handlerMotor.currentSpeed, Space.Self); 
     }
 
@@ -55,7 +85,9 @@ public class HandlerMovementEnemy : MonoBehaviour, HandlerMovementEnemyViewModel
         spacecraft.transform.rotation = Quaternion.Euler(0,0, Functions.getAngleLookAt(positionSpacecraft, positionPlayer) );
     }
 
-    private void pointToPatrolPoint() { 
-
+    private void pointToPatrolPoint() {
+        Vector2 positionSpacecraft = new Vector2(spacecraft.transform.position.x, spacecraft.transform.position.y);
+        Vector2 positionPatrolPoint = new Vector2(patrolPoint.transform.position.x, patrolPoint.transform.position.y);
+        spacecraft.transform.rotation = Quaternion.Euler(0, 0, Functions.getAngleLookAt(positionSpacecraft, positionPatrolPoint));
     }
 }
