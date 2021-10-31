@@ -6,11 +6,11 @@ public class HandlerShieldEnemy : MonoBehaviour, HandlerShieldEnemyViewModelDele
 {
 
     public SpacecraftEnemy currentSpacecraft;
+    public ShieldEnemy currentShield;
 
     private HandlerShieldEnemyViewModel viewModel = new HandlerShieldEnemyViewModelImpl();
-      
 
-    void Start()
+    private void Awake()
     {
         viewModel.myDelegate = this;
     }
@@ -36,6 +36,6 @@ public class HandlerShieldEnemy : MonoBehaviour, HandlerShieldEnemyViewModelDele
 
     public void notifyLoadShield()
     {
-        
+        currentShield = viewModel.currentShield;
     }
 }

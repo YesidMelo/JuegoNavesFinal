@@ -119,7 +119,16 @@ public enum SideSpacecraft
     ENEMY,
 }
 
-public enum Shield
+public enum ShieldEnemy
+{
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+}
+
+public enum ShieldPlayer
 {
     TYPE_1,
     TYPE_2,

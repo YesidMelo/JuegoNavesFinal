@@ -293,6 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpacecraft: 0
+  currentImpact: 0
+  currentLaser: 0
 --- !u!1 &284508476
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpacecraft: 0
+  currentShield: 0
 --- !u!1 &397219968
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpacecraft: 0
+  maxLife: 0
+  currentLife: 0
 --- !u!1 &508588189
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpacecraft: 0
+  currentStorage: 1
 --- !u!4 &508588191
 Transform:
   m_ObjectHideFlags: 0
@@ -530,6 +536,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpacecraft: 4
+  currentMotor: 0
+  currentSpeed: 0
 --- !u!1 &954421510
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpacecraf: 0
+  currentRadar: 0
+  currentRadiusRadar: 0
 --- !u!4 &2058821813
 Transform:
   m_ObjectHideFlags: 0
