@@ -259,6 +259,9 @@ GameObject:
   m_Component:
   - component: {fileID: 176001471}
   - component: {fileID: 176001472}
+  - component: {fileID: 176001475}
+  - component: {fileID: 176001474}
+  - component: {fileID: 176001473}
   m_Layer: 0
   m_Name: laserEnemy
   m_TagString: Untagged
@@ -295,6 +298,60 @@ MonoBehaviour:
   currentSpacecraft: 0
   currentImpact: 0
   currentLaser: 0
+--- !u!50 &176001473
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176001470}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &176001474
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176001470}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 15
+--- !u!114 &176001475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176001470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7443f33213afa9c45be66aeab61c6836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabAmmounitionLaser: {fileID: 8144282520861960226, guid: d6774430611470c45a32c35ad6ce8378, type: 3}
+  handlerLaser: {fileID: 176001472}
+  handlerRadarEnemy: {fileID: 2058821812}
+  spacecraft: {fileID: 33436024}
+  isFiring: 0
 --- !u!1 &284508476
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &1256608025
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1066,6 +1123,7 @@ MonoBehaviour:
   currentSpacecraf: 0
   currentRadar: 0
   currentRadiusRadar: 0
+  laserEnemy: {fileID: 176001470}
   currentListInRadar: []
 --- !u!4 &2058821813
 Transform:

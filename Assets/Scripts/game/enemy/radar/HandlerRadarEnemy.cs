@@ -7,6 +7,7 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
     public SpacecraftEnemy currentSpacecraf;
     public RadarEnemy currentRadar;
     public int currentRadiusRadar;
+    public GameObject laserEnemy;
     public List<GameObject> currentListInRadar;
 
     private HandlerRadarEnemyViewModel viewModel = new HandlerRadarEnemyViewModelImpl();
@@ -19,6 +20,8 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (viewModel == null) return;
+        if (laserEnemy == collision.gameObject) return;
+        if (collision.name.Contains(Constants.nameAmmunitionLaserEnemy)) return;
         viewModel.addGameObjectToRadar(collision.gameObject);
     }
 
