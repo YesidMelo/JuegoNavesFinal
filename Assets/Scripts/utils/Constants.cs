@@ -4,14 +4,23 @@ public static class Constants
 {
     //Strings
     public static string nameCameraPlayer = "camera_player";
-    public static string nameEnemy = "enemy";
-    public static string nameMotor = "motor";
-    public static string namePlayer = "player";
-    public static string nameRadar = "radar";
+    
     public static string nameSpacecraft = "spacecraft";
     public static string namePatrolPoint = "patrolPoint";
-    public static string nameAmmunitionLaserPlayer = "ammunitionLaserPlayer";
     public static string nameAmmunitionLaserEnemy = "ammunitionLaserEnemy";
+
+    //strings enemy
+    public static string nameAmmunitionLaserPlayer = "ammunitionLaserPlayer";
+    public static string nameEnemy = "enemy";
+    public static string nameLaserEnemy = "laserEnemy";
+    public static string nameRadarEnemy = "radarEnemy";
+    public static string nameShieldEnemy = "shieldEnemy";
+
+    //strings player
+    public static string nameMotorPlayer = "motorPlayer";
+    public static string nameLaserPlayer = "laserPlayer";
+    public static string namePlayer = "player";
+    public static string nameRadarPlayer = "radarPlayer";
 
     //Distance
     public static float minimunDistaceBetweenPlayerEnemy = 1f;

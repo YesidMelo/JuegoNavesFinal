@@ -19,15 +19,13 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (viewModel == null) return;
-        if (laserEnemy == collision.gameObject) return;
-        if (collision.name.Contains(Constants.nameAmmunitionLaserEnemy)) return;
+        if (!checkCollision(collision)) return;
         viewModel.addGameObjectToRadar(collision.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (viewModel == null) return;
+        if (!checkCollision(collision)) return;
         viewModel.removeGameObjectFromRadar(collision.gameObject);
     }
 
@@ -38,6 +36,15 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
     }
 
     //private method
+    private bool checkCollision(Collider2D collision) {
+        if (viewModel == null) return false;
+        if (laserEnemy == collision.gameObject) return false;
+        if (collision.name.Contains(Constants.nameAmmunitionLaserEnemy)) return false;
+        if (collision.name.Contains(Constants.nameShieldEnemy)) return false;
+        if (collision.name.Contains(Constants.nameRadarPlayer)) return false;
+        if (collision.name.Contains(Constants.nameLaserPlayer)) return false;
+        return true;
+    }
 
     //ui unity
     //delegate

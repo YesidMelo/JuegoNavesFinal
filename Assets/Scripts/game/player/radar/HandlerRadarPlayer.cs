@@ -28,13 +28,13 @@ public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDele
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (viewModel == null) return;
+        if (!checkGameobjectCollision(collision)) return;
         viewModel.addElementToRadar(collision.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (viewModel == null) return;
+        if (!checkGameobjectCollision(collision)) return;
         viewModel.removeElementFromRadar(collision.gameObject);
     }
 
@@ -53,6 +53,15 @@ public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDele
     private void checkCurrentRadiusRadar() {
         CircleCollider2D currentCollider = GetComponent<CircleCollider2D>();
         currentCollider.radius = currentRadius;
+    }
+
+    private bool checkGameobjectCollision(Collider2D collision) {
+        if (viewModel == null) return false;
+        if (collision.name.Contains(Constants.nameLaserEnemy)) return false;
+        if (collision.name.Contains(Constants.nameRadarEnemy)) return false;
+        if (collision.name.Contains(Constants.nameAmmunitionLaserEnemy)) return false;
+        if (collision.name.Contains(Constants.nameLaserPlayer)) return false;
+        return true;
     }
 
     //ui methods
