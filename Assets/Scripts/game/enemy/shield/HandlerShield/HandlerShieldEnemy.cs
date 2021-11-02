@@ -15,11 +15,6 @@ public class HandlerShieldEnemy : MonoBehaviour, HandlerShieldEnemyViewModelDele
         viewModel.myDelegate = this;
     }
 
-    void Update()
-    {
-        
-    }
-
     //public methods
     public void loadCurrentSpacecraft(IdentificatorModel identificator) {
         if (viewModel == null) return;
@@ -37,5 +32,11 @@ public class HandlerShieldEnemy : MonoBehaviour, HandlerShieldEnemyViewModelDele
     public void notifyLoadShield()
     {
         currentShield = viewModel.currentShield;
+    }
+
+    public IdentificatorModel identificator {
+        get {
+            return viewModel.identificator;
+        }
     }
 }

@@ -12,6 +12,7 @@ public interface HandlerShieldEnemyViewModel {
     SpacecraftEnemy currentSpacecraft { get; }
     ShieldEnemy currentShield { get; }
     HandlerShieldEnemyViewModelDelegate myDelegate { get; set; }
+    IdentificatorModel identificator{ get; }
 
     void loadSpacecraft(IdentificatorModel identificatorModel);
 
@@ -26,7 +27,7 @@ public class HandlerShieldEnemyViewModelImpl : HandlerShieldEnemyViewModel
     private SpacecraftEnemy _currentSpacecraft;
     private HandlerShieldEnemyViewModelDelegate _myDelegate;
     private ShieldEnemy _currentShield;
-    private IdentificatorModel identificator;
+    private IdentificatorModel _identificator;
 
     public SpacecraftEnemy currentSpacecraft => _currentSpacecraft;
 
@@ -37,9 +38,11 @@ public class HandlerShieldEnemyViewModelImpl : HandlerShieldEnemyViewModel
 
     public ShieldEnemy currentShield => _currentShield;
 
+    public IdentificatorModel identificator => _identificator;
+
     public void loadSpacecraft(IdentificatorModel identificatorModel)
     {
-        identificator = identificatorModel;
+        _identificator = identificatorModel;
         _currentSpacecraft = getCurrentSpacecraftUseCase.invoke(identificatorModel);
         if (_myDelegate == null) return;
         _myDelegate.notifyLoadCurrentSpacecraft();
@@ -48,9 +51,9 @@ public class HandlerShieldEnemyViewModelImpl : HandlerShieldEnemyViewModel
 
     //private methods
     private void loadShield() {
-        if (identificator == null) return;
-        if (!loadShieldUseCase.invoke(identificator)) return;
-        _currentShield = currentShieldUseCase.invoke(identificator);
+        if (_identificator == null) return;
+        if (!loadShieldUseCase.invoke(_identificator)) return;
+        _currentShield = currentShieldUseCase.invoke(_identificator);
         _myDelegate.notifyLoadShield();
     }
 }
