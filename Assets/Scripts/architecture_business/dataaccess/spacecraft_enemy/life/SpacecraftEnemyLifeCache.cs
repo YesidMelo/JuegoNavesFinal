@@ -4,12 +4,12 @@ using UnityEngine;
 
 public interface SpacecraftEnemyLifeCache {
 
-    int currentLife(IdentificatorModel identificator);
+    float currentLife(IdentificatorModel identificator);
     SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator);
-    int maxLife(IdentificatorModel identificator);
+    float maxLife(IdentificatorModel identificator);
 
-    void addLife(IdentificatorModel identificator, int life);
-    void quitLife(IdentificatorModel identificator, int life);
+    void addLife(IdentificatorModel identificator, float life);
+    void quitLife(IdentificatorModel identificator, float life);
 
     bool loadLife(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeLife(IdentificatorModel identificator);
@@ -28,17 +28,17 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
         return instance;
     }
 
-    private Dictionary<IdentificatorModel, int> _dictionaryCurrentLife = new Dictionary<IdentificatorModel, int>();
-    private Dictionary<IdentificatorModel, int> _dictionorayMaxLife = new Dictionary<IdentificatorModel, int>();
+    private Dictionary<IdentificatorModel, float> _dictionaryCurrentLife = new Dictionary<IdentificatorModel, float>();
+    private Dictionary<IdentificatorModel, float> _dictionorayMaxLife = new Dictionary<IdentificatorModel, float>();
     private Dictionary<IdentificatorModel, SpacecraftEnemy> _dictionarySpacecraft = new Dictionary<IdentificatorModel, SpacecraftEnemy>();
 
 
-    public void addLife(IdentificatorModel identificator, int life)
+    public void addLife(IdentificatorModel identificator, float life)
     {
         if (notIsLifeInDictionaries(identificator)) return;
 
-        int currentMaxLife = _dictionaryCurrentLife[identificator];
-        int currentLife = _dictionaryCurrentLife[identificator];
+        float currentMaxLife = _dictionaryCurrentLife[identificator];
+        float currentLife = _dictionaryCurrentLife[identificator];
 
         currentLife = currentLife + life;
         if (currentLife >= currentMaxLife) {
@@ -49,26 +49,26 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
         _dictionaryCurrentLife[identificator] = currentLife;
     }
 
-    public int currentLife(IdentificatorModel identificator) => _dictionaryCurrentLife[identificator];
+    public float currentLife(IdentificatorModel identificator) => _dictionaryCurrentLife[identificator];
 
     public SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator) => _dictionarySpacecraft[identificator];
 
     public bool loadLife(IdentificatorModel identificator, SpacecraftEnemy spacecraft)
     {
         _dictionarySpacecraft[identificator] = spacecraft;
-        int finalMaxLife = selectCurrentLife(spacecraft);
+        float finalMaxLife = selectCurrentLife(spacecraft);
         _dictionaryCurrentLife[identificator]= finalMaxLife;
         _dictionorayMaxLife[identificator] = finalMaxLife;
         return true;
     }
 
-    public int maxLife(IdentificatorModel identificator) => _dictionorayMaxLife[identificator];
+    public float maxLife(IdentificatorModel identificator) => _dictionorayMaxLife[identificator];
 
-    public void quitLife(IdentificatorModel identificator, int life)
+    public void quitLife(IdentificatorModel identificator, float life)
     {
         if (notIsLifeInDictionaries(identificator)) return;
 
-        int currentLife = _dictionaryCurrentLife[identificator];
+        float currentLife = _dictionaryCurrentLife[identificator];
 
         currentLife = currentLife - life;
         if (currentLife <= 0)
@@ -93,8 +93,8 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
         return !_dictionorayMaxLife.ContainsKey(identificator) || !_dictionaryCurrentLife.ContainsKey(identificator);
     }
 
-    private int selectCurrentLife(SpacecraftEnemy spacecraft) {
-        int finalLife = 0;
+    private float selectCurrentLife(SpacecraftEnemy spacecraft) {
+        float finalLife = 0;
         switch (spacecraft) {
             case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
                 finalLife = Constants.lifeEnemyStructureType2;

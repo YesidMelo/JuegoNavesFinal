@@ -40,6 +40,7 @@ public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
     {
         if (listLasers.Count != 0) return true;
         _listLasers.Add(LaserPlayer.TYPE_1);
+        setListLasers(_listLasers);
         return true;
     }
 

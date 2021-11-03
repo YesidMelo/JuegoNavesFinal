@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftEnemyMaxLifeUseCase {
-    int invoke(IdentificatorModel identificator);
+    float invoke(IdentificatorModel identificator);
 }
 
 public class SpacecraftEnemyMaxLifeUseCaseImpl : SpacecraftEnemyMaxLifeUseCase
@@ -11,5 +11,5 @@ public class SpacecraftEnemyMaxLifeUseCaseImpl : SpacecraftEnemyMaxLifeUseCase
     
     private SpacecraftEnemyLifeRepository repo = new SpacecraftEnemyLifeRepositoryImpl();
 
-    public int invoke(IdentificatorModel identificator) => repo.maxLife(identificator);
+    public float invoke(IdentificatorModel identificator) => repo.maxLife(identificator);
 }

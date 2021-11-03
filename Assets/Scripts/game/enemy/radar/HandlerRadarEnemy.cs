@@ -40,6 +40,7 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
         if (viewModel == null) return false;
         if (laserEnemy == collision.gameObject) return false;
         if (collision.name.Contains(Constants.nameAmmunitionLaserEnemy)) return false;
+        if (collision.name.Contains(Constants.nameAmmunitionLaserPlayer)) return false;
         if (collision.name.Contains(Constants.nameShieldEnemy)) return false;
         if (collision.name.Contains(Constants.nameRadarPlayer)) return false;
         if (collision.name.Contains(Constants.nameLaserPlayer)) return false;

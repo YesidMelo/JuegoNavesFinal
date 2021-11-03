@@ -5,7 +5,7 @@ using UnityEngine;
 public interface HandlerLifeShieldEnemyViewModelDelegate { }
 
 public interface HandlerLifeShieldEnemyViewModel {
-    int currentLife(IdentificatorModel identificator);
+    float currentLife(IdentificatorModel identificator);
     HandlerLifeShieldEnemyViewModelDelegate myDelegate { get; set; }
     void removeLife(DetailLaserPlayer detailLaserPlayer, IdentificatorModel identificator);
 }
@@ -23,7 +23,7 @@ public class HandlerLifeShieldEnemyViewModelImpl : HandlerLifeShieldEnemyViewMod
         set => _myDelegate = value; 
     }
 
-    public int currentLife(IdentificatorModel identificator) => currentLifeUseCase.invoke(identificator);
+    public float currentLife(IdentificatorModel identificator) => currentLifeUseCase.invoke(identificator);
 
     public void removeLife(DetailLaserPlayer detailLaserPlayer, IdentificatorModel identificator)
     {

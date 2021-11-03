@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftEnemyLifeRepository {
-    int currentLife(IdentificatorModel identificator);
+    float currentLife(IdentificatorModel identificator);
     SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator);
-    int maxLife(IdentificatorModel identificator);
+    float maxLife(IdentificatorModel identificator);
 
     void addLife(IdentificatorModel identificator, int life);
     void quitLife(IdentificatorModel identificator, int life);
@@ -20,13 +20,13 @@ public class SpacecraftEnemyLifeRepositoryImpl : SpacecraftEnemyLifeRepository  
 
     public void addLife(IdentificatorModel identificator, int life) => cache.addLife(identificator, life);
 
-    public int currentLife(IdentificatorModel identificator) => cache.currentLife(identificator);
+    public float currentLife(IdentificatorModel identificator) => cache.currentLife(identificator);
 
     public SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator) => cache.currentSpacecraft(identificator);
 
     public bool loadLife(IdentificatorModel identificator, SpacecraftEnemy spacecraft) => cache.loadLife(identificator, spacecraft);
 
-    public int maxLife(IdentificatorModel identificator) => cache.maxLife(identificator);
+    public float maxLife(IdentificatorModel identificator) => cache.maxLife(identificator);
 
     public void quitLife(IdentificatorModel identificator, int life) => cache.quitLife(identificator, life);
 

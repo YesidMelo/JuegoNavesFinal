@@ -23,7 +23,7 @@ public static class Constants
     public static string nameRadarPlayer = "radarPlayer";
 
     //Distance
-    public static float minimunDistaceBetweenPlayerEnemy = 1f;
+    public static float minimunDistaceBetweenPlayerEnemy = 3f;
 
     //Dimension
     public static float safeAreaHeigth = 480;
@@ -32,22 +32,22 @@ public static class Constants
     public static float dimensionWidthBackground = 100;
 
     //impact damage laser player
-    public static float laserPlayerType1 = 10;
-    public static float laserPlayerType2 = 20;
-    public static float laserPlayerType3 = 30;
-    public static float laserPlayerType4 = 40;
-    public static float laserPlayerType5 = 50;
+    public static float laserPlayerType1 = 100;
+    public static float laserPlayerType2 = 200;
+    public static float laserPlayerType3 = 300;
+    public static float laserPlayerType4 = 400;
+    public static float laserPlayerType5 = 500;
 
     //impact damage laser enemy
-    public static int laserEnemyType1 = 10;
-    public static int laserEnemyType2 = 20;
-    public static int laserEnemyType3 = 30;
-    public static int laserEnemyType4 = 40;
-    public static int laserEnemyType5 = 50;
+    public static int laserEnemyType1 = 100;
+    public static int laserEnemyType2 = 200;
+    public static int laserEnemyType3 = 300;
+    public static int laserEnemyType4 = 400;
+    public static int laserEnemyType5 = 500;
 
     //speeds
     public static float speedLaser = 25.0f;
-    public static float speedFiring = 3f;
+    public static float speedFiring = 1f;
 
     //Speeds enemy spacecraft
     public static float speedMotorEnemyType1 = 1f;
@@ -64,11 +64,11 @@ public static class Constants
     public static float speedMotorPlayerType5 = 3f;
 
     //LifeEnemy
-    public static int lifeEnemyStructureType1 = 500;
-    public static int lifeEnemyStructureType2 = 1000;
-    public static int lifeEnemyStructureType3 = 1500;
-    public static int lifeEnemyStructureType4 = 2000;
-    public static int lifeEnemyStructureType5 = 2500;
+    public static float lifeEnemyStructureType1 = 500;
+    public static float lifeEnemyStructureType2 = 1000;
+    public static float lifeEnemyStructureType3 = 1500;
+    public static float lifeEnemyStructureType4 = 2000;
+    public static float lifeEnemyStructureType5 = 2500;
 
     //LifePlayer
     public static int lifePlayerStructureType1 = 500;

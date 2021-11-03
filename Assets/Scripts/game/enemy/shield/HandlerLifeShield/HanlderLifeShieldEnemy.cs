@@ -5,7 +5,7 @@ using UnityEngine;
 public class HanlderLifeShieldEnemy : MonoBehaviour, HandlerLifeShieldEnemyViewModelDelegate
 {
     public HandlerShieldEnemy handlerShieldEnemy;
-    public int currentLife;
+    public float currentLife;
 
     private HandlerLifeShieldEnemyViewModel viewModel = new HandlerLifeShieldEnemyViewModelImpl();
 
