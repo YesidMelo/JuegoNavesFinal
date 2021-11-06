@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HandlerLifeEnemy : MonoBehaviour, HandlerLifeEnemyViewModelDelegate
 {
     public SpacecraftEnemy currentSpacecraft;
     public float maxLife;
-    public float currentLife;
+    public float currentLife = 0;
+    public bool isNotifyLifeZero = false;
+
+    public delegate void lifeZero(float currentLife);
+    public lifeZero listenerLifeZero;
 
     private HandlerLifeEnemyViewModel viewModel = new HandlerLifeEnemyViewModelImpl();
 
@@ -33,6 +38,9 @@ public class HandlerLifeEnemy : MonoBehaviour, HandlerLifeEnemyViewModelDelegate
         if (viewModel == null) return;
         maxLife = viewModel.maxLife;
         currentLife = viewModel.currentLife;
+        if (currentLife != 0) return;
+        if (listenerLifeZero == null) return;
+        listenerLifeZero(currentLife);
     }
 
     private void checkCurrentScale()

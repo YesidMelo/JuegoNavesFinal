@@ -12,6 +12,7 @@ public interface HandlerSpacecraftEnemyViewModel {
     SpacecraftEnemy currentSpacecraft { get; }
     void loadSpacecraft();
     void setSpacecraft(SpacecraftEnemy spacecraft);
+    void destroySpacecraft();
 }
 
 public class HandlerSpacecraftEnemyViewModelImpl : HandlerSpacecraftEnemyViewModel
@@ -19,6 +20,7 @@ public class HandlerSpacecraftEnemyViewModelImpl : HandlerSpacecraftEnemyViewMod
     private SpacecraftEnemyLoadSpacecraftUseCase loadSpacecraftUseCase = new SpacecraftEnemyLoadSpacecraftUseCaseImpl();
     private SpacecraftEnemyGetCurrentSpacecraftUseCase getCurrentSpacecraftUseCase = new SpacecraftEnemyGetCurrentSpacecraftUseCaseImpl();
     private SpacecraftEnemySetSpacecraftUseCase setSpacecraftUseCase = new SpacecraftEnemySetSpacecraftUseCaseImpl();
+    private SpacecraftEnemyDestroySpacecraftUseCase destroySpacecraftUseCase = new SpacecraftEnemyDestroySpacecraftUseCaseImpl();
 
     private HandlerSpacecraftEnemyViewModelDelegate _myDelegate;
     private IdentificatorModel _identificator = new IdentificatorModel();
@@ -35,6 +37,8 @@ public class HandlerSpacecraftEnemyViewModelImpl : HandlerSpacecraftEnemyViewMod
     }
 
     public SpacecraftEnemy currentSpacecraft => _currentSpacecraft;
+
+    public void destroySpacecraft() => destroySpacecraftUseCase.invoke(_identificator);
 
     public void loadSpacecraft()
     {

@@ -398,7 +398,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4342315121735159195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 4342315121428128865}
@@ -419,6 +419,7 @@ MonoBehaviour:
   currentSpacecraft: 0
   maxLife: 0
   currentLife: 0
+  isNotifyLifeZero: 0
 --- !u!114 &9222591936920901811
 MonoBehaviour:
   m_ObjectHideFlags: 0

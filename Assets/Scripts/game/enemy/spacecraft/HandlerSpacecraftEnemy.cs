@@ -14,6 +14,7 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
     public HandlerShieldEnemy handlerShieldEnemy;
     public HandlerStorageEnemy handlerStorageEnemy;
     public HandlerStructureEnemy handlerStructureEnemy;
+    public bool isLoadSpacecraftFromViewModel = false;
 
     private HandlerSpacecraftEnemyViewModel viewModel = new HandlerSpacecraftEnemyViewModelImpl();
 
@@ -28,6 +29,12 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
     {
         loadFromUIUnity();
         updateFromUIUnity();
+    }
+
+    private void OnDestroy()
+    {
+        if (viewModel == null) return;
+        viewModel.destroySpacecraft();
     }
 
     //public methods
@@ -45,6 +52,10 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
     private void loadLife() {
         if (handlerLifeEnemy == null) return;
         handlerLifeEnemy.loadCurrentSpacecraft(viewModel.identificator);
+        handlerLifeEnemy.listenerLifeZero = (float currentLife)=>{
+            if (!isLoadSpacecraftFromViewModel) return;
+            Destroy(transform.gameObject); 
+        };
     }
 
     private void loadMotors() {
@@ -96,5 +107,6 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
         loadShield();
         loadStorage();
         loadStructure();
+        isLoadSpacecraftFromViewModel = true;
     }
 }
