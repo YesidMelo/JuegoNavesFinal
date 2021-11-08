@@ -6,12 +6,12 @@ public interface HandlerLifePlayerViewModelDelegate {
     void notifyLoadLife();
 }
 public interface HandlerLifePlayerViewModel { 
-    int maxLife { get; }
-    int currentLife{ get; }
+    float maxLife { get; }
+    float currentLife{ get; }
     StructurePlayer currentStructureLife { get; }
     HandlerLifePlayerViewModelDelegate myDelegate { get; set; }
     float percentage();
-    void updateCurrentLife(int life);
+    void updateCurrentLife(float life);
     void loadLife();
     void setStructurePlayer(StructurePlayer structure);
 }
@@ -26,9 +26,9 @@ public class HandlerLifePlayerViewModelImpl : HandlerLifePlayerViewModel
     private SpacecraftPlayerUpdateCurrentLifeUseCase updateCurrentLifeUseCase = new SpacecraftPlayerUpdateCurrentLifeUseCaseImpl();
     private HandlerLifePlayerViewModelDelegate _myDelegate;
 
-    public int maxLife => (int)getMaxLifeUseCase.invoke();
+    public float maxLife => getMaxLifeUseCase.invoke();
 
-    public int currentLife => (int)getLifeUseCase.invoke();
+    public float currentLife => getLifeUseCase.invoke();
     
 
     public HandlerLifePlayerViewModelDelegate myDelegate { 
@@ -51,13 +51,13 @@ public class HandlerLifePlayerViewModelImpl : HandlerLifePlayerViewModel
         loadLife();
     }
 
-    public void updateCurrentLife(int life)
+    public void updateCurrentLife(float life)
     {
         updateCurrentLifeUseCase.invoke(life);
         loadLife();
     }
 
     public float percentage() {
-        return Constants.lifeBarPlayer * (((float)currentLife) / ((float) maxLife));
+        return Constants.lifeBarPlayer * (currentLife / maxLife);
     }
 }

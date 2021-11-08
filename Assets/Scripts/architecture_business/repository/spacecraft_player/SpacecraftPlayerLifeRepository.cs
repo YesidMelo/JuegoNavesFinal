@@ -7,11 +7,11 @@ public interface SpacecraftPlayerLifeRepository
     public float life { get; }
     public float maxLife { get; }
     public StructurePlayer currentStructure { get; }
-    public void addLife(int life);
+    public void addLife(float life);
     public void addStructureLife(StructurePlayer structure);
     public bool loadLife();
-    public void quitLife(int life);
-    public void updateCurrentLife(int life);
+    public void quitLife(float life);
+    public void updateCurrentLife(float life);
 }
 
 public class SpacecraftPlayerLifeRepositoryImpl : SpacecraftPlayerLifeRepository {
@@ -21,9 +21,9 @@ public class SpacecraftPlayerLifeRepositoryImpl : SpacecraftPlayerLifeRepository
     public float maxLife => cache.maxLife;
     public StructurePlayer currentStructure => cache.currentStructure;
 
-    public void addLife(int life) => cache.addLife(life);
+    public void addLife(float life) => cache.addLife(life);
     public void addStructureLife(StructurePlayer structure) => cache.addStructureLife(structure);
     public bool loadLife() => cache.loadLife();
-    public void quitLife(int life) => cache.quitLife(life);
-    public void updateCurrentLife(int life) => cache.updateCurrentLife(life);
+    public void quitLife(float life) => cache.quitLife(life);
+    public void updateCurrentLife(float life) => cache.updateCurrentLife(life);
 }

@@ -8,8 +8,8 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
     public bool loadLifeFromUI = false;
     public bool updateStructureLifeFromUI = false;
     public bool updateCurrentLife = false;
-    public int maxLife = 0;
-    public int currentLife = 0;
+    public float maxLife = 0;
+    public float currentLife = 0;
     public GameObject parent;
 
     private HandlerLifePlayerViewModel viewModel = new HandlerLifePlayerViewModelImpl();
@@ -38,7 +38,7 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
         
     }
 
-    public void updateCurrentStructureLife(int currentLife) {
+    public void updateCurrentStructureLife(float currentLife) {
         if (viewModel == null) return;
         viewModel.updateCurrentLife(currentLife);
     }

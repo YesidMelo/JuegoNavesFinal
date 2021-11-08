@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftPlayerUpdateCurrentLifeUseCase {
-    void invoke(int life);
+    void invoke(float life);
 }
 public class SpacecraftPlayerUpdateCurrentLifeUseCaseImpl : SpacecraftPlayerUpdateCurrentLifeUseCase
 {
     private SpacecraftPlayerLifeRepository repo = new SpacecraftPlayerLifeRepositoryImpl();
 
-    public void invoke(int life) => repo.updateCurrentLife(life);
+    public void invoke(float life) => repo.updateCurrentLife(life);
 }

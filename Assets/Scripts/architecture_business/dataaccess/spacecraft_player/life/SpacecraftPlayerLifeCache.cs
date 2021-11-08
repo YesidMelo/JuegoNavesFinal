@@ -4,14 +4,14 @@ using UnityEngine;
 
 public interface SpacecraftPlayerLifeCache
 {
-    public int life { get; }
+    public float life { get; }
     public StructurePlayer currentStructure { get; }
-    public int maxLife { get; }
-    public void addLife(int life); 
+    public float maxLife { get; }
+    public void addLife(float life); 
     public void addStructureLife(StructurePlayer structure);
     public bool loadLife();
-    public void quitLife(int life);
-    public void updateCurrentLife(int currentLife);
+    public void quitLife(float life);
+    public void updateCurrentLife(float currentLife);
 }
 
 public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
@@ -25,22 +25,22 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         return instance;
     }
 
-    private int _maxLife = 1000;
-    private int _life = 0;
+    private float _maxLife = 1000;
+    private float _life = 0;
     private StructurePlayer _currentStructure = StructurePlayer.TYPE_1;
 
     private SpacecraftPlayerLifeCacheImpl() {}
 
-    public int life => _life;
+    public float life => _life;
 
-    public int maxLife => _maxLife;
+    public float maxLife => _maxLife;
 
     public StructurePlayer currentStructure => _currentStructure;
 
-    public void addLife(int life)
+    public void addLife(float life)
     {
         if (_life == _maxLife) return;
-        int finalLife = _life + life;
+        float finalLife = _life + life;
         if (finalLife >= _maxLife)
         {
             _life = _maxLife;
@@ -61,10 +61,10 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         return true;
     }
 
-    public void quitLife(int life)
+    public void quitLife(float life)
     {
         if (_life == 0) return;
-        int finalLife = _life - life;
+        float finalLife = _life - life;
         if (finalLife <= 0)
         {
             _life = 0;
@@ -73,7 +73,7 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         _life = finalLife;
     }
 
-    public void updateCurrentLife(int currentLife)
+    public void updateCurrentLife(float currentLife)
     {
         _life = currentLife;
     }

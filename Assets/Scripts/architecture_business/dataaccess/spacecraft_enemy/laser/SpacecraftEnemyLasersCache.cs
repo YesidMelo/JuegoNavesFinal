@@ -34,11 +34,9 @@ public class SpacecraftEnemyLasersCacheImpl : SpacecraftEnemyLasersCache
 
     public void deleteLasers(IdentificatorModel identificator)
     {
-        Debug.Log("current lasers: " + _dictionarySpacecraft.Count);
         clear(_dictionarySpacecraft, identificator);
         clear(_dictionaryImpactLaser, identificator);
         clear(_dictionaryTypeLaser, identificator);
-        Debug.Log("current lasers: " + _dictionarySpacecraft.Count);
     }
 
     public int impactLaser(IdentificatorModel identificator) => _dictionaryImpactLaser[identificator];
