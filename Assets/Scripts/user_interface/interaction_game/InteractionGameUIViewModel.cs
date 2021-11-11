@@ -37,15 +37,17 @@ public interface InteractionGameUIViewModel {
 public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 {
 
-    private InteractionGameUIViewModelDelegate _myDelegate;
     private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
     private CurrentLangajeUseCase _currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
-    private Move _currentMove;
-    private StatusGame _currentStatusGame;
-    private Vector3 _currentPosition = new Vector3(0, 0, 0);
     private UpdateActionSpacecraftUseCase _updateActionSpacecraftUseCase = new UpdateActionSpacecraftUseCaseImpl();
     private UpdateMovementJoysticUseCase _updateMovementJoysticUseCase = new UpdateMovementJoysticUseCaseImpl();
     private SpacecraftPlayerGetLifeUseCase _spacecraftPlayerGetLifeUseCase = new SpacecraftPlayerGetLifeUseCaseImpl();
+    private SpacecraftPlayerChangeCurrentEnemyUseCase _changeCurrentEnemyUseCase = new SpacecraftPlayerChangeCurrentEnemyUseCaseImpl();
+
+    private InteractionGameUIViewModelDelegate _myDelegate;
+    private Move _currentMove;
+    private StatusGame _currentStatusGame;
+    private Vector3 _currentPosition = new Vector3(0, 0, 0);
 
     // get and sets
     public InteractionGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
@@ -86,6 +88,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
                 return;
             case Action.DEFENSE:
                 _updateActionSpacecraftUseCase.invoke(Action.ATTACK);
+                _changeCurrentEnemyUseCase.invoke();
                 return;
             default:
                 _updateActionSpacecraftUseCase.invoke(Action.DEFENSE);
@@ -93,7 +96,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
         }
     }
 
-    public void changeEnemy() {}
+    public void changeEnemy() => _changeCurrentEnemyUseCase.invoke();
 
     public void changeLaser() {}
 

@@ -29,6 +29,8 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
     }
 
     private List<GameObject> _listElementsRadar = new List<GameObject>();
+    
+
     private RadarPlayer _currentRadarPlayer = RadarPlayer.TYPE_1;
     private float _currentRadiusRadar = 1f;
 
@@ -37,6 +39,7 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
     public float radiusRadar => _currentRadiusRadar;
 
     public RadarPlayer currentRadarPlayer => _currentRadarPlayer;
+
 
     public void addElementToRadar(GameObject gameObject)
     {
