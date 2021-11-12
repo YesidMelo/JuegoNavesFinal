@@ -52,13 +52,13 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
         float finalSpeed = 0;
 
         foreach(MotorPlayer currentMotor in _listMotors) {
-            finalSpeed = speedMotor + getSpeedMotor(currentMotor);
+            finalSpeed = finalSpeed + getSpeedMotor(currentMotor);
         }
         _speedMotor = finalSpeed;
     }
 
     float getSpeedMotor(MotorPlayer motor) {
-        float speed = 1;
+        float speed;
         switch (motor) {
             case MotorPlayer.TYPE_2:
                 speed = Constants.speedMotorPlayerType2;

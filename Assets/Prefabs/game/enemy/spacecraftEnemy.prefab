@@ -227,6 +227,7 @@ MonoBehaviour:
   handlerShieldEnemy: {fileID: 4342315121680094245}
   handlerStorageEnemy: {fileID: 4342315121572947333}
   handlerStructureEnemy: {fileID: 4342315122414555569}
+  isLoadSpacecraftFromViewModel: 0
 --- !u!1 &4342315121572947334
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +498,7 @@ GameObject:
   - component: {fileID: 4342315122053543343}
   - component: {fileID: 4342315122053543340}
   - component: {fileID: 4342315122053543341}
+  - component: {fileID: 5691796403559647210}
   m_Layer: 0
   m_Name: radarEnemy
   m_TagString: Untagged
@@ -572,6 +574,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5691796403559647210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4342315122053543336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f603a91fc1a77f479c737033b855902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentList: []
+  currentPlayer: {fileID: 0}
+  handlerRadar: {fileID: 4342315122053543343}
 --- !u!1 &4342315122414555570
 GameObject:
   m_ObjectHideFlags: 0

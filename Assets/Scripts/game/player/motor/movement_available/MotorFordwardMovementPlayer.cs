@@ -14,10 +14,13 @@ public class MotorFordwardMovementPlayer : BaseMotorMovementPlayer
         _speedSpacecraft = speedSpacecraft;
     }
 
-    public void move() => _currentMotor.transform.Translate(0, _speedSpacecraft * Time.deltaTime, 0);
+    public void move() {
+        Debug.Log(string.Format("{0} : {1}", "velocidad actual", _speedSpacecraft));
+        _currentMotor.transform.Translate(0, _speedSpacecraft * Time.deltaTime, 0); 
+    }
 
     public void updateSpeedMotor(float speedMotor) {
         if (speedMotor == 0) return;
-        _speedSpacecraft = speedMotor; 
+        _speedSpacecraft = speedMotor;
     }
 }

@@ -21,6 +21,7 @@ public static class Constants
     public static string nameLaserPlayer = "laserPlayer";
     public static string namePlayer = "player";
     public static string nameRadarPlayer = "radarPlayer";
+    public static string nameShieldPlayer = "shieldPlayer";
 
     //Distance
     public static float minimunDistaceBetweenPlayerEnemy = 3f;

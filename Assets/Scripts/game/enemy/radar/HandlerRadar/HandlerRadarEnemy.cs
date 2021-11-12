@@ -60,4 +60,8 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
         currentRadiusRadar = viewModel.currentRadiusRadar;
         currentListInRadar = viewModel.currentGameobjectInRadar;
     }
+
+    public IdentificatorModel identificator {
+        get => viewModel.identificator;
+    }
 }

@@ -12,6 +12,7 @@ public interface HandlerRadarEnemyViewModel {
     RadarEnemy currentRadar { get; }
     int currentRadiusRadar { get; }
     List<GameObject> currentGameobjectInRadar{ get;}
+    IdentificatorModel identificator { get; }
 
     HandlerRadarEnemyViewModelDelegate myDelegate { get; set; }
     void loadSpacecraft(IdentificatorModel identificator);
@@ -50,6 +51,8 @@ public class HandlerRadarEnemyViewModelImpl : HandlerRadarEnemyViewModel
     public int currentRadiusRadar => _currentRadiusRadar;
 
     public List<GameObject> currentGameobjectInRadar => _gameobjectsInRadar;
+
+    public IdentificatorModel identificator => identificatorModel;
 
     public void addGameObjectToRadar(GameObject gameObject)
     {
