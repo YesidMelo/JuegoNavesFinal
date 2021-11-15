@@ -66,49 +66,10 @@ public class SpacecraftEnemyLasersCacheImpl : SpacecraftEnemyLasersCache
     }
 
     private void insertImpactLaser(IdentificatorModel identificator, SpacecraftEnemy spacecraftEnemy) {
-        int finalImpact = 0;
-        switch (spacecraftEnemy) {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
-                finalImpact = Constants.laserEnemyType2;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
-                finalImpact = Constants.laserEnemyType3;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
-                finalImpact = Constants.laserEnemyType4;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
-                finalImpact = Constants.laserEnemyType5;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
-            default:
-                finalImpact = Constants.laserEnemyType1;
-                break;
-        }
-        _dictionaryImpactLaser[identificator] = finalImpact;
+        _dictionaryImpactLaser[identificator] = spacecraftEnemy.getImpactLaser();
     }
 
     private void insertTypeLaser(IdentificatorModel identificator, SpacecraftEnemy spacecraftEnemy) {
-        LaserEnemy type;
-        switch (spacecraftEnemy)
-        {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
-                type = LaserEnemy.TYPE_2;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
-                type = LaserEnemy.TYPE_3;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
-                type = LaserEnemy.TYPE_4;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
-                type = LaserEnemy.TYPE_5;
-                break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
-            default:
-                type = LaserEnemy.TYPE_1;
-                break;
-        }
-        _dictionaryTypeLaser[identificator] = type;
+        _dictionaryTypeLaser[identificator] = spacecraftEnemy.getCurrentLaser();
     }
 }

@@ -40,19 +40,19 @@ public class SpacecraftEnemyShieldCacheImpl : SpacecraftEnemyShieldCache
     private ShieldEnemy loadCurrentShield(SpacecraftEnemy spacecraft) {
         ShieldEnemy finalShield;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
                 finalShield = ShieldEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
+            case SpacecraftEnemy.NIVEL1_MAJOR:
                 finalShield = ShieldEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
                 finalShield = ShieldEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
+            case SpacecraftEnemy.NIVEL1_COLONEL:
                 finalShield = ShieldEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
             default:
                 finalShield = ShieldEnemy.TYPE_1;
                 break;

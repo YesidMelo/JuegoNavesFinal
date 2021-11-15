@@ -9,6 +9,7 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
     public HandlerRadarEnemy handlerRadarEnemy;
     public GameObject spacecraft;
     public bool isFiring = false;
+    public GameObject currentPlayer;
 
     void Update()
     {
@@ -31,20 +32,53 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
     private void startFiring()
     {
         if (isFiring) return;
-        if (spacecraft == null) return;
-        if (handlerLaser == null) return;
-        if (handlerRadarEnemy == null) return;
-        if (handlerRadarEnemy.currentListInRadar == null) return;
-        if (handlerRadarEnemy.currentListInRadar.Count == 0) return;
-
+        if (!iCanStartFiring()) {
+            
+            return;
+        }
         isFiring = true;
         StartCoroutine(generateLaser());
     }
+
+    private bool iCanStartFiring()
+    {
+        if (spacecraft == null)
+        {
+            isFiring = false;
+            Debug.Log("Spacecraft null");
+            return false;
+        }
+        if (handlerLaser == null)
+        {
+            isFiring = false;
+            Debug.Log("handlerLaser null");
+            return false;
+        }
+        if (handlerRadarEnemy == null) {
+            isFiring = false;
+            Debug.Log("handlerRadarEnemy null");
+            return false; 
+        }
+        if (handlerRadarEnemy.currentListInRadar == null)
+        {
+            isFiring = false;
+            Debug.Log("currentListInRadar null");
+            return false;
+        }
+        if (handlerRadarEnemy.currentListInRadar.Count == 0) {
+            isFiring = false;
+            Debug.Log("currentListInRadar count null");
+            return false; 
+        }
+        return true;
+    }
+
     //ui methods
 
     //IEnumerators
     IEnumerator generateLaser() {
         while (isFiring) {
+            if (!iCanStartFiring()) yield return null;
             GameObject laser = Instantiate(prefabAmmounitionLaser);
             laser.transform.position = transform.position;
             laser.transform.eulerAngles = transform.eulerAngles - new Vector3(0,0,-90);

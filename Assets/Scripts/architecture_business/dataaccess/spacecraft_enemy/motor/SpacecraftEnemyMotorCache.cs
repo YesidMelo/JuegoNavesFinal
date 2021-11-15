@@ -48,19 +48,19 @@ public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
     private float currentSpeed(SpacecraftEnemy spacecraft) {
         float finalSpeed = 0;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
                 finalSpeed = Constants.speedMotorEnemyType2;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
+            case SpacecraftEnemy.NIVEL1_MAJOR:
                 finalSpeed = Constants.speedMotorEnemyType3;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
                 finalSpeed = Constants.speedMotorEnemyType4;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
+            case SpacecraftEnemy.NIVEL1_COLONEL:
                 finalSpeed = Constants.speedMotorEnemyType5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
             default:
                 finalSpeed = Constants.speedMotorEnemyType1;
                 break;
@@ -72,19 +72,19 @@ public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
         MotorEnemy finalMotor;
         switch (spacecraft)
         {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
                 finalMotor = MotorEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
+            case SpacecraftEnemy.NIVEL1_MAJOR:
                 finalMotor = MotorEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
                 finalMotor = MotorEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
+            case SpacecraftEnemy.NIVEL1_COLONEL:
                 finalMotor = MotorEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
             default:
                 finalMotor = MotorEnemy.TYPE_1;
                 break;

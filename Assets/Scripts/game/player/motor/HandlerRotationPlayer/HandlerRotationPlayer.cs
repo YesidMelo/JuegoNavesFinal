@@ -50,6 +50,11 @@ public class HandlerRotationPlayer : MonoBehaviour, HandlerRotationPlayerViewMod
     }
 
     void rotateToEnemy() {
+        if (currentEnemy == null)
+        {
+            originalRotation();
+            return;
+        }
         pointToEnemy(structure);
         pointToEnemy(laser);
     }

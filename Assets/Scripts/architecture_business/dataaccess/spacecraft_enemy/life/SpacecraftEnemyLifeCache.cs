@@ -96,19 +96,19 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
     private float selectCurrentLife(SpacecraftEnemy spacecraft) {
         float finalLife = 0;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
                 finalLife = Constants.lifeEnemyStructureType2;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
+            case SpacecraftEnemy.NIVEL1_MAJOR:
                 finalLife = Constants.lifeEnemyStructureType3;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
                 finalLife = Constants.lifeEnemyStructureType4;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
+            case SpacecraftEnemy.NIVEL1_COLONEL:
                 finalLife = Constants.lifeEnemyStructureType5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
             default:
                 finalLife = Constants.lifeEnemyStructureType1;
                 break;

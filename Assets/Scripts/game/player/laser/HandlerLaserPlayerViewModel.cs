@@ -8,7 +8,7 @@ public interface HandlerLaserPlayerViewModelDelegate {
 
 public interface HandlerLaserPlayerViewModel {
     bool shooting { get; }
-    int impactDamage { get; }
+    float impactDamage { get; }
     LaserPlayer typeLaser{ get; }
     List<LaserPlayer> listLaser{ get; }
     HandlerLaserPlayerViewModelDelegate myDelegate { get; set; }
@@ -28,9 +28,10 @@ public class HandlerLaserPlayerViewModelImpl : HandlerLaserPlayerViewModel
     private SpacecraftPlayerSetListLasersUseCase setListLasersUseCase = new SpacecraftPlayerSetListLasersUseCaseImpl();
     private SpacecraftPlayerLoadLasersUseCase loadLasersUseCase = new SpacecraftPlayerLoadLasersUseCaseImpl();
     private CurrentActionSpacecraftUseCase currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
+    private SpacecraftPlayerGetCurrentEnemyUseCase getCurrentEnemyUseCase = new SpacecraftPlayerGetCurrentEnemyUseCaseImpl();
     private HandlerLaserPlayerViewModelDelegate _myDelegate;
 
-    public int impactDamage => mediaImpactLaserUseCase.invoke();
+    public float impactDamage => mediaImpactLaserUseCase.invoke();
 
     public LaserPlayer typeLaser => finalLaserUseCase.invoke();
 
@@ -43,7 +44,14 @@ public class HandlerLaserPlayerViewModelImpl : HandlerLaserPlayerViewModel
 
     public Action currentAction => currentActionSpacecraftUseCase.invoke();
 
-    public bool shooting => currentAction == Action.ATTACK;
+    public bool shooting {
+        get {
+            if (currentAction == Action.ATTACK && getCurrentEnemyUseCase.invoke() != null) {
+                return true;
+            }
+            return false;
+        }
+    }
 
     public void calculateLasers(List<LaserPlayer> listLasers) => setListLasersUseCase.invoke(listLaser);
 

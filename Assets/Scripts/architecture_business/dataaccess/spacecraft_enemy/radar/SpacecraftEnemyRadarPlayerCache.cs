@@ -28,6 +28,7 @@ public class SpacecraftEnemyRadarPlayerCacheImpl : SpacecraftEnemyRadarPlayerCac
 
     public GameObject currentPlayer(IdentificatorModel identificator)
     {
+        if (!_currentPlayer.ContainsKey(identificator)) return null;
         return _currentPlayer[identificator];
     }
 

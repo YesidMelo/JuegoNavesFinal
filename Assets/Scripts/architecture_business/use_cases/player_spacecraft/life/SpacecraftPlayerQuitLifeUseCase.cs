@@ -9,6 +9,7 @@ public interface SpacecraftPlayerQuitLifeUseCase
 
 public class SpacecraftPlayerQuitLifeUseCaseImpl : SpacecraftPlayerQuitLifeUseCase
 {
-    private SpacecraftPlayerLifeRepository repo = new SpacecraftPlayerLifeRepositoryImpl();
-    public void invoke(float life) => repo.quitLife(life);
+    private SpacecraftPlayerLifeRepository repoLifeRepository = new SpacecraftPlayerLifeRepositoryImpl();
+
+    public void invoke(float life) => repoLifeRepository.quitLife(life);
 }

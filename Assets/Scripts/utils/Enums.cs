@@ -44,7 +44,8 @@ public enum LaguageAvailable
 }
 
 public enum Level { 
-    LEVEL_1
+    LEVEL1_SECTION1,
+    LEVEL1_SECTION2,
 }
 
 public enum Move { 
@@ -139,11 +140,14 @@ public enum ShieldPlayer
 
 public enum SpacecraftEnemy
 {
-    NIVEL1_SPACECRAFT1,
-    NIVEL1_SPACECRAFT2,
-    NIVEL1_SPACECRAFT3,
-    NIVEL1_SPACECRAFT4,
-    NIVEL1_SPACECRAFT5,
+    NIVEL1_SECOND_LIEUTENANTS,
+    NIVEL1_LIEUTENENTS,
+    NIVEL1_MAJOR,
+    NIVEL1_LIEUTENANTCOLONEL,
+    NIVEL1_COLONEL,
+    NIVEL1_BRIGADUERGENERAL,
+    NIVEL1_MAJOR_GENERAL,
+    NIVEL1_GENERAL,
 }
 
 public enum StatusGame { 

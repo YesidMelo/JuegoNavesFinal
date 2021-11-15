@@ -9,6 +9,7 @@ public class HandlerLaserPlayer : MonoBehaviour, HandlerLaserPlayerViewModelDele
     public bool updateLasersFromUI = false;
     public GameObject prefabLaserPlayer;
     public GameObject parent;
+    public float currentImpact;
 
     private HandlerLaserPlayerViewModel viewModel = new HandlerLaserPlayerViewModelImpl();
     private Action _currentActionSpacecraft;
@@ -86,6 +87,7 @@ public class HandlerLaserPlayer : MonoBehaviour, HandlerLaserPlayerViewModelDele
         if (_detailLaserPlayer == null) {
             _detailLaserPlayer = new DetailLaserPlayer();
         }
+        currentImpact = viewModel.impactDamage;
         _detailLaserPlayer.impactDamage = viewModel.impactDamage;
         _detailLaserPlayer.nameParent = transform.name;
         _detailLaserPlayer.parent = transform.gameObject;

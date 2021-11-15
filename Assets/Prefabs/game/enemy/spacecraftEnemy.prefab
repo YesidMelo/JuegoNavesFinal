@@ -227,6 +227,7 @@ MonoBehaviour:
   handlerShieldEnemy: {fileID: 4342315121680094245}
   handlerStorageEnemy: {fileID: 4342315121572947333}
   handlerStructureEnemy: {fileID: 4342315122414555569}
+  handlerFiringLasersEnemy: {fileID: 4342315121234953432}
   isLoadSpacecraftFromViewModel: 0
 --- !u!1 &4342315121572947334
 GameObject:
@@ -586,9 +587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f603a91fc1a77f479c737033b855902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handlerRadar: {fileID: 4342315122053543343}
   currentList: []
   currentPlayer: {fileID: 0}
-  handlerRadar: {fileID: 4342315122053543343}
 --- !u!1 &4342315122414555570
 GameObject:
   m_ObjectHideFlags: 0

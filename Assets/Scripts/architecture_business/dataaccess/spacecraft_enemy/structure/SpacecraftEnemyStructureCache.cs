@@ -40,19 +40,19 @@ public class SpacecraftEnemyStructureCacheImpl : SpacecraftEnemyStructureCache
     private StructureEnemy loadStructureByTypeSpacecraft(SpacecraftEnemy spacecraft) {
         StructureEnemy finalStructure;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
                 finalStructure = StructureEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
+            case SpacecraftEnemy.NIVEL1_MAJOR:
                 finalStructure = StructureEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
                 finalStructure = StructureEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
+            case SpacecraftEnemy.NIVEL1_COLONEL:
                 finalStructure = StructureEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
             default:
                 finalStructure = StructureEnemy.TYPE_1;
                 break;

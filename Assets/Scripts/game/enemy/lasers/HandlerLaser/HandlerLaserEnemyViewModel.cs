@@ -8,9 +8,9 @@ public interface HandlerLaserEnemyViewModelDelegate {
 }
 public interface HandlerLaserEnemyViewModel { 
 
-    int impactLaser { get; }
+    float impactLaser { get; }
     LaserEnemy currentLaser { get; }
-
+    IdentificatorModel identificator { get; }
 
     SpacecraftEnemy currentSpacecraft { get; }
     HandlerLaserEnemyViewModelDelegate myDelegate { get; set; }
@@ -29,7 +29,7 @@ public class HandlerLaserEnemyViewModelImpl : HandlerLaserEnemyViewModel
     private SpacecraftEnemy _currentSpacecraft;
     private HandlerLaserEnemyViewModelDelegate _myDelegate;
     private IdentificatorModel identificatorModel;
-    private int _impactLaser;
+    private float _impactLaser;
     private LaserEnemy _currentLaser;
 
 
@@ -41,9 +41,11 @@ public class HandlerLaserEnemyViewModelImpl : HandlerLaserEnemyViewModel
         set => _myDelegate = value;
     }
 
-    public int impactLaser => _impactLaser;
+    public float impactLaser => _impactLaser;
 
     public LaserEnemy currentLaser => _currentLaser;
+
+    public IdentificatorModel identificator => identificatorModel;
 
     public void deleteLaser()
     {

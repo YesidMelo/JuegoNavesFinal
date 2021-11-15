@@ -45,7 +45,9 @@ public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
         _dictionarySpacecraft[identificator] = spacecraft;
         _dictionaryRadius[identificator] = loadRadiusRadar(spacecraft);
         _dictionaryRadar[identificator] = loadTypeRadar(spacecraft);
-        _dictionaryGameobjects[identificator] = new List<GameObject>();
+        if (!_dictionaryGameobjects.ContainsKey(identificator)) { 
+            _dictionaryGameobjects[identificator] = new List<GameObject>();
+        }
         return true;
     }
 
@@ -78,19 +80,19 @@ public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
     private int loadRadiusRadar(SpacecraftEnemy spacecraft) {
         int finalRadius = 0;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
                 finalRadius = Constants.radarEnemyRadiusRadarType2;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
+            case SpacecraftEnemy.NIVEL1_MAJOR:
                 finalRadius = Constants.radarEnemyRadiusRadarType3;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
                 finalRadius = Constants.radarEnemyRadiusRadarType4;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
+            case SpacecraftEnemy.NIVEL1_COLONEL:
                 finalRadius = Constants.radarEnemyRadiusRadarType5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
             default:
                 finalRadius = Constants.radarEnemyRadiusRadarType1;
                 break;
@@ -102,19 +104,19 @@ public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
         RadarEnemy typeRadar;
         switch (spacecraft)
         {
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT2:
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
                 typeRadar = RadarEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT3:
+            case SpacecraftEnemy.NIVEL1_MAJOR:
                 typeRadar = RadarEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT4:
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
                 typeRadar = RadarEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT5:
+            case SpacecraftEnemy.NIVEL1_COLONEL:
                 typeRadar = RadarEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SPACECRAFT1:
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
             default:
                 typeRadar = RadarEnemy.TYPE_1;
                 break;

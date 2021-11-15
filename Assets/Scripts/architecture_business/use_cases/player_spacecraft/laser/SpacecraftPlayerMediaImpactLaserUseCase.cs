@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface SpacecraftPlayerMediaImpactLaserUseCase {
-    int invoke();
+    float invoke();
 }
 
 public class SpacecraftPlayerMediaImpactLaserUseCaseImpl : SpacecraftPlayerMediaImpactLaserUseCase
 {
     private SpacecraftPlayerLaserRepository repo = new SpacecraftPlayerLaserRepositoryImpl();
-    public int invoke() => repo.mediaImpactLaser;
+    public float invoke() => repo.mediaImpactLaser;
 }

@@ -51,18 +51,18 @@ public static class Constants
     public static float speedFiring = 1f;
 
     //Speeds enemy spacecraft
-    public static float speedMotorEnemyType1 = 1f;
-    public static float speedMotorEnemyType2 = 1.5f;
-    public static float speedMotorEnemyType3 = 2f;
-    public static float speedMotorEnemyType4 = 2.5f;
-    public static float speedMotorEnemyType5 = 3f;
+    public static float speedMotorEnemyType1 = 2f;
+    public static float speedMotorEnemyType2 = 2.5f;
+    public static float speedMotorEnemyType3 = 3f;
+    public static float speedMotorEnemyType4 = 3.5f;
+    public static float speedMotorEnemyType5 = 4f;
     
     //Speeds player spacecraft
-    public static float speedMotorPlayerType1 = 1f;
-    public static float speedMotorPlayerType2 = 1.5f;
-    public static float speedMotorPlayerType3 = 2;
-    public static float speedMotorPlayerType4 = 2.5f;
-    public static float speedMotorPlayerType5 = 3f;
+    public static float speedMotorPlayerType1 = 2f;
+    public static float speedMotorPlayerType2 = 2.5f;
+    public static float speedMotorPlayerType3 = 3;
+    public static float speedMotorPlayerType4 = 3.5f;
+    public static float speedMotorPlayerType5 = 4f;
 
     //LifeEnemy
     public static float lifeEnemyStructureType1 = 500;
@@ -95,5 +95,13 @@ public static class Constants
     public static float radarPlayerRadiusRadarType3 = 6f;
     public static float radarPlayerRadiusRadarType4 = 6.5f;
     public static float radarPlayerRadiusRadarType5 = 7f;
+
+    //PercentagesPlayer
+    public static float percentageAssiertFirinLaserPlayer = 0.5f;
+    public static float percengateProtecionShieldPlayer = 0.5f;
+
+    //percentagesEnemy
+    public static float percentageAssiertFirinLaserEnemy = 0.5f;
+    public static float percengateProtecionShieldEnemy= 0.5f;
 
 }

@@ -34,4 +34,12 @@ public static class Functions
     public static float generateRandomNumberBetween(float number1, float number2) {
         return Random.Range(number1, number2);
     }
+
+    public static float generateRandomPosionX() {
+        return Random.Range(-Constants.dimensionWidthBackground, Constants.dimensionWidthBackground);
+    }
+    
+    public static float generateRandomPosionY() {
+        return Random.Range(-Constants.dimensionHeightBackground, Constants.dimensionHeightBackground);
+    }
 }
