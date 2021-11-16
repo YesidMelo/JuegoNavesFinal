@@ -34,7 +34,7 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
     private void OnDestroy()
     {
         if (viewModel == null) return;
-        viewModel.destroySpacecraft();
+        viewModel.destroySpacecraft(transform.gameObject);
     }
 
     //public methods

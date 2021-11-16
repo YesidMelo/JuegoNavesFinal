@@ -17,8 +17,10 @@ public static class LevelEnumExtentions{
         int currentEnemies;
         switch (spacecraft) {
             case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
-            default:
                 currentEnemies = 3;
+                break;
+            default:
+                currentEnemies = 0;
                 break;
         }
         return currentEnemies;
