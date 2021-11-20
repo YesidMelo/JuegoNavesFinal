@@ -45,29 +45,24 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
         if (spacecraft == null)
         {
             isFiring = false;
-            Debug.Log("Spacecraft null");
             return false;
         }
         if (handlerLaser == null)
         {
             isFiring = false;
-            Debug.Log("handlerLaser null");
             return false;
         }
         if (handlerRadarEnemy == null) {
             isFiring = false;
-            Debug.Log("handlerRadarEnemy null");
             return false; 
         }
         if (handlerRadarEnemy.currentListInRadar == null)
         {
             isFiring = false;
-            Debug.Log("currentListInRadar null");
             return false;
         }
         if (handlerRadarEnemy.currentListInRadar.Count == 0) {
             isFiring = false;
-            Debug.Log("currentListInRadar count null");
             return false; 
         }
         return true;
@@ -78,7 +73,6 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
     //IEnumerators
     IEnumerator generateLaser() {
         while (isFiring) {
-            if (!iCanStartFiring()) yield return null;
             GameObject laser = Instantiate(prefabAmmounitionLaser);
             laser.transform.position = transform.position;
             laser.transform.eulerAngles = transform.eulerAngles - new Vector3(0,0,-90);
@@ -90,6 +84,7 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
             detailLaser.parent = spacecraft;
             handler.updateDetailLaser(detailLaser);
             yield return new WaitForSeconds(Constants.speedFiring);
+            if (!iCanStartFiring()) yield return null;
         }
         isFiring = false;
         yield return null;

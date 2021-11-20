@@ -82,6 +82,13 @@ public class HandlerRadarEnemyViewModelImpl : HandlerRadarEnemyViewModel
         _currentRadar = currentRadarUseCase.invoke(identificatorModel);
         _currentRadiusRadar = currentRadiusRadarUseCase.invoke(identificatorModel) ;
         _gameobjectsInRadar = getListGameobjectsInRadarUseCase.invoke(identificatorModel);
+        Debug.Log(
+            string.Format(
+                "{0}: {1}\n{2}: {3}",
+                "currentRadar", _currentRadar,
+                "currentRadius", _currentRadiusRadar
+            )
+        );
         _myDelegate.notifyLoadRadar();
     }
 }

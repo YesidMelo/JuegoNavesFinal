@@ -7,19 +7,21 @@ public static class Constants
     
     public static string nameSpacecraft = "spacecraft";
     public static string namePatrolPoint = "patrolPoint";
-    public static string nameAmmunitionLaserEnemy = "ammunitionLaserEnemy";
 
     //strings enemy
-    public static string nameAmmunitionLaserPlayer = "ammunitionLaserPlayer";
+    public static string nameEnemyCapital = "Enemy";
+    public static string nameAmmunitionLaserEnemy = "ammunitionLaserEnemy";
     public static string nameEnemy = "enemy";
     public static string nameLaserEnemy = "laserEnemy";
     public static string nameRadarEnemy = "radarEnemy";
     public static string nameShieldEnemy = "shieldEnemy";
 
     //strings player
+    public static string nameAmmunitionLaserPlayer = "ammunitionLaserPlayer";
     public static string nameMotorPlayer = "motorPlayer";
     public static string nameLaserPlayer = "laserPlayer";
     public static string namePlayer = "player";
+    public static string namePlayerCapital = "Player";
     public static string nameRadarPlayer = "radarPlayer";
     public static string nameShieldPlayer = "shieldPlayer";
 
@@ -83,11 +85,11 @@ public static class Constants
     public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);
 
     //RadarEnemy
-    public static int radarEnemyRadiusRadarType1 = 5;
-    public static int radarEnemyRadiusRadarType2 = 5;
-    public static int radarEnemyRadiusRadarType3 = 5;
-    public static int radarEnemyRadiusRadarType4 = 5;
-    public static int radarEnemyRadiusRadarType5 = 5;
+    public static int radarEnemyRadiusRadarType1 = 10;
+    public static int radarEnemyRadiusRadarType2 = 10;
+    public static int radarEnemyRadiusRadarType3 = 10;
+    public static int radarEnemyRadiusRadarType4 = 10;
+    public static int radarEnemyRadiusRadarType5 = 10;
     
     //RadarPlayer
     public static float radarPlayerRadiusRadarType1 = 5f;

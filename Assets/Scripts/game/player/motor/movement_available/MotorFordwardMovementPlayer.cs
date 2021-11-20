@@ -15,7 +15,6 @@ public class MotorFordwardMovementPlayer : BaseMotorMovementPlayer
     }
 
     public void move() {
-        Debug.Log(string.Format("{0} : {1}", "velocidad actual", _speedSpacecraft));
         _currentMotor.transform.Translate(0, _speedSpacecraft * Time.deltaTime, 0); 
     }
 

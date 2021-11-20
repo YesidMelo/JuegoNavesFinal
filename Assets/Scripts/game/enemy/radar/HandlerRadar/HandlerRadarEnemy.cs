@@ -9,6 +9,7 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
     public int currentRadiusRadar;
     public GameObject laserEnemy;
     public List<GameObject> currentListInRadar;
+    public CircleCollider2D circleCollider;
 
     private HandlerRadarEnemyViewModel viewModel = new HandlerRadarEnemyViewModelImpl();
 
@@ -37,6 +38,7 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
 
     //private method
     private bool checkCollision(Collider2D collision) {
+        Debug.Log(string.Format("nombre : {0}", collision.name));
         if (viewModel == null) return false;
         if (laserEnemy == collision.gameObject) return false;
         if (collision.name.Contains(Constants.nameAmmunitionLaserEnemy)) return false;
@@ -44,6 +46,8 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
         if (collision.name.Contains(Constants.nameShieldEnemy)) return false;
         if (collision.name.Contains(Constants.nameRadarPlayer)) return false;
         if (collision.name.Contains(Constants.nameLaserPlayer)) return false;
+        if (collision.name.Contains(Constants.nameRadarEnemy)) return false;
+        if (collision.name.Contains(Constants.nameLaserEnemy)) return false;
         return true;
     }
 
@@ -59,6 +63,8 @@ public class HandlerRadarEnemy : MonoBehaviour, HandlerRadarEnemyViewModelDelega
         currentRadar = viewModel.currentRadar;
         currentRadiusRadar = viewModel.currentRadiusRadar;
         currentListInRadar = viewModel.currentGameobjectInRadar;
+        if (circleCollider == null) return;
+        circleCollider.radius = currentRadiusRadar;
     }
 
     public IdentificatorModel identificator {

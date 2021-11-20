@@ -43,8 +43,8 @@ public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
 
     public bool loadRadar(IdentificatorModel identificator, SpacecraftEnemy spacecraft) {
         _dictionarySpacecraft[identificator] = spacecraft;
-        _dictionaryRadius[identificator] = loadRadiusRadar(spacecraft);
-        _dictionaryRadar[identificator] = loadTypeRadar(spacecraft);
+        _dictionaryRadius[identificator] = spacecraft.loadRadiusRadar();
+        _dictionaryRadar[identificator] = spacecraft.loadCurrentRadar();
         if (!_dictionaryGameobjects.ContainsKey(identificator)) { 
             _dictionaryGameobjects[identificator] = new List<GameObject>();
         }
@@ -77,53 +77,7 @@ public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
 
     //private methods
 
-    private int loadRadiusRadar(SpacecraftEnemy spacecraft) {
-        int finalRadius = 0;
-        switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
-                finalRadius = Constants.radarEnemyRadiusRadarType2;
-                break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
-                finalRadius = Constants.radarEnemyRadiusRadarType3;
-                break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
-                finalRadius = Constants.radarEnemyRadiusRadarType4;
-                break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
-                finalRadius = Constants.radarEnemyRadiusRadarType5;
-                break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
-            default:
-                finalRadius = Constants.radarEnemyRadiusRadarType1;
-                break;
-        }
-        return finalRadius;
-    }
-
-    private RadarEnemy loadTypeRadar(SpacecraftEnemy spacecraft) {
-        RadarEnemy typeRadar;
-        switch (spacecraft)
-        {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
-                typeRadar = RadarEnemy.TYPE_2;
-                break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
-                typeRadar = RadarEnemy.TYPE_3;
-                break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
-                typeRadar = RadarEnemy.TYPE_4;
-                break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
-                typeRadar = RadarEnemy.TYPE_5;
-                break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
-            default:
-                typeRadar = RadarEnemy.TYPE_1;
-                break;
-        }
-        return typeRadar;
-    }
-
+  
     private void removeFromDictionary<T>(IdentificatorModel identificator, Dictionary<IdentificatorModel, T> dictionary) {
         if (!dictionary.ContainsKey(identificator)) return;
         dictionary.Remove(identificator);

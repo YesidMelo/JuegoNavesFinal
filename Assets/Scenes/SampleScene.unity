@@ -444,6 +444,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3385442957524685763, guid: b3c53dfd1ad9b15489c43e7f6d5db88f, type: 3}
+      propertyPath: listMotors.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5673752772150815728, guid: b3c53dfd1ad9b15489c43e7f6d5db88f, type: 3}
       propertyPath: m_Name
       value: player
@@ -693,6 +697,8 @@ MonoBehaviour:
   prefabEnemy: {fileID: 4342315121428128867, guid: 135039e29248dae458df8719059bcdcc, type: 3}
   currentLevel: 0
   updateLevel: 0
+  startCoroutineCheckPopulation: 0
+  isRunCoroutineCheckPopulation: 0
 --- !u!4 &1756660475
 Transform:
   m_ObjectHideFlags: 0

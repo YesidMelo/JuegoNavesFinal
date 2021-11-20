@@ -34,7 +34,13 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
     public bool loadMotors()
     {
         if (listMotors.Count != 0) return true;
-        _listMotors.Add(MotorPlayer.TYPE_1);
+        _listMotors.Add(MotorPlayer.TYPE_5);
+        _listMotors.Add(MotorPlayer.TYPE_5);
+        _listMotors.Add(MotorPlayer.TYPE_5);
+        _listMotors.Add(MotorPlayer.TYPE_5);
+        _listMotors.Add(MotorPlayer.TYPE_5);
+        _listMotors.Add(MotorPlayer.TYPE_5);
+        _listMotors.Add(MotorPlayer.TYPE_5);
         setListMotors(_listMotors);
         return true;
     }

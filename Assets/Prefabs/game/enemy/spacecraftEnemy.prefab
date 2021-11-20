@@ -130,6 +130,7 @@ MonoBehaviour:
   handlerRadarEnemy: {fileID: 4342315122053543343}
   spacecraft: {fileID: 4342315121428128867}
   isFiring: 0
+  currentPlayer: {fileID: 0}
 --- !u!58 &4342315121234953433
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -227,7 +228,6 @@ MonoBehaviour:
   handlerShieldEnemy: {fileID: 4342315121680094245}
   handlerStorageEnemy: {fileID: 4342315121572947333}
   handlerStructureEnemy: {fileID: 4342315122414555569}
-  handlerFiringLasersEnemy: {fileID: 4342315121234953432}
   isLoadSpacecraftFromViewModel: 0
 --- !u!1 &4342315121572947334
 GameObject:
@@ -538,6 +538,7 @@ MonoBehaviour:
   currentRadiusRadar: 0
   laserEnemy: {fileID: 4342315121234953381}
   currentListInRadar: []
+  circleCollider: {fileID: 4342315122053543340}
 --- !u!58 &4342315122053543340
 CircleCollider2D:
   m_ObjectHideFlags: 0

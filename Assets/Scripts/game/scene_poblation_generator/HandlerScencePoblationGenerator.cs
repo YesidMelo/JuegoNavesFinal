@@ -6,7 +6,7 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
 {
     public GameObject prefabEnemy;
     public Level currentLevel;
-    public bool updateLevel = false;
+    public bool updateLevel = true;
     public bool startCoroutineCheckPopulation = false;
 
     public bool isRunCoroutineCheckPopulation = false;
@@ -69,17 +69,16 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
     private IEnumerator checkPopulation() {
         while (isRunCoroutineCheckPopulation) {
             if (viewModel.isAllPoblation(currentLevel)) {
-                Debug.Log(string.Format("{0}: {1}", "poblacion", "bien"));
                 yield return new WaitForSeconds(1f);
             }
             Dictionary<SpacecraftEnemy, int> populationMissing = viewModel.getEnemiesMissingInThePopulation(currentLevel);
             foreach (KeyValuePair<SpacecraftEnemy, int> entry in populationMissing) {
-                Debug.Log(string.Format("{0}: {1}", entry.Key, entry.Value));
                 for (int counter = 0; counter< entry.Value; counter++) {
                     GameObject spacecraft = instantiateElement(entry.Key);
+                    spacecraft.name = string.Format("{0}{1}",spacecraft.name,counter);
                     if (spacecraft == null) continue;
                     viewModel.addEnemy(level: currentLevel, spacecraft: entry.Key, gameObject: spacecraft);
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(0.003f);
                 }
             }
             yield return new WaitForSeconds(1f);

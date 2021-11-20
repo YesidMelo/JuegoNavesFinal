@@ -18,7 +18,7 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
 
     private HandlerSpacecraftEnemyViewModel viewModel = new HandlerSpacecraftEnemyViewModelImpl();
 
-    private void Start()
+    private void Awake()
     {
         viewModel.myDelegate = this;
         viewModel.loadSpacecraft();

@@ -26,7 +26,7 @@ public class SpacecraftEnemyShieldCacheImpl : SpacecraftEnemyShieldCache
 
     public bool loadShield(IdentificatorModel identificator, SpacecraftEnemy spacecraft)
     {
-        _dictionaryShield[identificator] = loadCurrentShield(spacecraft);
+        _dictionaryShield[identificator] = spacecraft.loadCurrentShield();
         return true;
     }
 
@@ -37,26 +37,5 @@ public class SpacecraftEnemyShieldCacheImpl : SpacecraftEnemyShieldCache
     }
 
     //private methods
-    private ShieldEnemy loadCurrentShield(SpacecraftEnemy spacecraft) {
-        ShieldEnemy finalShield;
-        switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
-                finalShield = ShieldEnemy.TYPE_2;
-                break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
-                finalShield = ShieldEnemy.TYPE_3;
-                break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
-                finalShield = ShieldEnemy.TYPE_4;
-                break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
-                finalShield = ShieldEnemy.TYPE_5;
-                break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
-            default:
-                finalShield = ShieldEnemy.TYPE_1;
-                break;
-        }
-        return finalShield;
-    }
+
 }

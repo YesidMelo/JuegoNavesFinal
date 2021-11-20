@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class SpacecraftEnemyEnumExtentions {
 
+    //laser
     public static LaserEnemy getCurrentLaser(this SpacecraftEnemy spacecraftEnemy) {
         LaserEnemy type;
         switch (spacecraftEnemy)
@@ -52,4 +53,78 @@ public static class SpacecraftEnemyEnumExtentions {
         return finalImpact;
     }
 
+    //shield
+    public static ShieldEnemy loadCurrentShield(this SpacecraftEnemy spacecraft) {
+        ShieldEnemy finalShield;
+        switch (spacecraft)
+        {
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+                finalShield = ShieldEnemy.TYPE_2;
+                break;
+            case SpacecraftEnemy.NIVEL1_MAJOR:
+                finalShield = ShieldEnemy.TYPE_3;
+                break;
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+                finalShield = ShieldEnemy.TYPE_4;
+                break;
+            case SpacecraftEnemy.NIVEL1_COLONEL:
+                finalShield = ShieldEnemy.TYPE_5;
+                break;
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            default:
+                finalShield = ShieldEnemy.TYPE_1;
+                break;
+        }
+        return finalShield;
+    }
+
+    //radar
+    public static RadarEnemy loadCurrentRadar(this SpacecraftEnemy spacecraft) {
+        RadarEnemy typeRadar;
+        switch (spacecraft)
+        {
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+                typeRadar = RadarEnemy.TYPE_2;
+                break;
+            case SpacecraftEnemy.NIVEL1_MAJOR:
+                typeRadar = RadarEnemy.TYPE_3;
+                break;
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+                typeRadar = RadarEnemy.TYPE_4;
+                break;
+            case SpacecraftEnemy.NIVEL1_COLONEL:
+                typeRadar = RadarEnemy.TYPE_5;
+                break;
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            default:
+                typeRadar = RadarEnemy.TYPE_1;
+                break;
+        }
+        return typeRadar;
+    }
+
+    public static int loadRadiusRadar(this SpacecraftEnemy spacecraft) {
+        int finalRadius;
+        switch (spacecraft)
+        {
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+                finalRadius = Constants.radarEnemyRadiusRadarType2;
+                break;
+            case SpacecraftEnemy.NIVEL1_MAJOR:
+                finalRadius = Constants.radarEnemyRadiusRadarType3;
+                break;
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+                finalRadius = Constants.radarEnemyRadiusRadarType4;
+                break;
+            case SpacecraftEnemy.NIVEL1_COLONEL:
+                finalRadius = Constants.radarEnemyRadiusRadarType5;
+                break;
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            default:
+                finalRadius = Constants.radarEnemyRadiusRadarType1;
+                break;
+        }
+        return finalRadius;
+    
+    }
 }
