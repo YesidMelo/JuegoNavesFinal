@@ -684,6 +684,7 @@ GameObject:
   - component: {fileID: 5964348336368010919}
   - component: {fileID: 5964348336368010918}
   - component: {fileID: 5964348336368010914}
+  - component: {fileID: 7504436957884538376}
   m_Layer: 5
   m_Name: interaction_game
   m_TagString: Untagged
@@ -790,10 +791,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6f31d1a5cbf9244b21ece083673a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabPlayer: {fileID: 4277793015965395124, guid: 79fcd0e6d5dc4364aabda3b785d068cb, type: 3}
   joystic: {fileID: 4840128732369755008}
   textAction: {fileID: 5964348336961031003}
   textLife: {fileID: 8092367561353943603}
+--- !u!114 &7504436957884538376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964348336368010921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d14617ca7813d418ab35857e295b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabPlayer: {fileID: 5673752772150815728, guid: b3c53dfd1ad9b15489c43e7f6d5db88f, type: 3}
+  prefabSpawnerPoblation: {fileID: 2507668503294303990, guid: e7b1591b5dc977049b134cb17cec4c17, type: 3}
+  handlerCameraPlayer: {fileID: 0}
+  interactionGameUI: {fileID: 0}
 --- !u!1 &5964348336474109377
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
 {
     public GameObject prefabEnemy;
     public Level currentLevel;
-    public bool updateLevel = true;
+    public bool updateLevel = false;
     public bool startCoroutineCheckPopulation = false;
 
     public bool isRunCoroutineCheckPopulation = false;

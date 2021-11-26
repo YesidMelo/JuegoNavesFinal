@@ -18,19 +18,16 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     private InteractionGameUIDelegate _myDelegate;
     private InteractionGameUIViewModel viewModel = new InteractionGameUIViewModelImpl();
 
-    public GameObject prefabPlayer;
+    
     public VariableJoystick joystic;
     public TextMeshProUGUI textAction;
     public TextMeshProUGUI textLife;
 
+
     // lifecycle
     private void Awake()
     {
-        //TODO actualizar con el nuevo objeto prefab Player
-        /*
-        GameObject currentPlayer = Instantiate(prefabPlayer, viewModel.getInitialPosition, Quaternion.identity);
-        currentPlayer.transform.name = Constants.namePlayer;
-        */
+        
     }
 
     private void FixedUpdate()
@@ -84,6 +81,10 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     {
         if (notExistsDelegate()) { return; }
         _myDelegate.goToConfigSpacecraft();
+    }
+
+    public Vector3 getInitialPosition {
+        get => viewModel.getInitialPosition;
     }
 
 }

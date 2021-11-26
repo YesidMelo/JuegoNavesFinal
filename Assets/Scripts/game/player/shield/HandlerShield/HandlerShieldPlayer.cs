@@ -7,9 +7,8 @@ public class HandlerShieldPlayer : MonoBehaviour, HandlerShieldPlayerViewModelDe
     public ShieldPlayer shield;
     public bool updateShield = false;
     public bool loadCurrrentShield = true;
-    private HandlerShieldPlayerViewModel viewModel = new HandlerShieldPlayerViewModelImpl();
 
-    
+    private HandlerShieldPlayerViewModel viewModel = new HandlerShieldPlayerViewModelImpl();
 
     private void Awake()
     {
@@ -39,6 +38,7 @@ public class HandlerShieldPlayer : MonoBehaviour, HandlerShieldPlayerViewModelDe
         loadCurrrentShield = true;
         viewModel.loadShield();
     }
+
     //delegates
 
     public void notifyLoadShield()
@@ -46,4 +46,5 @@ public class HandlerShieldPlayer : MonoBehaviour, HandlerShieldPlayerViewModelDe
         loadCurrrentShield = false;
         shield = viewModel.currentShield;
     }
+
 }

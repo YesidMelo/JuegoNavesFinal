@@ -6,6 +6,7 @@ public interface HandlerLifeShieldEnemyViewModelDelegate { }
 
 public interface HandlerLifeShieldEnemyViewModel {
     float currentLife(IdentificatorModel identificator);
+    SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator);
     HandlerLifeShieldEnemyViewModelDelegate myDelegate { get; set; }
     void removeLife(DetailLaserPlayer detailLaserPlayer, IdentificatorModel identificator);
 }
@@ -14,6 +15,7 @@ public class HandlerLifeShieldEnemyViewModelImpl : HandlerLifeShieldEnemyViewMod
 {
     private SpacecraftEnemyCurrentLifeUseCase currentLifeUseCase = new SpacecraftEnemyCurrentLifeUseCaseImpl();
     private SpacecraftEnemyQuitLifeUseCase quitLifeUseCase = new SpacecraftEnemyQuitLifeUseCaseImpl();
+    private SpacecraftEnemyGetCurrentSpacecraftUseCase getCurrentSpacecraftUseCase = new SpacecraftEnemyGetCurrentSpacecraftUseCaseImpl();
 
     private HandlerLifeShieldEnemyViewModelDelegate _myDelegate;
 
@@ -25,6 +27,8 @@ public class HandlerLifeShieldEnemyViewModelImpl : HandlerLifeShieldEnemyViewMod
 
     public float currentLife(IdentificatorModel identificator) => currentLifeUseCase.invoke(identificator);
 
+    public SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator) => getCurrentSpacecraftUseCase.invoke(identificator);
+    
     public void removeLife(DetailLaserPlayer detailLaserPlayer, IdentificatorModel identificator)
     {
         quitLifeUseCase.invoke(identificator,(int) detailLaserPlayer.impactDamage);

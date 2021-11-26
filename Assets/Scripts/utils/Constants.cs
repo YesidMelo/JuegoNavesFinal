@@ -2,6 +2,7 @@ using UnityEngine;
 
 public static class Constants 
 {
+    //region AllStrings
     //Strings
     public static string nameCameraPlayer = "camera_player";
     
@@ -24,6 +25,11 @@ public static class Constants
     public static string namePlayerCapital = "Player";
     public static string nameRadarPlayer = "radarPlayer";
     public static string nameShieldPlayer = "shieldPlayer";
+
+    //string spawmer poblation
+    public static string nameSpawmerPoblation = "spawmerPoblation";
+
+    //endregion
 
     //Distance
     public static float minimunDistaceBetweenPlayerEnemy = 3f;
@@ -105,5 +111,8 @@ public static class Constants
     //percentagesEnemy
     public static float percentageAssiertFirinLaserEnemy = 0.5f;
     public static float percengateProtecionShieldEnemy= 0.5f;
+
+    //spawmer poblation
+    public static Vector3 positionSpawmerPosition = new Vector3(0, 0, 0);
 
 }
