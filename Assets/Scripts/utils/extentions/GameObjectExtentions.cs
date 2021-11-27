@@ -14,4 +14,12 @@ public static class GameObjectExtentions
         float newPositionX = Random.Range(-(Constants.dimensionWidthBackground/2), (Constants.dimensionWidthBackground / 2));
         currentObject.transform.position = new Vector3(newPositionX, newPositionY, 0);
     }
+
+    public static void show(this GameObject gameObject) {
+        gameObject.SetActive(true);
+    }
+
+    public static void hidden(this GameObject gameObject) {
+        gameObject.SetActive(false);
+    }
 }

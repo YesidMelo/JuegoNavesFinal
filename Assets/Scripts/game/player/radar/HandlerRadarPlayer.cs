@@ -61,6 +61,7 @@ public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDele
         if (collision.name.Contains(Constants.nameRadarEnemy)) return false;
         if (collision.name.Contains(Constants.nameAmmunitionLaserEnemy)) return false;
         if (collision.name.Contains(Constants.nameLaserPlayer)) return false;
+        if (collision.name.Contains(Constants.nameShieldPlayer)) return false;
         return true;
     }
 

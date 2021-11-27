@@ -98,11 +98,11 @@ public static class Constants
     public static int radarEnemyRadiusRadarType5 = 10;
     
     //RadarPlayer
-    public static float radarPlayerRadiusRadarType1 = 5f;
-    public static float radarPlayerRadiusRadarType2 = 5.5f;
-    public static float radarPlayerRadiusRadarType3 = 6f;
-    public static float radarPlayerRadiusRadarType4 = 6.5f;
-    public static float radarPlayerRadiusRadarType5 = 7f;
+    public static float radarPlayerRadiusRadarType1 = 10f;
+    public static float radarPlayerRadiusRadarType2 = 10.5f;
+    public static float radarPlayerRadiusRadarType3 = 11f;
+    public static float radarPlayerRadiusRadarType4 = 11.5f;
+    public static float radarPlayerRadiusRadarType5 = 12f;
 
     //PercentagesPlayer
     public static float percentageAssiertFirinLaserPlayer = 0.5f;
