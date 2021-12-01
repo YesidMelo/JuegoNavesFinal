@@ -73,11 +73,11 @@ public static class Constants
     public static float speedMotorPlayerType5 = 4f;
 
     //LifeEnemy
-    public static float lifeEnemyStructureType1 = 500;
-    public static float lifeEnemyStructureType2 = 1000;
-    public static float lifeEnemyStructureType3 = 1500;
-    public static float lifeEnemyStructureType4 = 2000;
-    public static float lifeEnemyStructureType5 = 2500;
+    public static float lifeEnemyStructureType1 = 100;
+    public static float lifeEnemyStructureType2 = 200;
+    public static float lifeEnemyStructureType3 = 300;
+    public static float lifeEnemyStructureType4 = 400;
+    public static float lifeEnemyStructureType5 = 500;
 
     //LifePlayer
     public static int lifePlayerStructureType1 = 500;

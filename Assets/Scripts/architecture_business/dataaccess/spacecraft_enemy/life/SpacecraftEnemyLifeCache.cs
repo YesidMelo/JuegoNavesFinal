@@ -21,8 +21,10 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
     private static SpacecraftEnemyLifeCacheImpl instance;
 
     //static methods
-    public static SpacecraftEnemyLifeCacheImpl getInstance() {
-        if (instance == null) {
+    public static SpacecraftEnemyLifeCacheImpl getInstance()
+    {
+        if (instance == null)
+        {
             instance = new SpacecraftEnemyLifeCacheImpl();
         }
         return instance;
@@ -41,7 +43,8 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
         float currentLife = _dictionaryCurrentLife[identificator];
 
         currentLife = currentLife + life;
-        if (currentLife >= currentMaxLife) {
+        if (currentLife >= currentMaxLife)
+        {
             currentLife = currentMaxLife;
             _dictionaryCurrentLife[identificator] = currentLife;
             return;
@@ -56,8 +59,8 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
     public bool loadLife(IdentificatorModel identificator, SpacecraftEnemy spacecraft)
     {
         _dictionarySpacecraft[identificator] = spacecraft;
-        float finalMaxLife = selectCurrentLife(spacecraft);
-        _dictionaryCurrentLife[identificator]= finalMaxLife;
+        float finalMaxLife = spacecraft.getLife();
+        _dictionaryCurrentLife[identificator] = finalMaxLife;
         _dictionorayMaxLife[identificator] = finalMaxLife;
         return true;
     }
@@ -89,30 +92,8 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
     }
 
     //private methods
-    private bool notIsLifeInDictionaries(IdentificatorModel  identificator) {
+    private bool notIsLifeInDictionaries(IdentificatorModel identificator)
+    {
         return !_dictionorayMaxLife.ContainsKey(identificator) || !_dictionaryCurrentLife.ContainsKey(identificator);
-    }
-
-    private float selectCurrentLife(SpacecraftEnemy spacecraft) {
-        float finalLife = 0;
-        switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
-                finalLife = Constants.lifeEnemyStructureType2;
-                break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
-                finalLife = Constants.lifeEnemyStructureType3;
-                break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
-                finalLife = Constants.lifeEnemyStructureType4;
-                break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
-                finalLife = Constants.lifeEnemyStructureType5;
-                break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
-            default:
-                finalLife = Constants.lifeEnemyStructureType1;
-                break;
-        }
-        return finalLife;
     }
 }

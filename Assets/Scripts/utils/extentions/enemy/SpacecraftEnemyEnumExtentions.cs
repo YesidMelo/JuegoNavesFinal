@@ -53,6 +53,31 @@ public static class SpacecraftEnemyEnumExtentions {
         return finalImpact;
     }
 
+    //life
+    public static float getLife(this SpacecraftEnemy spacecraft) {
+        float finalLife;
+        switch (spacecraft)
+        {
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+                finalLife = Constants.lifeEnemyStructureType2;
+                break;
+            case SpacecraftEnemy.NIVEL1_MAJOR:
+                finalLife = Constants.lifeEnemyStructureType3;
+                break;
+            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+                finalLife = Constants.lifeEnemyStructureType4;
+                break;
+            case SpacecraftEnemy.NIVEL1_COLONEL:
+                finalLife = Constants.lifeEnemyStructureType5;
+                break;
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            default:
+                finalLife = Constants.lifeEnemyStructureType1;
+                break;
+        }
+        return finalLife;
+    }
+
     //shield
     public static ShieldEnemy loadCurrentShield(this SpacecraftEnemy spacecraft) {
         ShieldEnemy finalShield;

@@ -12,6 +12,9 @@ public class SpacecraftPlayerGetCurrentEnemyUseCaseImpl : SpacecraftPlayerGetCur
 
     public GameObject invoke() {
         if (joysticRepository.currentActionSpacecraft != Action.ATTACK) return null;
+        if (radarRepository.currentEnemy == null) {
+            radarRepository.changeCurrentEnemy();
+        }
         return radarRepository.currentEnemy;
     }
 }
