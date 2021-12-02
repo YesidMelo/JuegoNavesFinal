@@ -115,4 +115,7 @@ public static class Constants
     //spawmer poblation
     public static Vector3 positionSpawmerPosition = new Vector3(0, 0, 0);
 
+    //Splash
+    public static int timeAwaitSplash = 5000;
+
 }

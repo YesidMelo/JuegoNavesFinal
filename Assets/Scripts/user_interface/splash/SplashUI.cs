@@ -1,6 +1,4 @@
-
 using UnityEngine;
-using Zenject;
 
 // Class that manage ui of splash
 public class SplashUI : AbstractCanvas, SplashUIViewModelDelegate
@@ -10,12 +8,13 @@ public class SplashUI : AbstractCanvas, SplashUIViewModelDelegate
 
     void Start() {
         splashUIViewModel.myDelegate = this;
+        onClickContinue();
     }
 
     // public methods
     // Method that listen action click on button
-    public void onClickContinue() {
-        splashUIViewModel.goToMainMenu();
+    public async void onClickContinue() {
+       await splashUIViewModel.goToMainMenu();
     }
 
     // inherit of delegates
@@ -24,8 +23,6 @@ public class SplashUI : AbstractCanvas, SplashUIViewModelDelegate
         if (myDelegate == null) { return; }
         myDelegate.goToMainMenu();
     }
-
-    public class Factory : PlaceholderFactory<SplashUI> { }
 
 }
 
