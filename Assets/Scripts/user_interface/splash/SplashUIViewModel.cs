@@ -10,6 +10,8 @@ public interface SplashUIViewModelDelegate
 }
 
 public interface SplashUIViewModel {
+    
+    Task<string> getNameGame();
     SplashUIViewModelDelegate myDelegate { set; }
     Task goToMainMenu();
 }
@@ -17,21 +19,30 @@ public interface SplashUIViewModel {
 // class that manage actions in splash ui
 public class SplashUIViewModelImpl : SplashUIViewModel
 {
+    private CurrentLangajeUseCase langajeUseCase = new CurrentLangajeUseCaseImpl();
 
     private SplashLoadElementsUseCase loadElementsUseCase = new SplashLoadElementsUseCaseImpl();
 
     private SplashUIViewModelDelegate _myDelegate;
+    public SplashUIViewModelImpl() { 
+
+    }
 
     public  async Task goToMainMenu() {
-        Debug.Log("Inicio hilo");
         if (_myDelegate == null) return;
         bool output = await loadElementsUseCase.invoke();
-        Debug.Log("finalizo hilo");
         if (!output) return;
         _myDelegate.goToMainMenu();
     }
 
-    
+    public async Task<string> getNameGame()
+    {
+        return await Task.Run(() => {
+            return langajeUseCase.invoke().getNameTag(NameTagLanguage.NAME_GAME);
+        });
+    }
+
+
     //sets and gets
     public SplashUIViewModelDelegate myDelegate { set => _myDelegate = value; }
 }

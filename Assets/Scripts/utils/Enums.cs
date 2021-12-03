@@ -84,11 +84,19 @@ public enum MotorPlayer
 public enum NameTagLanguage
 {
     //Generic
+    ABOUT,
     ATTACK,
-    DEFENSE,
+    CONFIGURATION,
     CONTINUE,
+    CREATE_GAME,
+    DEFENSE,
+    GO_BACK,
+    GAME_CREATED,
     LIFE_PLAYER,
+    LOAD_GAME,
     NAME_GAME,
+    NEW_GAME,
+    PLACEHOLDER_NEW_GAME_PLAYER,
 }
 
 public enum Quadrant { 

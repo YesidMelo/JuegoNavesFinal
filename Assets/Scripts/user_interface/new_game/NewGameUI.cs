@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,9 +15,14 @@ public interface NewGameUIDelegate : AbstractCanvasUIDelegate
 public class NewGameUI : AbstractCanvas, NewGameUIViewModelDelegate
 {
 
-    public TextMeshProUGUI title;
     public TextMeshProUGUI back;
     public TextMeshProUGUI create;
+    public TextMeshProUGUI gameCreated;
+    public TMP_InputField namePlayer;
+    public TextMeshProUGUI placeHolder;
+    public TextMeshProUGUI title;
+
+    public String currentNameGame;
     
     public NewGameUIDelegate myDelegate { set => _myDelegate = value; }
     private NewGameUIViewModel viewModel = new NewGameUIViewModelImpl();
@@ -28,10 +34,19 @@ public class NewGameUI : AbstractCanvas, NewGameUIViewModelDelegate
         viewModel.myDelegate = this;
         initElementsView();
     }
+    private void Update()
+    {
+        updateTextGameLoaded();
+    }
 
     //clicks
     public void clickCreateNewGame() {
-        viewModel.createNewGame("nuevo juego");
+        
+        NewGameModel newGame = new NewGameModel();
+        newGame.namePlayer = namePlayer.text;
+        newGame.date = new DateTime();
+
+        viewModel.createNewGame(newGame: newGame);
     }
 
     public void clickGoBack() {
@@ -48,14 +63,21 @@ public class NewGameUI : AbstractCanvas, NewGameUIViewModelDelegate
         title.text = viewModel.title;
         back.text = viewModel.back;
         create.text = viewModel.create;
+        placeHolder.text = viewModel.placeholder;
+    }
+
+    private void updateTextGameLoaded() {
+        if (currentNameGame == null) return;
+        gameCreated.text = currentNameGame;
     }
 
     //delegate
 
-    public void createNewGame(string name)
+    public void createNewGame(string newGame)
     {
         if (notExistsDelegate()) { return; }
-        _myDelegate.createNewGame();
+        currentNameGame = newGame;
+        //_myDelegate.createNewGame();
     }
 
     public void goToBack()

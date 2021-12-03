@@ -29,9 +29,15 @@ public interface MainMenuUIViewModel {
 public class MainMenuUIViewModelImpl : MainMenuUIViewModel
 {
 
+    private CurrentLangajeUseCase langajeUseCase = new CurrentLangajeUseCaseImpl();
+
     public MainMenuUIViewModelDelegate _myDelegate;
 
     public AbstractLanguage currentLanguage;
+
+    public MainMenuUIViewModelImpl() {
+        currentLanguage = langajeUseCase.invoke();
+    }
 
     public void goToNewGame() {
         if (notExistDelegate()) { return; }
@@ -61,22 +67,22 @@ public class MainMenuUIViewModelImpl : MainMenuUIViewModel
     //gets and sets
     public string about
     {
-        get { return "Acerca de"; }
+        get { return currentLanguage.getNameTag(NameTagLanguage.ABOUT); }
     }
     public string configuration {
-        get { return "Confguration"; }
+        get { return currentLanguage.getNameTag(NameTagLanguage.CONFIGURATION); }
     }
     public string loadGame
     {
-        get { return "Cargar juego"; }
+        get { return currentLanguage.getNameTag(NameTagLanguage.CONFIGURATION); }
     }
 
     public string nameGame {
-        get { return "Juego galactico"; }
+        get { return currentLanguage.getNameTag(NameTagLanguage.NAME_GAME); }
     }
 
     public string newGame {
-        get { return "Nuevo juego"; }
+        get { return currentLanguage.getNameTag(NameTagLanguage.NEW_GAME); }
     }
 
     public MainMenuUIViewModelDelegate myDelegate {
