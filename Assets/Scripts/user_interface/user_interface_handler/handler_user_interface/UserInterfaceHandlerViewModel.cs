@@ -25,13 +25,19 @@ public interface UserInterfaceHandlerViewModelDelegate {
 public interface UserInterfaceHandlerViewModel {
 
     CanvasAvailable currentCanvas { get; }
+
     UserInterfaceHandlerViewModelDelegate myDelegate { set; }
 
     void checkCurrentCanvas();
+
+    void setCurrentMainCamera(Camera mainCamera);
 }
 
 public class UserInterfaceHandlerViewModelImpl: UserInterfaceHandlerViewModel
 {
+    private HandlerUserInterfaceSetCurrentMainCameraUseCase setCurrentMainCameraUseCase = new HandlerUserInterfaceSetCurrentMainCameraUseCaseImpl();
+
+
     private CanvasAvailable _currentCanvasEnum = CanvasAvailable.SPLASH;
     private UserInterfaceHandlerViewModelDelegate _myDelegate;
 
@@ -47,6 +53,11 @@ public class UserInterfaceHandlerViewModelImpl: UserInterfaceHandlerViewModel
                 _myDelegate.goToSplash(new SplashUIListener(_myDelegate));        
                 return;
         }
+    }
+
+    public void setCurrentMainCamera(Camera mainCamera)
+    {
+        setCurrentMainCameraUseCase.invoke(camera: mainCamera);
     }
 
     //private methods

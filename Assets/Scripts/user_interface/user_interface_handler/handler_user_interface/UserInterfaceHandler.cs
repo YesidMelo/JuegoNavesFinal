@@ -19,8 +19,8 @@ public class UserInterfaceHandler : MonoBehaviour, UserInterfaceHandlerViewModel
     public Canvas pause;
     public Canvas ShieldOptions;
     public Canvas splash;
-    
-    
+
+    public Camera mainCamera;
     private Canvas currentCanvasPrefab;
 
     [Inject] public UserInterfaceHandlerViewModel viewModel;
@@ -32,6 +32,7 @@ public class UserInterfaceHandler : MonoBehaviour, UserInterfaceHandlerViewModel
         viewModel.myDelegate = this;
         currentCanvasEnum = viewModel.currentCanvas;
         viewModel.checkCurrentCanvas();
+        viewModel.setCurrentMainCamera(mainCamera: mainCamera);
     }
 
     // private methods

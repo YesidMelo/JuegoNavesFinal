@@ -23,6 +23,7 @@ public class NewGameUI : AbstractCanvas, NewGameUIViewModelDelegate
     public TextMeshProUGUI title;
 
     public String currentNameGame;
+    public bool iCanCreateNewGame = false;
     
     public NewGameUIDelegate myDelegate { set => _myDelegate = value; }
     private NewGameUIViewModel viewModel = new NewGameUIViewModelImpl();
@@ -37,6 +38,7 @@ public class NewGameUI : AbstractCanvas, NewGameUIViewModelDelegate
     private void Update()
     {
         updateTextGameLoaded();
+        createNewGame();
     }
 
     //clicks
@@ -71,13 +73,21 @@ public class NewGameUI : AbstractCanvas, NewGameUIViewModelDelegate
         gameCreated.text = currentNameGame;
     }
 
+    private void createNewGame() {
+        if (notExistsDelegate()) return;
+        if (!iCanCreateNewGame) return;
+        iCanCreateNewGame = false;
+        _myDelegate.createNewGame();
+
+    }
+
     //delegate
 
     public void createNewGame(string newGame)
     {
         if (notExistsDelegate()) { return; }
         currentNameGame = newGame;
-        //_myDelegate.createNewGame();
+        iCanCreateNewGame = true;
     }
 
     public void goToBack()

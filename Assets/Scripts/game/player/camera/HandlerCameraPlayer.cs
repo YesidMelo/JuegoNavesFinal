@@ -21,7 +21,10 @@ public class HandlerCameraPlayer : MonoBehaviour, HandlerCameraPlayerViewModelDe
 
     //private methods
     private void updatePosition() {
-        if (currentPlayer == null) return;
+        if (currentPlayer == null) {
+            currentPlayer = viewModel.currentPlayer;
+            return;
+        }
         transform.position = new Vector3(
             currentPlayer.transform.position.x, 
             currentPlayer.transform.position.y, 

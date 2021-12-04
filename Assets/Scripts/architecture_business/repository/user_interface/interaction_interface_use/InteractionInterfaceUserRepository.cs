@@ -7,21 +7,26 @@ public interface InteractionInterfaceUserRepository {
     Action currentActionSpacecraft { get; }
 
     Vector2 currentMovementJoystic { get; }
+    GameObject currentPlayer { get; }
     void updateActionSpacecraft(Action action);
 
     void updateMovementJoystic(Vector2 direction);
+    void setCurrentPlayer(GameObject currentPlayer);
 }
 
 public class InteractionInterfaceUserRepositoryImpl : InteractionInterfaceUserRepository
 {
 
-    private InteractionInterfaceUserCache joysticCache = InteractionInterfaceUserCacheImpl.getInstance();
+    private InteractionInterfaceUserCache interactionInterfaceUserCache = InteractionInterfaceUserCacheImpl.getInstance();
 
-    public Action currentActionSpacecraft => joysticCache.currentActionSpacecraft;
-    public Vector2 currentMovementJoystic => joysticCache.currentDirection;
+    public Action currentActionSpacecraft => interactionInterfaceUserCache.currentActionSpacecraft;
+    public Vector2 currentMovementJoystic => interactionInterfaceUserCache.currentDirection;
 
+    public GameObject currentPlayer => interactionInterfaceUserCache.currentPlayer;
 
-    public void updateActionSpacecraft(Action action) => joysticCache.updateActionSpacecraft(action);
+    public void setCurrentPlayer(GameObject currentPlayer) => interactionInterfaceUserCache.setCurrentPlayer(currentPlayer: currentPlayer);
+
+    public void updateActionSpacecraft(Action action) => interactionInterfaceUserCache.updateActionSpacecraft(action);
     
-    public void updateMovementJoystic(Vector2 direction) => joysticCache.updatePositionJoystic(direction);
+    public void updateMovementJoystic(Vector2 direction) => interactionInterfaceUserCache.updatePositionJoystic(direction);
 }
