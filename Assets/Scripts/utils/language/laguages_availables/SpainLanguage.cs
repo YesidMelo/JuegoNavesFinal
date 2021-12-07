@@ -24,7 +24,9 @@ public class SpainLanguage : AbstractLanguage
         values[NameTagLanguage.LOAD_GAME] = "Cargar juego";
         values[NameTagLanguage.NAME_GAME] = "Juego Galactico";
         values[NameTagLanguage.NEW_GAME] = "Nuevo juego";
+        values[NameTagLanguage.PAUSE] = "Pausa";
         values[NameTagLanguage.PLACEHOLDER_NEW_GAME_PLAYER] = "Nombre jugador";
+        values[NameTagLanguage.SAVE_AND_EXIT] = "Guardar y salir";
 
     }
 }

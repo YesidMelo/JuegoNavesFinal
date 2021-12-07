@@ -31,7 +31,9 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
     //private methods
     private void instanceSpacecraftPlayer() {
         _currentSpacecraftPlayer = viewModel.currentPlayer;
+
         if (_currentSpacecraftPlayer != null) return;
+
         _currentSpacecraftPlayer = Instantiate(prefabPlayer, interactionGameUI.getInitialPosition, Quaternion.identity);
         _currentSpacecraftPlayer.transform.name = Constants.namePlayer;
         viewModel.setCurrentPlayer(currentPlayer: _currentSpacecraftPlayer);
@@ -39,9 +41,11 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
     }
 
     private void instanceSpawmerPoblation() {
+        _currentSpawnerPoblation = viewModel.currentSpawmPopulation;
         if (_currentSpawnerPoblation != null) return;
         _currentSpawnerPoblation = Instantiate(prefabSpawnerPoblation, Constants.positionSpawmerPosition, Quaternion.identity);
         _currentSpawnerPoblation.transform.name = Constants.nameSpawmerPoblation;
+        viewModel.setCurrentSpawmPopulation(currentSpawmPopulation: _currentSpawnerPoblation);
     }
 
     private void configCameraPlayer() {

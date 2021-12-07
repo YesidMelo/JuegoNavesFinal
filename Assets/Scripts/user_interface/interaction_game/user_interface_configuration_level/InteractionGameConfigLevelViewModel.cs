@@ -7,13 +7,17 @@ public interface InteractionGameConfigLevelViewModelDelegate { }
 public interface InteractionGameConfigLevelViewModel {
     InteractionGameConfigLevelViewModelDelegate myDelegate { set; }
     GameObject currentPlayer { get; }
+    GameObject currentSpawmPopulation { get; }
     void setCurrentPlayer(GameObject currentPlayer);
+    void setCurrentSpawmPopulation(GameObject currentSpawmPopulation);
 }
 
 public class InteractionGameConfigLevelViewModelImpl : InteractionGameConfigLevelViewModel
 {
     private GetCurrentPlayerUseCase getCurrentPlayerUseCase = new GetCurrentPlayerUseCaseImpl();
     private SetCurrentPlayerUseCase setCurrentPlayerUseCase = new SetCurrentPlayerUseCaseImpl();
+    private GetCurrentSpawmPopulationUseCase getCurrentSpawmPopulationUseCase = new GetCurrentSpawmPopulationUseCaseImpl();
+    private SetCurrentSpawmPopulationUseCase setCurrentSpawmPopulationUseCase = new SetCurrentSpawmPopulationUseCaseImpl();
 
     private InteractionGameConfigLevelViewModelDelegate _myDelegate;
 
@@ -21,5 +25,11 @@ public class InteractionGameConfigLevelViewModelImpl : InteractionGameConfigLeve
 
     public GameObject currentPlayer => getCurrentPlayerUseCase.invoke();
 
+    public GameObject currentSpawmPopulation => getCurrentSpawmPopulationUseCase.invoke();
+
     public void setCurrentPlayer(GameObject currentPlayer) => setCurrentPlayerUseCase.invoke(currentPlayer: currentPlayer);
+
+    public void setCurrentSpawmPopulation(GameObject currentSpawmPopulation) {
+        setCurrentSpawmPopulationUseCase.invoke(spawmPopulation: currentSpawmPopulation);
+    }
 }

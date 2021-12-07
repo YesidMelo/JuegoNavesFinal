@@ -8,10 +8,12 @@ public interface InteractionInterfaceUserRepository {
 
     Vector2 currentMovementJoystic { get; }
     GameObject currentPlayer { get; }
+    GameObject currentSpawmPopulation { get; }
     void updateActionSpacecraft(Action action);
 
     void updateMovementJoystic(Vector2 direction);
     void setCurrentPlayer(GameObject currentPlayer);
+    void setCurrentSpawmPopulation(GameObject spawmPopulation);
 }
 
 public class InteractionInterfaceUserRepositoryImpl : InteractionInterfaceUserRepository
@@ -24,7 +26,13 @@ public class InteractionInterfaceUserRepositoryImpl : InteractionInterfaceUserRe
 
     public GameObject currentPlayer => interactionInterfaceUserCache.currentPlayer;
 
+    public GameObject currentSpawmPopulation => interactionInterfaceUserCache.currentSpawmPopulation;
+
     public void setCurrentPlayer(GameObject currentPlayer) => interactionInterfaceUserCache.setCurrentPlayer(currentPlayer: currentPlayer);
+
+    public void setCurrentSpawmPopulation(GameObject spawmPopulation) {
+        interactionInterfaceUserCache.setCurrentSpawmPopulation(currentSpawmPopulation: spawmPopulation);
+    }
 
     public void updateActionSpacecraft(Action action) => interactionInterfaceUserCache.updateActionSpacecraft(action);
     

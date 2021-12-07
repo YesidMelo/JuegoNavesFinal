@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class HandlerCameraPlayer : MonoBehaviour, HandlerCameraPlayerViewModelDelegate
@@ -20,15 +21,15 @@ public class HandlerCameraPlayer : MonoBehaviour, HandlerCameraPlayerViewModelDe
     }
 
     //private methods
-    private void updatePosition() {
-        if (currentPlayer == null) {
-            currentPlayer = viewModel.currentPlayer;
-            return;
-        }
+    private async void updatePosition() {
+        currentPlayer = viewModel.currentPlayer;
+        if (currentPlayer == null) return;
         transform.position = new Vector3(
-            currentPlayer.transform.position.x, 
-            currentPlayer.transform.position.y, 
+            currentPlayer.transform.position.x,
+            currentPlayer.transform.position.y,
             transform.position.z
         );
+       
     }
+
 }

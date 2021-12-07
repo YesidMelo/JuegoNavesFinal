@@ -96,7 +96,9 @@ public enum NameTagLanguage
     LOAD_GAME,
     NAME_GAME,
     NEW_GAME,
+    PAUSE,
     PLACEHOLDER_NEW_GAME_PLAYER,
+    SAVE_AND_EXIT,
 }
 
 public enum Quadrant { 

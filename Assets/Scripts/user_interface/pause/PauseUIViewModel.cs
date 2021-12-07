@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public interface PauseUIViewModelDelegate {
@@ -20,15 +21,25 @@ public interface PauseUIViewModel {
 public class PauseUIViewModelImpl : PauseUIViewModel
 {
 
+    private CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
+    private SaveGameUseCase saveGameUseCase = new SaveGameUseCaseImpl();
+    private ClearLevelUseCase clearLevelUseCase = new ClearLevelUseCaseImpl();
+
     PauseUIViewModelDelegate _myDelegate;
 
     public PauseUIViewModelDelegate myDelegate { set => _myDelegate = value; }
 
-    public string title => "Pausa";
+    public string title => _currentLanguage.getNameTag(NameTagLanguage.PAUSE);
 
-    public string continueText => "Continuar";
+    public string continueText => _currentLanguage.getNameTag(NameTagLanguage.CONTINUE);
 
-    public string saveAndExit => "Guardar y SALIR";
+    public string saveAndExit => _currentLanguage.getNameTag(NameTagLanguage.SAVE_AND_EXIT);
+
+    private AbstractLanguage _currentLanguage;
+
+    public PauseUIViewModelImpl() {
+        _currentLanguage = currentLangajeUseCase.invoke();
+    }
 
     public void goContinue()
     {
@@ -38,8 +49,12 @@ public class PauseUIViewModelImpl : PauseUIViewModel
 
     public void goSaveAndExit()
     {
-        if (notExistsDelegate()) { return; }
-        _myDelegate.goSaveAndExit();
+        Task.Run( async () => { 
+            await saveGameUseCase.invoke();
+            await clearLevelUseCase.invoke();
+            if (notExistsDelegate()) { return; }
+            _myDelegate.goSaveAndExit();
+        });
     }
 
     // private methods
