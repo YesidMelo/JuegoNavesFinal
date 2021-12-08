@@ -26,6 +26,12 @@ public class HandlerMovementEnemy : MonoBehaviour, HandlerMovementEnemyViewModel
         moveSpacecraft();
     }
 
+    private void OnDestroy()
+    {
+        if (patrolPoint == null) return;
+        Destroy(patrolPoint);
+    }
+
     //private methods
     private void checkCurrentElementsInRadar() {
         if (handlerMotor == null) return;

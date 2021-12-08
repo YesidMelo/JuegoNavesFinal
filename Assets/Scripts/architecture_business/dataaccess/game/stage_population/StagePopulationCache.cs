@@ -7,7 +7,9 @@ public interface StagePopulationCache {
     void addEnemy(Level level, SpacecraftEnemy spacecraft, GameObject gameObject);
     void removeEnemy(GameObject gameObject);
     bool isAllPoblation(Level level);
+    List<GameObject> getAllEnemies();
     Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level);
+    void removeAllEnemies(List<GameObject> enemies);
 }
 
 public class StagePopulationCacheImpl : StagePopulationCache
@@ -23,6 +25,7 @@ public class StagePopulationCacheImpl : StagePopulationCache
         return instance;
     }
 
+    private List<GameObject> allEnemies = new List<GameObject>();
     private Dictionary<Level, Dictionary<SpacecraftEnemy, List<GameObject>>> spacecraftByLevel = new Dictionary<Level, Dictionary<SpacecraftEnemy, List<GameObject>>>();
     private Dictionary<Level, Dictionary<SpacecraftEnemy, int>> poblationByLevel = new Dictionary<Level, Dictionary<SpacecraftEnemy, int>>();
 
@@ -37,6 +40,7 @@ public class StagePopulationCacheImpl : StagePopulationCache
         if (currentList.Contains(gameObject)) return;
         if (currentList.Count >= level.getMaxEnemies(spacecraft)) return;
         currentList.Add(gameObject);
+        allEnemies.Add(gameObject);
         poblationByLevel[level][spacecraft] = currentList.Count;
     }
 
@@ -45,8 +49,10 @@ public class StagePopulationCacheImpl : StagePopulationCache
         foreach (Level currentLevel in Enum.GetValues(typeof(Level))) {
             foreach (SpacecraftEnemy curretnSpacecraft in Enum.GetValues(typeof(SpacecraftEnemy))) {
                 List<GameObject> currentList = spacecraftByLevel[currentLevel][curretnSpacecraft];
+                if (currentList.Count == 0) break;
                 if (!currentList.Contains(gameObject)) continue;
                 currentList.Remove(gameObject);
+                allEnemies.Remove(gameObject);
                 return;
             }
         }
@@ -82,6 +88,14 @@ public class StagePopulationCacheImpl : StagePopulationCache
         return dictionaryCreation;
     }
 
+    public List<GameObject> getAllEnemies() => allEnemies;
+
+    public void removeAllEnemies(List<GameObject> enemies)
+    {
+        foreach (GameObject currentEnemy in enemies) {
+            removeEnemy(currentEnemy);
+        }
+    }
 
     //private methods
     private void initDictionary() {
@@ -99,4 +113,5 @@ public class StagePopulationCacheImpl : StagePopulationCache
         }
     }
 
+    
 }

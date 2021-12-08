@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public interface InteractionInterfaceUserCache {
@@ -8,6 +9,9 @@ public interface InteractionInterfaceUserCache {
     Vector2 currentDirection { get; }
     GameObject currentPlayer { get; }
     GameObject currentSpawmPopulation { get; }
+
+    Task deleteCurrentPlayer();
+    Task deleteCurrentSpawmPopulation();
 
     void updateActionSpacecraft(Action action);
     void updatePositionJoystic(Vector2 direction);
@@ -55,4 +59,8 @@ public class InteractionInterfaceUserCacheImpl : InteractionInterfaceUserCache
     public void setCurrentSpawmPopulation(GameObject currentSpawmPopulation) { 
         _currentSpawmPopulation = currentSpawmPopulation; 
     }
+
+    public async Task deleteCurrentPlayer() => _currentPlayer = null;
+
+    public async Task deleteCurrentSpawmPopulation() => _currentSpawmPopulation = null;
 }

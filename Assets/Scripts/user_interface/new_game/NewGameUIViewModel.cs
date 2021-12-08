@@ -19,7 +19,7 @@ public interface NewGameUIViewModel {
 
     NewGameUIViewModelDelegate myDelegate { set; }
 
-    void createNewGame(NewGameModel newGame);
+    void createNewGame(GameModel newGame);
     void goToBack();
 }
 
@@ -49,21 +49,19 @@ public class NewGameUIViewModelImpl : NewGameUIViewModel
 
     // public methods
 
-    public void createNewGame(NewGameModel newGame)
+    public void createNewGame(GameModel newGame)
     {
         Task.Run(async () => {
             if (notExistsDelegate()) { return; }
             bool saved = await setNewGameModelUseCase.invoke(newGame: newGame);
             if (!saved) return;
-            NewGameModel gameSaved = await getCurrentNewGameModelUseCase.invoke();
+            GameModel gameSaved = await getCurrentNewGameModelUseCase.invoke();
             _myDelegate.createNewGame(string.Format(
                 _currentLanguaje.getNameTag(NameTagLanguage.GAME_CREATED),
                 gameSaved.namePlayer,
                 gameSaved.date.ToString()
             ));
         });
-        
-        //_myDelegate.createNewGame(name);
     }
 
     public void goToBack()

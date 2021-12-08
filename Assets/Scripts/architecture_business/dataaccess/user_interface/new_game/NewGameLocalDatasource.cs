@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public interface NewGameLocalDatasource {
-    Task<bool> saveGame();
+    Task<bool> saveGame(GameModel gameModel);
     Task<bool> loadGame();
     Task<bool> loadListGamesAvailables();
 }
@@ -23,9 +23,8 @@ public class NewGameLocalDatasourceImpl : NewGameLocalDatasource
         return true;
     }
 
-    public async Task<bool> saveGame()
+    public async Task<bool> saveGame(GameModel gameModel)
     {
-        await Task.Delay(1000);
         return true;
     }
 }

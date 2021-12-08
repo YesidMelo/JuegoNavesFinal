@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,6 +19,22 @@ public class SaveGameUseCaseImpl : SaveGameUseCase
     private SpacecraftPlayerStorageRepository repoStorage = new SpacecraftPlayerStorageRepositoryImpl();
     private SpacecraftPlayerStructureRepository repoStructure = new SpacecraftPlayerStructureRepositoryImpl();
 
-    public async Task<bool> invoke() => await newGameRepository.saveGame();
-    
+    public async Task<bool> invoke() {
+        GameModel gameModelToSave = await newGameRepository.getCurrentNewGameModel();
+        return await newGameRepository.saveGame(gameModel: generateGameModelBySave(gameModel: gameModelToSave));
+    }
+
+    //private methods
+    private GameModel generateGameModelBySave(GameModel gameModel) {
+        gameModel.currentRadarPlayer = repoRadar.currentRadarPlayer;
+        gameModel.listLasers = repoLaserPlayer.listLasers;
+        gameModel.life = repoLifePlayer.life;
+        gameModel.maxLife = repoLifePlayer.maxLife;
+        gameModel.listMotors = repoMotorPlayer.listMotors;
+        gameModel.currentShield = repoShield.currentShield;
+        gameModel.currentStorage = repoStorage.currentStorage;
+        gameModel.currentStructure = repoStructure.currentStructure;
+        return gameModel;
+    }
+
 }

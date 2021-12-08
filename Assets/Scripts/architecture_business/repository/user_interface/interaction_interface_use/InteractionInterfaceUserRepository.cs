@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public interface InteractionInterfaceUserRepository {
@@ -9,8 +10,11 @@ public interface InteractionInterfaceUserRepository {
     Vector2 currentMovementJoystic { get; }
     GameObject currentPlayer { get; }
     GameObject currentSpawmPopulation { get; }
-    void updateActionSpacecraft(Action action);
 
+    Task deleteCurrentPlayer();
+    Task deleteCurrentSpawmPopulation();
+
+    void updateActionSpacecraft(Action action);
     void updateMovementJoystic(Vector2 direction);
     void setCurrentPlayer(GameObject currentPlayer);
     void setCurrentSpawmPopulation(GameObject spawmPopulation);
@@ -27,6 +31,10 @@ public class InteractionInterfaceUserRepositoryImpl : InteractionInterfaceUserRe
     public GameObject currentPlayer => interactionInterfaceUserCache.currentPlayer;
 
     public GameObject currentSpawmPopulation => interactionInterfaceUserCache.currentSpawmPopulation;
+
+    public async Task deleteCurrentPlayer() => await interactionInterfaceUserCache.deleteCurrentPlayer();
+
+    public async Task deleteCurrentSpawmPopulation() => await interactionInterfaceUserCache.deleteCurrentSpawmPopulation();
 
     public void setCurrentPlayer(GameObject currentPlayer) => interactionInterfaceUserCache.setCurrentPlayer(currentPlayer: currentPlayer);
 

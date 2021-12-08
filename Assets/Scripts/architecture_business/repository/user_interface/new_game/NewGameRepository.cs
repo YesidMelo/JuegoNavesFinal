@@ -5,10 +5,10 @@ using UnityEngine;
 
 public interface NewGameRepository {
 
-    Task<bool> setNewGameModel(NewGameModel newGameModel);
-    Task<NewGameModel> getCurrentNewGameModel();
+    Task<bool> setNewGameModel(GameModel newGameModel);
+    Task<GameModel> getCurrentNewGameModel();
 
-    Task<bool> saveGame();
+    Task<bool> saveGame(GameModel gameModel);
     Task<bool> loadGame();
     Task<bool> loadListGamesAvailables();
 
@@ -20,7 +20,7 @@ public class NewGameRepositoryImpl : NewGameRepository
     private NewGameCache cache = NewGameCacheImpl.getInstance();
     private NewGameLocalDatasource localDatasource = new NewGameLocalDatasourceImpl();
 
-    public async Task<NewGameModel> getCurrentNewGameModel() { 
+    public async Task<GameModel> getCurrentNewGameModel() { 
         return await cache.currentNewGameModel(); 
     }
 
@@ -28,9 +28,9 @@ public class NewGameRepositoryImpl : NewGameRepository
 
     public async Task<bool> loadListGamesAvailables() => await localDatasource.loadListGamesAvailables();
 
-    public async Task<bool> saveGame() => await localDatasource.saveGame();
+    public async Task<bool> saveGame(GameModel gameModel) => await localDatasource.saveGame(gameModel: gameModel);
 
-    public async Task<bool> setNewGameModel(NewGameModel newGameModel) { 
+    public async Task<bool> setNewGameModel(GameModel newGameModel) { 
         return await cache.setNewGame(newGameModel: newGameModel);
     }
 }

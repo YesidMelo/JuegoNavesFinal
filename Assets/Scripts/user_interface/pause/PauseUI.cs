@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading.Tasks;
+using System.Threading;
 
 public interface PauseUIDelegate : AbstractCanvasUIDelegate {
     void goContinue();
@@ -10,7 +12,10 @@ public interface PauseUIDelegate : AbstractCanvasUIDelegate {
 
 public class PauseUI : AbstractCanvas, PauseUIViewModelDelegate
 {
-
+    //Disparador en hilo principal
+    //documentacion en : https://stackoverflow.com/questions/41330771/use-unity-api-from-another-thread-or-call-a-function-in-the-main-thread
+    //documentacion en : https://docs.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext?view=net-5.0
+    private SynchronizationContext syncContext = SynchronizationContext.Current;
 
     public PauseUIDelegate myDelegate { set { _myDelegate = value; } }
     public TextMeshProUGUI title;
@@ -57,7 +62,33 @@ public class PauseUI : AbstractCanvas, PauseUIViewModelDelegate
     public void goSaveAndExit()
     {
         if (notExistsDelegate()) { return; }
-        _myDelegate.goSaveAndExit();
+        syncContext.Post(_ => { 
+            _myDelegate.goSaveAndExit();
+        }, null);
     }
 
+    public void deleteAllEnemies()
+    {
+        List<GameObject> currentListEnemies = viewModel.getAllElementToDelete();
+        foreach (GameObject currentEnemy in currentListEnemies)
+        {
+            syncContext.Post(_ => {
+                Destroy(currentEnemy);
+            }, null);
+        }
+    }
+
+    public async Task deleteCurrentPlayer() {
+        syncContext.Post(_ => {
+            Destroy(viewModel.currentPlayer());
+        }, null);
+    }
+
+    public async Task deleteCurrentSpawmPopulation()
+    {
+        syncContext.Post(_ => {
+            GameObject current = viewModel.currentSpawmPopulation();
+            Destroy(current);
+        }, null);
+    }
 }

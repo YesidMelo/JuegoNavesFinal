@@ -44,9 +44,9 @@ public class NewGameUI : AbstractCanvas, NewGameUIViewModelDelegate
     //clicks
     public void clickCreateNewGame() {
         
-        NewGameModel newGame = new NewGameModel();
+        GameModel newGame = new GameModel();
         newGame.namePlayer = namePlayer.text;
-        newGame.date = new DateTime();
+        newGame.date = DateTime.Now;
 
         viewModel.createNewGame(newGame: newGame);
     }

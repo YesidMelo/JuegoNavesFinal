@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public interface NewGameGetCurrentNewGameModelUseCase {
-    Task<NewGameModel> invoke();
+    Task<GameModel> invoke();
 }
 public class NewGameGetCurrentNewGameModelUseCaseImpl : NewGameGetCurrentNewGameModelUseCase
 {
     private NewGameRepository newGameRepository = new NewGameRepositoryImpl();
 
-    public async Task<NewGameModel> invoke() { 
+    public async Task<GameModel> invoke() { 
         return await newGameRepository.getCurrentNewGameModel();
     }
 }

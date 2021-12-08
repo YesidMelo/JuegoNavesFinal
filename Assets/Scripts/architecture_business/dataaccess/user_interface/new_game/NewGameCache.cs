@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public interface NewGameCache {
-    Task<bool> setNewGame(NewGameModel newGameModel);
-    Task<NewGameModel> currentNewGameModel();
+    Task<bool> setNewGame(GameModel newGameModel);
+    Task<GameModel> currentNewGameModel();
 }
 
 public class NewGameCacheImpl : NewGameCache
@@ -21,14 +21,14 @@ public class NewGameCacheImpl : NewGameCache
         return instance;
     }
 
-    private NewGameModel _currentNewGameModel;
+    private GameModel _currentNewGameModel;
 
-    public async Task<NewGameModel> currentNewGameModel() {
+    public async Task<GameModel> currentNewGameModel() {
         await Task.Delay(1000);
         return _currentNewGameModel; 
     }
 
-    public async Task<bool> setNewGame(NewGameModel newGameModel)
+    public async Task<bool> setNewGame(GameModel newGameModel)
     {
         _currentNewGameModel = newGameModel;
         await Task.Delay(1000);

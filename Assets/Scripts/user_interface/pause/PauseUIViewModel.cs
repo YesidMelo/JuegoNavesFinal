@@ -6,6 +6,9 @@ using UnityEngine;
 public interface PauseUIViewModelDelegate {
     void goContinue();
     void goSaveAndExit();
+    void deleteAllEnemies();
+    Task deleteCurrentPlayer();
+    Task deleteCurrentSpawmPopulation();
 }
 
 public interface PauseUIViewModel {
@@ -16,14 +19,22 @@ public interface PauseUIViewModel {
 
     void goContinue();
     void goSaveAndExit();
+
+    List<GameObject> getAllElementToDelete();
+    GameObject currentPlayer();
+    GameObject currentSpawmPopulation();
 }
 
 public class PauseUIViewModelImpl : PauseUIViewModel
 {
 
     private CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
+    private DeleteCurrentPlayerUseCase deleteCurrentPlayerUseCase = new DeleteCurrentPlayerUseCaseImpl();
+    private DeleteCurrentSpawmPopulationUseCase deleteCurrentSpawmPopulationUseCase = new DeleteCurrentSpawmPopulationUseCaseImpl();
+    private GetAllEnemiesUseCase getAllEnemiesUseCase = new GetAllEnemiesUseCaseImpl();
+    private GetCurrentPlayerUseCase currentPlayerUseCase = new GetCurrentPlayerUseCaseImpl();
+    private GetCurrentSpawmPopulationUseCase spawmPopulationUseCase = new GetCurrentSpawmPopulationUseCaseImpl();
     private SaveGameUseCase saveGameUseCase = new SaveGameUseCaseImpl();
-    private ClearLevelUseCase clearLevelUseCase = new ClearLevelUseCaseImpl();
 
     PauseUIViewModelDelegate _myDelegate;
 
@@ -49,10 +60,17 @@ public class PauseUIViewModelImpl : PauseUIViewModel
 
     public void goSaveAndExit()
     {
-        Task.Run( async () => { 
+        if (notExistsDelegate()) { return; }
+
+        Task.Run(async () => {
+            _myDelegate.deleteAllEnemies();
             await saveGameUseCase.invoke();
-            await clearLevelUseCase.invoke();
-            if (notExistsDelegate()) { return; }
+            await Task.Delay(100);
+            await _myDelegate.deleteCurrentPlayer();
+            await Task.Delay(400);
+            await _myDelegate.deleteCurrentSpawmPopulation();
+            await deleteCurrentPlayerUseCase.invoke();
+            await deleteCurrentSpawmPopulationUseCase.invoke();
             _myDelegate.goSaveAndExit();
         });
     }
@@ -60,4 +78,8 @@ public class PauseUIViewModelImpl : PauseUIViewModel
     // private methods
 
     private bool notExistsDelegate() => _myDelegate == null;
+
+    public List<GameObject> getAllElementToDelete() => getAllEnemiesUseCase.invoke();
+    public GameObject currentPlayer() => currentPlayerUseCase.invoke();
+    public GameObject currentSpawmPopulation() => spawmPopulationUseCase.invoke();
 }
