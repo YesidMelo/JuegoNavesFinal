@@ -22,6 +22,10 @@ public enum CanvasAvailable
     SPLASH
 }
 
+public enum DateFormats { 
+    ISO_8601,
+}
+
 public enum LaserPlayer {
     TYPE_1,
     TYPE_2,
