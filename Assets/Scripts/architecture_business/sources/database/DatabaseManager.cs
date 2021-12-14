@@ -20,9 +20,13 @@ public interface DatabaseManager {
     Task<bool> insertAll<T>(List<T> element) where T : BaseDBEntity;
     Task<List<T>> getElements<T>(List<Condition> conditions) where T : BaseDBEntity;
 
+    Task<bool> deleteElement<T>(T element) where T : BaseDBEntity;
+    Task<bool> deleteElements<T>(List<T> element) where T : BaseDBEntity;
+    Task<bool> clearTable<T>() where T : BaseDBEntity;
+
     #endregion
-        
-   
+
+
 }
 
 public class DatabaseManagerImpl : DatabaseManager
@@ -47,6 +51,7 @@ public class DatabaseManagerImpl : DatabaseManager
     //management data
     private SencenceSelectDB sencenceSelectDB = SencenceSelectDBImpl.getInstance();
     private SentenceInsertDB sentenceInsertDB = SentenceInsertDBImpl.getInstance();
+    private SentenceDeleteDB sentenceDeleteDB = SentenceDeleteDBImpl.getInstance();
 
     private DatabaseManagerImpl() { }
 
@@ -74,4 +79,13 @@ public class DatabaseManagerImpl : DatabaseManager
 
     public async Task<bool> insertAll<T>(List<T> element) where T : BaseDBEntity
         => await sentenceInsertDB.insertAll(elements: element);
+
+    public async Task<bool> deleteElement<T>(T element) where T : BaseDBEntity 
+        => await sentenceDeleteDB.deleteElement(element: element);
+
+    public async Task<bool> deleteElements<T>(List<T> element) where T : BaseDBEntity
+        => await sentenceDeleteDB.deleteElements(element: element);
+
+    public async Task<bool> clearTable<T>() where T : BaseDBEntity
+        => await sentenceDeleteDB.clearTable<T>();
 }

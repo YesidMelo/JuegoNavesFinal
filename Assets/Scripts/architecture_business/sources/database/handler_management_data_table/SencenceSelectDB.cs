@@ -31,7 +31,7 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
     {
         if (conditions == null) conditions = new List<Condition>();
         string querySelect = getSentenceSelect<T>(conditions: conditions);
-        //Debug.Log(querySelect);
+        Debug.Log(querySelect);
         List<T> elements = new List<T>();
         //return (T)Activator.CreateInstance(typeof(T));
         return elements;
