@@ -22,7 +22,9 @@ public class MainMenuUI : AbstractCanvas, MainMenuUIViewModelDelegate
     public MainMenuUIDelegate myDelegate;
     private MainMenuUIViewModel viewModel = new MainMenuUIViewModelImpl();
 
-    //TODO: Eliminar esta linea
+    //TODO: Eliminar estas linea
+    bool initConnection = ConectionDBSqliteImpl.initInstance(pathDB: "path", strConnection: "strConnection", DBFileName: "DbFileName");
+    bool initDatabase = DatabaseManagerImpl.initInstance(conectionDB: ConectionDBSqliteImpl.getInstance());
     private DatabaseManager database = DatabaseManagerImpl.getInstance();
 
     void Start() {

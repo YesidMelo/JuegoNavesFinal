@@ -18,12 +18,15 @@ public class CreateTableDBImpl : CreateTableDB
     private static CreateTableDBImpl instance;
 
     //static method
-    public static CreateTableDBImpl getInstance() {
+    public static CreateTableDBImpl getInstance(ConectionDBSqlite conectionDB) {
         if (instance == null) {
             instance = new CreateTableDBImpl();
+            instance.conectionDB = conectionDB;
         }
         return instance;
     }
+
+    private ConectionDBSqlite conectionDB;
 
     private CreateTableDBImpl(){}
 

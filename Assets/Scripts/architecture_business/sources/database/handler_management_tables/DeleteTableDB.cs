@@ -15,13 +15,14 @@ public class DeleteTableDBImpl : DeleteTableDB
     private static DeleteTableDBImpl instance;
 
     //static methods
-    public static DeleteTableDBImpl getInstance() {
+    public static DeleteTableDBImpl getInstance(ConectionDBSqlite conectionDB) {
         if (instance == null) {
             instance = new DeleteTableDBImpl();
+            instance.conectionDB = conectionDB;
         }
         return instance;
     }
-
+    private ConectionDBSqlite conectionDB;
     private DeleteTableDBImpl() { }
 
     //public methods

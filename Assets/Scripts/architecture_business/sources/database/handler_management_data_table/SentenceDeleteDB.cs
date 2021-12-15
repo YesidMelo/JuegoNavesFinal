@@ -19,12 +19,15 @@ public class SentenceDeleteDBImpl : SentenceDeleteDB
     private static SentenceDeleteDBImpl instance;
 
     //static methods
-    public static SentenceDeleteDBImpl getInstance() {
+    public static SentenceDeleteDBImpl getInstance(ConectionDBSqlite conectionDB) {
         if (instance == null) {
             instance = new SentenceDeleteDBImpl();
+            instance.conectionDB = conectionDB;
         }
         return instance;
     }
+
+    private ConectionDBSqlite conectionDB;
 
     private SentenceDeleteDBImpl() { }
 

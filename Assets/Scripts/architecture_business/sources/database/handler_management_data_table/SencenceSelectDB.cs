@@ -17,12 +17,16 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
     private static SencenceSelectDBImpl instance;
 
     //static Methods
-    public static SencenceSelectDBImpl getInstance() {
+    public static SencenceSelectDBImpl getInstance(ConectionDBSqlite conectionDB) {
         if (instance == null) {
             instance = new SencenceSelectDBImpl();
+            instance.conectionDB = conectionDB;
         }
         return instance;
     }
+
+    private ConectionDBSqlite conectionDB;
+
     private SencenceSelectDBImpl() { }
 
     //public methods

@@ -17,12 +17,15 @@ public class SentenceInsertDBImpl : SentenceInsertDB
     private static SentenceInsertDBImpl instance;
 
     //static methods
-    public static SentenceInsertDBImpl getInstance() {
+    public static SentenceInsertDBImpl getInstance(ConectionDBSqlite conectionDB) {
         if (instance == null) {
             instance = new SentenceInsertDBImpl();
+            instance.conectionDB = conectionDB;
         }
         return instance;
     }
+
+    private ConectionDBSqlite conectionDB;
 
     private SentenceInsertDBImpl() { }
 

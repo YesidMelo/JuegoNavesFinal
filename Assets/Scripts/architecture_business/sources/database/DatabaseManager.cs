@@ -36,24 +36,36 @@ public class DatabaseManagerImpl : DatabaseManager
     private static DatabaseManagerImpl instance;
 
     //static methods
-    public static DatabaseManagerImpl getInstance() {
-        if (instance == null) {
-            instance = new DatabaseManagerImpl();
+
+    public static bool initInstance(ConectionDBSqlite conectionDB) {
+        if (instance == null)
+        {
+            instance = new DatabaseManagerImpl(conectionDB: conectionDB);
         }
-        return instance;
+        return true;
     }
+    public static DatabaseManagerImpl getInstance() => instance;
 
     //management tables
-    private CreateTableDB createTableDB = CreateTableDBImpl.getInstance();
-    private DeleteTableDB deleteTableDB = DeleteTableDBImpl.getInstance();
-    private UpdateTableDB updateTableDB = UpdateTableDBImpl.getInstance();
+    private CreateTableDB createTableDB;
+    private DeleteTableDB deleteTableDB ;
+    private UpdateTableDB updateTableDB ;
 
     //management data
-    private SencenceSelectDB sencenceSelectDB = SencenceSelectDBImpl.getInstance();
-    private SentenceInsertDB sentenceInsertDB = SentenceInsertDBImpl.getInstance();
-    private SentenceDeleteDB sentenceDeleteDB = SentenceDeleteDBImpl.getInstance();
+    private SencenceSelectDB sencenceSelectDB;
+    private SentenceInsertDB sentenceInsertDB;
+    private SentenceDeleteDB sentenceDeleteDB;
 
-    private DatabaseManagerImpl() { }
+    private DatabaseManagerImpl(ConectionDBSqlite conectionDB) {
+        
+        createTableDB = CreateTableDBImpl.getInstance(conectionDB: conectionDB);
+        deleteTableDB = DeleteTableDBImpl.getInstance(conectionDB: conectionDB);
+        updateTableDB = UpdateTableDBImpl.getInstance(conectionDB: conectionDB);
+
+        sencenceSelectDB = SencenceSelectDBImpl.getInstance(conectionDB: conectionDB);
+        sentenceInsertDB = SentenceInsertDBImpl.getInstance(conectionDB: conectionDB);
+        sentenceDeleteDB = SentenceDeleteDBImpl.getInstance(conectionDB: conectionDB);
+    }
 
     #region creacion, actualizacion eliminacion modificacion tablas
 

@@ -13,12 +13,17 @@ public class UpdateTableDBImpl : UpdateTableDB {
     private static UpdateTableDBImpl instance;
 
     //static methods
-    public static UpdateTableDBImpl getInstance() {
+    public static UpdateTableDBImpl getInstance(ConectionDBSqlite conectionDB) {
         if (instance == null) {
             instance = new UpdateTableDBImpl();
+            instance.conectionDB = conectionDB;
         }
         return instance;
     }
+
+    private ConectionDBSqlite conectionDB;
+
+    private UpdateTableDBImpl() { }
 
     //TODO: implementar funcionalidad aqui
     public async Task<bool> updateTable<T>(List<Versions<T>> versions) where T : BaseDBEntity
@@ -26,5 +31,4 @@ public class UpdateTableDBImpl : UpdateTableDB {
         return true;
     }
 
-    private UpdateTableDBImpl() { }
 }
