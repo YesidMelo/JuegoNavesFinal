@@ -22,14 +22,18 @@ public class MainMenuUI : AbstractCanvas, MainMenuUIViewModelDelegate
     public MainMenuUIDelegate myDelegate;
     private MainMenuUIViewModel viewModel = new MainMenuUIViewModelImpl();
 
-    //TODO: Eliminar estas linea
-    bool initConnection = ConectionDBSqliteImpl.initInstance(pathDB: "path", strConnection: "strConnection", DBFileName: "DbFileName");
-    bool initDatabase = DatabaseManagerImpl.initInstance(conectionDB: ConectionDBSqliteImpl.getInstance());
-    private DatabaseManager database = DatabaseManagerImpl.getInstance();
-
     void Start() {
         viewModel.myDelegate = this;
         initValues();
+        crearBaseDeDatos();
+    }
+
+    //configuracion base de datos eliminar apenas funcione
+    private void crearBaseDeDatos() {
+
+        ConectionDBSqliteImpl.initInstance(DBFileName: "dbs.sqlite", applicationDataPath: Application.dataPath);
+        DatabaseManagerImpl.initInstance(conectionDB: ConectionDBSqliteImpl.getInstance());
+        DatabaseManager database = DatabaseManagerImpl.getInstance();
 
         Task.Run(async () => {
 
@@ -40,6 +44,11 @@ public class MainMenuUI : AbstractCanvas, MainMenuUIViewModelDelegate
             //bool createdTables = await database.createTables(entities: clases);
             //bool deleteTables = await database.deleteTables(entities: clases);
 
+
+            #region
+            await ConectionDBSqliteImpl.getInstance().startQueryWithOutResponses("");
+            #endregion
+
             #region leer tabla
             List<Condition> conditions = new List<Condition>();
 
@@ -49,9 +58,9 @@ public class MainMenuUI : AbstractCanvas, MainMenuUIViewModelDelegate
             condition1.valueInt = 1;
             condition1.type = TypeElement.INTEGER;
 
-           
-           conditions.Add(condition1);
-           
+
+            conditions.Add(condition1);
+
             List<GameGalacticToSaveEntity> element = await database.getElements<GameGalacticToSaveEntity>(conditions: conditions);
 
             #endregion

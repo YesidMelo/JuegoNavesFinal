@@ -23,69 +23,134 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
     private static ConectionDBSqliteImpl instance;
 
     //static methods
-    public static bool initInstance(
-        string pathDB,
-        string strConnection,
-        string DBFileName
-    ) {
+    public static bool initInstance(string DBFileName, string applicationDataPath) {
         if (instance != null)  return true;
-        instance = new ConectionDBSqliteImpl(pathDB: pathDB, strConnection: strConnection, DBFileName: DBFileName);
+        instance = new ConectionDBSqliteImpl(DBFileName: DBFileName, applicationDataPath: applicationDataPath);
         return true;
     }
 
     public static ConectionDBSqliteImpl getInstance() => instance;
 
     //strings configuration
-    private string pathDB;
-    private string strConnection;
+    private string applicationDataPath;
     private string DBFileName;
+    private string filePath;
+    private string pathDB;
+    private string strConnectionDbs;
+    private string nameDirDB = "dbs";
 
     //connection
     IDbConnection dbConnection;
     IDbCommand dbCommand;
     IDataReader dbReader;
 
-    private ConectionDBSqliteImpl(
-        string pathDB,
-        string strConnection,
-        string DBFileName
-    )
+    private ConectionDBSqliteImpl(string DBFileName, string applicationDataPath)
     {
-        this.pathDB = pathDB;
-        this.strConnection = strConnection;
         this.DBFileName = DBFileName;
+        this.applicationDataPath = applicationDataPath;
+        Task.Run(async () => {
+            await createDatabase();
+        });
+        
     }
 
     //public methods
 
     public async Task<bool> startQueryWithOutResponses(string query)
     {
-        await openDB();
-        await closeDB();
+        
+        openDB();
+        closeDB();
         return true;
     }
 
     public async Task<object> startQueryWithResponses(string query)
     {
-        await openDB();
-        await closeDB();
+        openDB();
+        closeDB();
+        return true;
+    }
+
+    private async Task<bool> createDatabase()
+    {
+        if (!createDir()) return false;
+        await Task.Delay(200);
+        if (!createFile()) return false;
+        await Task.Delay(200);
+
+        Debug.Log("Finalizo la creacion del archivo .sqlite");
+        return true;
+    }
+
+    private bool createDir() {
+
+        string element = string.Format(
+            "{0}/{1}",
+            applicationDataPath,
+            nameDirDB
+        );
+
+        if (Directory.Exists(element)) return true;
+
+        try {
+            Directory.CreateDirectory(element);
+        } catch (Exception e) {
+            Debug.Log(e.Message);
+            return false;
+        }
+        return true;
+    }
+
+    private bool createFile() {
+        this.pathDB = string.Format(
+            "{0}/{1}/{2}",
+            applicationDataPath,
+            nameDirDB,
+            DBFileName
+        );
+
+        if (File.Exists(path: pathDB)) return true;
+
+        try {
+            File.Create(pathDB);
+        } catch (Exception e) {
+            Debug.Log(e.Message);
+            return false;
+        }
+
+        this.filePath = @$"file:{pathDB}";
+        this.strConnectionDbs = $"URI={filePath}";
+
+        Debug.Log(
+           string.Format(
+               "pathDB: {0}\nstrConnection: {1}",
+               pathDB,
+               strConnectionDbs
+           )
+        );
+
         return true;
     }
 
     //private methods
 
-
-    private async Task<bool> openDB()
+    private bool openDB()
     {
+        if (dbConnection == null) { 
+            dbConnection = new SqliteConnection(strConnectionDbs);
+        }
+        dbConnection.Open();
+        Debug.Log("Se abrio la base de datos");
         return true;
     }
 
-    private async Task<bool> closeDB()
+    private bool closeDB()
     {
+        if (dbConnection == null) return false;
+        dbConnection.Close();
+        Debug.Log("Se cerro la base de datos");
         return true;
     }
 
-
-
-
+    
 }
