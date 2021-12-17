@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 // Class that manage ui of splash
 public class SplashUI : AbstractCanvas, SplashUIViewModelDelegate
@@ -29,7 +30,14 @@ public class SplashUI : AbstractCanvas, SplashUIViewModelDelegate
     // Method that listen action click on button
     private async void onClickContinue()
     {
-        await viewModel.goToMainMenu();
+        try
+        {
+            await viewModel.createDatabase(applicationDataPath: Application.dataPath);
+            await viewModel.goToMainMenu();
+        }
+        catch (Exception e) {
+            Debug.Log(e.Message);
+        }
     }
 
     private async void loadNameGame() {

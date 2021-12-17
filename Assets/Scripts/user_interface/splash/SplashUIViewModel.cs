@@ -14,19 +14,18 @@ public interface SplashUIViewModel {
     Task<string> getNameGame();
     SplashUIViewModelDelegate myDelegate { set; }
     Task goToMainMenu();
+    Task<bool> createDatabase(string applicationDataPath);
 }
 
 // class that manage actions in splash ui
 public class SplashUIViewModelImpl : SplashUIViewModel
 {
     private CurrentLangajeUseCase langajeUseCase = new CurrentLangajeUseCaseImpl();
-
     private SplashLoadElementsUseCase loadElementsUseCase = new SplashLoadElementsUseCaseImpl();
+    private CreateDataBaseUseCase createDataBaseUseCase = new CreateDataBaseUseCaseImpl();
 
     private SplashUIViewModelDelegate _myDelegate;
-    public SplashUIViewModelImpl() { 
-
-    }
+    public SplashUIViewModelImpl() { }
 
     public  async Task goToMainMenu() {
         if (_myDelegate == null) return;
@@ -41,6 +40,8 @@ public class SplashUIViewModelImpl : SplashUIViewModel
             return langajeUseCase.invoke().getNameTag(NameTagLanguage.NAME_GAME);
         });
     }
+
+    public async Task<bool> createDatabase(string applicationDataPath) => await createDataBaseUseCase.invoke(applicationDataPath: applicationDataPath);
 
 
     //sets and gets

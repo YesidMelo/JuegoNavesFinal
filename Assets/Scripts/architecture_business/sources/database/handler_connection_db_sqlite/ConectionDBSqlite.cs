@@ -23,9 +23,10 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
     private static ConectionDBSqliteImpl instance;
 
     //static methods
-    public static bool initInstance(string DBFileName, string applicationDataPath) {
+    public static async Task<bool> initInstance(string DBFileName, string applicationDataPath) {
         if (instance != null)  return true;
         instance = new ConectionDBSqliteImpl(DBFileName: DBFileName, applicationDataPath: applicationDataPath);
+        await Task.Delay(100);
         return true;
     }
 
@@ -34,22 +35,29 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
     //strings configuration
     private string applicationDataPath;
     private string DBFileName;
-    private string filePath;
-    private string pathDB;
-    private string strConnectionDbs;
     private string nameDirDB = "dbs";
+
+    // paths 
+    private string filePathDB;
+    private string pathDB;
 
     //connection
     IDbConnection dbConnection;
     IDbCommand dbCommand;
     IDataReader dbReader;
 
+    //creator files
+    private CustomCreatorFiles creatorFiles = CreatorFilesImpl.getInstance();
+
     private ConectionDBSqliteImpl(string DBFileName, string applicationDataPath)
     {
         this.DBFileName = DBFileName;
         this.applicationDataPath = applicationDataPath;
+        createPathsDB();
         Task.Run(async () => {
+            
             await createDatabase();
+            
         });
         
     }
@@ -73,83 +81,71 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
 
     private async Task<bool> createDatabase()
     {
-        if (!createDir()) return false;
-        await Task.Delay(200);
-        if (!createFile()) return false;
-        await Task.Delay(200);
-
+        bool isCreatedFile = await creatorFiles.createFile(
+            rootDir: applicationDataPath,
+            fileName: DBFileName,
+            nameDir: nameDirDB,
+            extentionFile: "sqlite"
+        );
+        if (isCreatedFile) return false;
         Debug.Log("Finalizo la creacion del archivo .sqlite");
-        return true;
-    }
-
-    private bool createDir() {
-
-        string element = string.Format(
-            "{0}/{1}",
-            applicationDataPath,
-            nameDirDB
-        );
-
-        if (Directory.Exists(element)) return true;
-
-        try {
-            Directory.CreateDirectory(element);
-        } catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-        return true;
-    }
-
-    private bool createFile() {
-        this.pathDB = string.Format(
-            "{0}/{1}/{2}",
-            applicationDataPath,
-            nameDirDB,
-            DBFileName
-        );
-
-        if (File.Exists(path: pathDB)) return true;
-
-        try {
-            File.Create(pathDB);
-        } catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-
-        this.filePath = @$"file:{pathDB}";
-        this.strConnectionDbs = $"URI={filePath}";
-
-        Debug.Log(
-           string.Format(
-               "pathDB: {0}\nstrConnection: {1}",
-               pathDB,
-               strConnectionDbs
-           )
-        );
-
         return true;
     }
 
     //private methods
 
+    private void createPathsDB() {
+        createPathDB();
+        createFilePathDB();
+    }
+
+    private void createPathDB() {
+        pathDB = string.Format(
+            "{0}/{1}/{2}.sqlite",
+            applicationDataPath,
+            nameDirDB,
+            DBFileName
+        );
+    }
+
+    private void createFilePathDB() { 
+        filePathDB = $"URI=file:{pathDB}";
+        Debug.Log(@filePathDB);
+    }
+
     private bool openDB()
     {
-        if (dbConnection == null) { 
-            dbConnection = new SqliteConnection(strConnectionDbs);
+        try
+        {
+
+            if (dbConnection == null)
+            {
+                dbConnection = new SqliteConnection(@filePathDB);
+            }
+            dbConnection.Open();
+            Debug.Log("Se abrio la base de datos");
+            return true;
         }
-        dbConnection.Open();
-        Debug.Log("Se abrio la base de datos");
-        return true;
+        catch (Exception e) {
+            Debug.LogError(e.Message);
+            return false;
+        }
     }
 
     private bool closeDB()
     {
-        if (dbConnection == null) return false;
-        dbConnection.Close();
-        Debug.Log("Se cerro la base de datos");
-        return true;
+        try
+        {
+
+            if (dbConnection == null) return false;
+            dbConnection.Close();
+            Debug.Log("Se cerro la base de datos");
+            return true;
+        }
+        catch (Exception e) {
+            Debug.LogError(e.Message);
+            return false;
+        }
     }
 
     
