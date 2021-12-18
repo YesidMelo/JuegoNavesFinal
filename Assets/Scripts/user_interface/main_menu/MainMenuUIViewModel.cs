@@ -74,7 +74,7 @@ public class MainMenuUIViewModelImpl : MainMenuUIViewModel
     }
     public string loadGame
     {
-        get { return currentLanguage.getNameTag(NameTagLanguage.CONFIGURATION); }
+        get { return currentLanguage.getNameTag(NameTagLanguage.LOAD_GAME); }
     }
 
     public string nameGame {

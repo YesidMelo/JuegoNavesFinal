@@ -6,6 +6,7 @@ using UnityEngine;
 
 public interface DatabaseLocalDatasource {
     Task<bool> createDatabase(string applicationDataPath);
+    Task<bool> createTablesDataBase();
 }
 
 public class DatabaseLocalDatasourceImpl : DatabaseLocalDatasource {
@@ -26,12 +27,31 @@ public class DatabaseLocalDatasourceImpl : DatabaseLocalDatasource {
 
         await ConectionDBSqliteImpl.initInstance(DBFileName: "dbs", applicationDataPath: Application.dataPath);
         DatabaseManagerImpl.initInstance(conectionDB: ConectionDBSqliteImpl.getInstance());
-        DatabaseManager database = DatabaseManagerImpl.getInstance();
-        ConectionDBSqliteImpl.getInstance().startQueryWithOutResponses("");
         return true;
     }
 
+    public async Task<bool> createTablesDataBase() {
+        try
+        {
+            await DatabaseManagerImpl
+                .getInstance()
+                .createTables(entities: generateEntitiesDataBase());
+            return true;
+        }
+        catch (Exception e) {
+            Debug.LogError(e.Message);
+            return false;
+        }
+    }
+
     //private methods
+
+    private List<Type> generateEntitiesDataBase() {
+        return new List<Type>()
+        {
+            typeof(GameGalacticToSaveEntity)
+        };
+    }
 
     //configuracion base de datos eliminar apenas funcione
     private void crearBaseDeDatos()
@@ -39,10 +59,7 @@ public class DatabaseLocalDatasourceImpl : DatabaseLocalDatasource {
 
         Task.Run(async () => {
 
-            List<Type> clases = new List<Type>() {
-                typeof(GameGalacticToSaveEntity)
-            };
-
+            
             //bool createdTables = await database.createTables(entities: clases);
             //bool deleteTables = await database.deleteTables(entities: clases);
 

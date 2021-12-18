@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,13 @@ public enum TypeElement
     TEXT,
     BOOL,
     FLOAT
+}
+
+public enum TypeElementDB { 
+    INTEGER,
+    TEXT,
+    BLOB,
+    REAL,
 }
 
 
@@ -78,6 +86,13 @@ public static class ExtentionsTypeElement
             (element == TypeElement.BOOL && condition.valueBool != null) ||
             (element == TypeElement.FLOAT && condition.valueFloat != null)
             ;
+    }
+
+    public static TypeElement getTypeElementByName(string typeString) {
+        foreach (TypeElement type in (TypeElement[]) Enum.GetValues(typeof(TypeElement))) { 
+
+        }
+        return TypeElement.TEXT;
     }
 
 }

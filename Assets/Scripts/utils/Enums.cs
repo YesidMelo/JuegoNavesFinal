@@ -97,6 +97,7 @@ public enum NameTagLanguage
     GO_BACK,
     GAME_CREATED,
     LIFE_PLAYER,
+    LOAD,
     LOAD_GAME,
     NAME_GAME,
     NEW_GAME,

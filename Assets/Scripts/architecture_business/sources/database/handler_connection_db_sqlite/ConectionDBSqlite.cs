@@ -11,9 +11,9 @@ using UnityEngine;
 public interface ConectionDBSqlite {
 
     //Transactions Scripts
-    Task<bool> startQueryWithOutResponses(string query);
+    Task<bool> startQueryWithOutResponses(string query, string nameTable = "");
 
-    Task<object> startQueryWithResponses(string query);
+    Task<List<Dictionary<string, object>>> startQueryWithResponses(string query, string nameTable = "");
 
 }
 
@@ -43,8 +43,6 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
 
     //connection
     IDbConnection dbConnection;
-    IDbCommand dbCommand;
-    IDataReader dbReader;
 
     //creator files
     private CustomCreatorFiles creatorFiles = CreatorFilesImpl.getInstance();
@@ -59,18 +57,47 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
 
     //public methods
 
-    public async Task<bool> startQueryWithOutResponses(string query)
+    public async Task<bool> startQueryWithOutResponses(string query,string nameTable = "")
     {
-        openDB();
-        closeDB();
-        return true;
+        try {
+            openDB();
+            if (dbConnection == null) return false;
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = query;
+            dbCommand.ExecuteNonQuery();
+            closeDB();
+            return true;
+        } catch (Exception e) {
+            closeDB();
+            Debug.LogError(e.Message);
+            return false;
+        }
     }
 
-    public async Task<object> startQueryWithResponses(string query)
+    public async Task<List<Dictionary<string, object>>> startQueryWithResponses(string query, string nameTable = "")
     {
-        openDB();
-        closeDB();
-        return true;
+        List<Dictionary<string, object>>  listMapObject = new List<Dictionary<string, object>>();
+        try {
+            
+            openDB();
+
+            IDbCommand dbCommand = dbConnection.CreateCommand();
+            dbCommand.CommandText = query;
+            IDataReader dbReader = dbCommand.ExecuteReader();
+
+            
+            while (dbReader.Read()) {
+                listMapObject.Add(getField(reader: dbReader));
+            }
+
+            closeDB();
+            return listMapObject;
+        }
+        catch (Exception e) {
+            closeDB();
+            Debug.LogError(e.Message);
+            return listMapObject;
+        }
     }
 
     private async Task<bool> createDatabase()
@@ -82,7 +109,6 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
             extentionFile: "sqlite"
         );
         if (isCreatedFile) return false;
-        Debug.Log("Finalizo la creacion del archivo .sqlite");
         return true;
     }
 
@@ -102,9 +128,19 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
         );
     }
 
-    private void createFilePathDB() { 
-        filePathDB = $"URI=file:{pathDB}";
-        Debug.Log(@filePathDB);
+    private void createFilePathDB() => filePathDB = $"URI=file:{pathDB}";
+
+    private Dictionary<string, object> getField(IDataReader reader) {
+        Dictionary<string, object> file = new Dictionary<string, object>();
+
+        for (int index = 0; index< reader.FieldCount; index++) {
+            file.Add(
+                reader.GetName(index),
+                getValueFromDB(index: index, reader: reader)
+            );
+        }
+        
+        return file;
     }
 
     private bool openDB()
@@ -117,7 +153,6 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
                 dbConnection = new SqliteConnection(@filePathDB);
             }
             dbConnection.Open();
-            Debug.Log("Se abrio la base de datos");
             return true;
         }
         catch (Exception e) {
@@ -133,7 +168,6 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
 
             if (dbConnection == null) return false;
             dbConnection.Close();
-            Debug.Log("Se cerro la base de datos");
             return true;
         }
         catch (Exception e) {
@@ -142,5 +176,45 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
         }
     }
 
-    
+    private object getValueFromDB(int index, IDataReader reader) {
+        try {
+            return getValueInt(index: index, reader: reader);
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+            return null;
+        }
+    }
+
+    private object getValueInt(int index, IDataReader reader) {
+        try
+        {
+            return reader.GetInt32(index);
+        }
+        catch (Exception e) {
+            return getBool(index: index, reader: reader);
+        }
+    }
+
+    private object getBool(int index, IDataReader reader) {
+        try {
+            return reader.GetBoolean(index);
+        } catch(Exception e) {
+            return getFloat(index: index, reader: reader);
+        }
+    }
+
+    private object getFloat(int index, IDataReader reader) {
+        try
+        {
+            return reader.GetFloat(index);
+        }
+        catch(Exception e) {
+            return getString(index: index, reader: reader);
+        }
+    }
+
+    private object getString(int index, IDataReader reader) {
+        return reader.GetString(index);
+    }
+
 }

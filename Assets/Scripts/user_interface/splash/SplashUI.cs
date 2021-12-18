@@ -23,7 +23,13 @@ public class SplashUI : AbstractCanvas, SplashUIViewModelDelegate
     public void goToMainMenu()
     {
         if (myDelegate == null) { return; }
+        
         myDelegate.goToMainMenu();
+    }
+
+    private void OnDestroy()
+    {
+        viewModel.splashDestroyed();
     }
 
     //private methods
@@ -33,6 +39,7 @@ public class SplashUI : AbstractCanvas, SplashUIViewModelDelegate
         try
         {
             await viewModel.createDatabase(applicationDataPath: Application.dataPath);
+            await viewModel.createTablesDataBase();
             await viewModel.goToMainMenu();
         }
         catch (Exception e) {

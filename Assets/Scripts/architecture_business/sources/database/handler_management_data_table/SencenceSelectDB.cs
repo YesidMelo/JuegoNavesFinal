@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -35,10 +36,8 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
     {
         if (conditions == null) conditions = new List<Condition>();
         string querySelect = getSentenceSelect<T>(conditions: conditions);
-        Debug.Log(querySelect);
-        List<T> elements = new List<T>();
-        //return (T)Activator.CreateInstance(typeof(T));
-        return elements;
+        List<Dictionary<string, object>> mapObject =  await conectionDB.startQueryWithResponses(query: querySelect, nameTable: typeof(T).Name);
+        return convertListDictionaryToListElements<T>(listDictionary: mapObject);
     }
 
     //private methods 
@@ -108,6 +107,26 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
         if (string.IsNullOrEmpty(condition.columnName)) return false;
         if (condition.clausure == null) return false;
         return condition.type.conditionContainsValue(condition: condition);
+    }
+
+    private List<T> convertListDictionaryToListElements<T>(List<Dictionary<string, object>> listDictionary) {
+        List<T> elements = new List<T>();
+        foreach (Dictionary<string, object> currentDictionary in listDictionary) { 
+            T newElement = (T)Activator.CreateInstance(typeof(T));
+            assignValuesToElement(dictionary: currentDictionary, element: newElement);
+            elements.Add(newElement);
+        }
+        return elements;
+    }
+
+    private void assignValuesToElement<T>(Dictionary<string, object> dictionary, T element) {
+        return;
+        foreach (KeyValuePair<string, object> entry in dictionary) {
+            Type elementType = typeof(T);
+            PropertyInfo currentPorperty = elementType.GetProperty(entry.Key);
+            currentPorperty.SetValue(element, entry.Value);
+            Debug.Log("");
+        }
     }
 
 }

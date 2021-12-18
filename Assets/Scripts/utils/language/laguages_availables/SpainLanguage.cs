@@ -21,6 +21,7 @@ public class SpainLanguage : AbstractLanguage
         values[NameTagLanguage.GO_BACK] = "Volver";
         values[NameTagLanguage.GAME_CREATED] = "Nombre Jugador: {0}, Fecha: {1}";
         values[NameTagLanguage.LIFE_PLAYER] = "Vida: {0}";
+        values[NameTagLanguage.LOAD] = "Cargar";
         values[NameTagLanguage.LOAD_GAME] = "Cargar juego";
         values[NameTagLanguage.NAME_GAME] = "Juego Galactico";
         values[NameTagLanguage.NEW_GAME] = "Nuevo juego";

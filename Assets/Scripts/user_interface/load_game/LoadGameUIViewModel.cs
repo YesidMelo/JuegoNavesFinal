@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public interface LoadGameUIViewModelDelegate {
@@ -8,25 +9,28 @@ public interface LoadGameUIViewModelDelegate {
 }
 public interface LoadGameUIViewModel {
     LoadGameUIViewModelDelegate myDelegate { set; }
+    Task loadListGames();
     string title { get; }
     string back { get; }
     string load { get; }
 
     void goBack();
-    void loadGame();
+    Task loadGame();
 }
 
 public class LoadGameUIViewModelImpl : LoadGameUIViewModel
 {
+    private CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
+    private LoadGamesSavesUseCase loadGamesSavesUseCase = new LoadGamesSavesUseCaseImpl();
 
     private LoadGameUIViewModelDelegate _myDelegate;
     public LoadGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
 
-    public string title => "Cargar Partida";
+    public string title => currentLangajeUseCase.invoke().getNameTag(nameTag: NameTagLanguage.LOAD_GAME);
 
-    public string back => "Volver";
+    public string back => currentLangajeUseCase.invoke().getNameTag(nameTag: NameTagLanguage.GO_BACK);
 
-    public string load => "Cargar";
+    public string load => currentLangajeUseCase.invoke().getNameTag(nameTag: NameTagLanguage.LOAD);
 
     public void goBack()
     {
@@ -34,9 +38,15 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
         _myDelegate.goToBack();
     }
 
-    public void loadGame()
+    public async Task loadListGames() {
+        List<GameGalacticToSaveModel> listGames = await loadGamesSavesUseCase.invoke();
+
+    }
+
+    public async Task loadGame()
     {
         if (notExistsDelegate()) { return; }
+        
         _myDelegate.goToInteractionGame();
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading.Tasks;
 
 public interface LoadGameUIDelegate : AbstractCanvasUIDelegate
 {
@@ -25,6 +26,9 @@ public class LoadGameUI : AbstractCanvas, LoadGameUIViewModelDelegate
     {
         viewModel.myDelegate = this;
         initElements();
+        Task.Run(async () =>{
+            await viewModel.loadListGames();
+        });
     }
 
     //clicks

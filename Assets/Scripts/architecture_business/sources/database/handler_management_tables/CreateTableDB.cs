@@ -35,8 +35,8 @@ public class CreateTableDBImpl : CreateTableDB
     {
         if (entities == null || entities.Count == 0) return false;
         string queryToExecute = generateQueryCreationTables(entities: entities);
-        Debug.Log(queryToExecute);
-        return true;
+        bool succesCreation = await conectionDB.startQueryWithOutResponses(query: queryToExecute);
+        return succesCreation;
     }
 
     //private methods
