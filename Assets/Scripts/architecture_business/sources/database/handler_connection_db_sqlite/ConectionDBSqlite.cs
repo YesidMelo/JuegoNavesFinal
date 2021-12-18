@@ -26,7 +26,7 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
     public static async Task<bool> initInstance(string DBFileName, string applicationDataPath) {
         if (instance != null)  return true;
         instance = new ConectionDBSqliteImpl(DBFileName: DBFileName, applicationDataPath: applicationDataPath);
-        await Task.Delay(100);
+        await Task.Delay(1000);
         return true;
     }
 
@@ -54,19 +54,13 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
         this.DBFileName = DBFileName;
         this.applicationDataPath = applicationDataPath;
         createPathsDB();
-        Task.Run(async () => {
-            
-            await createDatabase();
-            
-        });
-        
+        Task.Run(async () => await createDatabase());
     }
 
     //public methods
 
     public async Task<bool> startQueryWithOutResponses(string query)
     {
-        
         openDB();
         closeDB();
         return true;
