@@ -120,12 +120,16 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
     }
 
     private void assignValuesToElement<T>(Dictionary<string, object> dictionary, T element) {
-        return;
         foreach (KeyValuePair<string, object> entry in dictionary) {
             Type elementType = typeof(T);
-            PropertyInfo currentPorperty = elementType.GetProperty(entry.Key);
-            currentPorperty.SetValue(element, entry.Value);
-            Debug.Log("");
+            FieldInfo currentField = elementType.GetField(entry.Key);
+            try
+            {
+                (new HelperSentenceSelectDB<T>(currentField: currentField, value: entry.Value, element: element)).setValue();
+            }
+            catch (Exception e) {
+                Debug.Log(e.Message);
+            }
         }
     }
 

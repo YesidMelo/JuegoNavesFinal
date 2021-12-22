@@ -28,6 +28,12 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
 
         List<GameGalacticToSaveEntity> listEntities = await DatabaseManagerImpl.getInstance().getElements<GameGalacticToSaveEntity>(conditions: new List<Condition>());
 
-        return new List<GameGalacticToSaveModel>();
+        ChangeBetweenObject<GameGalacticToSaveEntity, GameGalacticToSaveModel> converter = new ChangeBetweenObject<GameGalacticToSaveEntity, GameGalacticToSaveModel>();
+
+        List<GameGalacticToSaveModel> listModels = converter.transformList(listInput: listEntities);
+        return listModels;
     }
+
+    
+
 }
