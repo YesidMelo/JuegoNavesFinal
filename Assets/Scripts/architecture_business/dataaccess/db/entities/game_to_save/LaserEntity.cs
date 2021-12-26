@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Entity]
-public class LaserEntity 
+public class LaserEntity : BaseDBEntity
 {
     [PrimaryKey]
     public long? id;

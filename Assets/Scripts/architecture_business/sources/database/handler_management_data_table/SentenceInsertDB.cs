@@ -45,8 +45,7 @@ public class SentenceInsertDBImpl : SentenceInsertDB
                 query.Append(";\n");
             }
         }
-        Debug.Log(query);
-        return true;
+        return await conectionDB.startQueryWithOutResponses(query: query.ToString());
     }
 
     //private methods

@@ -31,7 +31,9 @@ public class NewGameLocalDatasourceImpl : NewGameLocalDatasource
     public async Task<bool> saveGame(GameModel gameModel)
     {
         long idGame = await helperNewGameLocalDatasource.saveGameEntity(gameModel: gameModel);
+        await helperSaveLaserNewGame.initValues(laserModel: gameModel.laserModel, idGameModel: idGame).saveLaserModel();
         Debug.Log($"id game to save = {idGame}");
         return true;
     }
+
 }

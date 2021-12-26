@@ -41,4 +41,19 @@ public static class LaserPlayerEnumExtensions {
         }
         return totalLaser / currentLasers.Count;
     }
+
+    public static long getIdDB(this LaserPlayer currentLaser) {
+        switch (currentLaser) {
+            case LaserPlayer.TYPE_2:
+                return 2;
+            case LaserPlayer.TYPE_3:
+                return 3;
+            case LaserPlayer.TYPE_4:
+                return 4;
+            case LaserPlayer.TYPE_5:
+                return 5;
+            default:
+                return 1;
+        }
+    }
 }
