@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Entity]
-public class MotorEntity {
+public class MotorEntity : BaseDBEntity{
     [PrimaryKey]
     public long? id;
 

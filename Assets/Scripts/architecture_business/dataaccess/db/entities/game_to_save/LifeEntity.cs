@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Entity]
-public class LifeEntity {
+public class LifeEntity : BaseDBEntity{
     [PrimaryKey]
     public long? id;
 
     [NotNull]
     public long? gameModelId;
 
-    [NotNull]
     public long? typeLifeId;
 
     [NotNull]

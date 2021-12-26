@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Entity]
-public class RadarEntitty {
+public class RadarEntitty : BaseDBEntity{
 
     [PrimaryKey]
     public long? id;

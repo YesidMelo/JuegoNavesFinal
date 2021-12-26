@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Entity]
-public class StructureEntity {
+public class StructureEntity : BaseDBEntity {
     [PrimaryKey]
     public long? id;
 

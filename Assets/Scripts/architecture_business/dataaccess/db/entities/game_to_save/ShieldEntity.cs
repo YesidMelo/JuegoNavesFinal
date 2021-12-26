@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Entity]
-public class ShieldEntity {
+public class ShieldEntity : BaseDBEntity{
 
     [PrimaryKey]
     public long? id;
