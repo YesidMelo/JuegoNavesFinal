@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldEntity : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+[Entity]
+public class ShieldEntity {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [PrimaryKey]
+    public long? id;
+
+    [NotNull]
+    public long? gameModelId;
+
+    [NotNull]
+    public long? typeShieldId;
+
 }

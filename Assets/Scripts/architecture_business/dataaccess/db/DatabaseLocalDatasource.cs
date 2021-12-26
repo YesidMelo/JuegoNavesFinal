@@ -49,7 +49,15 @@ public class DatabaseLocalDatasourceImpl : DatabaseLocalDatasource {
     private List<Type> generateEntitiesDataBase() {
         return new List<Type>()
         {
-            typeof(GameGalacticToSaveEntity)
+            typeof(GameEntity),
+            typeof(LaserEntity),
+            typeof(LifeEntity),
+            typeof(MotorEntity),
+            typeof(RadarEntitty),
+            typeof(ShieldEntity),
+            typeof(ShieldEntity),
+            typeof(StorageEntity),
+            typeof(StructureEntity),
         };
     }
 

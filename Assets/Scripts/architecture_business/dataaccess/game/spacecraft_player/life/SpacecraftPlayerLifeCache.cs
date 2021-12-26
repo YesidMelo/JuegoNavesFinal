@@ -6,6 +6,7 @@ public interface SpacecraftPlayerLifeCache
 {
     public float life { get; }
     public StructurePlayer currentStructure { get; }
+    public LifeModel currentLifeModel { get; }
     public float maxLife { get; }
     public void addLife(float life); 
     public void addStructureLife(StructurePlayer structure);
@@ -28,6 +29,7 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
     private float _maxLife = 1000;
     private float _life = 0;
     private StructurePlayer _currentStructure = StructurePlayer.TYPE_1;
+    private LifeModel _currentLifeModel = new LifeModel();
 
     private SpacecraftPlayerLifeCacheImpl() {}
 
@@ -37,6 +39,8 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
 
     public StructurePlayer currentStructure => _currentStructure;
 
+    public LifeModel currentLifeModel => _currentLifeModel;
+
     public void addLife(float life)
     {
         if (_life == _maxLife) return;
@@ -44,9 +48,11 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         if (finalLife >= _maxLife)
         {
             _life = _maxLife;
+            _currentLifeModel.life = life;
             return;
         }
         _life = finalLife;
+        _currentLifeModel.life = life;
     }
 
     public void addStructureLife(StructurePlayer structure)
@@ -68,14 +74,17 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         if (finalLife <= 0)
         {
             _life = 0;
+            _currentLifeModel.life = life;
             return;
         }
         _life = finalLife;
+        _currentLifeModel.life = life;
     }
 
     public void updateCurrentLife(float currentLife)
     {
         _life = currentLife;
+        _currentLifeModel.life = life;
     }
 
     //private methods
@@ -85,23 +94,28 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
             case StructurePlayer.TYPE_2:
                 _maxLife = Constants.lifePlayerStructureType2;
                 _life = _maxLife;
+                _currentLifeModel.maxLife = life;
                 return;
             case StructurePlayer.TYPE_3:
                 _maxLife = Constants.lifePlayerStructureType3;
                 _life = _maxLife;
+                _currentLifeModel.maxLife = life;
                 return;
             case StructurePlayer.TYPE_4:
                 _maxLife = Constants.lifePlayerStructureType4;
                 _life = _maxLife;
+                _currentLifeModel.maxLife = life;
                 return;
             case StructurePlayer.TYPE_5:
                 _maxLife = Constants.lifePlayerStructureType5;
                 _life = _maxLife;
+                _currentLifeModel.maxLife = life;
                 return;
             case StructurePlayer.TYPE_1:
             default:
                 _maxLife = Constants.lifePlayerStructureType1;
                 _life = _maxLife;
+                _currentLifeModel.maxLife = life;
                 return;
         }
     }

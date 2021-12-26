@@ -5,7 +5,7 @@ using UnityEngine;
 public interface SpacecraftPlayerMotorRepository {
     public float speedMotor { get; }
     public List<MotorPlayer> listMotors { get; }
-
+    public MotorModel currentMotorModel { get; }
     public bool loadMotors();
     public void setListMotors(List<MotorPlayer> motorPlayers);
 }
@@ -17,6 +17,8 @@ public class SpacecraftPlayerMotorRepositoryImpl : SpacecraftPlayerMotorReposito
     public float speedMotor => cache.speedMotor;
 
     public List<MotorPlayer> listMotors => cache.listMotors;
+
+    public MotorModel currentMotorModel => cache.currentMotorModel;
 
     public bool loadMotors() => cache.loadMotors();
 

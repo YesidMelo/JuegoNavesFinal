@@ -39,7 +39,7 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
     }
 
     public async Task loadListGames() {
-        List<GameGalacticToSaveModel> listGames = await loadGamesSavesUseCase.invoke();
+        List<GameModel> listGames = await loadGamesSavesUseCase.invoke();
         Debug.Log("");
     }
 

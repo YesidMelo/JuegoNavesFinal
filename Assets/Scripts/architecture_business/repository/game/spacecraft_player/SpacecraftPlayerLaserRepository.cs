@@ -5,6 +5,7 @@ using UnityEngine;
 public interface SpacecraftPlayerLaserRepository {
 
     public List<LaserPlayer> listLasers { get; }
+    public LaserModel currentLaserModel { get; }
     public float mediaImpactLaser { get; }
     public LaserPlayer finalLaser { get; }
 
@@ -19,6 +20,8 @@ public class SpacecraftPlayerLaserRepositoryImpl : SpacecraftPlayerLaserReposito
     public List<LaserPlayer> listLasers => cache.listLasers;
     public float mediaImpactLaser => cache.mediaImpactLaser;
     public LaserPlayer finalLaser => cache.finalImpactLaser;
+
+    public LaserModel currentLaserModel => cache.currentLaserModel;
 
     public bool loadLasers() => cache.loadLasers();    
 

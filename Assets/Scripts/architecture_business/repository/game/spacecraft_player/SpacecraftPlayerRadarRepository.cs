@@ -6,6 +6,7 @@ public interface SpacecraftPlayerRadarRepository {
     List<GameObject> getListObjectsRadar { get; }
     List<GameObject> getListEnemies { get; }
     RadarPlayer currentRadarPlayer { get; }
+    RadarModel currentRadarModel { get; }
     GameObject currentEnemy { get; }
     float currentRadiusRadar { get; }
     void addElementToRadar(GameObject gameObject);
@@ -30,6 +31,8 @@ public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarReposito
     public List<GameObject> getListEnemies => cacheEnemies.listEnemies;
 
     public GameObject currentEnemy => cacheEnemies.currentEnemy;
+
+    public RadarModel currentRadarModel => cache.currentRadarModel;
 
     public void addElementToRadar(GameObject gameObject) { 
         cache.addElementToRadar(gameObject);

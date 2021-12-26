@@ -23,6 +23,7 @@ public interface DatabaseManager {
     Task<bool> deleteElement<T>(T element) where T : BaseDBEntity;
     Task<bool> deleteElements<T>(List<T> element) where T : BaseDBEntity;
     Task<bool> clearTable<T>() where T : BaseDBEntity;
+    Task<long> getLastIndex<T>() where T : BaseDBEntity;
 
     #endregion
 
@@ -55,6 +56,7 @@ public class DatabaseManagerImpl : DatabaseManager
     private SencenceSelectDB sencenceSelectDB;
     private SentenceInsertDB sentenceInsertDB;
     private SentenceDeleteDB sentenceDeleteDB;
+    private SentenceLastIndexDB sentenceLastIndexDB;
 
     private DatabaseManagerImpl(ConectionDBSqlite conectionDB) {
         
@@ -65,6 +67,7 @@ public class DatabaseManagerImpl : DatabaseManager
         sencenceSelectDB = SencenceSelectDBImpl.getInstance(conectionDB: conectionDB);
         sentenceInsertDB = SentenceInsertDBImpl.getInstance(conectionDB: conectionDB);
         sentenceDeleteDB = SentenceDeleteDBImpl.getInstance(conectionDB: conectionDB);
+        sentenceLastIndexDB = SentenceLastIndexDBImpl.getInstance(conectionDB: conectionDB);
     }
 
     #region creacion, actualizacion eliminacion modificacion tablas
@@ -100,4 +103,7 @@ public class DatabaseManagerImpl : DatabaseManager
 
     public async Task<bool> clearTable<T>() where T : BaseDBEntity
         => await sentenceDeleteDB.clearTable<T>();
+
+    public async Task<long> getLastIndex<T>() where T : BaseDBEntity
+        => await sentenceLastIndexDB.getLastIndex<T>();
 }

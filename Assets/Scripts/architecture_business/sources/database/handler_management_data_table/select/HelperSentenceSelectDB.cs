@@ -11,7 +11,10 @@ public class HelperSentenceSelectDB<T>
     private object value;
     private T element;
 
-    private delegate object getValueConverted();
+    private HandlerNumberType<T> handlerNumberType = new HandlerNumberType<T>();
+    private HandlerBooleanType<T> handlerBooleanType = new HandlerBooleanType<T>();
+    private HandlerTextType<T> handlerTextType = new HandlerTextType<T>();
+    private HandlerDateTimeType<T> handlerDateTimeType = new HandlerDateTimeType<T>();
 
     public HelperSentenceSelectDB(
         FieldInfo currentField,
@@ -21,157 +24,45 @@ public class HelperSentenceSelectDB<T>
         this.currentField = currentField;
         this.value = value;
         this.element = element;
+        initHandlerTypes();
     }
 
     public void setValue() {
-        if (setValueLong()) return;
-        if (setValueNullLong()) return;
-        if (setValueShort()) return;
-        if (setValueNullShort()) return;
-        if (setValueString()) return;
-        if (setValueNullDateTime()) return;
-        if (setValueDateTime()) return;
-        if (setValueNullBoolean()) return;
-        if (setValueBoolean()) return;
+        if (handlerNumberType.itHasBeen()) return;
+        if (handlerBooleanType.itHasBeen()) return;
+        if (handlerTextType.itHasBeen()) return;
+        if (handlerDateTimeType.itHasBeen()) return;
 
         Debug.Log(string.Format("tipo actual: {0}\n",currentField.FieldType));
     }
 
-    private bool setValueLong() {
-        if (currentField.FieldType != typeof(long)) return false;
-        try {
-            long newValue = Convert.ToInt64(value: value);
-            currentField.SetValue(element, newValue);
-            return true;
-        } catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
+    //private methods
+    private void initHandlerTypes() {
 
-    private bool setValueNullLong()
-    {
-        if (currentField.FieldType != typeof(long?)) return false;
-        try
-        {
-            long? newValue = Convert.ToInt64(value: value);
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
-    
-    private bool setValueShort()
-    {
-        if (currentField.FieldType != typeof(short)) return false;
-        try
-        {
-            short newValue = Convert.ToInt16(value: value);
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
+        handlerNumberType.startValues(
+            currentField: currentField,
+            value: value,
+            element: element
+        );
 
-    private bool setValueNullShort()
-    {
-        if (currentField.FieldType != typeof(short?)) return false;
-        try
-        {
-            short? newValue = Convert.ToInt16(value: value);
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
+        handlerBooleanType.startValues(
+            currentField: currentField,
+            value: value,
+            element: element
+        );
 
-    private bool setValueString()
-    {
-        if (currentField.FieldType != typeof(string)) return false;
-        try
-        {
-            string newValue = Convert.ToString(value: value);
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
+        handlerTextType.startValues(
+            currentField: currentField,
+            value: value,
+            element: element
+        );
 
-    private bool setValueNullDateTime()
-    {
-        if (currentField.FieldType != typeof(DateTime?)) return false;
-        try
-        {
-            string valueString = Convert.ToString(value: value);
-            DateTime? newValue = valueString.convertToDateTime(DateFormats.ISO_8601);
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
+        handlerDateTimeType.startValues(
+            currentField: currentField,
+            value: value,
+            element: element
+        );
 
-    private bool setValueDateTime()
-    {
-        if (currentField.FieldType != typeof(DateTime)) return false;
-        try
-        {
-            string valueString = Convert.ToString(value: value);
-            DateTime newValue = valueString.convertToDateTime(DateFormats.ISO_8601);
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
     }
-
-    private bool setValueNullBoolean()
-    {
-        if (currentField.FieldType != typeof(bool?)) return false;
-        try
-        {
-            byte valueBlob = Convert.ToByte(value: value);
-            bool? newValue = valueBlob == 1;
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
-
-    private bool setValueBoolean()
-    {
-        if (currentField.FieldType != typeof(bool)) return false;
-        try
-        {
-            byte valueBlob = Convert.ToByte(value: value);
-            bool newValue = valueBlob == 1;
-            currentField.SetValue(element, newValue);
-            return true;
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            return false;
-        }
-    }
-
 
 }

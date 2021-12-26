@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface LoadGameRepo
 {
-    Task<List<GameGalacticToSaveModel>> loadListGamesSaved();
+    Task<List<GameModel>> loadListGamesSaved();
 }
 
 public class LoadGameRepositoryImpl : LoadGameRepo
@@ -13,5 +13,5 @@ public class LoadGameRepositoryImpl : LoadGameRepo
 
     private LoadGameDatabaseDatasource loadGameDatabaseDatasource = LoadGameDatabaseDatasourceImpl.getInstance();
 
-    public async Task<List<GameGalacticToSaveModel>> loadListGamesSaved() => await loadGameDatabaseDatasource.loadListGamesSaved();
+    public async Task<List<GameModel>> loadListGamesSaved() => await loadGameDatabaseDatasource.loadListGamesSaved();
 }

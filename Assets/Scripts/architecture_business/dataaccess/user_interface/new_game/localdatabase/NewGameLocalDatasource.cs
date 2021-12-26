@@ -11,6 +11,11 @@ public interface NewGameLocalDatasource {
 
 public class NewGameLocalDatasourceImpl : NewGameLocalDatasource
 {
+
+    private HelperNewGameLocalDatasource helperNewGameLocalDatasource = new HelperNewGameLocalDatasource();
+    private HelperSaveLaserNewGameLocalDatasource helperSaveLaserNewGame = new HelperSaveLaserNewGameLocalDatasource();
+
+
     public async Task<bool> loadGame()
     {
         await Task.Delay(1000);
@@ -25,7 +30,8 @@ public class NewGameLocalDatasourceImpl : NewGameLocalDatasource
 
     public async Task<bool> saveGame(GameModel gameModel)
     {
-        
+        long idGame = await helperNewGameLocalDatasource.saveGameEntity(gameModel: gameModel);
+        Debug.Log($"id game to save = {idGame}");
         return true;
     }
 }

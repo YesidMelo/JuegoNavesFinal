@@ -37,7 +37,7 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
         if (conditions == null) conditions = new List<Condition>();
         string querySelect = getSentenceSelect<T>(conditions: conditions);
         List<Dictionary<string, object>> mapObject =  await conectionDB.startQueryWithResponses(query: querySelect, nameTable: typeof(T).Name);
-        return convertListDictionaryToListElements<T>(listDictionary: mapObject);
+        return (new ChangeDictionaryToElement<T>()).convertListDictionaryToListElements<T>(listDictionary: mapObject);
     }
 
     //private methods 
@@ -107,30 +107,6 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
         if (string.IsNullOrEmpty(condition.columnName)) return false;
         if (condition.clausure == null) return false;
         return condition.type.conditionContainsValue(condition: condition);
-    }
-
-    private List<T> convertListDictionaryToListElements<T>(List<Dictionary<string, object>> listDictionary) {
-        List<T> elements = new List<T>();
-        foreach (Dictionary<string, object> currentDictionary in listDictionary) { 
-            T newElement = (T)Activator.CreateInstance(typeof(T));
-            assignValuesToElement(dictionary: currentDictionary, element: newElement);
-            elements.Add(newElement);
-        }
-        return elements;
-    }
-
-    private void assignValuesToElement<T>(Dictionary<string, object> dictionary, T element) {
-        foreach (KeyValuePair<string, object> entry in dictionary) {
-            Type elementType = typeof(T);
-            FieldInfo currentField = elementType.GetField(entry.Key);
-            try
-            {
-                (new HelperSentenceSelectDB<T>(currentField: currentField, value: entry.Value, element: element)).setValue();
-            }
-            catch (Exception e) {
-                Debug.Log(e.Message);
-            }
-        }
     }
 
 }

@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public interface LoadGamesSavesUseCase {
-    Task<List<GameGalacticToSaveModel>> invoke();
+    Task<List<GameModel>> invoke();
 }
 
 public class LoadGamesSavesUseCaseImpl : LoadGamesSavesUseCase
 {
     private LoadGameRepo loadGameRepository = new LoadGameRepositoryImpl();
 
-    public async Task<List<GameGalacticToSaveModel>> invoke() => await loadGameRepository.loadListGamesSaved();
+    public async Task<List<GameModel>> invoke() => await loadGameRepository.loadListGamesSaved();
 }

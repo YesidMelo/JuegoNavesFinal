@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LifeEntity : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+[Entity]
+public class LifeEntity {
+    [PrimaryKey]
+    public long? id;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [NotNull]
+    public long? gameModelId;
+
+    [NotNull]
+    public long? typeLifeId;
+
+    [NotNull]
+    public float life;
+
+    [NotNull]
+    public float maxLife;
 }

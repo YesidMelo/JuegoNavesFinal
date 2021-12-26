@@ -21,20 +21,26 @@ public class SaveGameUseCaseImpl : SaveGameUseCase
 
     public async Task<bool> invoke() {
         GameModel gameModelToSave = await newGameRepository.getCurrentNewGameModel();
-        return await newGameRepository.saveGame(gameModel: generateGameModelBySave(gameModel: gameModelToSave));
+        GameModel gameModelFinalToSave =  generateGameModelBySave(gameModel: gameModelToSave);
+        if (gameModelFinalToSave == null) return false;
+        return await newGameRepository.saveGame(gameModel: gameModelFinalToSave);
     }
 
     //private methods
     private GameModel generateGameModelBySave(GameModel gameModel) {
-        gameModel.currentRadarPlayer = repoRadar.currentRadarPlayer;
-        gameModel.listLasers = repoLaserPlayer.listLasers;
-        gameModel.life = repoLifePlayer.life;
-        gameModel.maxLife = repoLifePlayer.maxLife;
-        gameModel.listMotors = repoMotorPlayer.listMotors;
-        gameModel.currentShield = repoShield.currentShield;
-        gameModel.currentStorage = repoStorage.currentStorage;
-        gameModel.currentStructure = repoStructure.currentStructure;
-        return gameModel;
+        try {
+            gameModel.radarModel = repoRadar.currentRadarModel;
+            gameModel.laserModel = repoLaserPlayer.currentLaserModel;
+            gameModel.lifeModel = repoLifePlayer.currentLifeModel;
+            gameModel.motorModel = repoMotorPlayer.currentMotorModel;
+            gameModel.shieldModel = repoShield.currentShieldModel;
+            gameModel.storageModel = repoStorage.currentStorageModel;
+            gameModel.structureModel = repoStructure.currentStructureModel;
+            return gameModel;
+        } catch (Exception e) {
+            Debug.LogError(e.Message);
+            return null;
+        }
     }
 
 }

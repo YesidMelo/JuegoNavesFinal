@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserEntity : MonoBehaviour
+[Entity]
+public class LaserEntity 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [PrimaryKey]
+    public long? id;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [NotNull]
+    public long? gameModelId;
+
+    [NotNull]
+    public long? typeLaserId;
+
 }

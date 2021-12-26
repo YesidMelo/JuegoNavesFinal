@@ -6,6 +6,7 @@ public interface SpacecraftPlayerRadarCache {
 
     List<GameObject> getListObjectsRadar { get; }
     RadarPlayer currentRadarPlayer { get; }
+    RadarModel currentRadarModel { get; }
 
     float radiusRadar { get; }
     void addElementToRadar(GameObject gameObject);
@@ -29,6 +30,7 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
     }
 
     private List<GameObject> _listElementsRadar = new List<GameObject>();
+    private RadarModel radarModel = new RadarModel();
     
 
     private RadarPlayer _currentRadarPlayer = RadarPlayer.TYPE_1;
@@ -40,6 +42,7 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
 
     public RadarPlayer currentRadarPlayer => _currentRadarPlayer;
 
+    public RadarModel currentRadarModel => radarModel;
 
     public void addElementToRadar(GameObject gameObject)
     {
@@ -63,6 +66,7 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
     public void updateCurrentRadar(RadarPlayer radar)
     {
         _currentRadarPlayer = radar;
+        radarModel.currentRadarPlayer = radar;
         calculateRadiusRadar();
     }
 

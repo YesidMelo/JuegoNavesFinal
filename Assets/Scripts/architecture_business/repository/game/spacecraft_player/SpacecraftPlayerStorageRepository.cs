@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface SpacecraftPlayerStorageRepository {
     StoragePlayer currentStorage { get; }
+    StorageModel currentStorageModel { get; }
     bool loadStorage();
     void updateStorage(StoragePlayer storage);
 }
@@ -12,6 +13,8 @@ public class SpacecraftPlayerStorageRepositoryImpl : SpacecraftPlayerStorageRepo
     private SpacecraftPlayerStorageCache cache = SpacecraftPlayerStorageCacheImpl.getInstance();
 
     public StoragePlayer currentStorage => cache.currentStorage;
+
+    public StorageModel currentStorageModel => cache.currentStorageModel;
 
     public bool loadStorage() => cache.loadStorage();
 

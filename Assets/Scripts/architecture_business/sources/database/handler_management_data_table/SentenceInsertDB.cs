@@ -33,8 +33,7 @@ public class SentenceInsertDBImpl : SentenceInsertDB
     public async Task<bool> insert<T>(T element) where T : BaseDBEntity
     {
         string query = generateQueryInsertElement(element: element);
-        Debug.Log(query);
-        return true;
+        return await conectionDB.startQueryWithOutResponses(query: query);
     }
 
     public async Task<bool> insertAll<T>(List<T> elements) where T : BaseDBEntity

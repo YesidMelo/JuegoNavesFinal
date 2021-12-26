@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface SpacecraftPlayerStructureCache { 
     StructurePlayer currentStructure { get; }
+    StructureModel currentStructureModel { get; }
     bool loadStructure();
     void updateStructure(StructurePlayer structure);
 }
@@ -22,16 +23,23 @@ public class SpacecraftPlayerStructureCacheImpl : SpacecraftPlayerStructureCache
 
     // variables
     private StructurePlayer _currentStructure = StructurePlayer.TYPE_1;
+    private StructureModel _currentStructureModel = new StructureModel();
 
     private SpacecraftPlayerStructureCacheImpl() { }
 
 
     public StructurePlayer currentStructure => _currentStructure;
 
-    public void updateStructure(StructurePlayer structure) => _currentStructure = structure;
+    public StructureModel currentStructureModel => _currentStructureModel;
+
+    public void updateStructure(StructurePlayer structure) { 
+        _currentStructure = structure;
+        _currentStructureModel.currentStructure = _currentStructure;
+    }
 
     public bool loadStructure()
     {
+        _currentStructureModel.currentStructure = _currentStructure;
         return true;
     }
 }

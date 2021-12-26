@@ -6,7 +6,7 @@ public interface SpacecraftPlayerMotorCache
 {
     public float speedMotor { get; }
     public List<MotorPlayer> listMotors{ get; }
-
+    public MotorModel currentMotorModel { get; }
     public bool loadMotors();
     public void setListMotors(List<MotorPlayer> motorPlayers);
 }
@@ -26,10 +26,13 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
 
     private float _speedMotor = 1;
     private List<MotorPlayer> _listMotors = new List<MotorPlayer>();
+    private MotorModel _currentMotorModel = new MotorModel();
 
     public float speedMotor => _speedMotor;
 
     public List<MotorPlayer> listMotors => _listMotors;
+
+    public MotorModel currentMotorModel => _currentMotorModel;
 
     public bool loadMotors()
     {
@@ -49,11 +52,12 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
     {
         if (motorPlayers.Count == 0) return;
         _listMotors = motorPlayers;
+        _currentMotorModel.listMotors = _listMotors;
         calculateSpeedMotor();
     }
 
     //Private functions
-    public void calculateSpeedMotor() {
+    private void calculateSpeedMotor() {
         if (_listMotors.Count == 0) return;
         float finalSpeed = 0;
 

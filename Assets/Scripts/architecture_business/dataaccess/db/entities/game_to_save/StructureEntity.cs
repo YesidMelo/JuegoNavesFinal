@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StructureEntity : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+[Entity]
+public class StructureEntity {
+    [PrimaryKey]
+    public long? id;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [NotNull]
+    public long? gameModelId;
+
+    [NotNull]
+    public long? typeStructureId;
 }

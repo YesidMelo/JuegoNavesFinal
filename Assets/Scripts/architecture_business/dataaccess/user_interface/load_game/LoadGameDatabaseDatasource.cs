@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public interface LoadGameDatabaseDatasource {
-    Task<List<GameGalacticToSaveModel>> loadListGamesSaved();
+    Task<List<GameModel>> loadListGamesSaved();
 }
 
 public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
@@ -23,14 +23,14 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
 
     private LoadGameDatabaseDatasourceImpl() { }
 
-    public async Task<List<GameGalacticToSaveModel>> loadListGamesSaved()
+    public async Task<List<GameModel>> loadListGamesSaved()
     {
 
-        List<GameGalacticToSaveEntity> listEntities = await DatabaseManagerImpl.getInstance().getElements<GameGalacticToSaveEntity>(conditions: new List<Condition>());
+        List<GameEntity> listEntities = await DatabaseManagerImpl.getInstance().getElements<GameEntity>(conditions: new List<Condition>());
 
-        ChangeBetweenObject<GameGalacticToSaveEntity, GameGalacticToSaveModel> converter = new ChangeBetweenObject<GameGalacticToSaveEntity, GameGalacticToSaveModel>();
+        ChangeBetweenObject<GameEntity, GameModel> converter = new ChangeBetweenObject<GameEntity, GameModel>();
 
-        List<GameGalacticToSaveModel> listModels = converter.transformList(listInput: listEntities);
+        List<GameModel> listModels = converter.transformList(listInput: listEntities);
         return listModels;
     }
 

@@ -8,3 +8,6 @@ public class PrimaryKey: Attribute { }
 
 [AttributeUsage(AttributeTargets.Field)]
 public class NotNull : Attribute { }
+
+[AttributeUsage(AttributeTargets.Class)]
+public class Entity : Attribute{ }

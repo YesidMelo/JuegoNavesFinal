@@ -69,7 +69,7 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
             return true;
         } catch (Exception e) {
             closeDB();
-            Debug.LogError(e.Message);
+            Debug.Log(e.Message);
             return false;
         }
     }
@@ -95,7 +95,7 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
         }
         catch (Exception e) {
             closeDB();
-            Debug.LogError(e.Message);
+            Debug.Log(e.Message);
             return listMapObject;
         }
     }
@@ -180,7 +180,7 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
         try {
             return getValueInt(index: index, reader: reader);
         } catch (Exception e) {
-            Debug.LogError(e.Message);
+            Debug.Log(e.Message);
             return null;
         }
     }

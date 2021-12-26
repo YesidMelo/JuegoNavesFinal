@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface SpacecraftPlayerShieldRepository {
     ShieldPlayer currentShield { get; }
+    ShieldModel currentShieldModel { get; }
     void setShield(ShieldPlayer shield);
     bool loadShield();
 }
@@ -14,6 +15,8 @@ public class SpacecraftPlayerShieldRepositoryImpl : SpacecraftPlayerShieldReposi
     private SpacecraftPlayerShieldCache cache = SpacecraftPlayerShieldCacheImpl.getInstance();
 
     public ShieldPlayer currentShield => cache.currentShield;
+
+    public ShieldModel currentShieldModel => cache.currentShieldModel;
 
     public bool loadShield() => cache.loadShield();
     
