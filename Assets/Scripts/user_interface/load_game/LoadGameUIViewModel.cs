@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public interface LoadGameUIViewModelDelegate {
     void goToBack();
     void goToInteractionGame();
+
+    void showListGameObjectSaved(List<GameModel> gameModels);
+
 }
 public interface LoadGameUIViewModel {
     LoadGameUIViewModelDelegate myDelegate { set; }
@@ -32,6 +36,9 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
 
     public string load => currentLangajeUseCase.invoke().getNameTag(nameTag: NameTagLanguage.LOAD);
 
+    private SynchronizationContext syncContext = SynchronizationContext.Current;
+
+
     public void goBack()
     {
         if (notExistsDelegate()) { return; }
@@ -40,7 +47,13 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
 
     public async Task loadListGames() {
         List<GameModel> listGames = await loadGamesSavesUseCase.invoke();
-        Debug.Log("");
+        if (_myDelegate == null) return;
+        syncContext.Post(
+            _ => {
+                _myDelegate.showListGameObjectSaved(gameModels: listGames);
+            }
+            , null
+        );
     }
 
     public async Task loadGame()

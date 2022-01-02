@@ -8,14 +8,16 @@ public class HandlerDateTimeType<T> : BaseHandlerTypeDB<T>
 
     public override bool itHasBeen()
     {
-        if (setValueNullDateTime()) return true;
-        if (setValueDateTime()) return true;
+        if (setValueNullDateTimeValueDateTime()) return true;
+        if (setValueDateTimeValueDateTime()) return true;
+        if (setValueNullDateTimeValueString()) return true;
+        if (setValueDateTimeValueString()) return true;
         return false;
     }
 
     //private methods
 
-    private bool setValueNullDateTime()
+    private bool setValueNullDateTimeValueDateTime()
     {
         if (currentField.FieldType != typeof(DateTime?)) return false;
         try
@@ -31,7 +33,7 @@ public class HandlerDateTimeType<T> : BaseHandlerTypeDB<T>
         }
     }
 
-    private bool setValueDateTime()
+    private bool setValueDateTimeValueDateTime()
     {
         if (currentField.FieldType != typeof(DateTime)) return false;
         try
@@ -46,4 +48,34 @@ public class HandlerDateTimeType<T> : BaseHandlerTypeDB<T>
             return false;
         }
     }
+    private bool setValueNullDateTimeValueString()
+    {
+        if (currentField.FieldType != typeof(DateTime?)) return false;
+        try
+        {
+            DateTime? newValue = DateTime.ParseExact(value.ToString(), "yyyy-MM-ddThh:mm:ss", null);
+            currentField.SetValue(element, newValue);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    private bool setValueDateTimeValueString()
+    {
+        if (currentField.FieldType != typeof(DateTime)) return false;
+        try
+        {
+            DateTime newValue = DateTime.ParseExact(value.ToString(), "yyyy-MM-ddThh:mm:ss", null);
+            currentField.SetValue(element, newValue);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
 }

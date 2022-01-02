@@ -28,7 +28,7 @@ public class ChangeDictionaryToElement<T> {
             FieldInfo currentField = elementType.GetField(entry.Key);
             try
             {
-                (new HelperSentenceSelectDB<T>(currentField: currentField, value: entry.Value, element: element)).setValue();
+                (new HelperChangeDictionaryToElement<T>(currentField: currentField, value: entry.Value, element: element)).setValue();
             }
             catch (Exception e)
             {

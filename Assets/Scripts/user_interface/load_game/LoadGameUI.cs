@@ -16,6 +16,7 @@ public class LoadGameUI : AbstractCanvas, LoadGameUIViewModelDelegate
     public TextMeshProUGUI title;
     public TextMeshProUGUI back;
     public TextMeshProUGUI load;
+    public ScrollViewListGamesSaved scrollViewListGamesSaved;
 
     private LoadGameUIViewModel viewModel = new LoadGameUIViewModelImpl();
     private LoadGameUIDelegate _myDelegate;
@@ -58,5 +59,10 @@ public class LoadGameUI : AbstractCanvas, LoadGameUIViewModelDelegate
     {
         if (notExistsDelegate()) { return; }
         _myDelegate.goToInteractionGame();
+    }
+
+    public void showListGameObjectSaved(List<GameModel> gameModels)
+    {
+        scrollViewListGamesSaved.updateListGamesSaved(gameModels);
     }
 }
