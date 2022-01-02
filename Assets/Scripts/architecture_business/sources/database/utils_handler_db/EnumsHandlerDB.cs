@@ -81,10 +81,10 @@ public static class ExtentionsTypeElement
     )
     {
         return
-            (element == TypeElement.INTEGER && condition.valueInt != null) ||
-            (element == TypeElement.TEXT && condition.valueString != null) ||
-            (element == TypeElement.BOOL && condition.valueBool != null) ||
-            (element == TypeElement.FLOAT && condition.valueFloat != null)
+            (element == TypeElement.INTEGER && condition.value != null) ||
+            (element == TypeElement.TEXT && condition.value != null) ||
+            (element == TypeElement.BOOL && condition.value != null) ||
+            (element == TypeElement.FLOAT && condition.value != null)
             ;
     }
 

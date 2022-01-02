@@ -23,7 +23,7 @@ public class ListViewAdapterGamesSaved
     private void calculateWidthAndHeigth() {
         foreach (ItemListViewGameSaved item in listGamesSaved) {
             _currentHeigth += item.heigth();
-            _currentWidth += item.width();            
+            _currentWidth += item.width();
         }
     }
 }

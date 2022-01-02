@@ -86,16 +86,16 @@ public class SencenceSelectDBImpl : SencenceSelectDB {
         switch (condition.type)
         {
             case TypeElement.TEXT:
-                element += $"\"{condition.valueString}\"";
+                element += $"\"{condition.value}\"";
                 break;
             case TypeElement.INTEGER:
-                element += $"{condition.valueInt}";
+                element += $"{condition.value}";
                 break;
             case TypeElement.FLOAT:
-                element += $"{condition.valueFloat}";
+                element += $"{condition.value}";
                 break;
             case TypeElement.BOOL:
-                element += $"{(condition.valueBool ? 1 : 0)}";
+                element += $"{(((bool)condition.value) ? 1 : 0)}";
                 break;
         }
 

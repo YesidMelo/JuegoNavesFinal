@@ -5,6 +5,7 @@ using UnityEngine;
 
 public interface LoadGameDatabaseDatasource {
     Task<List<GameModel>> loadListGamesSaved();
+    Task<GameModel> loadGameModel(GameModel gameModel);
 }
 
 public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
@@ -20,6 +21,8 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
         return instance;
     }
 
+    private HelperLoadLaserLoadGameDatabase helperLoadLaserLoadGameDatabase = new HelperLoadLaserLoadGameDatabase();
+    private HelperLoadLifeLoadGameDatabase helperLoadLifeLoadGameDatabase = new HelperLoadLifeLoadGameDatabase();
 
     private LoadGameDatabaseDatasourceImpl() { }
 
@@ -34,6 +37,10 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
         return listModels;
     }
 
-    
-
+    public async Task<GameModel> loadGameModel(GameModel gameModel)
+    {
+        await helperLoadLaserLoadGameDatabase.setLoadGameModel(gameModel: gameModel).loadLasers();
+        await helperLoadLifeLoadGameDatabase.initValues(gameModel: gameModel).loadLife();
+        return gameModel;
+    }
 }

@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8727357017187775741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1417146688079491929}
+        m_TargetAssemblyTypeName: ItemListViewGameSaved, Assembly-CSharp
+        m_MethodName: onClickListenerLoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5535081647102546069
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +480,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4963730359134749049}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1417146688079491929}
+        m_TargetAssemblyTypeName: ItemListViewGameSaved, Assembly-CSharp
+        m_MethodName: onClickListenerDeleteGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8067242623236495778
 GameObject:
   m_ObjectHideFlags: 0

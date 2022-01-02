@@ -73,6 +73,13 @@ public static class Constants
     public static float speedMotorPlayerType4 = 3.5f;
     public static float speedMotorPlayerType5 = 4f;
 
+    //Laser id database
+    public static long laserPlayerIdType1 = 1;
+    public static long laserPlayerIdType2 = 2;
+    public static long laserPlayerIdType3 = 3;
+    public static long laserPlayerIdType4 = 4;
+    public static long laserPlayerIdType5 = 5;
+
     //LifeEnemy
     public static float lifeEnemyStructureType1 = 100;
     public static float lifeEnemyStructureType2 = 200;

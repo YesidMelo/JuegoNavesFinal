@@ -7,10 +7,7 @@ public class Condition
     public string columnName;
     public Clause clausure;
     public TypeElement type;
-    public int valueInt;
-    public string valueString;
-    public bool valueBool;
-    public float valueFloat;
+    public object value;
 }
 
 public class Versions<T> {

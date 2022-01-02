@@ -19,13 +19,15 @@ public interface LoadGameUIViewModel {
     string load { get; }
 
     void goBack();
-    Task loadGame();
+    Task deleteGame(GameModel gameModel);
+    Task loadGame(GameModel gameModel);
 }
 
 public class LoadGameUIViewModelImpl : LoadGameUIViewModel
 {
     private CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
     private LoadGamesSavesUseCase loadGamesSavesUseCase = new LoadGamesSavesUseCaseImpl();
+    private LoadGameSavedUseCase loadGameSavedUseCase = new LoadGameSavedUseCaseImpl();
 
     private LoadGameUIViewModelDelegate _myDelegate;
     public LoadGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
@@ -56,11 +58,16 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
         );
     }
 
-    public async Task loadGame()
+    public async Task loadGame(GameModel gameModel)
     {
         if (notExistsDelegate()) { return; }
-        
-        _myDelegate.goToInteractionGame();
+        await loadGameSavedUseCase.invoke(gameModel: gameModel);
+        //_myDelegate.goToInteractionGame();
+    }
+
+    public async Task deleteGame(GameModel gameModel) {
+        if (notExistsDelegate()) return;
+        Debug.Log($"juego eliminar : {gameModel.namePlayer}");
     }
 
     // private methods

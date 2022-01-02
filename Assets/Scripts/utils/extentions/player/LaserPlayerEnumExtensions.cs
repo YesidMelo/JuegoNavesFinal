@@ -45,15 +45,24 @@ public static class LaserPlayerEnumExtensions {
     public static long getIdDB(this LaserPlayer currentLaser) {
         switch (currentLaser) {
             case LaserPlayer.TYPE_2:
-                return 2;
+                return Constants.laserPlayerIdType2;
             case LaserPlayer.TYPE_3:
-                return 3;
+                return Constants.laserPlayerIdType3;
             case LaserPlayer.TYPE_4:
-                return 4;
+                return Constants.laserPlayerIdType4;
             case LaserPlayer.TYPE_5:
-                return 5;
+                return Constants.laserPlayerIdType5;
             default:
-                return 1;
+                return Constants.laserPlayerIdType1;
         }
+    }
+
+    public static LaserPlayer getLaserPlayerById(this LaserPlayer currentLaser, long? id)
+    {
+        if (id == Constants.laserPlayerIdType2) return LaserPlayer.TYPE_2;
+        if (id == Constants.laserPlayerIdType3) return LaserPlayer.TYPE_3;
+        if (id == Constants.laserPlayerIdType4) return LaserPlayer.TYPE_4;
+        if (id == Constants.laserPlayerIdType5) return LaserPlayer.TYPE_5;
+        return LaserPlayer.TYPE_1;
     }
 }

@@ -1,15 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 
-public class ScrollViewListGamesSaved : MonoBehaviour
+public interface ScrollViewListGamesSavedDelegate {
+    public void deleteGame(GameModel gameModel);
+    public void loadGame(GameModel gameModel);
+}
+
+public class ScrollViewListGamesSaved : MonoBehaviour, ItemListViewGameSavedDelegate
 {
     public GameObject contentScrollView;
     public GameObject prefabItemListGameSaved;
     private ListViewAdapterGamesSaved listViewAdapterGamesSaved = new ListViewAdapterGamesSaved();
-    private SynchronizationContext syncContext = SynchronizationContext.Current;
+    private ScrollViewListGamesSavedDelegate myDelegate;
 
     //default
     public void Start()
@@ -23,6 +25,11 @@ public class ScrollViewListGamesSaved : MonoBehaviour
     }
 
     //public methods
+
+    public void setDelegate(ScrollViewListGamesSavedDelegate myDelegate) {
+        this.myDelegate = myDelegate;
+    }
+
     public void updateListGamesSaved(List<GameModel> listGameModel) {
         listViewAdapterGamesSaved.setListGamesSaved(listItemGameSaved: listGameSaved(listGameModel: listGameModel));
         Vector2 currentSize = new Vector2(listViewAdapterGamesSaved.width(), listViewAdapterGamesSaved.heigth());
@@ -63,11 +70,24 @@ public class ScrollViewListGamesSaved : MonoBehaviour
     {
         ItemListViewGameSaved item = currentGameObject.GetComponent<ItemListViewGameSaved>();
         if (item == null) return currentPosition;
+        item.setDelegate(myDelegate: this);
         item.setCurrentGameSaved(gameModel: itemGameModel);
         listViewGameSaveds.Add(item);
 
         currentGameObject.transform.localPosition = new Vector3(0f, currentPosition, 0f);
         currentPosition -= item.heigth();
         return currentPosition;
+    }
+
+    public void deleteGame(GameModel gameModel)
+    {
+        if (myDelegate == null) return;
+        myDelegate.deleteGame(gameModel: gameModel);
+    }
+
+    public void loadGame(GameModel gameModel)
+    {
+        if (myDelegate == null) return;
+        myDelegate.loadGame(gameModel: gameModel);
     }
 }

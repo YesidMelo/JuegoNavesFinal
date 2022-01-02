@@ -10,12 +10,11 @@ public interface LoadGameUIDelegate : AbstractCanvasUIDelegate
     void goToInteractionGame();
 }
 
-public class LoadGameUI : AbstractCanvas, LoadGameUIViewModelDelegate
+public class LoadGameUI : AbstractCanvas, LoadGameUIViewModelDelegate, ScrollViewListGamesSavedDelegate
 {
     public LoadGameUIDelegate myDelegate { set { _myDelegate = value; } }
     public TextMeshProUGUI title;
     public TextMeshProUGUI back;
-    public TextMeshProUGUI load;
     public ScrollViewListGamesSaved scrollViewListGamesSaved;
 
     private LoadGameUIViewModel viewModel = new LoadGameUIViewModelImpl();
@@ -35,14 +34,11 @@ public class LoadGameUI : AbstractCanvas, LoadGameUIViewModelDelegate
     //clicks
     public void clickBack() => viewModel.goBack();
 
-    public void clickLoad() => viewModel.loadGame();
-
     // public methods
     // private Methods
     private void initElements() {
         title.text = viewModel.title;
         back.text = viewModel.back;
-        load.text = viewModel.load;
     }
 
     private bool notExistsDelegate() => _myDelegate == null;
@@ -64,5 +60,10 @@ public class LoadGameUI : AbstractCanvas, LoadGameUIViewModelDelegate
     public void showListGameObjectSaved(List<GameModel> gameModels)
     {
         scrollViewListGamesSaved.updateListGamesSaved(gameModels);
+        scrollViewListGamesSaved.setDelegate(myDelegate: this);
     }
+
+    public void deleteGame(GameModel gameModel) => viewModel.deleteGame(gameModel: gameModel);
+
+    public void loadGame(GameModel gameModel) => viewModel.loadGame(gameModel: gameModel);
 }

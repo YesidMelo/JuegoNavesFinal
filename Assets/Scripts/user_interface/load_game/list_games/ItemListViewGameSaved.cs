@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public interface ItemListViewGameSavedDelegate {
+    public void deleteGame(GameModel gameModel);
+    public void loadGame(GameModel gameModel);
+}
+
 public class ItemListViewGameSaved : MonoBehaviour
 {
     public RectTransform currentRectTransform;
@@ -10,34 +15,43 @@ public class ItemListViewGameSaved : MonoBehaviour
     public TextMeshProUGUI nameGame;
     public TextMeshProUGUI delete;
 
-    private void Start()
+    private CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
+    private ItemListViewGameSavedDelegate myDelegate;
+
+    //Monobehavior
+    public void Start()
     {
-        configRectTransform();
+        currentRectTransform.offsetMax = new Vector2(0f, currentRectTransform.offsetMax.y);
     }
 
     //public methods
-
+    public void setDelegate(ItemListViewGameSavedDelegate myDelegate) {
+        this.myDelegate = myDelegate;
+    }
 
     public void setCurrentGameSaved(GameModel gameModel) { 
         _currentGameSaved = gameModel;
-        nameGame.text = gameModel.namePlayer;
-        delete.text = "Eliminar";
+        nameGame.text = string.Format(
+            currentLangajeUseCase.invoke().getNameTag(nameTag: NameTagLanguage.GAME_CREATED),
+            _currentGameSaved.namePlayer,
+            _currentGameSaved.date
+        );
+        delete.text = currentLangajeUseCase.invoke().getNameTag(nameTag: NameTagLanguage.DELETE);
     }
 
     //private methods
-    private void configRectTransform()
-    {
-        currentRectTransform.offsetMax = new Vector2(0f, currentRectTransform.offsetMax.y);
-        /*
-        rectTransform.offsetMin = new Vector2(0f, 0f);
-        
-        */
-        ///*Left*/rectTransform.offsetMin.x;
-        ///*Right*/rectTransform.offsetMax.x;
-        ///*Top*/rectTransform.offsetMax.y;
-        ///*Bottom*/rectTransform.offsetMin.y;
+
+    //listeners Buttons
+
+    public void onClickListenerLoadGame() {
+        if (myDelegate == null) return;
+        myDelegate.loadGame(_currentGameSaved);
     }
 
+    public void onClickListenerDeleteGame() {
+        if (myDelegate == null) return;
+        myDelegate.deleteGame(_currentGameSaved);
+    }
 
     //sets and gets
     public float heigth() => currentRectTransform.rect.height;

@@ -94,6 +94,7 @@ public enum NameTagLanguage
     CONTINUE,
     CREATE_GAME,
     DEFENSE,
+    DELETE,
     GO_BACK,
     GAME_CREATED,
     LIFE_PLAYER,

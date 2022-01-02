@@ -25,7 +25,7 @@ public class DatabaseLocalDatasourceImpl : DatabaseLocalDatasource {
     //public methods
     public async Task<bool> createDatabase(string applicationDataPath) {
 
-        await ConectionDBSqliteImpl.initInstance(DBFileName: "dbs", applicationDataPath: Application.dataPath);
+        await ConectionDBSqliteImpl.initInstance(DBFileName: "dbs", applicationDataPath: getDataPath());
         DatabaseManagerImpl.initInstance(conectionDB: ConectionDBSqliteImpl.getInstance());
         return true;
     }
@@ -59,6 +59,12 @@ public class DatabaseLocalDatasourceImpl : DatabaseLocalDatasource {
             typeof(StorageEntity),
             typeof(StructureEntity),
         };
+    }
+
+    //private methods
+    private string getDataPath() {
+        if (Application.platform == RuntimePlatform.Android) return Application.persistentDataPath;
+        return Application.dataPath;
     }
 
 }
