@@ -32,23 +32,6 @@ public static class Constants
 
     #endregion
 
-    #region dimentions
-
-    //Distance
-    public static float minimunDistaceBetweenPlayerEnemy = 3f;
-
-    //Dimension
-    public static float safeAreaHeigth = 480;
-    public static float safeAreaWidth = 800;
-    public static float dimensionHeightBackground = 100;
-    public static float dimensionWidthBackground = 100;
-
-    //life bar player
-    public static float lifeBarPlayer = 0.3f;
-    public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0, 1.4f, 0);
-
-    #endregion
-
     #region all lasers
 
     //impact damage laser player
@@ -136,6 +119,13 @@ public static class Constants
     public static float radarPlayerRadiusRadarType4 = 11.5f;
     public static float radarPlayerRadiusRadarType5 = 12f;
 
+    //RadarPlayer DB
+    public static long radarPlayerIdDBType1 = 1;
+    public static long radarPlayerIdDBType2 = 2;
+    public static long radarPlayerIdDBType3 = 3;
+    public static long radarPlayerIdDBType4 = 4;
+    public static long radarPlayerIdDBType5 = 5;
+
     #endregion
 
     #region all Speeds
@@ -159,10 +149,59 @@ public static class Constants
 
     #endregion
 
+    #region all Shields
+
+    //shieldPlayerIdDB
+    public static long shieldIdDBType1 = 1;
+    public static long shieldIdDBType2 = 2;
+    public static long shieldIdDBType3 = 3;
+    public static long shieldIdDBType4 = 4;
+    public static long shieldIdDBType5 = 5;
+
+    #endregion
+
+    #region all storage
+
+    //StoragePlayerIdDB
+    public static long storagePlayerIdDBType1 = 1;
+    public static long storagePlayerIdDBType2 = 2;
+    public static long storagePlayerIdDBType3 = 3;
+    public static long storagePlayerIdDBType4 = 4;
+    public static long storagePlayerIdDBType5 = 5;
+    #endregion
+
+    #region all structures
+    //structurePlayerIdDB
+    public static long structurePlayerIdDbTypeId1 = 1;
+    public static long structurePlayerIdDbTypeId2 = 2;
+    public static long structurePlayerIdDbTypeId3 = 3;
+    public static long structurePlayerIdDbTypeId4 = 4;
+    public static long structurePlayerIdDbTypeId5 = 5;
+
+    #endregion
+
     #region all times
     //Splash
     public static int timeAwaitSplash = 5000;
 
     #endregion
+
+    #region dimentions
+
+    //Distance
+    public static float minimunDistaceBetweenPlayerEnemy = 3f;
+
+    //Dimension
+    public static float safeAreaHeigth = 480;
+    public static float safeAreaWidth = 800;
+    public static float dimensionHeightBackground = 100;
+    public static float dimensionWidthBackground = 100;
+
+    //life bar player
+    public static float lifeBarPlayer = 0.3f;
+    public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0, 1.4f, 0);
+
+    #endregion
+
 
 }

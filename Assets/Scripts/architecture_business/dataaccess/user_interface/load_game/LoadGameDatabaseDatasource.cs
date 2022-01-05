@@ -24,6 +24,10 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
     private HelperLoadLaserLoadGameDatabase helperLoadLaserLoadGameDatabase = new HelperLoadLaserLoadGameDatabase();
     private HelperLoadLifeLoadGameDatabase helperLoadLifeLoadGameDatabase = new HelperLoadLifeLoadGameDatabase();
     private HelperLoadMotorLoadGameDatabase helperLoadMotorLoadGameDatabase = new HelperLoadMotorLoadGameDatabase();
+    private HelperLoadRadarLoadGameDatabase helperLoadRadarLoadGameDatabase = new HelperLoadRadarLoadGameDatabase();
+    private HelperLoadShieldLoadGameDatabase helperLoadShieldLoadGameDatabase = new HelperLoadShieldLoadGameDatabase();
+    private HelperLoadStorageLoadGameDatabase helperLoadStorageLoadGameDatabase = new HelperLoadStorageLoadGameDatabase();
+    private HelperLoadStructureLoadGameDatabase helperLoadStructureLoadGameDatabase = new HelperLoadStructureLoadGameDatabase();
 
     private LoadGameDatabaseDatasourceImpl() { }
 
@@ -43,6 +47,11 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
         await helperLoadLaserLoadGameDatabase.setLoadGameModel(gameModel: gameModel).loadLasers();
         await helperLoadLifeLoadGameDatabase.initValues(gameModel: gameModel).loadLife();
         await helperLoadMotorLoadGameDatabase.initValues(gameModel: gameModel).loadMotors();
+        await helperLoadRadarLoadGameDatabase.initValues(gameModel: gameModel).loadRadar();
+        await helperLoadShieldLoadGameDatabase.initValues(gameModel: gameModel).loadShield();
+        await helperLoadStorageLoadGameDatabase.initValues(gameModel: gameModel).loadStorage();
+        await helperLoadStructureLoadGameDatabase.initValues(gameModel: gameModel).loadStructure();
+
         return gameModel;
     }
 }
