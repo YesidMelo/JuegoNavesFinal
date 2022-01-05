@@ -23,6 +23,7 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
 
     private HelperLoadLaserLoadGameDatabase helperLoadLaserLoadGameDatabase = new HelperLoadLaserLoadGameDatabase();
     private HelperLoadLifeLoadGameDatabase helperLoadLifeLoadGameDatabase = new HelperLoadLifeLoadGameDatabase();
+    private HelperLoadMotorLoadGameDatabase helperLoadMotorLoadGameDatabase = new HelperLoadMotorLoadGameDatabase();
 
     private LoadGameDatabaseDatasourceImpl() { }
 
@@ -41,6 +42,7 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
     {
         await helperLoadLaserLoadGameDatabase.setLoadGameModel(gameModel: gameModel).loadLasers();
         await helperLoadLifeLoadGameDatabase.initValues(gameModel: gameModel).loadLife();
+        await helperLoadMotorLoadGameDatabase.initValues(gameModel: gameModel).loadMotors();
         return gameModel;
     }
 }

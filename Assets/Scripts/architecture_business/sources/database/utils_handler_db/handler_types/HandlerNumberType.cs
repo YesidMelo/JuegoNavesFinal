@@ -16,6 +16,8 @@ public class HandlerNumberType<T> : BaseHandlerTypeDB<T> {
         if (setValueNullShort()) return true;
         if (setValueInt()) return true;
         if (setValueNullInt()) return true;
+        if (setValueFloat()) return true;
+        if (setValueNullFloat()) return true;
         return false;
     }
 
@@ -102,6 +104,36 @@ public class HandlerNumberType<T> : BaseHandlerTypeDB<T> {
         try
         {
             int? newValue = Convert.ToInt16(value: value);
+            currentField.SetValue(element, newValue);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    private bool setValueNullFloat()
+    {
+        if (currentField.FieldType != typeof(float?)) return false;
+        try
+        {
+            float? newValue = Convert.ToSingle(value: value);
+            currentField.SetValue(element, newValue);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+    private bool setValueFloat()
+    {
+        if (currentField.FieldType != typeof(float)) return false;
+        try
+        {
+            float newValue = Convert.ToSingle(value: value);
             currentField.SetValue(element, newValue);
             return true;
         }

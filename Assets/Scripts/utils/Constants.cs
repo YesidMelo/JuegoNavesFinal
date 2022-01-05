@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public static class Constants 
 {
-    //region AllStrings
+    #region all strings
     //Strings
     public static string nameCameraPlayer = "camera_player";
     
@@ -30,7 +30,9 @@ public static class Constants
     //string spawmer poblation
     public static string nameSpawmerPoblation = "spawmerPoblation";
 
-    //endregion
+    #endregion
+
+    #region dimentions
 
     //Distance
     public static float minimunDistaceBetweenPlayerEnemy = 3f;
@@ -40,6 +42,14 @@ public static class Constants
     public static float safeAreaWidth = 800;
     public static float dimensionHeightBackground = 100;
     public static float dimensionWidthBackground = 100;
+
+    //life bar player
+    public static float lifeBarPlayer = 0.3f;
+    public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0, 1.4f, 0);
+
+    #endregion
+
+    #region all lasers
 
     //impact damage laser player
     public static float laserPlayerType1 = 10;
@@ -55,30 +65,16 @@ public static class Constants
     public static int laserEnemyType4 = 40;
     public static int laserEnemyType5 = 50;
 
-    //speeds
-    public static float speedLaser = 25.0f;
-    public static float speedFiring = 1f;
-
-    //Speeds enemy spacecraft
-    public static float speedMotorEnemyType1 = 2f;
-    public static float speedMotorEnemyType2 = 2.5f;
-    public static float speedMotorEnemyType3 = 3f;
-    public static float speedMotorEnemyType4 = 3.5f;
-    public static float speedMotorEnemyType5 = 4f;
-    
-    //Speeds player spacecraft
-    public static float speedMotorPlayerType1 = 2f;
-    public static float speedMotorPlayerType2 = 2.5f;
-    public static float speedMotorPlayerType3 = 3;
-    public static float speedMotorPlayerType4 = 3.5f;
-    public static float speedMotorPlayerType5 = 4f;
-
     //Laser id database
     public static long laserPlayerIdType1 = 1;
     public static long laserPlayerIdType2 = 2;
     public static long laserPlayerIdType3 = 3;
     public static long laserPlayerIdType4 = 4;
     public static long laserPlayerIdType5 = 5;
+
+    #endregion
+
+    #region all lifes
 
     //LifeEnemy
     public static float lifeEnemyStructureType1 = 100;
@@ -94,10 +90,38 @@ public static class Constants
     public static int lifePlayerStructureType4 = 2000;
     public static int lifePlayerStructureType5 = 2500;
 
-    //life bar player
-    public static float lifeBarPlayer = 0.3f;
-    public static Vector3 distanceBetweenSpacecraftBarlife = new Vector3(0,1.4f,0);
+    #endregion
 
+    #region all motors
+
+    //motors id motors db
+    public static long idMotorDbType1 = 1;
+    public static long motorIdDBType2 = 2;
+    public static long motorIdDBType3 = 3;
+    public static long motorIdDBType4 = 4;
+    public static long motorIdDBType5 = 5;
+
+    #endregion
+
+    #region all percentages
+    //PercentagesPlayer
+    public static float percentageAssiertFirinLaserPlayer = 0.5f;
+    public static float percengateProtecionShieldPlayer = 0.5f;
+
+    //percentagesEnemy
+    public static float percentageAssiertFirinLaserEnemy = 0.5f;
+    public static float percengateProtecionShieldEnemy = 0.5f;
+
+    #endregion
+
+    #region all poblation
+
+    //spawmer poblation
+    public static Vector3 positionSpawmerPosition = new Vector3(0, 0, 0);
+
+    #endregion
+
+    #region all radars
     //RadarEnemy
     public static int radarEnemyRadiusRadarType1 = 10;
     public static int radarEnemyRadiusRadarType2 = 10;
@@ -112,18 +136,33 @@ public static class Constants
     public static float radarPlayerRadiusRadarType4 = 11.5f;
     public static float radarPlayerRadiusRadarType5 = 12f;
 
-    //PercentagesPlayer
-    public static float percentageAssiertFirinLaserPlayer = 0.5f;
-    public static float percengateProtecionShieldPlayer = 0.5f;
+    #endregion
 
-    //percentagesEnemy
-    public static float percentageAssiertFirinLaserEnemy = 0.5f;
-    public static float percengateProtecionShieldEnemy= 0.5f;
+    #region all Speeds
+    //speeds
+    public static float speedLaser = 25.0f;
+    public static float speedFiring = 1f;
 
-    //spawmer poblation
-    public static Vector3 positionSpawmerPosition = new Vector3(0, 0, 0);
+    //Speeds enemy spacecraft
+    public static float speedMotorEnemyType1 = 2f;
+    public static float speedMotorEnemyType2 = 2.5f;
+    public static float speedMotorEnemyType3 = 3f;
+    public static float speedMotorEnemyType4 = 3.5f;
+    public static float speedMotorEnemyType5 = 4f;
 
+    //Speeds player spacecraft
+    public static float speedMotorPlayerType1 = 2f;
+    public static float speedMotorPlayerType2 = 2.5f;
+    public static float speedMotorPlayerType3 = 3;
+    public static float speedMotorPlayerType4 = 3.5f;
+    public static float speedMotorPlayerType5 = 4f;
+
+    #endregion
+
+    #region all times
     //Splash
     public static int timeAwaitSplash = 5000;
+
+    #endregion
 
 }
