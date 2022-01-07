@@ -9,9 +9,8 @@ public interface SpacecraftPlayerLaserCache {
     public LaserModel currentLaserModel { get; }
     public LaserPlayer finalImpactLaser { get; }
     public bool loadLasers();
+    public void setCurrentLaserModel(LaserModel laserModel);
     public void setListLasers(List<LaserPlayer> listLasers);
-
-
 }
 
 public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
@@ -57,6 +56,8 @@ public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
         _finalImpactLaser = calculateFinalImpactLaser();
     }
 
+    public void setCurrentLaserModel(LaserModel laserModel) => _currrentLaserModel = laserModel;
+   
     //private methods
 
     float calculatefinalImpact()
@@ -68,12 +69,8 @@ public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
         }
 
         return finalMediaImpactLaser;
-    }
-
-   
+    }  
 
     LaserPlayer calculateFinalImpactLaser() => _listLasers.getCurrentLaserPlayer();
-    
 
-    
 }

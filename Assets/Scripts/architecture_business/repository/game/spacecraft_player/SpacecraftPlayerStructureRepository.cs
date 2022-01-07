@@ -6,6 +6,7 @@ public interface SpacecraftPlayerStructureRepository {
     StructurePlayer currentStructure { get; }
     StructureModel currentStructureModel { get; }
     bool loadStructure();
+    void setCurrentStructureModel(StructureModel structureModel);
     void updateStructure(StructurePlayer structure);
 }
 
@@ -18,6 +19,6 @@ public class SpacecraftPlayerStructureRepositoryImpl : SpacecraftPlayerStructure
     public StructureModel currentStructureModel => cache.currentStructureModel;
 
     public bool loadStructure() => cache.loadStructure();
-
+    public void setCurrentStructureModel(StructureModel structureModel) => cache.setCurrentStructureModel(structureModel: structureModel);
     public void updateStructure(StructurePlayer structure) => cache.updateStructure(structure);
 }

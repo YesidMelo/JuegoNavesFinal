@@ -6,6 +6,7 @@ public interface SpacecraftPlayerStructureCache {
     StructurePlayer currentStructure { get; }
     StructureModel currentStructureModel { get; }
     bool loadStructure();
+    void setCurrentStructureModel(StructureModel structureModel);
     void updateStructure(StructurePlayer structure);
 }
 public class SpacecraftPlayerStructureCacheImpl : SpacecraftPlayerStructureCache
@@ -41,5 +42,11 @@ public class SpacecraftPlayerStructureCacheImpl : SpacecraftPlayerStructureCache
     {
         _currentStructureModel.currentStructure = _currentStructure;
         return true;
+    }
+
+    public void setCurrentStructureModel(StructureModel structureModel)
+    {
+        _currentStructureModel = structureModel;
+        _currentStructure = _currentStructureModel.currentStructure;
     }
 }

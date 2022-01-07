@@ -15,6 +15,7 @@ public interface SpacecraftPlayerRadarRepository {
     void clearElementsRadar();
     void updateCurrentRadarPlayer(RadarPlayer radarPlayer);
     void changeCurrentEnemy();
+    void setCurrentRadarModel(RadarModel radarModel);
 }
 
 public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarRepository
@@ -50,5 +51,6 @@ public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarReposito
         cacheEnemies.removeEnemy(gameObject);
     }
 
+    public void setCurrentRadarModel(RadarModel radarModel) => cache.setCurrentRadarModel(radarModel: radarModel);
     public void updateCurrentRadarPlayer(RadarPlayer radarPlayer) => cache.updateCurrentRadar(radarPlayer);
 }

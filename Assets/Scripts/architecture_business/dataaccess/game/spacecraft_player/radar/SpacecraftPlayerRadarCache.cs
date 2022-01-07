@@ -14,6 +14,7 @@ public interface SpacecraftPlayerRadarCache {
     void removeElementFromRadar(GameObject gameObject);
     bool loadElementsRadar();
     void updateCurrentRadar(RadarPlayer radar);
+    void setCurrentRadarModel(RadarModel radarModel);
 }
 
 public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
@@ -70,6 +71,13 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
         calculateRadiusRadar();
     }
 
+    public void setCurrentRadarModel(RadarModel radarModel)
+    {
+        this.radarModel = radarModel;
+        _currentRadarPlayer = radarModel.currentRadarPlayer;
+        calculateRadiusRadar();
+    }
+
     //private methods
     private void calculateRadiusRadar() {
         switch (_currentRadarPlayer) {
@@ -91,4 +99,5 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
                 return;
         }
     }
+
 }

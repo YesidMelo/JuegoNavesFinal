@@ -10,6 +10,7 @@ public interface SpacecraftPlayerLaserRepository {
     public LaserPlayer finalLaser { get; }
 
     public bool loadLasers();
+    public void setCurrentLaserModel(LaserModel laserModel);
     public void setListLaser(List<LaserPlayer> listLasers);
 }
 
@@ -23,7 +24,9 @@ public class SpacecraftPlayerLaserRepositoryImpl : SpacecraftPlayerLaserReposito
 
     public LaserModel currentLaserModel => cache.currentLaserModel;
 
-    public bool loadLasers() => cache.loadLasers();    
+    public bool loadLasers() => cache.loadLasers();
+
+    public void setCurrentLaserModel(LaserModel laserModel) => cache.setCurrentLaserModel(laserModel: laserModel);
 
     public void setListLaser(List<LaserPlayer> listLasers) => cache.setListLasers(listLasers);
 }

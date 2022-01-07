@@ -62,7 +62,7 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
     {
         if (notExistsDelegate()) { return; }
         await loadGameSavedUseCase.invoke(gameModel: gameModel);
-        //_myDelegate.goToInteractionGame();
+        _myDelegate.goToInteractionGame();
     }
 
     public async Task deleteGame(GameModel gameModel) {

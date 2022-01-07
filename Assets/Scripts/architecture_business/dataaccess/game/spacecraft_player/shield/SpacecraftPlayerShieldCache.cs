@@ -7,6 +7,7 @@ public interface SpacecraftPlayerShieldCache {
     ShieldPlayer currentShield { get; }
     ShieldModel currentShieldModel { get; }
     void setShield(ShieldPlayer shield);
+    void setCurrentShieldModel(ShieldModel shieldModel);
     bool loadShield();
 }
 public class SpacecraftPlayerShieldCacheImpl : SpacecraftPlayerShieldCache
@@ -41,5 +42,11 @@ public class SpacecraftPlayerShieldCacheImpl : SpacecraftPlayerShieldCache
         }
         _currentShieldModel.currentShield = _currentShield;
         return true;
+    }
+
+    public void setCurrentShieldModel(ShieldModel shieldModel)
+    {
+        _currentShieldModel = shieldModel;
+        _currentShield = shieldModel.currentShield;
     }
 }

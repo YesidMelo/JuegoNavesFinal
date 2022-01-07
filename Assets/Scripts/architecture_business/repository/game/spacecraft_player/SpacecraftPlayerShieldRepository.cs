@@ -6,6 +6,7 @@ public interface SpacecraftPlayerShieldRepository {
     ShieldPlayer currentShield { get; }
     ShieldModel currentShieldModel { get; }
     void setShield(ShieldPlayer shield);
+    void setCurrentShield(ShieldModel shieldModel);
     bool loadShield();
 }
 
@@ -19,7 +20,6 @@ public class SpacecraftPlayerShieldRepositoryImpl : SpacecraftPlayerShieldReposi
     public ShieldModel currentShieldModel => cache.currentShieldModel;
 
     public bool loadShield() => cache.loadShield();
-    
-
+    public void setCurrentShield(ShieldModel shieldModel) => cache.setCurrentShieldModel(shieldModel: shieldModel);
     public void setShield(ShieldPlayer shield) => cache.setShield(shield);
 }

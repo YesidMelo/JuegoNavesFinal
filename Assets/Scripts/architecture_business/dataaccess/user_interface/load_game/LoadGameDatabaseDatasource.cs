@@ -51,7 +51,6 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
         await helperLoadShieldLoadGameDatabase.initValues(gameModel: gameModel).loadShield();
         await helperLoadStorageLoadGameDatabase.initValues(gameModel: gameModel).loadStorage();
         await helperLoadStructureLoadGameDatabase.initValues(gameModel: gameModel).loadStructure();
-
         return gameModel;
     }
 }

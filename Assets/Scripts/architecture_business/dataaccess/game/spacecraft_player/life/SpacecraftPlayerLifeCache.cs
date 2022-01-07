@@ -12,6 +12,7 @@ public interface SpacecraftPlayerLifeCache
     public void addStructureLife(StructurePlayer structure);
     public bool loadLife();
     public void quitLife(float life);
+    public void setCurrentLifeModel(LifeModel lifeModel);
     public void updateCurrentLife(float currentLife);
 }
 
@@ -87,6 +88,11 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         _currentLifeModel.life = life;
     }
 
+    public void setCurrentLifeModel(LifeModel lifeModel) { 
+        _currentLifeModel = lifeModel;
+        _life = _currentLifeModel.life;
+    }
+
     //private methods
     private void elementsLife() {
         switch (_currentStructure)
@@ -119,6 +125,5 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
                 return;
         }
     }
-
     
 }
