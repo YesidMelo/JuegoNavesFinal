@@ -10,6 +10,7 @@ public interface LoadGameSavedUseCase {
 public class LoadGameSavedUseCaseImpl : LoadGameSavedUseCase
 {
     private LoadGameRepo loadGameRepo = new LoadGameRepositoryImpl();
+    private NewGameRepository newGameRepository = new NewGameRepositoryImpl();
     private SpacecraftPlayerLaserRepository repoLasers = new SpacecraftPlayerLaserRepositoryImpl();
     private SpacecraftPlayerLifeRepository repoLife = new SpacecraftPlayerLifeRepositoryImpl();
     private SpacecraftPlayerMotorRepository repoMotor = new SpacecraftPlayerMotorRepositoryImpl();
@@ -28,6 +29,7 @@ public class LoadGameSavedUseCaseImpl : LoadGameSavedUseCase
         initShield(gameModel: gameModel);
         initStorage(gameModel: gameModel);
         initStructure(gameModel: gameModel);
+        await initNewGame(gameModel: gameModel);
     }
 
     //private methods
@@ -43,5 +45,9 @@ public class LoadGameSavedUseCaseImpl : LoadGameSavedUseCase
     private void initShield(GameModel gameModel) => repoShield.setCurrentShield(shieldModel: gameModel.shieldModel);
     private void initStorage(GameModel gameModel) => repoStorage.setCurrentStorageModel(storageModel: gameModel.storageModel);
     private void initStructure(GameModel gameModel) => repoStructure.setCurrentStructureModel(structureModel: gameModel.structureModel);
+
+    private async Task initNewGame(GameModel gameModel) {
+        await newGameRepository.setNewGameModel(newGameModel: gameModel);
+    }
 
 }

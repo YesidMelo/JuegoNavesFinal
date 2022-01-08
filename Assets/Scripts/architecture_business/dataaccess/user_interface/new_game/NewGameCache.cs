@@ -24,14 +24,12 @@ public class NewGameCacheImpl : NewGameCache
     private GameModel _currentNewGameModel;
 
     public async Task<GameModel> currentNewGameModel() {
-        await Task.Delay(1000);
         return _currentNewGameModel; 
     }
 
     public async Task<bool> setNewGame(GameModel newGameModel)
     {
         _currentNewGameModel = newGameModel;
-        await Task.Delay(1000);
         return true;
     }
 }

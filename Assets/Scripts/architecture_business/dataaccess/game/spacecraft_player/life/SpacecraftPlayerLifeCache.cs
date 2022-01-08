@@ -40,7 +40,13 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
 
     public StructurePlayer currentStructure => _currentStructure;
 
-    public LifeModel currentLifeModel => _currentLifeModel;
+    public LifeModel currentLifeModel {
+        get {
+            _currentLifeModel.life = _life;
+            _currentLifeModel.maxLife = _maxLife;
+            return _currentLifeModel;
+        }
+    }
 
     public void addLife(float life)
     {
@@ -62,9 +68,10 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         elementsLife();
     }
 
-    public bool loadLife()
-    {
-        elementsLife();
+    public bool loadLife() {
+        if (_currentLifeModel.life == 0 && _currentLifeModel.maxLife == 0) {
+            elementsLife();
+        }
         return true;
     }
 
@@ -117,7 +124,6 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
                 _life = _maxLife;
                 _currentLifeModel.maxLife = life;
                 return;
-            case StructurePlayer.TYPE_1:
             default:
                 _maxLife = Constants.lifePlayerStructureType1;
                 _life = _maxLife;

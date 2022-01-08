@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -63,15 +64,21 @@ public class PauseUIViewModelImpl : PauseUIViewModel
         if (notExistsDelegate()) { return; }
 
         Task.Run(async () => {
-            _myDelegate.deleteAllEnemies();
-            await saveGameUseCase.invoke();
-            await Task.Delay(100);
-            await _myDelegate.deleteCurrentPlayer();
-            await Task.Delay(400);
-            await _myDelegate.deleteCurrentSpawmPopulation();
-            await deleteCurrentPlayerUseCase.invoke();
-            await deleteCurrentSpawmPopulationUseCase.invoke();
-            _myDelegate.goSaveAndExit();
+            try
+            {
+                _myDelegate.deleteAllEnemies();
+                await saveGameUseCase.invoke();
+                await _myDelegate.deleteCurrentPlayer();
+                await _myDelegate.deleteCurrentSpawmPopulation();
+                await Task.Delay(100);
+                await deleteCurrentPlayerUseCase.invoke();
+                await deleteCurrentSpawmPopulationUseCase.invoke();
+                await Task.Delay(100);
+                _myDelegate.goSaveAndExit();
+            }
+            catch (Exception e) {
+                Debug.Log(e.Message);
+            }
         });
     }
 
