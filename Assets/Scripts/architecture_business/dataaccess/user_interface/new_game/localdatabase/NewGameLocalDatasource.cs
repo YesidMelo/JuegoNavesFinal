@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -34,17 +35,22 @@ public class NewGameLocalDatasourceImpl : NewGameLocalDatasource
 
     public async Task<bool> saveGame(GameModel gameModel)
     {
-        long idGame = await helperNewGameLocalDatasource.saveGameEntity(gameModel: gameModel);
-        await helperSaveLaserNewGame.initValues(laserModel: gameModel.laserModel, idGameModel: idGame).saveLaserModel();
-        await helperSaveLifeNewGameLocalDatasource.initValues(lifeModel: gameModel.lifeModel, idGameModel: idGame).saveLife();
-        await helperSaveMotorNewGameLocalDatasource.initValues(motorModel: gameModel.motorModel, idGameModel: idGame).saveMotors();
-        await helperSaveRadarNewGameLocalDatasource.initValues(radarModel: gameModel.radarModel, idGameModel: idGame).saveRadar();
-        await helperSaveShieldNewGameLocalDatasource.initValues(shieldModel: gameModel.shieldModel, idGameModel: idGame).saveShield();
-        await helperSaveStorageNewGameLocalDatasource.initValues(storageModel: gameModel.storageModel, idGameModel: idGame).saveStorage();
-        await helperSaveStructureNewGameLocalDatasource.initValues(structureModel: gameModel.structureModel, idGameModel: idGame).saveStructure();
-        
-        Debug.Log($"id game to save = {idGame}");
-        return true;
+        try {
+            long idGame = await helperNewGameLocalDatasource.saveGameEntity(gameModel: gameModel);
+            await helperSaveLaserNewGame.initValues(laserModel: gameModel.laserModel, idGameModel: idGame).saveLaserModel();
+            await helperSaveLifeNewGameLocalDatasource.initValues(lifeModel: gameModel.lifeModel, idGameModel: idGame).saveLife();
+            await helperSaveMotorNewGameLocalDatasource.initValues(motorModel: gameModel.motorModel, idGameModel: idGame).saveMotors();
+            await helperSaveRadarNewGameLocalDatasource.initValues(radarModel: gameModel.radarModel, idGameModel: idGame).saveRadar();
+            await helperSaveShieldNewGameLocalDatasource.initValues(shieldModel: gameModel.shieldModel, idGameModel: idGame).saveShield();
+            await helperSaveStorageNewGameLocalDatasource.initValues(storageModel: gameModel.storageModel, idGameModel: idGame).saveStorage();
+            await helperSaveStructureNewGameLocalDatasource.initValues(structureModel: gameModel.structureModel, idGameModel: idGame).saveStructure();
+
+            Debug.Log($"id game to save = {idGame}");
+            return true;
+        } catch (Exception e) {
+            Debug.Log(e.Message);
+            return true;
+        }
     }
 
 }

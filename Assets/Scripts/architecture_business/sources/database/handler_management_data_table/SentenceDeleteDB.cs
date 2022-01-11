@@ -11,6 +11,7 @@ public interface SentenceDeleteDB {
     Task<bool> deleteElement<T>(T element) where T : BaseDBEntity;
     Task<bool> deleteElements<T>(List<T> element) where T : BaseDBEntity;
     Task<bool> clearTable<T>() where T : BaseDBEntity;
+    Task<bool> deleteElementsWithCondition<T>(List<Condition> conditions) where T : BaseDBEntity;
 }
 
 public class SentenceDeleteDBImpl : SentenceDeleteDB
@@ -35,16 +36,13 @@ public class SentenceDeleteDBImpl : SentenceDeleteDB
     {
         string query = createQueryClearTable<T>();
         if (string.IsNullOrEmpty(query)) return false;
-
-        Debug.Log($"{query}");
-        return true;
+        return await conectionDB.startQueryWithOutResponses(query: query);
     }
 
     public async Task<bool> deleteElement<T>(T element) where T : BaseDBEntity
     {
         string query = createQueryDeleteElement(element: element);
-        Debug.Log($"{query}");
-        return true;
+        return await conectionDB.startQueryWithOutResponses(query: query);
     }
 
     public async Task<bool> deleteElements<T>(List<T> element) where T : BaseDBEntity
@@ -59,8 +57,12 @@ public class SentenceDeleteDBImpl : SentenceDeleteDB
                 query.Append(";\n");
             }
         }
-        Debug.Log($"{query.ToString()}");
-        return true;
+        return await conectionDB.startQueryWithOutResponses(query: query.ToString());
+    }
+
+    public async Task<bool> deleteElementsWithCondition<T>(List<Condition> conditions) where T : BaseDBEntity{
+        string query = generateQueryDeleteFromTableWithConditions<T>(conditions: conditions);
+        return await conectionDB.startQueryWithOutResponses(query: query);
     }
 
     // private methods
@@ -98,6 +100,43 @@ public class SentenceDeleteDBImpl : SentenceDeleteDB
         if (field.FieldType == typeof(bool) || field.FieldType == typeof(bool?)) return $"{field.GetValue(element)}";
 
         return $"\"{field.GetValue(element)}\"";
+    }
+
+    private string generateQueryDeleteFromTableWithConditions<T>(List<Condition> conditions) {
+        StringBuilder query = new StringBuilder($"DELETE FROM {typeof(T)}");
+        if (conditions.Count == 0) {
+            return query.ToString();
+        }
+
+        query.Append(" WHERE ");
+        for (int indexConditions = 0; indexConditions < conditions.Count; indexConditions++) {
+
+            if (string.IsNullOrEmpty(conditions[indexConditions].columnName)) continue;
+
+            query.Append(generateName(condition: conditions[indexConditions]));
+            query.Append(getValueFromCondition(condition: conditions[indexConditions]));
+
+        }
+        query.Append(";");
+        return query.ToString();
+    }
+
+    private string generateName(Condition condition) {
+        StringBuilder query = new StringBuilder("");
+        query.Append($" {condition.columnName} = ");
+        return query.ToString();
+    }
+
+
+    private string getValueFromCondition(Condition condition) {
+        StringBuilder query = new StringBuilder("");
+        if (condition.type == TypeElement.TEXT)
+        {
+            query.Append($" \"{condition.value}\"");
+            return query.ToString();
+        }
+        query.Append($" {condition.value}");
+        return query.ToString();
     }
 
 }

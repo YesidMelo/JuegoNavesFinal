@@ -22,8 +22,24 @@ public class HelperSaveShieldNewGameLocalDatasource {
         ShieldEntity shieldEntity = new ShieldEntity();
         shieldEntity.gameModelId = idGameModel;
         shieldEntity.typeShieldId = shieldModel.currentShield.getIdDb();
+        await databaseManager.deleteElementsWithCondition<ShieldEntity>(conditions: getListConditions());
         await databaseManager.insert(element: shieldEntity);
         return true;
+    }
+
+    //private methods
+    private List<Condition> getListConditions()
+    {
+        List<Condition> listConditions = new List<Condition>();
+
+        Condition condition = new Condition();
+        condition.columnName = "gameModelId";
+        condition.type = TypeElement.INTEGER;
+        condition.value = idGameModel;
+
+        listConditions.Add(condition);
+
+        return listConditions;
     }
 
 }

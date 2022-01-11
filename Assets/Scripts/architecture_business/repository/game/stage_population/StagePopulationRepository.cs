@@ -9,6 +9,7 @@ public interface StagePopulationRepository {
     Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level);
     List<GameObject> getAllEnemies();
     void removeAllEnemies(List<GameObject> enemies);
+    bool clearCache();
 }
 public class StagePopulationRepositoryImpl : StagePopulationRepository
 {
@@ -34,5 +35,6 @@ public class StagePopulationRepositoryImpl : StagePopulationRepository
     public void removeAllEnemies(List<GameObject> enemies) => cache.removeAllEnemies(enemies: enemies);
 
     public void removeEnemy(GameObject gameObject) => cache.removeEnemy(gameObject: gameObject);
-    
+    public bool clearCache() => cache.clearCache();
+
 }

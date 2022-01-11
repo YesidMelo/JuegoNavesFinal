@@ -69,7 +69,7 @@ public class ConectionDBSqliteImpl : ConectionDBSqlite
             return true;
         } catch (Exception e) {
             closeDB();
-            Debug.Log(e.Message);
+            Debug.Log(e);
             return false;
         }
     }

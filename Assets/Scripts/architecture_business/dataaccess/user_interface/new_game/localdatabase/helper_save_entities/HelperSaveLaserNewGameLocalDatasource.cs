@@ -18,6 +18,8 @@ public class HelperSaveLaserNewGameLocalDatasource {
     public async Task<bool> saveLaserModel() {
         this.laserModel.gameModelId = this.idGameModel;
         List<LaserEntity> listLaserEntities = generateListLaserEntities();
+
+        await databaseManager.deleteElementsWithCondition<LaserEntity>(conditions: getListConditions());
         await databaseManager.insertAll(listLaserEntities);
         return true;
     }
@@ -32,5 +34,18 @@ public class HelperSaveLaserNewGameLocalDatasource {
             laserEntities.Add(laserEntity);
         }
         return laserEntities;
+    }
+
+    private List<Condition> getListConditions() {
+        List<Condition> listConditions = new List<Condition>();
+
+        Condition condition = new Condition();
+        condition.columnName = "gameModelId";
+        condition.type = TypeElement.INTEGER;
+        condition.value = idGameModel;
+
+        listConditions.Add(condition);
+
+        return listConditions;
     }
 }

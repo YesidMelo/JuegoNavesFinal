@@ -10,6 +10,7 @@ public interface StagePopulationCache {
     List<GameObject> getAllEnemies();
     Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level);
     void removeAllEnemies(List<GameObject> enemies);
+    bool clearCache();
 }
 
 public class StagePopulationCacheImpl : StagePopulationCache
@@ -60,6 +61,9 @@ public class StagePopulationCacheImpl : StagePopulationCache
 
     public bool isAllPoblation(Level level)
     {
+        if (poblationByLevel.Count == 0) {
+            initDictionary();
+        }
         Dictionary<SpacecraftEnemy, int> dictionary = poblationByLevel[level];
         if (dictionary == null) return false;
         if (dictionary.Count == 0) return false;
@@ -95,6 +99,13 @@ public class StagePopulationCacheImpl : StagePopulationCache
         foreach (GameObject currentEnemy in enemies) {
             removeEnemy(currentEnemy);
         }
+    }
+
+    public bool clearCache() {
+        allEnemies.Clear();
+        spacecraftByLevel.Clear();
+        poblationByLevel.Clear();
+        return true;
     }
 
     //private methods

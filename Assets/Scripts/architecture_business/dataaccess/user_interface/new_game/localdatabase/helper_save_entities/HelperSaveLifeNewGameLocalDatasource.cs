@@ -23,7 +23,23 @@ public class HelperSaveLifeNewGameLocalDatasource {
         lifeEntity.life = lifeModel.life;
         lifeEntity.maxLife = lifeModel.maxLife;
         lifeEntity.gameModelId = idGameModel;
+        await dbManager.deleteElementsWithCondition<LifeEntity>(conditions: getListConditions()) ;
         await dbManager.insert<LifeEntity>(element: lifeEntity);
         return true;
+    }
+
+    //private methods
+    private List<Condition> getListConditions()
+    {
+        List<Condition> listConditions = new List<Condition>();
+
+        Condition condition = new Condition();
+        condition.columnName = "gameModelId";
+        condition.type = TypeElement.INTEGER;
+        condition.value = idGameModel;
+
+        listConditions.Add(condition);
+
+        return listConditions;
     }
 }

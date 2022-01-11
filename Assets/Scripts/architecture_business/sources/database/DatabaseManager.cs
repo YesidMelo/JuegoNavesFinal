@@ -22,6 +22,7 @@ public interface DatabaseManager {
 
     Task<bool> deleteElement<T>(T element) where T : BaseDBEntity;
     Task<bool> deleteElements<T>(List<T> element) where T : BaseDBEntity;
+    Task<bool> deleteElementsWithCondition<T>(List<Condition> conditions) where T : BaseDBEntity;
     Task<bool> clearTable<T>() where T : BaseDBEntity;
     Task<long> getLastIndex<T>() where T : BaseDBEntity;
 
@@ -106,4 +107,7 @@ public class DatabaseManagerImpl : DatabaseManager
 
     public async Task<long> getLastIndex<T>() where T : BaseDBEntity
         => await sentenceLastIndexDB.getLastIndex<T>();
+
+    public async Task<bool> deleteElementsWithCondition<T>(List<Condition> conditions) where T : BaseDBEntity
+        => await sentenceDeleteDB.deleteElementsWithCondition<T>(conditions: conditions);
 }

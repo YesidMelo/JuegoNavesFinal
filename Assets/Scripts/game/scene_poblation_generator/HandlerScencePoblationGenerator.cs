@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,11 +35,16 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
     //private method
 
     private void runCoroutinePopulation() {
-        if (!startCoroutineCheckPopulation) return;
-        if (isRunCoroutineCheckPopulation) return;
-        startCoroutineCheckPopulation = false;
-        isRunCoroutineCheckPopulation = true;
-        StartCoroutine(checkPopulation());
+        try {
+            if (!startCoroutineCheckPopulation) return;
+            if (isRunCoroutineCheckPopulation) return;
+            startCoroutineCheckPopulation = false;
+            isRunCoroutineCheckPopulation = true;
+            StartCoroutine(checkPopulation());
+        } catch (Exception e) {
+            Debug.Log(e.Message);
+        }
+        
     }
 
     private GameObject instantiateElement(SpacecraftEnemy spacecraftEnemy) {
