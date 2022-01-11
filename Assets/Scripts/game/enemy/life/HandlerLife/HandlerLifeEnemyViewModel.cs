@@ -14,8 +14,6 @@ public interface HandlerLifeEnemyViewModel {
     SpacecraftEnemy currentSpacecraft { get; }
     HandlerLifeEnemyViewModelDelegate myDelegate { get; set; }
     void loadCurrentSpacecraft(IdentificatorModel identificator);
-
-
 }
 
 public class HandlerLifeEnemyViewModelImpl : HandlerLifeEnemyViewModel

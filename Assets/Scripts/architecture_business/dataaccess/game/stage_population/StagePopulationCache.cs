@@ -54,6 +54,12 @@ public class StagePopulationCacheImpl : StagePopulationCache
                 if (!currentList.Contains(gameObject)) continue;
                 currentList.Remove(gameObject);
                 allEnemies.Remove(gameObject);
+                HandlerSpacecraftEnemy detailElement = gameObject.GetComponent<HandlerSpacecraftEnemy>();
+
+                if (detailElement == null) continue;
+                Dictionary<SpacecraftEnemy, int> currentPopulationByLevel = poblationByLevel[currentLevel];
+                int currentCount = currentPopulationByLevel[detailElement.currentSpacecraft];
+                currentPopulationByLevel[detailElement.currentSpacecraft] = currentCount - 1;
                 return;
             }
         }

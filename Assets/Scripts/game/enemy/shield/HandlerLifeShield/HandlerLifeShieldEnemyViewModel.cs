@@ -28,7 +28,7 @@ public class HandlerLifeShieldEnemyViewModelImpl : HandlerLifeShieldEnemyViewMod
     public float currentLife(IdentificatorModel identificator) => currentLifeUseCase.invoke(identificator);
 
     public SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator) => getCurrentSpacecraftUseCase.invoke(identificator);
-    
+
     public void removeLife(DetailLaserPlayer detailLaserPlayer, IdentificatorModel identificator)
     {
         quitLifeUseCase.invoke(identificator,(int) detailLaserPlayer.impactDamage);
