@@ -22,6 +22,7 @@ public class HandlerMotorPlayer : MonoBehaviour, HandlerMotorPlayerViewModelDele
     // Update is called once per frame
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         updateMotorsFromUIUnity();
         move();
     }

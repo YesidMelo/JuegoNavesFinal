@@ -11,6 +11,7 @@ public interface HandlerStoragePlayerViewModel {
     HandlerStoragePlayerViewModelDelegate myDelegate { get; set; }
     void loadStorage();
     void updateStorage(StoragePlayer storage);
+    bool isGameInPause();
 }
 
 public class HandlerStoragePlayerViewModelImpl : HandlerStoragePlayerViewModel
@@ -18,6 +19,8 @@ public class HandlerStoragePlayerViewModelImpl : HandlerStoragePlayerViewModel
     private SpacecraftPlayerGetCurrentStorageUseCase getCurrentStorageUseCase = new SpacecraftPlayerGetCurrentStorageUseCaseImpl();
     private SpacecraftPlayerLoadStorageUseCase loadStorageUseCase = new SpacecraftPlayerLoadStorageUseCaseImpl();
     private SpacecraftPlayerUpdateStorageUseCase updateStorageUseCase = new SpacecraftPlayerUpdateStorageUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
+
     private HandlerStoragePlayerViewModelDelegate _myDelegate;
     public StoragePlayer currentStorage => getCurrentStorageUseCase.invoke();
 
@@ -25,6 +28,8 @@ public class HandlerStoragePlayerViewModelImpl : HandlerStoragePlayerViewModel
         get => _myDelegate; 
         set => _myDelegate = value; 
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void loadStorage()
     {

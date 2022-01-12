@@ -13,6 +13,7 @@ public interface HandlerSpacecraftEnemyViewModel {
     void loadSpacecraft();
     void setSpacecraft(SpacecraftEnemy spacecraft);
     void destroySpacecraft(GameObject gameObject);
+    bool isGameInPause();
 }
 
 public class HandlerSpacecraftEnemyViewModelImpl : HandlerSpacecraftEnemyViewModel
@@ -22,6 +23,7 @@ public class HandlerSpacecraftEnemyViewModelImpl : HandlerSpacecraftEnemyViewMod
     private SpacecraftEnemySetSpacecraftUseCase setSpacecraftUseCase = new SpacecraftEnemySetSpacecraftUseCaseImpl();
     private SpacecraftEnemyDestroySpacecraftUseCase destroySpacecraftUseCase = new SpacecraftEnemyDestroySpacecraftUseCaseImpl();
     private StagePopulationRemoveEnemyUseCase removeEnemyUseCase = new StagePopulationRemoveEnemyUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     private HandlerSpacecraftEnemyViewModelDelegate _myDelegate;
     private IdentificatorModel _identificator = new IdentificatorModel();
@@ -43,6 +45,8 @@ public class HandlerSpacecraftEnemyViewModelImpl : HandlerSpacecraftEnemyViewMod
         destroySpacecraftUseCase.invoke(_identificator);
         removeEnemyUseCase.invoke(gameObject: gameObject);
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void loadSpacecraft()
     {

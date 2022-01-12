@@ -23,6 +23,7 @@ public class HandlerLifeEnemy : MonoBehaviour, HandlerLifeEnemyViewModelDelegate
     // Update is called once per frame
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         loaDetailLifeSpacecraft();
         checkCurrentScale();
     }

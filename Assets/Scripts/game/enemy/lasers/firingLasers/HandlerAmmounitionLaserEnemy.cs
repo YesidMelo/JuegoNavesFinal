@@ -11,11 +11,14 @@ public class HandlerAmmounitionLaserEnemy : MonoBehaviour
     public Sprite laserType3;
     public Sprite laserType4;
     public Sprite laserType5;
+
     private DetailLaserEnemy _detailLaser;
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     // Update is called once per frame
     void Update()
     {
+        if (isGameInPauseUseCase.invoke()) return;
         updateRenderer();
         moveLaser();
     }

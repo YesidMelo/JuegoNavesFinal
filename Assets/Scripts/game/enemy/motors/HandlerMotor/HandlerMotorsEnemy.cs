@@ -17,7 +17,7 @@ public class HandlerMotorsEnemy : MonoBehaviour, HandlerMotorsEnemyViewModelDele
 
     void Update()
     {
-        
+        if (viewModel.isGameInPause()) return;
     }
 
     //public methods

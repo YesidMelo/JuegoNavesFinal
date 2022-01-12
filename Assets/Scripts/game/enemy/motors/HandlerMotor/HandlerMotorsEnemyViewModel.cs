@@ -15,6 +15,7 @@ public interface HandlerMotorsEnemyViewModel {
     IdentificatorModel identificator { get; }
     HandlerMotorsEnemyViewModelDelegate myDelegate { get; set; }
     void loadSpacecraft(IdentificatorModel identificator);
+    bool isGameInPause();
 
 }
 
@@ -24,6 +25,7 @@ public class HandlerMotorsEnemyViewModelImpl : HandlerMotorsEnemyViewModel
     private SpacecraftEnemyLoadMotorUseCase loadMotorUseCase = new SpacecraftEnemyLoadMotorUseCaseImpl();
     private SpacecraftEnemyCurrentMotorUseCase currentMotorUseCase = new SpacecraftEnemyCurrentMotorUseCaseImpl();
     private SpacecraftEnemyCurrentSpeedUseCase currentSpeedUseCase = new SpacecraftEnemyCurrentSpeedUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     private SpacecraftEnemy _currentSpacecraft;
     private HandlerMotorsEnemyViewModelDelegate _myDelegate;
@@ -44,6 +46,8 @@ public class HandlerMotorsEnemyViewModelImpl : HandlerMotorsEnemyViewModel
     public float currentSpeed => _currentSpeed;
 
     public IdentificatorModel identificator => _identificatorModel;
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void loadSpacecraft(IdentificatorModel identificator)
     {

@@ -13,6 +13,7 @@ public interface HandlerShieldPlayerViewModel {
     public void loadShield();
 
     HandlerShieldPlayerViewModelDelegate myDelegate { get; set; }
+    bool isGameInPause();
 }
 
 public class HandlerShieldPlayerViewModelImpl : HandlerShieldPlayerViewModel
@@ -20,6 +21,7 @@ public class HandlerShieldPlayerViewModelImpl : HandlerShieldPlayerViewModel
     private SpacecraftPlayerCurrentShieldUseCase currentShieldUseCase = new SpacecraftPlayerCurrentShieldUseCaseImpl();
     private SpacecraftPlayerSetShieldUseCase setShieldUseCase = new SpacecraftPlayerSetShieldUseCaseImpl();
     private SpacecraftPlayerLoadShieldUseCase loadShieldUseCase = new SpacecraftPlayerLoadShieldUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     private HandlerShieldPlayerViewModelDelegate _myDelegate;
 
@@ -29,6 +31,8 @@ public class HandlerShieldPlayerViewModelImpl : HandlerShieldPlayerViewModel
     }
 
     public ShieldPlayer currentShield => currentShieldUseCase.invoke();
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void loadShield()
     {

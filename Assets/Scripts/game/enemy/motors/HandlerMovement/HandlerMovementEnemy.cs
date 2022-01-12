@@ -22,6 +22,7 @@ public class HandlerMovementEnemy : MonoBehaviour, HandlerMovementEnemyViewModel
     // Update is called once per frame
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         checkCurrentElementsInRadar();
         moveSpacecraft();
     }

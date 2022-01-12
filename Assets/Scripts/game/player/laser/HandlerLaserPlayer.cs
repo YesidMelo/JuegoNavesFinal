@@ -26,6 +26,7 @@ public class HandlerLaserPlayer : MonoBehaviour, HandlerLaserPlayerViewModelDele
     // Update is called once per frame
     void Update()
     {
+        if (viewModel.gameInPause()) return;
         updateLasersFromUIUnity();
         checkCurrentActionSpacecraft();
         startActionSpacecraft();

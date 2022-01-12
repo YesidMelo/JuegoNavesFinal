@@ -17,6 +17,7 @@ public class HandlerShieldPlayer : MonoBehaviour, HandlerShieldPlayerViewModelDe
 
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         updateShieldFromUI();
         loadShieldFromUI();
     }

@@ -14,6 +14,7 @@ public interface HandlerLifePlayerViewModel {
     void updateCurrentLife(float life);
     void loadLife();
     void setStructurePlayer(StructurePlayer structure);
+    bool isGameInPause();
 }
 
 public class HandlerLifePlayerViewModelImpl : HandlerLifePlayerViewModel
@@ -24,6 +25,8 @@ public class HandlerLifePlayerViewModelImpl : HandlerLifePlayerViewModel
     private SpacecraftPlayerUpdateMaxLifeStructureUseCase updateMaxLifeStructureUseCase = new SpacecraftPlayerUpdateMaxLifeStructureUseCaseImpl();
     private SpacecraftPlayerGetStructureLifeUseCase getStructureLifeUseCase = new SpacecraftPlayerGetStructureLifeUseCaseImpl();
     private SpacecraftPlayerUpdateCurrentLifeUseCase updateCurrentLifeUseCase = new SpacecraftPlayerUpdateCurrentLifeUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
+
     private HandlerLifePlayerViewModelDelegate _myDelegate;
 
     public float maxLife => getMaxLifeUseCase.invoke();
@@ -60,4 +63,6 @@ public class HandlerLifePlayerViewModelImpl : HandlerLifePlayerViewModel
     public float percentage() {
         return Constants.lifeBarPlayer * (currentLife / maxLife);
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 }

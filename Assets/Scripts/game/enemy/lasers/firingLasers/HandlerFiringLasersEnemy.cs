@@ -11,6 +11,8 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
     public bool isFiring = false;
     public GameObject currentPlayer;
 
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
+
     void Update()
     {
         startFiring();
@@ -73,6 +75,9 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
     //IEnumerators
     IEnumerator generateLaser() {
         while (isFiring) {
+
+            if (isGameInPauseUseCase.invoke()) yield return new WaitForSeconds(Constants.speedFiring);
+
             GameObject laser = Instantiate(prefabAmmounitionLaser);
             laser.transform.position = transform.position;
             laser.transform.eulerAngles = transform.eulerAngles - new Vector3(0,0,-90);

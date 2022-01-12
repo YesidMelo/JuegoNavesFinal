@@ -18,6 +18,7 @@ public class HandlerRadarEnemyPlayers : MonoBehaviour, HandlerRadarEnemyPlayersV
     // Update is called once per frame
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         checkEnemiesFromRadar();
     }
 

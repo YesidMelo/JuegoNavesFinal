@@ -43,16 +43,16 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private UpdateMovementJoysticUseCase _updateMovementJoysticUseCase = new UpdateMovementJoysticUseCaseImpl();
     private SpacecraftPlayerGetLifeUseCase _spacecraftPlayerGetLifeUseCase = new SpacecraftPlayerGetLifeUseCaseImpl();
     private SpacecraftPlayerChangeCurrentEnemyUseCase _changeCurrentEnemyUseCase = new SpacecraftPlayerChangeCurrentEnemyUseCaseImpl();
+    private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
 
     private InteractionGameUIViewModelDelegate _myDelegate;
     private Move _currentMove;
-    private StatusGame _currentStatusGame;
     private Vector3 _currentPosition = new Vector3(0, 0, 0);
 
     // get and sets
     public InteractionGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
     public Move currentMove { set => _currentMove = value; }
-    public StatusGame currentStatusGame { set => _currentStatusGame = value; }
+    public StatusGame currentStatusGame { set => updateStatusUseCase.invoke(statusGame: value); }
     public Action currentAction { set => _updateActionSpacecraftUseCase.invoke(value); }
 
     public Vector3 getInitialPosition { get { return _currentPosition; } }

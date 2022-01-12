@@ -14,6 +14,7 @@ public interface HandlerScencePoblationGeneratorViewModel {
     Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level);
     Level currentLevel { get; }
     void updateLevel(Level level);
+    bool isGameInPause();
 }
 
 public class HandlerScencePoblationGeneratorViewModelImpl : HandlerScencePoblationGeneratorViewModel
@@ -25,6 +26,7 @@ public class HandlerScencePoblationGeneratorViewModelImpl : HandlerScencePoblati
     private StagePopulationAddEnemyUseCase addEnemyUseCase = new StagePopulationAddEnemyUseCaseImpl();
     private StagePopulationIsAllPoblationUseCase isAllPoblationUseCase = new StagePopulationIsAllPoblationUseCaseImpl();
     private StagePopulationGetEnemiesMissingInThePopulationUseCase getEnemiesMissingInThePopulationUseCase = new StagePopulationGetEnemiesMissingInThePopulationUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     public List<GameObject> currentPoblation => new List<GameObject>();
 
@@ -40,6 +42,8 @@ public class HandlerScencePoblationGeneratorViewModelImpl : HandlerScencePoblati
     public Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level) => getEnemiesMissingInThePopulationUseCase.invoke(level: level);
 
     public bool isAllPoblation(Level level) => isAllPoblationUseCase.invoke(level: level);
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void updateLevel(Level level) { 
         updateLevelUseCase.invoke(level: level);

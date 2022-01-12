@@ -5,9 +5,11 @@ using UnityEngine;
 public class HandlerPositionLifeBarEnemy : MonoBehaviour
 {
     public GameObject parent;
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     void Update()
     {
+        if (isGameInPauseUseCase.invoke()) return;
         correctionPosition();
     }
 

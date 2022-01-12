@@ -14,6 +14,7 @@ public interface HandlerLifeEnemyViewModel {
     SpacecraftEnemy currentSpacecraft { get; }
     HandlerLifeEnemyViewModelDelegate myDelegate { get; set; }
     void loadCurrentSpacecraft(IdentificatorModel identificator);
+    bool isGameInPause();
 }
 
 public class HandlerLifeEnemyViewModelImpl : HandlerLifeEnemyViewModel
@@ -23,6 +24,7 @@ public class HandlerLifeEnemyViewModelImpl : HandlerLifeEnemyViewModel
     private SpacecraftEnemyLoadLifeUseCase loadLifeUseCase = new SpacecraftEnemyLoadLifeUseCaseImpl();
     private SpacecraftEnemyCurrentLifeUseCase currentLifeUseCase = new SpacecraftEnemyCurrentLifeUseCaseImpl();
     private SpacecraftEnemyMaxLifeUseCase maxLifeUseCase = new SpacecraftEnemyMaxLifeUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     private SpacecraftEnemy _spacecraftEnemy;
     private HandlerLifeEnemyViewModelDelegate _myDelegate;
@@ -48,6 +50,8 @@ public class HandlerLifeEnemyViewModelImpl : HandlerLifeEnemyViewModel
             return maxLifeUseCase.invoke(identificatorModel);
         }
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void loadCurrentSpacecraft(IdentificatorModel identificator)
     {

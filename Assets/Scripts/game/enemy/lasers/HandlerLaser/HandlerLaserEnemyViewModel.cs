@@ -15,7 +15,6 @@ public interface HandlerLaserEnemyViewModel {
     SpacecraftEnemy currentSpacecraft { get; }
     HandlerLaserEnemyViewModelDelegate myDelegate { get; set; }
     void loadCurrentSpacecraft(IdentificatorModel identificator);
-
     void deleteLaser();
 }
 public class HandlerLaserEnemyViewModelImpl : HandlerLaserEnemyViewModel

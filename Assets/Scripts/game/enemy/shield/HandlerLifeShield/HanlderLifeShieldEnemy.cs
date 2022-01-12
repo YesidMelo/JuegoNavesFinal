@@ -21,6 +21,7 @@ public class HanlderLifeShieldEnemy : MonoBehaviour,
 
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         checkCurrentLife();
     }
 

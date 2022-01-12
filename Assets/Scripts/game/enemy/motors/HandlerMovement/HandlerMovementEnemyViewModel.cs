@@ -11,11 +11,13 @@ public interface HandlerMovementEnemyViewModel {
     GameObject currentPlayer(IdentificatorModel identificator);
 
     HandlerMovementEnemyViewModelDelegate myDelegate { get; set; }
+    bool isGameInPause();
 }
 
 public class HandlerMovementEnemyViewModelImpl : HandlerMovementEnemyViewModel
 {
     private SpacecraftEnemyGetListGameobjectsInRadarUseCase getListGameobjectsInRadarUseCase = new SpacecraftEnemyGetListGameobjectsInRadarUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     private List<GameObject> _listGameObjects = new List<GameObject>();
     private GameObject _currentPlayer;
@@ -40,4 +42,6 @@ public class HandlerMovementEnemyViewModelImpl : HandlerMovementEnemyViewModel
         }
         return _currentPlayer;
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 } 

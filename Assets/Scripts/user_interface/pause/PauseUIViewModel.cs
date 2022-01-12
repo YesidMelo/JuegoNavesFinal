@@ -37,6 +37,7 @@ public class PauseUIViewModelImpl : PauseUIViewModel
     private GetCurrentSpawmPopulationUseCase spawmPopulationUseCase = new GetCurrentSpawmPopulationUseCaseImpl();
     private SaveGameUseCase saveGameUseCase = new SaveGameUseCaseImpl();
     private StagePopulationClearCacheUseCase stagePopulationClearUseCase = new StagePopulationClearCacheUseCaseImpl();
+    private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
 
     PauseUIViewModelDelegate _myDelegate;
 
@@ -57,12 +58,14 @@ public class PauseUIViewModelImpl : PauseUIViewModel
     public void goContinue()
     {
         if (notExistsDelegate()) { return; }
+        updateStatusUseCase.invoke(StatusGame.IN_GAME);
         _myDelegate.goContinue();
     }
 
     public void goSaveAndExit()
     {
         if (notExistsDelegate()) { return; }
+        updateStatusUseCase.invoke(StatusGame.PAUSE);
 
         Task.Run(async () => {
             try
@@ -76,6 +79,7 @@ public class PauseUIViewModelImpl : PauseUIViewModel
                 await deleteCurrentSpawmPopulationUseCase.invoke();
                 await Task.Delay(100);
                 await stagePopulationClearUseCase.invoke();
+                updateStatusUseCase.invoke(StatusGame.MAIN_MENU);
                 _myDelegate.goSaveAndExit();
             }
             catch (Exception e) {

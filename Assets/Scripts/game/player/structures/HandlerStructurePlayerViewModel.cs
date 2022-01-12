@@ -10,12 +10,15 @@ public interface HandlerStructurePlayerViewModel {
     HandlerStructurePlayerViewModelDelegate myDelegate { get; set; }
     void updateStructure(StructurePlayer structurePlayer);
     void loadStructure();
+    bool isGameInPause();
 }
 public class HandlerStructurePlayerViewModelImpl : HandlerStructurePlayerViewModel {
 
     private SpacecraftPlayerLoadStructureUseCase loadStructureUseCase = new SpacecraftPlayerLoadStructureUseCaseImpl();
     private SpacecraftPlayerUpdateStructureUseCase updateStructureUseCase = new SpacecraftPlayerUpdateStructureUseCaseImpl();
     private SpacecraftPlayerGetCurrentStructureUseCase getCurrentStructureUseCase = new SpacecraftPlayerGetCurrentStructureUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
+
     private HandlerStructurePlayerViewModelDelegate _myDelegate;
 
     public StructurePlayer currentStructure => getCurrentStructureUseCase.invoke();
@@ -24,6 +27,8 @@ public class HandlerStructurePlayerViewModelImpl : HandlerStructurePlayerViewMod
         get => _myDelegate; 
         set => _myDelegate = value; 
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void loadStructure()
     {

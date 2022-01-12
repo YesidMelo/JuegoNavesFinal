@@ -21,6 +21,7 @@ public class HandlerRadarPlayer : MonoBehaviour, HandlerRadarPlayerViewModelDele
 
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         loadRadarFromUIUnity();
         updateCurrentRadarFromUIUnity();
         checkCurrentObjects();

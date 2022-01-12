@@ -14,6 +14,7 @@ public interface HandlerMotorPlayerViewModel {
     HandlerMotorPlayerViewModelDelegate myDelegate { get; set; }
     void setMotors(List<MotorPlayer> listMotors);
     void move();
+    bool isGameInPause();
 }
 public class HandlerMotorPlayerViewModelImpl : HandlerMotorPlayerViewModel
 {
@@ -21,8 +22,11 @@ public class HandlerMotorPlayerViewModelImpl : HandlerMotorPlayerViewModel
     private SpacecraftPlayerGetSpeedMotorUseCase getSpeedMotorUseCase = new SpacecraftPlayerGetSpeedMotorUseCaseImpl();
     private SpacecraftPlayerLoadMotorUseCase loadMotorUseCase = new SpacecraftPlayerLoadMotorUseCaseImpl();
     private SpacecraftPlayerUpdateListMotorsUseCase updateListMotorsUseCase = new SpacecraftPlayerUpdateListMotorsUseCaseImpl();
-    private HandlerMotorPlayerViewModelDelegate _myDelegate;
     private CurrentActionSpacecraftUseCase currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
+
+    private HandlerMotorPlayerViewModelDelegate _myDelegate;
+
     public float speedMotor => getSpeedMotorUseCase.invoke();
 
     public List<MotorPlayer> listMotors => getListMotorUseCase.invoke();
@@ -56,4 +60,6 @@ public class HandlerMotorPlayerViewModelImpl : HandlerMotorPlayerViewModel
         updateListMotorsUseCase.invoke(listMotors);
         loadMotors();
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 }

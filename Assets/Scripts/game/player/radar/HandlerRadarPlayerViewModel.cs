@@ -15,6 +15,7 @@ public interface HandlerRadarPlayerViewModel {
     void removeElementFromRadar(GameObject gameObject);
     void updateCurrentRadar(RadarPlayer radarPlayer);
     HandlerRadarPlayerViewModelDelegate myDelegate { get; set; }
+    bool isGameInPause();
 }
 
 public class HandlerRadarPlayerViewModelImpl : HandlerRadarPlayerViewModel
@@ -27,6 +28,7 @@ public class HandlerRadarPlayerViewModelImpl : HandlerRadarPlayerViewModel
     private SpacecraftPlayerRemoveObjectFromRadarUseCase removeObjectFromRadarUseCase = new SpacecraftPlayerRemoveObjectFromRadarUseCaseImpl();
     private SpacecraftPlayerUpdateRadarUseCase updateRadarUseCase = new SpacecraftPlayerUpdateRadarUseCaseImpl();
     private SpacecraftPlayerGetCurrentRadiusRadarUseCase getCurrentRadiusRadarUseCase = new SpacecraftPlayerGetCurrentRadiusRadarUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     private HandlerRadarPlayerViewModelDelegate _myDelegate;
 
@@ -52,6 +54,8 @@ public class HandlerRadarPlayerViewModelImpl : HandlerRadarPlayerViewModel
         clearObjectFromRadarUseCase.invoke();
         loadRadar();
     }
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 
     public void loadRadar()
     {

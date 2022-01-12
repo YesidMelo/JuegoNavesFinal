@@ -21,6 +21,7 @@ public class HandlerRotationPlayer : MonoBehaviour, HandlerRotationPlayerViewMod
     // Update is called once per frame
     void Update()
     {
+        if (viewModel.isGameInPause()) return;
         checkCurrentAction();
         checkCurrentListElementsInRadar();
         checkCurrentEnemy();

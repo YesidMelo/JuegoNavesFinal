@@ -11,6 +11,7 @@ public interface HandlerRotationPlayerViewModel {
     Action currentAction { get; }
     List<GameObject> getListElementsInRadar { get; }
     GameObject currentEnemy { get; }
+    bool isGameInPause();
 }
 
 public class HandlerRotationPlayerViewModelImpl : HandlerRotationPlayerViewModel
@@ -18,6 +19,7 @@ public class HandlerRotationPlayerViewModelImpl : HandlerRotationPlayerViewModel
     private CurrentActionSpacecraftUseCase currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
     private SpacecraftPlayerGetListEnemiesUseCase getListEnemiesUseCase = new SpacecraftPlayerGetListEnemiesUseCaseImpl();
     private SpacecraftPlayerGetCurrentEnemyUseCase getCurrentEnemyUseCase = new SpacecraftPlayerGetCurrentEnemyUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
 
     private HandlerRotationPlayerViewModelDelegate _myDelegate;
 
@@ -31,4 +33,6 @@ public class HandlerRotationPlayerViewModelImpl : HandlerRotationPlayerViewModel
     public List<GameObject> getListElementsInRadar => getListEnemiesUseCase.invoke();
 
     public GameObject currentEnemy => getCurrentEnemyUseCase.invoke();
+
+    public bool isGameInPause() => isGameInPauseUseCase.invoke();
 }

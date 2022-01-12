@@ -13,6 +13,7 @@ public interface HandlerLaserPlayerViewModel {
     List<LaserPlayer> listLaser{ get; }
     HandlerLaserPlayerViewModelDelegate myDelegate { get; set; }
     Action currentAction { get; }
+    bool gameInPause();
 
     bool loadLasers();
     void calculateLasers(List<LaserPlayer> listLasers);
@@ -29,6 +30,8 @@ public class HandlerLaserPlayerViewModelImpl : HandlerLaserPlayerViewModel
     private SpacecraftPlayerLoadLasersUseCase loadLasersUseCase = new SpacecraftPlayerLoadLasersUseCaseImpl();
     private CurrentActionSpacecraftUseCase currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
     private SpacecraftPlayerGetCurrentEnemyUseCase getCurrentEnemyUseCase = new SpacecraftPlayerGetCurrentEnemyUseCaseImpl();
+    private StatusGameIsGameInPauseUseCase isGameInPauseUseCase = new StatusGameIsGameInPauseUseCaseImpl();
+
     private HandlerLaserPlayerViewModelDelegate _myDelegate;
 
     public float impactDamage => mediaImpactLaserUseCase.invoke();
@@ -37,9 +40,9 @@ public class HandlerLaserPlayerViewModelImpl : HandlerLaserPlayerViewModel
 
     public List<LaserPlayer> listLaser => listLasersUseCase.invoke();
 
-    public HandlerLaserPlayerViewModelDelegate myDelegate { 
-        get => _myDelegate; 
-        set => _myDelegate = value; 
+    public HandlerLaserPlayerViewModelDelegate myDelegate {
+        get => _myDelegate;
+        set => _myDelegate = value;
     }
 
     public Action currentAction => currentActionSpacecraftUseCase.invoke();
@@ -54,6 +57,8 @@ public class HandlerLaserPlayerViewModelImpl : HandlerLaserPlayerViewModel
     }
 
     public void calculateLasers(List<LaserPlayer> listLasers) => setListLasersUseCase.invoke(listLaser);
+
+    public bool gameInPause() => isGameInPauseUseCase.invoke();
 
     public bool loadLasers() {
         if (!loadLasersUseCase.invoke()) return false;

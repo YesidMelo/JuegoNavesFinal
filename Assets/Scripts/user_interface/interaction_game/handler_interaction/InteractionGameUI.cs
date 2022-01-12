@@ -40,6 +40,7 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     void Start()
     {
         viewModel.myDelegate = this;
+        viewModel.currentStatusGame = StatusGame.IN_GAME;
     }
 
     // clicks
