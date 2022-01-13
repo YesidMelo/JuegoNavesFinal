@@ -75,21 +75,25 @@ public class HandlerFiringLasersEnemy : MonoBehaviour
     //IEnumerators
     IEnumerator generateLaser() {
         while (isFiring) {
-
-            if (isGameInPauseUseCase.invoke()) yield return new WaitForSeconds(Constants.speedFiring);
-
-            GameObject laser = Instantiate(prefabAmmounitionLaser);
-            laser.transform.position = transform.position;
-            laser.transform.eulerAngles = transform.eulerAngles - new Vector3(0,0,-90);
-            HandlerAmmounitionLaserEnemy handler = laser.transform.GetComponent<HandlerAmmounitionLaserEnemy>();
-            if (handler == null) break;
-            DetailLaserEnemy detailLaser = new DetailLaserEnemy();
-            detailLaser.impactDamage = handlerLaser.currentImpact;
-            detailLaser.nameParent = spacecraft.name;
-            detailLaser.parent = spacecraft;
-            handler.updateDetailLaser(detailLaser);
-            yield return new WaitForSeconds(Constants.speedFiring);
-            if (!iCanStartFiring()) yield return null;
+            if (!isGameInPauseUseCase.invoke())
+            {
+                GameObject laser = Instantiate(prefabAmmounitionLaser);
+                laser.transform.position = transform.position;
+                laser.transform.eulerAngles = transform.eulerAngles - new Vector3(0, 0, -90);
+                HandlerAmmounitionLaserEnemy handler = laser.transform.GetComponent<HandlerAmmounitionLaserEnemy>();
+                if (handler == null) break;
+                DetailLaserEnemy detailLaser = new DetailLaserEnemy();
+                detailLaser.impactDamage = handlerLaser.currentImpact;
+                detailLaser.nameParent = spacecraft.name;
+                detailLaser.parent = spacecraft;
+                handler.updateDetailLaser(detailLaser);
+                yield return new WaitForSeconds(Constants.speedFiring);
+                if (!iCanStartFiring()) yield return null;
+            }
+            else {
+                yield return new WaitForSeconds(Constants.speedFiring);
+                if (!iCanStartFiring()) yield return null;
+            }
         }
         isFiring = false;
         yield return null;

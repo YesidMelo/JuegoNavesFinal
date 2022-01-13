@@ -109,6 +109,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     public void goToPause()
     {
         if (notExistsDelegate()) { return; }
+        updateStatusUseCase.invoke(statusGame: StatusGame.PAUSE);
         _myDelegate.goToPause();
     }
 
