@@ -18,6 +18,7 @@ public interface UserInterfaceHandlerViewModelDelegate {
     void goToLaserOptions(LaserOptionsUIDelegate laserOptionsUIDelegate);
     void goToShieldOption(ShieldOptionsUIDelegate shieldOptionsUIDelegate);
     void goToLoadGame(LoadGameUIDelegate loadGameUIDelegate);
+    void goToGameOver(GameOverUIDelegate gameOverUIDelegate);
 
     void showProgress();
 }
@@ -36,7 +37,6 @@ public interface UserInterfaceHandlerViewModel {
 public class UserInterfaceHandlerViewModelImpl: UserInterfaceHandlerViewModel
 {
     private HandlerUserInterfaceSetCurrentMainCameraUseCase setCurrentMainCameraUseCase = new HandlerUserInterfaceSetCurrentMainCameraUseCaseImpl();
-
 
     private CanvasAvailable _currentCanvasEnum = CanvasAvailable.SPLASH;
     private UserInterfaceHandlerViewModelDelegate _myDelegate;

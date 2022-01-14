@@ -47,6 +47,7 @@ MonoBehaviour:
   about: {fileID: 8988198852433772795, guid: aae60cd18a1691042a013fb3fc165575, type: 3}
   ConfigurationGame: {fileID: 5573851830218378407, guid: 86280a728336c964086b1407e7e3eea5, type: 3}
   ConfigurationSpacecraft: {fileID: 3740100237829129317, guid: e67212efb3ab4e74281d713243baf9d7, type: 3}
+  GameOver: {fileID: 6032699517334347836, guid: 05917989f1310ed449935ff9d5542805, type: 3}
   interactionGame: {fileID: 5964348336368010916, guid: 19da538d3c16a2642a0309a4be2da10d, type: 3}
   laserOptions: {fileID: 7831830071443945282, guid: 449487543e2638f4e97da4bfcdbd5183, type: 3}
   loadGame: {fileID: 5104224006565747833, guid: 3c7a3a073efc9e746861933ceebd9043, type: 3}
@@ -56,3 +57,4 @@ MonoBehaviour:
   pause: {fileID: 2451064911356552029, guid: 08684551c8f8e894cb3bc3751d70a33d, type: 3}
   ShieldOptions: {fileID: 1152396436093492743, guid: 4e61ca24995f9034088c64c4dec10061, type: 3}
   splash: {fileID: 6348419485134214228, guid: 3a5df5e9740e2e54bb14f10a4477207a, type: 3}
+  mainCamera: {fileID: 0}

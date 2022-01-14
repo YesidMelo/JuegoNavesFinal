@@ -97,6 +97,7 @@ public enum NameTagLanguage
     DELETE,
     GO_BACK,
     GAME_CREATED,
+    GAME_OVER,
     LIFE_PLAYER,
     LOAD,
     LOAD_GAME,
@@ -170,6 +171,7 @@ public enum StatusGame {
     MAIN_MENU,
     IN_GAME,
     PAUSE,
+    GAME_OVER,
 }
 
 public enum StorageEnemy { 

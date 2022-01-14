@@ -5,6 +5,7 @@ using UnityEngine;
 public interface InteractionGameUIViewModelDelegate {
     void goToPause();
     void goToConfig();
+    void goToGameOver();
 }
 
 public interface InteractionGameUIViewModel {
@@ -31,6 +32,7 @@ public interface InteractionGameUIViewModel {
     void goToConfigSpaceCraft();
 
     void updateDirectionJoystic(Vector2 direction);
+    void checkIsGameOver();
 
 }
 
@@ -44,6 +46,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private SpacecraftPlayerGetLifeUseCase _spacecraftPlayerGetLifeUseCase = new SpacecraftPlayerGetLifeUseCaseImpl();
     private SpacecraftPlayerChangeCurrentEnemyUseCase _changeCurrentEnemyUseCase = new SpacecraftPlayerChangeCurrentEnemyUseCaseImpl();
     private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
+    private StatusGameIsGameOverUseCase isGameOverUseCase = new StatusGameIsGameOverUseCaseImpl();
 
     private InteractionGameUIViewModelDelegate _myDelegate;
     private Move _currentMove;
@@ -115,10 +118,17 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 
     public void updateDirectionJoystic(Vector2 direction) => _updateMovementJoysticUseCase.invoke(direction);
 
+    public void checkIsGameOver() {
+        if (_myDelegate == null) return;
+        if (!isGameOverUseCase.invoke()) return;
+        _myDelegate.goToGameOver();
+    }
 
     // private methods
 
     private bool notExistsDelegate() {
         return _myDelegate == null;
     }
+
+   
 }

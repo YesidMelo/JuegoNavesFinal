@@ -7,6 +7,7 @@ public interface InteractionGameUIDelegate : AbstractCanvasUIDelegate
 {
     void goToPause();
     void goToConfigSpacecraft();
+    void goToGameOver();
 }
 
 
@@ -25,11 +26,6 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
 
 
     // lifecycle
-    private void Awake()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         updateMovementJoystic();
@@ -41,6 +37,11 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     {
         viewModel.myDelegate = this;
         viewModel.currentStatusGame = StatusGame.IN_GAME;
+    }
+
+    private void Update()
+    {
+        viewModel.checkIsGameOver();
     }
 
     // clicks
@@ -82,6 +83,11 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     {
         if (notExistsDelegate()) { return; }
         _myDelegate.goToConfigSpacecraft();
+    }
+
+    public void goToGameOver() {
+        if (notExistsDelegate()) return;
+        _myDelegate.goToGameOver();
     }
 
     public Vector3 getInitialPosition {

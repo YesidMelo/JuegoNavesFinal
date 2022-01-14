@@ -15,6 +15,8 @@ public class InteractionGameUIListener : InteractionGameUIDelegate
 
     public void goToConfigSpacecraft() => uiDelegate.goToConfigurationSpacecraft(new ConfigurationSpacecraftUIListener(uiDelegate));
 
+    public void goToGameOver() => uiDelegate.goToGameOver(new GameOverUIListener(uiDelegate: uiDelegate));
+
     public void goToPause() => uiDelegate.goToPause(new PauseUIListener(uiDelegate));
 
     public void showProgress() => uiDelegate.showProgress();

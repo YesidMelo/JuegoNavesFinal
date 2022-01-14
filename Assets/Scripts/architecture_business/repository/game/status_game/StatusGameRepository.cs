@@ -6,6 +6,7 @@ public interface StatusGameRepository {
     void updateStatusGame(StatusGame status);
     StatusGame getCurrentStatus();
     bool isGameInPause();
+    bool isGameOver();
 }
 
 public class StatusGameRepositoryImpl : StatusGameRepository
@@ -16,6 +17,8 @@ public class StatusGameRepositoryImpl : StatusGameRepository
     public StatusGame getCurrentStatus() => cache.getCurrentStatus();
 
     public bool isGameInPause() => cache.isGameInPause();
+
+    public bool isGameOver() => cache.isGameOver();
 
     public void updateStatusGame(StatusGame status) => cache.updateStatusGame(status: status);
 }

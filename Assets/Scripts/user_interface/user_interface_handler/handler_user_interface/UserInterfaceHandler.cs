@@ -10,6 +10,7 @@ public class UserInterfaceHandler : MonoBehaviour, UserInterfaceHandlerViewModel
     public Canvas about;
     public Canvas ConfigurationGame;
     public Canvas ConfigurationSpacecraft;
+    public Canvas GameOver;
     public Canvas interactionGame;
     public Canvas laserOptions;
     public Canvas loadGame;
@@ -33,6 +34,11 @@ public class UserInterfaceHandler : MonoBehaviour, UserInterfaceHandlerViewModel
         currentCanvasEnum = viewModel.currentCanvas;
         viewModel.checkCurrentCanvas();
         viewModel.setCurrentMainCamera(mainCamera: mainCamera);
+    }
+
+    private void Update()
+    {
+        
     }
 
     // private methods
@@ -124,6 +130,12 @@ public class UserInterfaceHandler : MonoBehaviour, UserInterfaceHandlerViewModel
         startPrefabGameobject(loadGame);
         LoadGameUI loadGameUI = currentCanvasPrefab.GetComponent<LoadGameUI>();
         loadGameUI.myDelegate = loadGameUIDelegate;
+    }
+
+    public void goToGameOver(GameOverUIDelegate gameOverUIDelegate) {
+        startPrefabGameobject(GameOver);
+        GameOverUI gameOverUI = currentCanvasPrefab.GetComponent<GameOverUI>();
+        gameOverUI.myDelegate = gameOverUIDelegate;
     }
 }
 

@@ -14,6 +14,7 @@ public interface SpacecraftPlayerLifeRepository
     public void quitLife(float life);
     public void setCurrentLifeModel(LifeModel lifeModel);
     public void updateCurrentLife(float life);
+    public void restoreLife();
 }
 
 public class SpacecraftPlayerLifeRepositoryImpl : SpacecraftPlayerLifeRepository {
@@ -29,6 +30,7 @@ public class SpacecraftPlayerLifeRepositoryImpl : SpacecraftPlayerLifeRepository
     public void addStructureLife(StructurePlayer structure) => cache.addStructureLife(structure);
     public bool loadLife() => cache.loadLife();
     public void quitLife(float life) => cache.quitLife(life: life);
+    public void restoreLife() => cache.restoreLife();
     public void setCurrentLifeModel(LifeModel lifeModel) => cache.setCurrentLifeModel(lifeModel: lifeModel);
     public void updateCurrentLife(float life) => cache.updateCurrentLife(currentLife: life);
 }

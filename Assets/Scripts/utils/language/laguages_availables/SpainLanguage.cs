@@ -21,6 +21,7 @@ public class SpainLanguage : AbstractLanguage
         values[NameTagLanguage.DELETE] = "Eliminar";
         values[NameTagLanguage.GO_BACK] = "Volver";
         values[NameTagLanguage.GAME_CREATED] = "Nombre Jugador: {0}, Fecha: {1}";
+        values[NameTagLanguage.GAME_OVER] = "¡Has muerto!";
         values[NameTagLanguage.LIFE_PLAYER] = "Vida: {0}";
         values[NameTagLanguage.LOAD] = "Cargar";
         values[NameTagLanguage.LOAD_GAME] = "Cargar juego";

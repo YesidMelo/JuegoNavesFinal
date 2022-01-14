@@ -24,6 +24,7 @@ public class HandlerLifePlayer : MonoBehaviour, HandlerLifePlayerViewModelDelega
     // Update is called once per frame
     void Update()
     {
+        viewModel.checkCurrentLife();
         loadLifeFromUIUnity();
         updateStructureLifeFromUIUnity();
         updateCurrentLifeFromUIUnity();

@@ -2,6 +2,7 @@ public interface StatusGameDatasourceCache {
     void updateStatusGame(StatusGame status);
     StatusGame getCurrentStatus();
     bool isGameInPause();
+    bool isGameOver();
 }
 
 public class StatusGameDatasourceCacheImpl : StatusGameDatasourceCache
@@ -20,13 +21,17 @@ public class StatusGameDatasourceCacheImpl : StatusGameDatasourceCache
     private StatusGameDatasourceCacheImpl() { }
 
     private StatusGame _currentStatusGame;
-    private bool _isGameInPause = true;
+    private bool _isGameInPause = false;
+    private bool _isGameOver = false;
 
     public StatusGame getCurrentStatus() => _currentStatusGame;
     public void updateStatusGame(StatusGame status) {
         _currentStatusGame = status;
-        _isGameInPause = status == StatusGame.IN_GAME ? false : true;
+        _isGameInPause = status != StatusGame.IN_GAME;
+        _isGameOver = status == StatusGame.GAME_OVER;
     }
 
     public bool isGameInPause() => _isGameInPause;
+
+    public bool isGameOver() => _isGameOver;
 }
