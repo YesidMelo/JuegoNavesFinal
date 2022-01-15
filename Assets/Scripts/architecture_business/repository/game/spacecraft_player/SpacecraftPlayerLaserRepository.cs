@@ -12,6 +12,7 @@ public interface SpacecraftPlayerLaserRepository {
     public bool loadLasers();
     public void setCurrentLaserModel(LaserModel laserModel);
     public void setListLaser(List<LaserPlayer> listLasers);
+    public void clearCache();
 }
 
 public class SpacecraftPlayerLaserRepositoryImpl : SpacecraftPlayerLaserRepository {
@@ -23,6 +24,8 @@ public class SpacecraftPlayerLaserRepositoryImpl : SpacecraftPlayerLaserReposito
     public LaserPlayer finalLaser => cache.finalImpactLaser;
 
     public LaserModel currentLaserModel => cache.currentLaserModel;
+
+    public void clearCache() => cache.clearCache();
 
     public bool loadLasers() => cache.loadLasers();
 

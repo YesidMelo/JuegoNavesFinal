@@ -13,6 +13,7 @@ public interface SpacecraftEnemyLifeCache {
 
     bool loadLife(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeLife(IdentificatorModel identificator);
+    void clearCache();
 }
 public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
 {
@@ -91,9 +92,18 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
         _dictionarySpacecraft.Remove(identificator);
     }
 
+    public void clearCache()
+    {
+        _dictionaryCurrentLife.Clear();
+        _dictionarySpacecraft.Clear();
+        _dictionorayMaxLife.Clear();
+    }
+
     //private methods
     private bool notIsLifeInDictionaries(IdentificatorModel identificator)
     {
         return !_dictionorayMaxLife.ContainsKey(identificator) || !_dictionaryCurrentLife.ContainsKey(identificator);
     }
+
+    
 }

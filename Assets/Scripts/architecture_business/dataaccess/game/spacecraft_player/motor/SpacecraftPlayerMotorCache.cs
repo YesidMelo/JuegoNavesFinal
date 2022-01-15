@@ -10,6 +10,7 @@ public interface SpacecraftPlayerMotorCache
     public bool loadMotors();
     public void setCurrentMotorModel(MotorModel motorModel);
     public void setListMotors(List<MotorPlayer> motorPlayers);
+    public void clearCache();
 }
 
 public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
@@ -34,6 +35,11 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
     public List<MotorPlayer> listMotors => _listMotors;
 
     public MotorModel currentMotorModel => _currentMotorModel;
+    public void clearCache()
+    {
+        _listMotors.Clear();
+        _currentMotorModel = new MotorModel();
+    }
 
     public bool loadMotors()
     {
@@ -97,4 +103,5 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
         }
         return speed;
     }
+
 }

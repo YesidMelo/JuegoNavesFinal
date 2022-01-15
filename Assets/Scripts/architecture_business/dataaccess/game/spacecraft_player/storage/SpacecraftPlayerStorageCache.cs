@@ -8,6 +8,8 @@ public interface SpacecraftPlayerStorageCache {
     bool loadStorage();
     void setCurrentStorageModel(StorageModel storageModel);
     void updateStorage(StoragePlayer storage);
+    public void clearCache();
+
 }
 
 public class SpacecraftPlayerStorageCacheImpl : SpacecraftPlayerStorageCache
@@ -34,6 +36,12 @@ public class SpacecraftPlayerStorageCacheImpl : SpacecraftPlayerStorageCache
 
     public StorageModel currentStorageModel => _currentStorageModel;
 
+    public void clearCache()
+    {
+        _currentStorage = StoragePlayer.TYPE_1;
+        _currentStorageModel = new StorageModel();
+    }
+
     public bool loadStorage() {
         _currentStorageModel.currentStorage = _currentStorage;
         return true; 
@@ -49,4 +57,5 @@ public class SpacecraftPlayerStorageCacheImpl : SpacecraftPlayerStorageCache
         _currentStorageModel = storageModel;
         _currentStorage = currentStorageModel.currentStorage;
     }
+
 }

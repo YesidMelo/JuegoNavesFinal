@@ -38,6 +38,7 @@ public class PauseUIViewModelImpl : PauseUIViewModel
     private SaveGameUseCase saveGameUseCase = new SaveGameUseCaseImpl();
     private StagePopulationClearCacheUseCase stagePopulationClearUseCase = new StagePopulationClearCacheUseCaseImpl();
     private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
+    private SaveGameClearCachesGameUseCase clearCachesGameUseCase = new SaveGameClearCachesGameUseCaseImpl();
 
     PauseUIViewModelDelegate _myDelegate;
 
@@ -80,6 +81,7 @@ public class PauseUIViewModelImpl : PauseUIViewModel
                 await Task.Delay(100);
                 await stagePopulationClearUseCase.invoke();
                 updateStatusUseCase.invoke(StatusGame.MAIN_MENU);
+                await clearCachesGameUseCase.invoke();
                 _myDelegate.goSaveAndExit();
             }
             catch (Exception e) {

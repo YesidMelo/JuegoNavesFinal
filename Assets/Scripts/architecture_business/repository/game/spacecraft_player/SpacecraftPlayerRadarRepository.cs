@@ -16,6 +16,7 @@ public interface SpacecraftPlayerRadarRepository {
     void updateCurrentRadarPlayer(RadarPlayer radarPlayer);
     void changeCurrentEnemy();
     void setCurrentRadarModel(RadarModel radarModel);
+    public void clearCache();
 }
 
 public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarRepository
@@ -41,7 +42,9 @@ public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarReposito
     }
 
     public void changeCurrentEnemy() => cacheEnemies.changeEnemy();
-    
+
+    public void clearCache() => cache.clearCache();
+
     public void clearElementsRadar() => cache.clearElementsRadar();
 
     public bool loadElementsRadar() => cache.loadElementsRadar();

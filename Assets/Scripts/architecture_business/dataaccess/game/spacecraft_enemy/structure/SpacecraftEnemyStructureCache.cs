@@ -6,6 +6,7 @@ public interface SpacecraftEnemyStructureCache {
     StructureEnemy currentStructure(IdentificatorModel identificator);
     void deleteStructure(IdentificatorModel identificator);
     bool loadStructure(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
+    void clearCache();
 }
 
 public class SpacecraftEnemyStructureCacheImpl : SpacecraftEnemyStructureCache
@@ -36,6 +37,11 @@ public class SpacecraftEnemyStructureCacheImpl : SpacecraftEnemyStructureCache
         return true;
     }
 
+    public void clearCache()
+    {
+        _dictionaryStructures.Clear();
+    }
+
     //private methods
     private StructureEnemy loadStructureByTypeSpacecraft(SpacecraftEnemy spacecraft) {
         StructureEnemy finalStructure;
@@ -59,4 +65,5 @@ public class SpacecraftEnemyStructureCacheImpl : SpacecraftEnemyStructureCache
         }
         return finalStructure;
     }
+
 }

@@ -6,6 +6,7 @@ public interface SpacecraftEnemyStorageCache {
     StorageEnemy currentStorage(IdentificatorModel identificator);
     bool loadStorage(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeStorage(IdentificatorModel identificator);
+    void clearCache();
 }
 
 public class SpacecraftEnemyStorageCacheImpl : SpacecraftEnemyStorageCache
@@ -41,6 +42,12 @@ public class SpacecraftEnemyStorageCacheImpl : SpacecraftEnemyStorageCache
         _dictionarySpacecraft.Remove(identificator);
     }
 
+    public void clearCache()
+    {
+        _dictionaryStorages.Clear();
+        _dictionarySpacecraft.Clear();
+    }
+
     //private methods
     StorageEnemy loadCurrentStorage(SpacecraftEnemy spacecraft) {
         StorageEnemy finalStorage;
@@ -64,4 +71,5 @@ public class SpacecraftEnemyStorageCacheImpl : SpacecraftEnemyStorageCache
         }
         return finalStorage;
     }
+
 }

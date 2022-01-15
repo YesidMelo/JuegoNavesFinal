@@ -15,6 +15,8 @@ public interface SpacecraftPlayerRadarCache {
     bool loadElementsRadar();
     void updateCurrentRadar(RadarPlayer radar);
     void setCurrentRadarModel(RadarModel radarModel);
+    public void clearCache();
+
 }
 
 public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
@@ -49,6 +51,13 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
     {
         if (_listElementsRadar.Contains(gameObject)) return;
         _listElementsRadar.Add(gameObject);
+    }
+    public void clearCache()
+    {
+        _listElementsRadar.Clear();
+        radarModel = new RadarModel();
+        _currentRadarPlayer = RadarPlayer.TYPE_1;
+        _currentRadiusRadar = 1f;
     }
 
     public void clearElementsRadar()=> _listElementsRadar.Clear();

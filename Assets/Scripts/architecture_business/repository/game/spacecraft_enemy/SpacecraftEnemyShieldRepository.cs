@@ -6,10 +6,13 @@ public interface SpacecraftEnemyShieldRepository {
     ShieldEnemy currentShield(IdentificatorModel identificator);
     bool loadShield(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeShield(IdentificatorModel identificator);
+    void clearCache();
 }
 public class SpacecraftEnemyShieldRepositoryImpl : SpacecraftEnemyShieldRepository
 {
     private SpacecraftEnemyShieldCache cache = SpacecraftEnemyShieldCacheImpl.getInstance();
+
+    public void clearCache() => cache.clearCache();
 
     public ShieldEnemy currentShield(IdentificatorModel identificator) => cache.currentShield(identificator);
 

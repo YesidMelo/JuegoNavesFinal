@@ -5,6 +5,7 @@ using UnityEngine;
 public interface LevelCache { 
     Level getCurrentLevel { get; }
     void updateLevel(Level level);
+    void clearCache();
 }
 
 public class LevelCacheImpl : LevelCache
@@ -26,5 +27,6 @@ public class LevelCacheImpl : LevelCache
     public Level getCurrentLevel => _currentLevel;
 
     public void updateLevel(Level level) => _currentLevel = level;
-    
+
+    public void clearCache() => _currentLevel = Level.LEVEL1_SECTION1;
 }

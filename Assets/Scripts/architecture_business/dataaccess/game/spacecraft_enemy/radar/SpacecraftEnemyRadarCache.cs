@@ -10,6 +10,7 @@ public interface SpacecraftEnemyRadarCache {
     bool loadRadar(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeRadar(IdentificatorModel identificator);
     void removeObjectFromRadar(IdentificatorModel identificator, GameObject gameObject);
+    void clearCache();
 
 }
 public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
@@ -75,9 +76,18 @@ public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
         return _dictionaryGameobjects[identificatorModel];
     }
 
+    public void clearCache()
+    {
+        _dictionaryRadar.Clear();
+        _dictionaryRadius.Clear();
+        _dictionarySpacecraft.Clear();
+        _dictionaryGameobjects.Clear();
+    }
+
+
     //private methods
 
-  
+
     private void removeFromDictionary<T>(IdentificatorModel identificator, Dictionary<IdentificatorModel, T> dictionary) {
         if (!dictionary.ContainsKey(identificator)) return;
         dictionary.Remove(identificator);

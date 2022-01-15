@@ -9,6 +9,7 @@ public interface SpacecraftEnemyLasersCache {
     int impactLaser(IdentificatorModel identificator);
     bool loadSpacecraft(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     LaserEnemy typeLaser(IdentificatorModel identificator);
+    void clearCache();
 
 }
 public class SpacecraftEnemyLasersCacheImpl : SpacecraftEnemyLasersCache
@@ -49,6 +50,13 @@ public class SpacecraftEnemyLasersCacheImpl : SpacecraftEnemyLasersCache
 
     public LaserEnemy typeLaser(IdentificatorModel identificator) => _dictionaryTypeLaser[identificator];
 
+    public void clearCache()
+    {
+        _dictionarySpacecraft.Clear();
+        _dictionaryImpactLaser.Clear();
+        _dictionaryTypeLaser.Clear();
+    }
+
     //private methods
     private void clear<T>(Dictionary<IdentificatorModel, T> dictionary, IdentificatorModel identificator) {
         if (!dictionary.ContainsKey(identificator)) return;
@@ -72,4 +80,6 @@ public class SpacecraftEnemyLasersCacheImpl : SpacecraftEnemyLasersCache
     private void insertTypeLaser(IdentificatorModel identificator, SpacecraftEnemy spacecraftEnemy) {
         _dictionaryTypeLaser[identificator] = spacecraftEnemy.getCurrentLaser();
     }
+
+   
 }

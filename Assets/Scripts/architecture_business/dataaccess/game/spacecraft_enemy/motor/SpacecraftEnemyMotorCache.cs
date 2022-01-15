@@ -7,6 +7,7 @@ public interface SpacecraftEnemyMotorCache {
     MotorEnemy currentMotor(IdentificatorModel identificator);
     bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeMotor(IdentificatorModel identificator);
+    void clearCache();
 }
 public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
 {
@@ -42,6 +43,13 @@ public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
         removeFromDictionary(identificator,_dictionaryMotors);
         removeFromDictionary(identificator,_dictionarySpacecraft);
         removeFromDictionary(identificator,_dictionarySpeed);
+    }
+
+    public void clearCache()
+    {
+        _dictionaryMotors.Clear();
+        _dictionarySpacecraft.Clear();
+        _dictionarySpeed.Clear();
     }
 
     //private methods
@@ -97,4 +105,6 @@ public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
         if (!dictionary.ContainsKey(identificator)) return;
         dictionary.Remove(identificator);
     }
+
+    
 }

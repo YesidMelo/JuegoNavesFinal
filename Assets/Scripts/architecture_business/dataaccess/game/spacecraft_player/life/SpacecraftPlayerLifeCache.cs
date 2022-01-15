@@ -15,6 +15,7 @@ public interface SpacecraftPlayerLifeCache
     public void setCurrentLifeModel(LifeModel lifeModel);
     public void updateCurrentLife(float currentLife);
     public void restoreLife();
+    public void clearCache();
 }
 
 public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
@@ -47,6 +48,13 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
             _currentLifeModel.maxLife = _maxLife;
             return _currentLifeModel;
         }
+    }
+    public void clearCache()
+    {
+        _maxLife = 1000;
+        _life = 0;
+        _currentStructure = StructurePlayer.TYPE_1;
+        _currentLifeModel = new LifeModel();
     }
 
     public void addLife(float life)

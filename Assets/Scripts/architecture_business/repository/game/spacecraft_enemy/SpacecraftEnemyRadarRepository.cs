@@ -12,6 +12,7 @@ public interface SpacecraftEnemyRadarRepository {
     int radiusRadar(IdentificatorModel identificator);
     void removeRadar(IdentificatorModel identificator);
     void removeGameobjectFromRadar(IdentificatorModel identificator, GameObject gameObject);
+    void clearCache();
 
 }
 public class SpacecraftEnemyRadarRepositoryImpl : SpacecraftEnemyRadarRepository
@@ -23,6 +24,8 @@ public class SpacecraftEnemyRadarRepositoryImpl : SpacecraftEnemyRadarRepository
         cache.addGameobjectToRadar(identificator, gameObject);
         cachePlayer.addPlayer(identificator, gameObject);
     }
+
+    public void clearCache() => cache.clearCache();
 
     public GameObject currentPlayer(IdentificatorModel identificator) => cachePlayer.currentPlayer(identificator);
 

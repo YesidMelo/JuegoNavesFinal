@@ -7,10 +7,13 @@ public interface SpacecraftEnemyMotorRepository {
     MotorEnemy currentMotor(IdentificatorModel identificator);
     bool loadMotor(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeMotor(IdentificatorModel identificator);
+    void clearCache();
 }
 public class SpacecraftEnemyMotorRepositoryImpl: SpacecraftEnemyMotorRepository {
 
     private SpacecraftEnemyMotorCache cache = SpacecraftEnemyMotorCacheImpl.getInstance();
+
+    public void clearCache() => cache.clearCache();
 
     public MotorEnemy currentMotor(IdentificatorModel identificator) => cache.currentMotor(identificator);
 

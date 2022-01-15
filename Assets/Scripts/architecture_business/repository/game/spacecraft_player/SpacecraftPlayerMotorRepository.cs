@@ -9,6 +9,7 @@ public interface SpacecraftPlayerMotorRepository {
     public bool loadMotors();
     public void setCurrentMotorModel(MotorModel motorModel);
     public void setListMotors(List<MotorPlayer> motorPlayers);
+    public void clearCache();
 }
 
 public class SpacecraftPlayerMotorRepositoryImpl : SpacecraftPlayerMotorRepository
@@ -18,6 +19,7 @@ public class SpacecraftPlayerMotorRepositoryImpl : SpacecraftPlayerMotorReposito
     public float speedMotor => cache.speedMotor;
     public List<MotorPlayer> listMotors => cache.listMotors;
     public MotorModel currentMotorModel => cache.currentMotorModel;
+    public void clearCache() => cache.clearCache();
     public bool loadMotors() => cache.loadMotors();
     public void setCurrentMotorModel(MotorModel motorModel) => cache.setCurrentMotorModel(motorModel: motorModel);
     public void setListMotors(List<MotorPlayer> motorPlayers) => cache.setListMotors(motorPlayers);

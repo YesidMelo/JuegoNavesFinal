@@ -6,6 +6,7 @@ public interface SpacecraftEnemyShieldCache {
     ShieldEnemy currentShield(IdentificatorModel identificator);
     bool loadShield(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeShield(IdentificatorModel identificator);
+    void clearCache();
 }
 public class SpacecraftEnemyShieldCacheImpl : SpacecraftEnemyShieldCache
 {
@@ -36,6 +37,10 @@ public class SpacecraftEnemyShieldCacheImpl : SpacecraftEnemyShieldCache
         _dictionaryShield.Remove(identificator);
     }
 
-    //private methods
+    public void clearCache()
+    {
+        _dictionaryShield.Clear();
+    }
+
 
 }

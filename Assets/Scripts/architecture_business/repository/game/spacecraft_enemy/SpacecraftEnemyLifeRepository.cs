@@ -12,6 +12,7 @@ public interface SpacecraftEnemyLifeRepository {
 
     bool loadLife(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
     void removeLife(IdentificatorModel identificator);
+    void clearCache();
 }
 
 public class SpacecraftEnemyLifeRepositoryImpl : SpacecraftEnemyLifeRepository  {
@@ -19,6 +20,8 @@ public class SpacecraftEnemyLifeRepositoryImpl : SpacecraftEnemyLifeRepository  
     private SpacecraftEnemyLifeCache cache = SpacecraftEnemyLifeCacheImpl.getInstance();
 
     public void addLife(IdentificatorModel identificator, int life) => cache.addLife(identificator, life);
+
+    public void clearCache() => cache.clearCache();
 
     public float currentLife(IdentificatorModel identificator) => cache.currentLife(identificator);
 
