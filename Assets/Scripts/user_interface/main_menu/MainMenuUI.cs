@@ -59,6 +59,14 @@ public class MainMenuUI : AbstractCanvas, MainMenuUIViewModelDelegate
         viewModel.goToNewGame();
     }
 
+    public void clickCloseGame() {
+    #if UNITY_EDITOR
+    UnityEditor.EditorApplication.isPlaying = false;
+    #endif
+        Application.Quit();
+        Debug.Log("quit");
+    }
+
     // private methods
     private bool notExistsDelegate() {
         return myDelegate == null;
