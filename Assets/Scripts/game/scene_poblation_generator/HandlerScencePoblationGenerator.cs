@@ -48,6 +48,7 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
     }
 
     private GameObject instantiateElement(SpacecraftEnemy spacecraftEnemy) {
+        if (viewModel.isGameInPause()) return null;
         if (prefabEnemy == null) return null;
         GameObject spacecraft = Instantiate(prefabEnemy);
         spacecraft.transform.position = new Vector3(Functions.generateRandomPosionX(), Functions.generateRandomPosionY(), 0);
@@ -77,10 +78,15 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
             if (viewModel.isAllPoblation(currentLevel)) {
                 yield return new WaitForSeconds(1f);
             }
+            if (viewModel.isGameInPause())
+            {
+                yield return new WaitForSeconds(1f);
+            }
             Dictionary<SpacecraftEnemy, int> populationMissing = viewModel.getEnemiesMissingInThePopulation(currentLevel);
             foreach (KeyValuePair<SpacecraftEnemy, int> entry in populationMissing) {
                 for (int counter = 0; counter< entry.Value; counter++) {
                     GameObject spacecraft = instantiateElement(entry.Key);
+                    if (spacecraft == null) continue;
                     spacecraft.name = string.Format("{0}{1}",spacecraft.name,counter);
                     if (spacecraft == null) continue;
                     viewModel.addEnemy(level: currentLevel, spacecraft: entry.Key, gameObject: spacecraft);

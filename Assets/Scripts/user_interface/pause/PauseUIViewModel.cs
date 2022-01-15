@@ -7,7 +7,7 @@ using UnityEngine;
 public interface PauseUIViewModelDelegate {
     void goContinue();
     void goSaveAndExit();
-    void deleteAllEnemies();
+    Task deleteAllEnemies();
     Task deleteCurrentPlayer();
     Task deleteCurrentSpawmPopulation();
 }
@@ -70,7 +70,7 @@ public class PauseUIViewModelImpl : PauseUIViewModel
         Task.Run(async () => {
             try
             {
-                _myDelegate.deleteAllEnemies();
+                await _myDelegate.deleteAllEnemies();
                 await saveGameUseCase.invoke();
                 await _myDelegate.deleteCurrentPlayer();
                 await _myDelegate.deleteCurrentSpawmPopulation();

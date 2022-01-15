@@ -67,7 +67,7 @@ public class PauseUI : AbstractCanvas, PauseUIViewModelDelegate
         }, null);
     }
 
-    public void deleteAllEnemies()
+    public async Task deleteAllEnemies()
     {
         List<GameObject> currentListEnemies = viewModel.getAllElementToDelete();
         foreach (GameObject currentEnemy in currentListEnemies)
