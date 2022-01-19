@@ -4,8 +4,8 @@ public interface BackgroundGetCurrentLevelUseCase {
 
 public class BackgroundGetCurrentLevelUseCaseImpl : BackgroundGetCurrentLevelUseCase
 {
-    private BackgrounRepository repo = new BackgrounRepositoryImpl();
+    private LevelRepository repo = new LevelRepositoryImpl();
 
-    public Level invoke() => repo.getCurrentLevel();
+    public Level invoke() => repo.getCurrentLevel;
 
 }

@@ -29,9 +29,14 @@ public static class LevelEnumExtentions{
         string nameSprite = null;
 
         switch (level) {
-
+            case Level.LEVEL1_SECTION2:
+                nameSprite = Constants.nameSpriteBackgroundLevel1Section2;
+                break;
+            case Level.LEVEL1_SECTION1:
+                nameSprite = Constants.nameSpriteBackgroundLevel1Section1;
+                break;
             default:
-                nameSprite = Constants.nameSpriteDefault;
+                nameSprite = Constants.nameSpriteBackgroundDefault;
                 break;
         }
 

@@ -9,6 +9,6 @@ public interface BackgroundSetCurrentLevelUseCase {
 public class BackgroundSetCurrentLevelUseCaseImpl : BackgroundSetCurrentLevelUseCase
 {
 
-    private BackgrounRepository repo = new BackgrounRepositoryImpl();
-    public void invoke(Level level) => repo.setCurrentLevel(level: level);
+    private LevelRepository repo = new LevelRepositoryImpl();
+    public void invoke(Level level) => repo.updateLevel(level: level);
 }

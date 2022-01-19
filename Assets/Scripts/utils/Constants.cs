@@ -204,7 +204,9 @@ public static class Constants
     #endregion
 
     #region nameSprites
-    public const string nameSpriteDefault = "fondo_prueba1";
-    public const string nameSpriteLevel1Section1 = "agujero_pruebas";
+    //sprites background
+    public const string nameSpriteBackgroundDefault = "fondo_prueba1";
+    public const string nameSpriteBackgroundLevel1Section1 = "agujero_pruebas";
+    public const string nameSpriteBackgroundLevel1Section2 = "fondo_prueba1";
     #endregion
 }
