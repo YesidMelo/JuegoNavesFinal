@@ -1,17 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
 {
-    
+    //Disparador en hilo principal
+    //documentacion en : https://stackoverflow.com/questions/41330771/use-unity-api-from-another-thread-or-call-a-function-in-the-main-thread
+    //documentacion en : https://docs.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext?view=net-5.0
+    private SynchronizationContext syncContext;
+
+
     public Level currentLevel = Level.LEVEL1_SECTION1;
     public Level levelToChange = Level.LEVEL1_SECTION1;
+    public bool updateLevel = false;
 
     private PortalUIViewModel _viewModel = new PortalUIViewModelImpl();
 
     void Start()
     {
+        syncContext = SynchronizationContext.Current;
         _viewModel.myDelegate = this;
     }
 
@@ -28,7 +37,23 @@ public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
 
     //ui unity methods
     private void updateLevelInUnity() {
+        if (!updateLevel) return;
         if (levelToChange == currentLevel) return;
+        updateLevel = false;
         _viewModel.changeLevel(level: levelToChange);
+    }
+
+    //delegate methods
+
+    public async Task deleteAllEnemies()
+    {
+        List<GameObject> currentListEnemies = _viewModel.getAllEnemies();
+        foreach (GameObject currentEnemy in currentListEnemies) {
+            Debug.Log("Tienes un enemigo");
+            if (syncContext == null) continue;
+            syncContext.Post(_ => {
+                Destroy(currentEnemy);
+            }, null);
+        }
     }
 }

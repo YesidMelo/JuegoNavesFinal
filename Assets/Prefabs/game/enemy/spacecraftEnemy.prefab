@@ -699,7 +699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7ec44f1a4d6434faed2f12a8a4bad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpacecraft: 0
+  currentSpacecraft: 1
   currentStructure: 0
   spriteRenderer: {fileID: 4342315122414555575}
   Nivel1_Spacecraf1: {fileID: 6694529733754390140, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}

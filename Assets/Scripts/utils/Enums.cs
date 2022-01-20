@@ -168,10 +168,11 @@ public enum SpacecraftEnemy
 }
 
 public enum StatusGame { 
-    MAIN_MENU,
-    IN_GAME,
-    PAUSE,
+    CHANGE_LEVEL,
     GAME_OVER,
+    IN_GAME,
+    MAIN_MENU,
+    PAUSE,
 }
 
 public enum StorageEnemy { 

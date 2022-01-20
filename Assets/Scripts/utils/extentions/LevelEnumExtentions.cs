@@ -8,8 +8,11 @@ public static class LevelEnumExtentions{
     public static int getMaxEnemies(this Level currentLevel, SpacecraftEnemy currentEspacecraft) {
         int currentEnemies;
         switch (currentLevel) {
+            case Level.LEVEL1_SECTION2:
+                currentEnemies = currentEnemiesLevel1Section2(currentEspacecraft);
+                break;
             default:
-                currentEnemies = currentEnemiesLevel1(currentEspacecraft);
+                currentEnemies = currentEnemiesLevel1Section1(currentEspacecraft);
                 break;
         }
         return currentEnemies;
@@ -45,11 +48,27 @@ public static class LevelEnumExtentions{
 
     //private methods
 
-    private static int currentEnemiesLevel1(SpacecraftEnemy spacecraft) {
+    private static int currentEnemiesLevel1Section1(SpacecraftEnemy spacecraft) {
         int currentEnemies;
         switch (spacecraft) {
             case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
                 currentEnemies = 1;
+                break;
+            default:
+                currentEnemies = 0;
+                break;
+        }
+        return currentEnemies;
+    }
+
+    private static int currentEnemiesLevel1Section2(SpacecraftEnemy spacecraft) {
+        int currentEnemies;
+        switch (spacecraft) {
+            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+                currentEnemies = 1;
+                break;
+            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+                currentEnemies = 0;
                 break;
             default:
                 currentEnemies = 0;

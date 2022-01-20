@@ -6,6 +6,7 @@ using UnityEngine;
 public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePoblationGeneratorViewModelDelegate
 {
     public GameObject prefabEnemy;
+    public Level levelToChange;
     public Level currentLevel;
     public bool updateLevel = false;
     public bool startCoroutineCheckPopulation = false;
@@ -21,6 +22,7 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
     // Update is called once per frame
     void Update()
     {
+        currentLevel = viewModel.currentLevel;
         updateCurrentLevelFromUI();
         runCoroutinePopulation();
     }
@@ -67,7 +69,7 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
     {
         if (!updateLevel) return;
         updateLevel = false;
-        updateCurrentLevel(currentLevel);
+        updateCurrentLevel(levelToChange);
 
     }
 
@@ -75,21 +77,21 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
 
     private IEnumerator checkPopulation() {
         while (isRunCoroutineCheckPopulation) {
-            if (viewModel.isAllPoblation(currentLevel)) {
+            if (viewModel.isAllPoblation(levelToChange)) {
                 yield return new WaitForSeconds(1f);
             }
             if (viewModel.isGameInPause())
             {
                 yield return new WaitForSeconds(1f);
             }
-            Dictionary<SpacecraftEnemy, int> populationMissing = viewModel.getEnemiesMissingInThePopulation(currentLevel);
+            Dictionary<SpacecraftEnemy, int> populationMissing = viewModel.getEnemiesMissingInThePopulation(levelToChange);
             foreach (KeyValuePair<SpacecraftEnemy, int> entry in populationMissing) {
                 for (int counter = 0; counter< entry.Value; counter++) {
                     GameObject spacecraft = instantiateElement(entry.Key);
                     if (spacecraft == null) continue;
                     spacecraft.name = string.Format("{0}{1}",spacecraft.name,counter);
                     if (spacecraft == null) continue;
-                    viewModel.addEnemy(level: currentLevel, spacecraft: entry.Key, gameObject: spacecraft);
+                    viewModel.addEnemy(level: levelToChange, spacecraft: entry.Key, gameObject: spacecraft);
                     yield return new WaitForSeconds(0.003f);
                 }
             }
@@ -103,7 +105,7 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
     //delegates
     public void notifyLoadLevel()
     {
-        currentLevel = viewModel.currentLevel;
+        levelToChange = viewModel.currentLevel;
         startCoroutineCheckPopulation = true;
     }
 
