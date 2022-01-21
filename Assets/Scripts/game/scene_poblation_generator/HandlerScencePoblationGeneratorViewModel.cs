@@ -15,6 +15,8 @@ public interface HandlerScencePoblationGeneratorViewModel {
     Level currentLevel { get; }
     void updateLevel(Level level);
     bool isGameInPause();
+
+    void checkCurrentLevel();
 }
 
 public class HandlerScencePoblationGeneratorViewModelImpl : HandlerScencePoblationGeneratorViewModel
@@ -39,6 +41,11 @@ public class HandlerScencePoblationGeneratorViewModelImpl : HandlerScencePoblati
 
     public void addEnemy(Level level, SpacecraftEnemy spacecraft, GameObject gameObject)=> addEnemyUseCase.invoke(level: level, spacecraftEnemy: spacecraft, gameObject: gameObject);
 
+    public void checkCurrentLevel() {
+        if (_myDelegate == null) return;
+        _myDelegate.notifyLoadLevel();
+    }
+
     public Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level) => getEnemiesMissingInThePopulationUseCase.invoke(level: level);
 
     public bool isAllPoblation(Level level) => isAllPoblationUseCase.invoke(level: level);
@@ -50,4 +57,5 @@ public class HandlerScencePoblationGeneratorViewModelImpl : HandlerScencePoblati
         if (_myDelegate == null) return;
         _myDelegate.notifyLoadLevel();
     }
+
 }

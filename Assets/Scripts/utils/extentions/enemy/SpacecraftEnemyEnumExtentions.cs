@@ -5,24 +5,24 @@ using UnityEngine;
 
 public static class SpacecraftEnemyEnumExtentions {
 
-    //laser
+    #region Laser
     public static LaserEnemy getCurrentLaser(this SpacecraftEnemy spacecraftEnemy) {
         LaserEnemy type;
         switch (spacecraftEnemy)
         {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.LIEUTENENTS:
                 type = LaserEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
+            case SpacecraftEnemy.MAJOR:
                 type = LaserEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+            case SpacecraftEnemy.LIEUTENANTCOLONEL:
                 type = LaserEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
+            case SpacecraftEnemy.COLONEL:
                 type = LaserEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
             default:
                 type = LaserEnemy.TYPE_1;
                 break;
@@ -34,16 +34,16 @@ public static class SpacecraftEnemyEnumExtentions {
         int finalImpact;
         switch (spacecraftEnemy)
         {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.LIEUTENENTS:
                 finalImpact = Constants.laserEnemyType2;
                 break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
+            case SpacecraftEnemy.MAJOR:
                 finalImpact = Constants.laserEnemyType3;
                 break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+            case SpacecraftEnemy.LIEUTENANTCOLONEL:
                 finalImpact = Constants.laserEnemyType4;
                 break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
+            case SpacecraftEnemy.COLONEL:
                 finalImpact = Constants.laserEnemyType5;
                 break;
             default:
@@ -52,75 +52,78 @@ public static class SpacecraftEnemyEnumExtentions {
         }
         return finalImpact;
     }
+    #endregion
 
-    //life
+    #region life
     public static float getLife(this SpacecraftEnemy spacecraft) {
         float finalLife;
         switch (spacecraft)
         {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.LIEUTENENTS:
                 finalLife = Constants.lifeEnemyStructureType2;
                 break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
+            case SpacecraftEnemy.MAJOR:
                 finalLife = Constants.lifeEnemyStructureType3;
                 break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+            case SpacecraftEnemy.LIEUTENANTCOLONEL:
                 finalLife = Constants.lifeEnemyStructureType4;
                 break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
+            case SpacecraftEnemy.COLONEL:
                 finalLife = Constants.lifeEnemyStructureType5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
             default:
                 finalLife = Constants.lifeEnemyStructureType1;
                 break;
         }
         return finalLife;
     }
+    #endregion
 
-    //shield
+    #region shield
     public static ShieldEnemy loadCurrentShield(this SpacecraftEnemy spacecraft) {
         ShieldEnemy finalShield;
         switch (spacecraft)
         {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.LIEUTENENTS:
                 finalShield = ShieldEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
+            case SpacecraftEnemy.MAJOR:
                 finalShield = ShieldEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+            case SpacecraftEnemy.LIEUTENANTCOLONEL:
                 finalShield = ShieldEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
+            case SpacecraftEnemy.COLONEL:
                 finalShield = ShieldEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
             default:
                 finalShield = ShieldEnemy.TYPE_1;
                 break;
         }
         return finalShield;
     }
+    #endregion
 
-    //radar
+    #region radar
     public static RadarEnemy loadCurrentRadar(this SpacecraftEnemy spacecraft) {
         RadarEnemy typeRadar;
         switch (spacecraft)
         {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.LIEUTENENTS:
                 typeRadar = RadarEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
+            case SpacecraftEnemy.MAJOR:
                 typeRadar = RadarEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+            case SpacecraftEnemy.LIEUTENANTCOLONEL:
                 typeRadar = RadarEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
+            case SpacecraftEnemy.COLONEL:
                 typeRadar = RadarEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
             default:
                 typeRadar = RadarEnemy.TYPE_1;
                 break;
@@ -132,19 +135,19 @@ public static class SpacecraftEnemyEnumExtentions {
         int finalRadius;
         switch (spacecraft)
         {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.LIEUTENENTS:
                 finalRadius = Constants.radarEnemyRadiusRadarType2;
                 break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
+            case SpacecraftEnemy.MAJOR:
                 finalRadius = Constants.radarEnemyRadiusRadarType3;
                 break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+            case SpacecraftEnemy.LIEUTENANTCOLONEL:
                 finalRadius = Constants.radarEnemyRadiusRadarType4;
                 break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
+            case SpacecraftEnemy.COLONEL:
                 finalRadius = Constants.radarEnemyRadiusRadarType5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
             default:
                 finalRadius = Constants.radarEnemyRadiusRadarType1;
                 break;
@@ -152,4 +155,6 @@ public static class SpacecraftEnemyEnumExtentions {
         return finalRadius;
     
     }
+    #endregion
+
 }

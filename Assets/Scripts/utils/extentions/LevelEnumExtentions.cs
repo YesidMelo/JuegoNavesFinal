@@ -51,7 +51,7 @@ public static class LevelEnumExtentions{
     private static int currentEnemiesLevel1Section1(SpacecraftEnemy spacecraft) {
         int currentEnemies;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
                 currentEnemies = 1;
                 break;
             default:
@@ -64,10 +64,10 @@ public static class LevelEnumExtentions{
     private static int currentEnemiesLevel1Section2(SpacecraftEnemy spacecraft) {
         int currentEnemies;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.BRIGADUERGENERAL:
                 currentEnemies = 1;
                 break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
                 currentEnemies = 0;
                 break;
             default:

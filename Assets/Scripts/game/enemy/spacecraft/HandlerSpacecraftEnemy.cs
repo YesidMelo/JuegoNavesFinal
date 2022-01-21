@@ -7,7 +7,7 @@ public class HandlerSpacecraftEnemy : MonoBehaviour, HandlerSpacecraftEnemyViewM
 {
     public bool loadSpacecraftFromUi = false;
     public bool updateSpacecraftFromUI = false;
-    public SpacecraftEnemy currentSpacecraft = SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS;
+    public SpacecraftEnemy currentSpacecraft = SpacecraftEnemy.SECOND_LIEUTENANTS;
     public HandlerLaserEnemy handlerLaserEnemy;
     public HandlerMotorsEnemy handlerMotorsEnemy;
     public HandlerLifeEnemy handlerLifeEnemy;

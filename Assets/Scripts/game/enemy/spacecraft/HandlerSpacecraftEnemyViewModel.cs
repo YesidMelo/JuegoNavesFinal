@@ -27,7 +27,7 @@ public class HandlerSpacecraftEnemyViewModelImpl : HandlerSpacecraftEnemyViewMod
 
     private HandlerSpacecraftEnemyViewModelDelegate _myDelegate;
     private IdentificatorModel _identificator = new IdentificatorModel();
-    private SpacecraftEnemy _currentSpacecraft = SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS;
+    private SpacecraftEnemy _currentSpacecraft = SpacecraftEnemy.SECOND_LIEUTENANTS;
 
     //gets and sets
     public HandlerSpacecraftEnemyViewModelDelegate myDelegate { 

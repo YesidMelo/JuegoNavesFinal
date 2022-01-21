@@ -701,12 +701,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSpacecraft: 1
   currentStructure: 0
+  currentLevel: 0
   spriteRenderer: {fileID: 4342315122414555575}
-  Nivel1_Spacecraf1: {fileID: 6694529733754390140, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
-  Nivel1_Spacecraf2: {fileID: 2170021090513240913, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
-  Nivel1_Spacecraf3: {fileID: -605099652889430693, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
-  Nivel1_Spacecraf4: {fileID: -4693582675294971659, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
-  Nivel1_Spacecraf5: {fileID: -7402574414559566052, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  listSprites:
+  - {fileID: 6694529733754390140, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: 2170021090513240913, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: -5422893607643704719, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: -605099652889430693, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: -4693582675294971659, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: -627330354428677441, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: 3756175005464513283, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: -7402574414559566052, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: -435198058116065910, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: -7771912886355484528, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
+  - {fileID: 1074713795784661263, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
 --- !u!212 &4342315122414555575
 SpriteRenderer:
   m_ObjectHideFlags: 0

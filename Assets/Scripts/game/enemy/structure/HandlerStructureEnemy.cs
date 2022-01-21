@@ -6,12 +6,9 @@ public class HandlerStructureEnemy : MonoBehaviour, HandlerStructureEnemyViewMod
 {
     public SpacecraftEnemy currentSpacecraft;
     public StructureEnemy currentStructure;
+    public Level currentLevel;
     public SpriteRenderer spriteRenderer;
-    public Sprite Nivel1_Spacecraf1;
-    public Sprite Nivel1_Spacecraf2;
-    public Sprite Nivel1_Spacecraf3;
-    public Sprite Nivel1_Spacecraf4;
-    public Sprite Nivel1_Spacecraf5;
+    public List<Sprite> listSprites = new List<Sprite>();
     
 
     private HandlerStructureEnemyViewModel viewModel = new HandlerStructureEnemyViewModelImpl();
@@ -24,7 +21,7 @@ public class HandlerStructureEnemy : MonoBehaviour, HandlerStructureEnemyViewMod
     // Update is called once per frame
     void Update()
     {
-        
+        checkCurrentLevel();
     }
 
     //public method
@@ -34,26 +31,20 @@ public class HandlerStructureEnemy : MonoBehaviour, HandlerStructureEnemyViewMod
     }
 
     //private methods
+    private void checkCurrentLevel() {
+        
+        if (currentLevel == viewModel.currentLevel) return;
+        currentLevel = viewModel.currentLevel;
+        changeStructure();
+    }
+
     private void changeStructure() {
-        Sprite finalSprite;
-        switch (currentStructure) {
-            case StructureEnemy.TYPE_2:
-                finalSprite = Nivel1_Spacecraf2;
-                break;
-            case StructureEnemy.TYPE_3:
-                finalSprite = Nivel1_Spacecraf3;
-                break;
-            case StructureEnemy.TYPE_4:
-                finalSprite = Nivel1_Spacecraf4;
-                break;
-            case StructureEnemy.TYPE_5:
-                finalSprite = Nivel1_Spacecraf5;
-                break;
-            case StructureEnemy.TYPE_1:
-            default:
-                finalSprite = Nivel1_Spacecraf1;
-                break;
-        }
+        Sprite finalSprite = currentStructure.getCurrentSprite(
+            spacecraftEnemy: currentSpacecraft,
+            level: currentLevel,
+            listSprite: listSprites
+        );
+        if (finalSprite == null) return;
         spriteRenderer.sprite = finalSprite;
     }
     //ui methods

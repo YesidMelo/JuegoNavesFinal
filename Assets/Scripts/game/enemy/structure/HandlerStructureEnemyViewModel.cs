@@ -10,6 +10,7 @@ public interface HandlerStructureEnemyViewModelDelegate {
 public interface HandlerStructureEnemyViewModel {
     SpacecraftEnemy currentSpacecraft { get; }
     StructureEnemy currentStructure { get; }
+    Level currentLevel { get; }
     HandlerStructureEnemyViewModelDelegate myDelegate { get; set; }
     void loadSpacecraft(IdentificatorModel identificator);
     void deleteStructure(IdentificatorModel identificator);
@@ -20,6 +21,7 @@ public class HandlerStructureEnemyViewModelImpl : HandlerStructureEnemyViewModel
     private StructureEnemyLoadStructureUseCase loadStructureUseCase = new StructureEnemyLoadStructureUseCaseImpl();
     private StructureEnemyGetCurrentStructureUseCase getCurrentStructureUseCase = new StructureEnemyGetCurrentStructureUseCaseImpl();
     private StructureEnemyDeleteStructureUseCase deleteStructureUseCase = new StructureEnemyDeleteStructureUseCaseImpl();
+    private LevelGetCurrentLevelUseCase getCurrentLevelUseCase = new LevelGetCurrentLevelUseCaseImpl();
 
     private SpacecraftEnemy _currentSpacecraft;
     private StructureEnemy _currentStructure;
@@ -33,6 +35,8 @@ public class HandlerStructureEnemyViewModelImpl : HandlerStructureEnemyViewModel
     }
 
     public StructureEnemy currentStructure => _currentStructure;
+
+    public Level currentLevel => getCurrentLevelUseCase.invoke();
 
     public void deleteStructure(IdentificatorModel identificator) => deleteStructureUseCase.invoke(identificator);
 

@@ -22,10 +22,11 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
     // Update is called once per frame
     void Update()
     {
-        currentLevel = viewModel.currentLevel;
+        checkCurrentLevel();
         updateCurrentLevelFromUI();
         runCoroutinePopulation();
     }
+
 
     //public method
 
@@ -36,6 +37,10 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
 
     //private method
 
+    private void checkCurrentLevel() {
+        if (currentLevel == viewModel.currentLevel) return;
+        viewModel.checkCurrentLevel();
+    }
     private void runCoroutinePopulation() {
         try {
             if (!startCoroutineCheckPopulation) return;

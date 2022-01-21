@@ -208,5 +208,7 @@ public static class Constants
     public const string nameSpriteBackgroundDefault = "fondo_prueba1";
     public const string nameSpriteBackgroundLevel1Section1 = "agujero_pruebas";
     public const string nameSpriteBackgroundLevel1Section2 = "fondo_prueba1";
+
+    public const string nameSpriteStructureEnemyLevel1Section1SecondLieutenants = "";
     #endregion
 }

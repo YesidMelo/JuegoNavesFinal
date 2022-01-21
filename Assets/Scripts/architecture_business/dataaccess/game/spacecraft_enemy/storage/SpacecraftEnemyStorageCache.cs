@@ -52,19 +52,19 @@ public class SpacecraftEnemyStorageCacheImpl : SpacecraftEnemyStorageCache
     StorageEnemy loadCurrentStorage(SpacecraftEnemy spacecraft) {
         StorageEnemy finalStorage;
         switch (spacecraft) {
-            case SpacecraftEnemy.NIVEL1_LIEUTENENTS:
+            case SpacecraftEnemy.LIEUTENENTS:
                 finalStorage = StorageEnemy.TYPE_2;
                 break;
-            case SpacecraftEnemy.NIVEL1_MAJOR:
+            case SpacecraftEnemy.MAJOR:
                 finalStorage = StorageEnemy.TYPE_3;
                 break;
-            case SpacecraftEnemy.NIVEL1_LIEUTENANTCOLONEL:
+            case SpacecraftEnemy.LIEUTENANTCOLONEL:
                 finalStorage = StorageEnemy.TYPE_4;
                 break;
-            case SpacecraftEnemy.NIVEL1_COLONEL:
+            case SpacecraftEnemy.COLONEL:
                 finalStorage = StorageEnemy.TYPE_5;
                 break;
-            case SpacecraftEnemy.NIVEL1_SECOND_LIEUTENANTS:
+            case SpacecraftEnemy.SECOND_LIEUTENANTS:
             default:
                 finalStorage = StorageEnemy.TYPE_1;
                 break;
