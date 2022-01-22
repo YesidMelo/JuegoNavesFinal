@@ -39,6 +39,8 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
 
     private void checkCurrentLevel() {
         if (currentLevel == viewModel.currentLevel) return;
+        isRunCoroutineCheckPopulation = false;
+        startCoroutineCheckPopulation = true;
         viewModel.checkCurrentLevel();
     }
     private void runCoroutinePopulation() {

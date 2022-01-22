@@ -8,6 +8,7 @@ public class HandlerStructureEnemy : MonoBehaviour, HandlerStructureEnemyViewMod
     public StructureEnemy currentStructure;
     public Level currentLevel;
     public SpriteRenderer spriteRenderer;
+    public Sprite currentSpriteFromLevel;
     public List<Sprite> listSprites = new List<Sprite>();
     
 
@@ -41,10 +42,12 @@ public class HandlerStructureEnemy : MonoBehaviour, HandlerStructureEnemyViewMod
     private void changeStructure() {
         Sprite finalSprite = currentStructure.getCurrentSprite(
             spacecraftEnemy: currentSpacecraft,
-            level: currentLevel,
+            level: viewModel.currentLevel,
             listSprite: listSprites
         );
+        
         if (finalSprite == null) return;
+        currentSpriteFromLevel = finalSprite;
         spriteRenderer.sprite = finalSprite;
     }
     //ui methods

@@ -46,8 +46,9 @@ public static class StructureEnemyEnumExtentions {
     }
 
     private static Sprite getSpriteByName(string nameSprite, List<Sprite> listSprites) {
+        Debug.Log(nameSprite);
         foreach (Sprite currentSprite in listSprites) {
-            if (currentSprite.name == currentSprite.name) continue;
+            if (!currentSprite.name.Contains(nameSprite)) continue;
             return currentSprite;
         }
         return listSprites[0];
