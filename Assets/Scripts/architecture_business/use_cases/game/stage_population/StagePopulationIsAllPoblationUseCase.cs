@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface StagePopulationIsAllPoblationUseCase {
-    bool invoke(Level level);
+    bool invoke();
 }
 
 public class StagePopulationIsAllPoblationUseCaseImpl : StagePopulationIsAllPoblationUseCase
 {
-    private StagePopulationRepository repo = new StagePopulationRepositoryImpl();
+    private readonly StagePopulationRepository repo = new StagePopulationRepositoryImpl();
+    private readonly LevelRepository levelRepository = new LevelRepositoryImpl();
 
-    public bool invoke(Level level) => repo.isAllPoblation(level: level);
+    public bool invoke() => repo.isAllPoblation(level: levelRepository.getCurrentLevel);
 }

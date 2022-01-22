@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface StagePopulationGetEnemiesMissingInThePopulationUseCase {
-    Dictionary<SpacecraftEnemy, int> invoke(Level level);
+    int invoke(SpacecraftEnemy enemy);
 }
 public class StagePopulationGetEnemiesMissingInThePopulationUseCaseImpl : StagePopulationGetEnemiesMissingInThePopulationUseCase
 {
     private StagePopulationRepository repo = new StagePopulationRepositoryImpl();
+    private LevelRepository levelRepository = new LevelRepositoryImpl();
 
-    public Dictionary<SpacecraftEnemy, int> invoke(Level level) => repo.getEnemiesMissingInThePopulation(level: level);
+    public int invoke(SpacecraftEnemy enemy) => repo.getEnemiesMissingInThePopulation(
+        level: levelRepository.getCurrentLevel,
+        enemy: enemy
+    );
 }

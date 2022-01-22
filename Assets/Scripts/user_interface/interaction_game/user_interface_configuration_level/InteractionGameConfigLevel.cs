@@ -19,7 +19,6 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
         instanceSpacecraftPlayer();
         instanceSpawmerPoblation();
         configCameraPlayer();
-        configPoblation();
     }
 
     // Update is called once per frame
@@ -53,12 +52,4 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
         handlerCameraPlayer.currentPlayer = _currentSpacecraftPlayer;
     }
 
-    private void configPoblation() {
-        if (_currentSpawnerPoblation == null) return;
-
-        HandlerScencePoblationGenerator handler = _currentSpawnerPoblation.GetComponent<HandlerScencePoblationGenerator>();
-        if (handler == null) return;
-        handler.updateCurrentLevel(Level.LEVEL1_SECTION1);
-
-    }
 }

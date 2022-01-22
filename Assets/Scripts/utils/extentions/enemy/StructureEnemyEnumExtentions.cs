@@ -11,7 +11,6 @@ public static class StructureEnemyEnumExtentions {
         List<Sprite> listSprite) {
         if (listSprite == null || listSprite.Count == 0) return null;
         if (listSprite.Count == 1) return listSprite[0];
-        Debug.Log($"current sprite: {level}");
         return getSpriteByLevel(level: level, spacecraftEnemy: spacecraftEnemy, listSprites: listSprite);
     }
 
@@ -28,7 +27,7 @@ public static class StructureEnemyEnumExtentions {
     private static Sprite getSpriteBySpacecraftEnemyLevel1Section1(SpacecraftEnemy spacecraftEnemy, List<Sprite> listSprites) {
         string baseNameSprite = "test_spacecraft_enemy_";
         switch (spacecraftEnemy) {
-            case SpacecraftEnemy.BRIGADUERGENERAL:
+            case SpacecraftEnemy.LIEUTENENTS:
                 return getSpriteByName(nameSprite: $"{baseNameSprite}1", listSprites: listSprites);
             default:
                 return getSpriteByName(nameSprite: $"{baseNameSprite}0", listSprites: listSprites);
@@ -46,7 +45,6 @@ public static class StructureEnemyEnumExtentions {
     }
 
     private static Sprite getSpriteByName(string nameSprite, List<Sprite> listSprites) {
-        Debug.Log(nameSprite);
         foreach (Sprite currentSprite in listSprites) {
             if (!currentSprite.name.Contains(nameSprite)) continue;
             return currentSprite;

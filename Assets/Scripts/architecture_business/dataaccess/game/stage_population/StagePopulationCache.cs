@@ -5,16 +5,18 @@ using UnityEngine;
 
 public interface StagePopulationCache {
     void addEnemy(Level level, SpacecraftEnemy spacecraft, GameObject gameObject);
-    void removeEnemy(GameObject gameObject);
+    void removeEnemy(GameObject gameObject, Level level);
     bool isAllPoblation(Level level);
     List<GameObject> getAllEnemies();
-    Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level);
+    int getEnemiesMissingInThePopulation(Level level, SpacecraftEnemy enemy);
     void removeAllEnemies(List<GameObject> enemies);
     bool clearCache();
 }
 
 public class StagePopulationCacheImpl : StagePopulationCache
 {
+    public delegate bool FilterCondition<T>(T parameter);
+
     //static variables
     private static StagePopulationCacheImpl instance;
 
@@ -26,76 +28,95 @@ public class StagePopulationCacheImpl : StagePopulationCache
         return instance;
     }
 
-    private List<GameObject> allEnemies = new List<GameObject>();
-    private Dictionary<Level, Dictionary<SpacecraftEnemy, List<GameObject>>> spacecraftByLevel = new Dictionary<Level, Dictionary<SpacecraftEnemy, List<GameObject>>>();
-    private Dictionary<Level, Dictionary<SpacecraftEnemy, int>> poblationByLevel = new Dictionary<Level, Dictionary<SpacecraftEnemy, int>>();
+    private List<StagePopulationModel> stagePopulationModels = new List<StagePopulationModel>();
 
+    private List<GameObject> allEnemies = new List<GameObject>();
+    
     private StagePopulationCacheImpl() {
-        initDictionary();
+        initStagePopulationModels();
     }
 
     //public methods
     public void addEnemy(Level level, SpacecraftEnemy spacecraft, GameObject gameObject)
     {
-        List<GameObject> currentList = spacecraftByLevel[level][spacecraft];
+        if (gameObject.name.Contains(Constants.nameSpawmerPoblation)) return;
+
+        List<StagePopulationModel> listStagePopulationModelByLevel = HelpersList.filter(
+            currentList: stagePopulationModels,
+            (StagePopulationModel current) => {return current.level == level;}
+        );
+
+        if (HelpersList.isNullOrEmpty(currentList: listStagePopulationModelByLevel)) return;
+
+        StagePopulationModel model = HelpersList.first(currentList: listStagePopulationModelByLevel);
+        List<GameObject> currentList = model.dictionaryEnemies[spacecraft];
+
         if (currentList.Contains(gameObject)) return;
-        if (currentList.Count >= level.getMaxEnemies(spacecraft)) return;
-        currentList.Add(gameObject);
+        if (model.dictionaryCounterEnemies[spacecraft] >= level.getMaxEnemies(currentEspacecraft: spacecraft)) return;
+
         allEnemies.Add(gameObject);
-        poblationByLevel[level][spacecraft] = currentList.Count;
+        model.dictionaryEnemies[spacecraft].Add(gameObject);
+        model.dictionaryCounterEnemies[spacecraft] = model.dictionaryEnemies[spacecraft].Count;
     }
 
-    public void removeEnemy(GameObject gameObject)
+    public void removeEnemy(GameObject gameObject, Level level)
     {
-        foreach (Level currentLevel in Enum.GetValues(typeof(Level))) {
-            foreach (SpacecraftEnemy curretnSpacecraft in Enum.GetValues(typeof(SpacecraftEnemy))) {
-                List<GameObject> currentList = spacecraftByLevel[currentLevel][curretnSpacecraft];
-                if (currentList.Count == 0) break;
-                if (!currentList.Contains(gameObject)) continue;
-                currentList.Remove(gameObject);
-                allEnemies.Remove(gameObject);
-                HandlerSpacecraftEnemy detailElement = gameObject.GetComponent<HandlerSpacecraftEnemy>();
-
-                if (detailElement == null) continue;
-                Dictionary<SpacecraftEnemy, int> currentPopulationByLevel = poblationByLevel[currentLevel];
-                int currentCount = currentPopulationByLevel[detailElement.currentSpacecraft];
-                currentPopulationByLevel[detailElement.currentSpacecraft] = currentCount - 1;
-                return;
+        List<StagePopulationModel> listStagePopulationByLevel = HelpersList.filter(
+            currentList: stagePopulationModels,
+            myCondition: (StagePopulationModel model) => {
+                return model.level == level;
             }
+        );
+
+        if (HelpersList.isNullOrEmpty(currentList: listStagePopulationByLevel)) return;
+        StagePopulationModel model = HelpersList.first(currentList: listStagePopulationByLevel);
+        if (model == null) return;
+
+        foreach (SpacecraftEnemy spacecraftEnemy in Enum.GetValues(typeof(SpacecraftEnemy))) {
+            removeEnemyFromList(
+                model: model,
+                spacecraftEnemy: spacecraftEnemy,
+                gameObject: gameObject
+            );
         }
+
     }
 
     public bool isAllPoblation(Level level)
     {
-        if (poblationByLevel.Count == 0) {
-            initDictionary();
-        }
-        Dictionary<SpacecraftEnemy, int> dictionary = poblationByLevel[level];
-        if (dictionary == null) return false;
-        if (dictionary.Count == 0) return false;
-        foreach (SpacecraftEnemy spacecraft in Enum.GetValues(typeof(SpacecraftEnemy))) {
-            int currentPoblation = dictionary[spacecraft];
-            if (currentPoblation >= level.getMaxEnemies(spacecraft)) continue;
+
+        List<StagePopulationModel> listFilteredByLevel = HelpersList.filter(
+            currentList: stagePopulationModels,
+            (StagePopulationModel model) => {
+                return model.level == level;
+            }
+        );
+
+        if (HelpersList.isNullOrEmpty(currentList: listFilteredByLevel)) return false;
+
+        StagePopulationModel stagePopulationModel = HelpersList.first(currentList: listFilteredByLevel);
+
+        foreach (KeyValuePair<SpacecraftEnemy, int> entry in stagePopulationModel.dictionaryCounterEnemies) {
+            if (entry.Value >= level.getMaxEnemies(currentEspacecraft: entry.Key)) continue;
             return false;
         }
+
         return true;
     }
 
-    public Dictionary<SpacecraftEnemy, int> getEnemiesMissingInThePopulation(Level level)
+    public int getEnemiesMissingInThePopulation(Level level, SpacecraftEnemy enemy)
     {
-        Dictionary<SpacecraftEnemy, int> dictionaryCreation = new Dictionary<SpacecraftEnemy, int>();
-        Dictionary<SpacecraftEnemy, int> dictionary = poblationByLevel[level];
-        if (dictionary.Count == 0) return dictionaryCreation;
+        List<StagePopulationModel> listFiltered = HelpersList.filter(
+            currentList: stagePopulationModels,
+            (StagePopulationModel model) => {
+                return model.level == level;
+            }
+        );
 
-        foreach (SpacecraftEnemy spacecraft in Enum.GetValues(typeof(SpacecraftEnemy)))
-        {
-            int currentPoblation = dictionary[spacecraft];
-            int maxEnemiesType = level.getMaxEnemies(spacecraft);
-            if (currentPoblation >= maxEnemiesType) continue;
-            dictionaryCreation[spacecraft] = maxEnemiesType - currentPoblation;
-        }
+        if (HelpersList.isNullOrEmpty(currentList: listFiltered)) return 0;
 
-        return dictionaryCreation;
+        StagePopulationModel model = HelpersList.first(currentList: listFiltered);
+        return model.dictionaryCounterEnemies[enemy];
     }
 
     public List<GameObject> getAllEnemies() => allEnemies;
@@ -103,32 +124,43 @@ public class StagePopulationCacheImpl : StagePopulationCache
     public void removeAllEnemies(List<GameObject> enemies)
     {
         foreach (GameObject currentEnemy in enemies) {
-            removeEnemy(currentEnemy);
+            foreach (Level level in Enum.GetValues(typeof(Level))) {
+                removeEnemy(gameObject: currentEnemy, level: level);
+            }
         }
     }
 
     public bool clearCache() {
         allEnemies.Clear();
-        spacecraftByLevel.Clear();
-        poblationByLevel.Clear();
+        stagePopulationModels.Clear();
         return true;
     }
 
     //private methods
-    private void initDictionary() {
-        foreach (Level currentLevel in Enum.GetValues(typeof(Level)))
-        {
-            Dictionary<SpacecraftEnemy, List<GameObject>> currentSpacecraft = new Dictionary<SpacecraftEnemy, List<GameObject>>();
-            Dictionary<SpacecraftEnemy, int> currentPopulation = new Dictionary<SpacecraftEnemy, int>();
-            foreach (SpacecraftEnemy spacecraft in Enum.GetValues(typeof(SpacecraftEnemy)))
-            {
-                currentSpacecraft.Add(spacecraft, new List<GameObject>());
-                currentPopulation.Add(spacecraft, 0);
+    
+    private void initStagePopulationModels() {
+        foreach (Level currentLevel in Enum.GetValues(typeof(Level))) {
+            StagePopulationModel model = new StagePopulationModel();
+            model.level = currentLevel;
+
+            foreach (SpacecraftEnemy currentSpacecraft in Enum.GetValues(typeof(SpacecraftEnemy))) {
+                model.dictionaryEnemies.Add(currentSpacecraft, new List<GameObject>());
+                model.dictionaryCounterEnemies.Add(currentSpacecraft, 0);
             }
-            spacecraftByLevel.Add(currentLevel, currentSpacecraft);
-            poblationByLevel.Add(currentLevel, currentPopulation);
+
+            stagePopulationModels.Add(model);
         }
     }
 
-    
+    private void removeEnemyFromList(
+        StagePopulationModel model, 
+        SpacecraftEnemy spacecraftEnemy, 
+        GameObject gameObject
+    ) {
+        List<GameObject> currentListGameObject = model.dictionaryEnemies[spacecraftEnemy];
+        if (!currentListGameObject.Contains(gameObject)) return;
+        currentListGameObject.Remove(gameObject);
+        allEnemies.Remove(gameObject);
+    }
+
 }

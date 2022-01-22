@@ -165,6 +165,7 @@ public enum SpacecraftEnemy
     BRIGADUERGENERAL,
     MAJOR_GENERAL,
     GENERAL,
+    NONE
 }
 
 public enum StatusGame { 

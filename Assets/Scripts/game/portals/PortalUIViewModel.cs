@@ -21,7 +21,6 @@ public class PortalUIViewModelImpl : PortalUIViewModel
     private LevelUpdateLevelUseCase updateLevelUseCase = new LevelUpdateLevelUseCaseImpl();
     private LevelGetCurrentLevelUseCase getCurrentLevelUseCase = new LevelGetCurrentLevelUseCaseImpl();
     private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
-    private StagePopulationClearCacheUseCase stagePopulationClearUseCase = new StagePopulationClearCacheUseCaseImpl();
 
 
     private PortalUIViewModelDelegate _myDelegate;

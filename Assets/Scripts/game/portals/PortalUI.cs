@@ -47,13 +47,21 @@ public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
 
     public async Task deleteAllEnemies()
     {
-        List<GameObject> currentListEnemies = _viewModel.getAllEnemies();
+        List<GameObject> currentListEnemies = new List<GameObject>();
+
+        foreach (GameObject current in _viewModel.getAllEnemies()) {
+            currentListEnemies.Add(current);
+        }
+
         foreach (GameObject currentEnemy in currentListEnemies) {
-            Debug.Log("Tienes un enemigo");
+            
             if (syncContext == null) continue;
             syncContext.Post(_ => {
+                Debug.Log($"Tienes un enemigo {currentEnemy.name}");
+                if (currentEnemy.name.Contains(Constants.nameSpawmerPoblation)) return;
                 Destroy(currentEnemy);
             }, null);
+            await Task.Delay(Constants.timeAwaitDelete);
         }
     }
 }

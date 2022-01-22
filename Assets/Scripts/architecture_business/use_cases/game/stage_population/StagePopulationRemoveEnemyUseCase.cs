@@ -9,6 +9,10 @@ public interface StagePopulationRemoveEnemyUseCase {
 public class StagePopulationRemoveEnemyUseCaseImpl : StagePopulationRemoveEnemyUseCase
 {
     private StagePopulationRepository repo = new StagePopulationRepositoryImpl();
+    private LevelRepository levelRepository = new LevelRepositoryImpl();
 
-    public void invoke(GameObject gameObject) => repo.removeEnemy(gameObject: gameObject);
+    public void invoke(GameObject gameObject) => repo.removeEnemy(
+        gameObject: gameObject,
+        level: levelRepository.getCurrentLevel
+    );
 }

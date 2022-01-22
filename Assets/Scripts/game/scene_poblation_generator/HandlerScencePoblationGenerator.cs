@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePoblationGeneratorViewModelDelegate
 {
+
     public GameObject prefabEnemy;
+    /*
     public Level levelToChange;
     public Level currentLevel;
     public bool updateLevel = false;
     public bool startCoroutineCheckPopulation = false;
+    
 
     public bool isRunCoroutineCheckPopulation = false;
     private HandlerScencePoblationGeneratorViewModel viewModel = new HandlerScencePoblationGeneratorViewModelImpl();
@@ -108,12 +111,15 @@ public class HandlerScencePoblationGenerator : MonoBehaviour, HandlerScencePobla
         yield return null;
     }
 
-    
+    */
+
     //delegates
     public void notifyLoadLevel()
     {
+        /*
         levelToChange = viewModel.currentLevel;
         startCoroutineCheckPopulation = true;
+        */
     }
 
 

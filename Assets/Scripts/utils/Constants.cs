@@ -30,6 +30,9 @@ public static class Constants
     //string spawmer poblation
     public static string nameSpawmerPoblation = "spawmerPoblation";
 
+    //length random string enemies
+    public static int lengthRandomNameEnemies = 5;
+
     #endregion
 
     #region all lasers
@@ -180,9 +183,15 @@ public static class Constants
 
     #endregion
 
-    #region all times
+    #region all times in miliseconds
     //Splash
     public static int timeAwaitSplash = 5000;
+
+    //spawmPopulation
+    public static int timeAwaitCheckStatusGame = 300;
+    public static int timeAwaitCheckScencePopulation = 300;
+    public static int timeAwaitCreateNewPrefab = 100;
+    public static int timeAwaitDelete= 100;
 
     #endregion
 
