@@ -8,9 +8,11 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
     public GameObject prefabSpawnerPoblation;
     public HandlerCameraPlayer handlerCameraPlayer;
     public InteractionGameUI interactionGameUI;
+    public GameObject prefabPortalGenerator;
 
     private GameObject _currentSpacecraftPlayer;
     private GameObject _currentSpawnerPoblation;
+    private GameObject _currentPortalGenerator;
     private InteractionGameConfigLevelViewModel viewModel = new InteractionGameConfigLevelViewModelImpl();
 
     private void Awake()
@@ -18,6 +20,7 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
         viewModel.myDelegate = this;
         instanceSpacecraftPlayer();
         instanceSpawmerPoblation();
+        instancePortalGenerator();
         configCameraPlayer();
     }
 
@@ -45,6 +48,17 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
         _currentSpawnerPoblation = Instantiate(prefabSpawnerPoblation, Constants.positionSpawmerPosition, Quaternion.identity);
         _currentSpawnerPoblation.transform.name = Constants.nameSpawmerPoblation;
         viewModel.setCurrentSpawmPopulation(currentSpawmPopulation: _currentSpawnerPoblation);
+    }
+
+    private void instancePortalGenerator() {
+        /*
+        _currentPortalGenerator = viewModel.currentSpawmPopulation;
+
+        if (_currentSpawnerPoblation != null) return;
+        _currentSpawnerPoblation = Instantiate(prefabSpawnerPoblation, Constants.positionSpawmerPosition, Quaternion.identity);
+        _currentSpawnerPoblation.transform.name = Constants.nameSpawmerPoblation;
+        viewModel.setCurrentSpawmPopulation(currentSpawmPopulation: _currentSpawnerPoblation);
+        */
     }
 
     private void configCameraPlayer() {

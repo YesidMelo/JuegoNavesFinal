@@ -8,8 +8,10 @@ public interface InteractionGameConfigLevelViewModel {
     InteractionGameConfigLevelViewModelDelegate myDelegate { set; }
     GameObject currentPlayer { get; }
     GameObject currentSpawmPopulation { get; }
+    GameObject currentPortalPopulation { get; }
     void setCurrentPlayer(GameObject currentPlayer);
     void setCurrentSpawmPopulation(GameObject currentSpawmPopulation);
+    void setCurrentPortalGenerator(GameObject currentSpawmPopulation);
 }
 
 public class InteractionGameConfigLevelViewModelImpl : InteractionGameConfigLevelViewModel
@@ -27,7 +29,14 @@ public class InteractionGameConfigLevelViewModelImpl : InteractionGameConfigLeve
 
     public GameObject currentSpawmPopulation => getCurrentSpawmPopulationUseCase.invoke();
 
+    public GameObject currentPortalPopulation => throw new System.NotImplementedException();
+
     public void setCurrentPlayer(GameObject currentPlayer) => setCurrentPlayerUseCase.invoke(currentPlayer: currentPlayer);
+
+    public void setCurrentPortalGenerator(GameObject currentSpawmPopulation)
+    {
+     
+    }
 
     public void setCurrentSpawmPopulation(GameObject currentSpawmPopulation) {
         setCurrentSpawmPopulationUseCase.invoke(spawmPopulation: currentSpawmPopulation);
