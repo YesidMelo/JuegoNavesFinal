@@ -161,6 +161,7 @@ public class StagePopulationCacheImpl : StagePopulationCache
         if (!currentListGameObject.Contains(gameObject)) return;
         currentListGameObject.Remove(gameObject);
         allEnemies.Remove(gameObject);
+        model.dictionaryCounterEnemies[spacecraftEnemy] = model.dictionaryEnemies[spacecraftEnemy].Count; 
     }
 
 }
