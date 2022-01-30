@@ -6,12 +6,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class HandlerScencePoblationGenerator1 : MonoBehaviour, HandlerScencePoblationGeneratorViewModelDelegate
+public class HandlerScencePoblationGenerator1 : MonoBehaviour, 
+    HandlerScencePoblationGeneratorViewModelDelegate, 
+    IHelperHandlerScencePopulationGeneratorDelegate
 {
-    //Disparador en hilo principal
-    //documentacion en : https://stackoverflow.com/questions/41330771/use-unity-api-from-another-thread-or-call-a-function-in-the-main-thread
-    //documentacion en : https://docs.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext?view=net-5.0
-    private SynchronizationContext syncContext = SynchronizationContext.Current;
 
     public GameObject prefabEnemy;
 
@@ -25,24 +23,20 @@ public class HandlerScencePoblationGenerator1 : MonoBehaviour, HandlerScencePobl
     public int GENERAL;
 
     private HandlerScencePoblationGeneratorViewModel viewModel = new HandlerScencePoblationGeneratorViewModelImpl();
-    private HelperHandlerScencePopulationGenerator helperHandlerPopulation = new HelperHandlerScencePopulationGeneratorImpl();
+    private IHelperHandlerScencePopulationGenerator helperHandlerPopulation = new HelperHandlerScencePopulationGeneratorImpl();
 
     ///lifeCycle
     private void Awake()
     {
         viewModel.myDelegate = this;
-        helperHandlerPopulation.startCheckPopulation(create: createInstancePrefab);
+        helperHandlerPopulation.myDelegate = this;
     }
 
     
     void Update()
     {
         checkCurrentPopulation();
-    }
-
-    private void OnDestroy()
-    {
-        helperHandlerPopulation.stopCheckCurrentStatusGame();
+        helperHandlerPopulation.checkPopulationLevel();
     }
 
     //public methods
@@ -59,26 +53,20 @@ public class HandlerScencePoblationGenerator1 : MonoBehaviour, HandlerScencePobl
         GENERAL = viewModel.getEnemiesMissingInThePopulation(SpacecraftEnemy.GENERAL);
     }
 
-    private async Task createInstancePrefab(SpacecraftEnemy spacecraftEnemy, int missing) {
-        for (int counter = 0; counter < missing; counter++) {
-            syncContext.Post(
-                (_) =>
-                {
-                    string currentName = generateRandomName();
-                    GameObject currentSpacecraft = instantiateElement(spacecraftEnemy: spacecraftEnemy);
-                    if (currentSpacecraft == null) return;
-                    currentSpacecraft.name = currentName;
-                    viewModel.addEnemy(spacecraft: spacecraftEnemy, gameObject: currentSpacecraft);
-                },
-                null
-            );
-            await Task.Delay(Constants.timeAwaitCreateNewPrefab);
+    public void generateSpacecraft(SpacecraftEnemy spacecraftEnemy, int missing)
+    {
+        for (int index = 0; index < missing; index++) {
+            string currentName = generateRandomName();
+            GameObject currentSpacecraft = instantiateElement(spacecraftEnemy: spacecraftEnemy);
+            if (currentSpacecraft == null) return;
+            currentSpacecraft.name = currentName;
+            viewModel.addEnemy(spacecraft: spacecraftEnemy, gameObject: currentSpacecraft);
         }
     }
 
+    private string generateRandomName()
+    {
 
-    private string generateRandomName() {
-        
         StringBuilder builder = new StringBuilder();
         builder.Append($"{Constants.nameSpacecraft}_");
         builder.Append($"{Constants.nameEnemy}_");
