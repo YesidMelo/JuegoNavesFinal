@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface PortalDatasourceCache {
-    bool playerInPortal();
-    void setCurrentPortal(PortalModel portalModel);
-    PortalModel getCurrentPortal();
-
+    
     List<PortalModel> getListPortalsByLevel(Level currentLevel);
+    void setCurrentPortalGenerator(GameObject portalGenerator);
+    void deletePortal(GameObject portal);
+    void addPortal(GameObject portal);
+    GameObject getCurrentPortalGenerator();
+    List<GameObject> getAllPortalsGameObject();
 }
 
 public class PortalDatasourceCacheImpl: PortalDatasourceCache
@@ -22,40 +24,47 @@ public class PortalDatasourceCacheImpl: PortalDatasourceCache
         }
         return instance;
     }
-
-    
-    private bool _playerInPortal = false;
-    private PortalModel _currentPortal;
-    private List<PortalModel> listPortals = new List<PortalModel>();
+        
+    private List<PortalModel> _listPortals = new List<PortalModel>();
+    private GameObject _currentPortalGenerator;
+    private List<GameObject> _listPortalsGameObject = new List<GameObject>();
 
     private PortalDatasourceCacheImpl() {
         initListPortals();
     }
 
-    public bool playerInPortal() => _playerInPortal;
-
-    public void setCurrentPortal(PortalModel portalModel)
-    {
-        _playerInPortal = portalModel != null;
-        _currentPortal = portalModel;
-    }
-
-    public PortalModel getCurrentPortal() => _currentPortal;
-
     public List<PortalModel> getListPortalsByLevel(Level currentLevel)
     {
         List<PortalModel> portalFiltered = HelpersList.filter(
-            currentList: listPortals,
+            currentList: _listPortals,
             myCondition: (PortalModel currentPortal) => {
-            return _currentPortal.levelOrigin == currentLevel;
+            return currentPortal.levelOrigin == currentLevel;
             }
         );
-        return listPortals;
+        return portalFiltered;
     }
 
+    public void setCurrentPortalGenerator(GameObject portalGenerator) => _currentPortalGenerator = portalGenerator;
+
+    public GameObject getCurrentPortalGenerator() => _currentPortalGenerator;
+
+    //private methods
     private void initListPortals() {
-        listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION1, levelDestination: Level.LEVEL1_SECTION2, positionX: 100f, positionY: 100f));
-        listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION2, levelDestination: Level.LEVEL1_SECTION1, positionX: 100f, positionY: 100f));
+        _listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION1, levelDestination: Level.LEVEL1_SECTION2, positionX: 100f, positionY: 100f));
+        _listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION2, levelDestination: Level.LEVEL1_SECTION1, positionX: 100f, positionY: 100f));
     }
 
+    public List<GameObject> getAllPortalsGameObject() => _listPortalsGameObject;
+
+    public void deletePortal(GameObject portal)
+    {
+        if (!_listPortalsGameObject.Contains(portal)) return;
+        _listPortalsGameObject.Remove(portal);
+    }
+
+    public void addPortal(GameObject portal)
+    {
+        if (_listPortalsGameObject.Contains(portal)) return;
+        _listPortalsGameObject.Add(portal);
+    }
 }

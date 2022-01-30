@@ -24,12 +24,6 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
         configCameraPlayer();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //private methods
     private void instanceSpacecraftPlayer() {
         _currentSpacecraftPlayer = viewModel.currentPlayer;
@@ -51,14 +45,13 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
     }
 
     private void instancePortalGenerator() {
-        /*
-        _currentPortalGenerator = viewModel.currentSpawmPopulation;
+        _currentPortalGenerator = viewModel.currentPortalGenerator;
 
-        if (_currentSpawnerPoblation != null) return;
-        _currentSpawnerPoblation = Instantiate(prefabSpawnerPoblation, Constants.positionSpawmerPosition, Quaternion.identity);
-        _currentSpawnerPoblation.transform.name = Constants.nameSpawmerPoblation;
-        viewModel.setCurrentSpawmPopulation(currentSpawmPopulation: _currentSpawnerPoblation);
-        */
+        if (_currentPortalGenerator != null) return;
+        _currentPortalGenerator = Instantiate(prefabPortalGenerator, Constants.positionPortalGeneratorPosition, Quaternion.identity);
+        _currentPortalGenerator.transform.name = Constants.namePortalGenerator;
+        viewModel.setCurrentPortalGenerator(portalGenerator: _currentSpawnerPoblation);
+        
     }
 
     private void configCameraPlayer() {

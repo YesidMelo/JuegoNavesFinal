@@ -810,6 +810,7 @@ MonoBehaviour:
   prefabSpawnerPoblation: {fileID: 2507668503294303990, guid: e7b1591b5dc977049b134cb17cec4c17, type: 3}
   handlerCameraPlayer: {fileID: 0}
   interactionGameUI: {fileID: 5964348336368010914}
+  prefabPortalGenerator: {fileID: 1128689142501059035, guid: 8bb87f3b1890db5498381086567ae698, type: 3}
 --- !u!1 &5964348336474109377
 GameObject:
   m_ObjectHideFlags: 0

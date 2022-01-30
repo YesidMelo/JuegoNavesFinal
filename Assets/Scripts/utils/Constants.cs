@@ -30,8 +30,14 @@ public static class Constants
     //string spawmer poblation
     public static string nameSpawmerPoblation = "spawmerPoblation";
 
+    //string portal
+    public static string namePortalGenerator = "portalGenerator";
+    public static string namePortal = "portal";
+
     //length random string enemies
     public static int lengthRandomNameEnemies = 5;
+
+    
 
     #endregion
 
@@ -104,6 +110,7 @@ public static class Constants
 
     //spawmer poblation
     public static Vector3 positionSpawmerPosition = new Vector3(0, 0, 0);
+    public static Vector3 positionPortalGeneratorPosition = new Vector3(0, 0, 0);
 
     #endregion
 

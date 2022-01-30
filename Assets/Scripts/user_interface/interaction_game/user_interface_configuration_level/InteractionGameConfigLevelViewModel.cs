@@ -8,10 +8,10 @@ public interface InteractionGameConfigLevelViewModel {
     InteractionGameConfigLevelViewModelDelegate myDelegate { set; }
     GameObject currentPlayer { get; }
     GameObject currentSpawmPopulation { get; }
-    GameObject currentPortalPopulation { get; }
+    GameObject currentPortalGenerator { get; }
     void setCurrentPlayer(GameObject currentPlayer);
     void setCurrentSpawmPopulation(GameObject currentSpawmPopulation);
-    void setCurrentPortalGenerator(GameObject currentSpawmPopulation);
+    void setCurrentPortalGenerator(GameObject portalGenerator);
 }
 
 public class InteractionGameConfigLevelViewModelImpl : InteractionGameConfigLevelViewModel
@@ -20,6 +20,9 @@ public class InteractionGameConfigLevelViewModelImpl : InteractionGameConfigLeve
     private SetCurrentPlayerUseCase setCurrentPlayerUseCase = new SetCurrentPlayerUseCaseImpl();
     private GetCurrentSpawmPopulationUseCase getCurrentSpawmPopulationUseCase = new GetCurrentSpawmPopulationUseCaseImpl();
     private SetCurrentSpawmPopulationUseCase setCurrentSpawmPopulationUseCase = new SetCurrentSpawmPopulationUseCaseImpl();
+    private PortalSetCurrentPortalGeneratorUseCase setCurrentPortalGeneratorUseCase = new PortalSetCurrentPortalGeneratorUseCaseImpl();
+    private PortalGetCurrentPortalGeneratorUseCase getCurrentPortalGeneratorUseCase = new PortalGetCurrentPortalGeneratorUseCaseImpl();
+
 
     private InteractionGameConfigLevelViewModelDelegate _myDelegate;
 
@@ -29,16 +32,11 @@ public class InteractionGameConfigLevelViewModelImpl : InteractionGameConfigLeve
 
     public GameObject currentSpawmPopulation => getCurrentSpawmPopulationUseCase.invoke();
 
-    public GameObject currentPortalPopulation => throw new System.NotImplementedException();
+    public GameObject currentPortalGenerator => getCurrentPortalGeneratorUseCase.invoke();
 
     public void setCurrentPlayer(GameObject currentPlayer) => setCurrentPlayerUseCase.invoke(currentPlayer: currentPlayer);
 
-    public void setCurrentPortalGenerator(GameObject currentSpawmPopulation)
-    {
-     
-    }
+    public void setCurrentPortalGenerator(GameObject portalGenerator) => setCurrentPortalGeneratorUseCase.invoke(portalGenerator: portalGenerator);
 
-    public void setCurrentSpawmPopulation(GameObject currentSpawmPopulation) {
-        setCurrentSpawmPopulationUseCase.invoke(spawmPopulation: currentSpawmPopulation);
-    }
+    public void setCurrentSpawmPopulation(GameObject currentSpawmPopulation) => setCurrentSpawmPopulationUseCase.invoke(spawmPopulation: currentSpawmPopulation);
 }

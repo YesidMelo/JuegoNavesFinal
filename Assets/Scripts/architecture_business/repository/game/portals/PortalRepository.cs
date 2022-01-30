@@ -3,21 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface PortalRepository {
-    bool playerInPortal();
-    void setCurrentPortal(PortalModel portalModel);
-    PortalModel getCurrentPortal();
+
     List<PortalModel> getListPortalsByLevel(Level currentLevel);
+    void setCurrentPortalGenerator(GameObject portalGenerator);
+    void deletePortal(GameObject portal);
+    void addPortal(GameObject portal);
+    GameObject getCurrentPortalGenerator();
+    List<GameObject> getAllPortalsGameObject();
 }
 
 public class PortalRepositoryImpl: PortalRepository {
 
     private PortalDatasourceCache cache = PortalDatasourceCacheImpl.getInstance();
 
-    public PortalModel getCurrentPortal() => cache.getCurrentPortal();
-
     public List<PortalModel> getListPortalsByLevel(Level currentLevel) => cache.getListPortalsByLevel(currentLevel: currentLevel);
 
-    public bool playerInPortal() => cache.playerInPortal();
+    public void setCurrentPortalGenerator(GameObject portalGenerator) => cache.setCurrentPortalGenerator(portalGenerator: portalGenerator);
+    public GameObject getCurrentPortalGenerator() => cache.getCurrentPortalGenerator();
 
-    public void setCurrentPortal(PortalModel portalModel) => cache.setCurrentPortal(portalModel: portalModel);
+    public List<GameObject> getAllPortalsGameObject() => cache.getAllPortalsGameObject();
+
+    public void deletePortal(GameObject portal) => cache.deletePortal(portal: portal);
+
+    public void addPortal(GameObject portal) => cache.addPortal(portal: portal);
 }
