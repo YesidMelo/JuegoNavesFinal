@@ -105,3 +105,4 @@ MonoBehaviour:
   spacecraftPlayer5: {fileID: 1074713795784661263, guid: 07213e3b29d80e74dba392c2becaa590, type: 3}
   loadStructureUI: 0
   updateStructureUI: 0
+  parent: {fileID: 0}

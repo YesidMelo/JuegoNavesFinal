@@ -93,6 +93,7 @@ public enum NameTagLanguage
     CONFIGURATION,
     CONTINUE,
     CREATE_GAME,
+    CHANGE_LEVEL,
     DEFENSE,
     DELETE,
     GO_BACK,

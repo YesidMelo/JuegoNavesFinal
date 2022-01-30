@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public interface InteractionGameUIDelegate : AbstractCanvasUIDelegate
 {
@@ -23,6 +24,8 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     public VariableJoystick joystic;
     public TextMeshProUGUI textAction;
     public TextMeshProUGUI textLife;
+    public TextMeshProUGUI textChangeLevel;
+    public Button buttonChangeLevel;
 
 
     // lifecycle
@@ -42,7 +45,10 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     private void Update()
     {
         viewModel.checkIsGameOver();
+        checkPlayerInPortal();
     }
+
+
 
     // clicks
 
@@ -56,6 +62,7 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
     public void clickChangeAction() => viewModel.changeAction();
 
     public void clickChangeLaser() => viewModel.changeLaser();
+    public void clickChangeLevel() => viewModel.changeLevel();
 
     // private methods
 
@@ -66,9 +73,21 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
         viewModel.updateDirectionJoystic(direction);
     }
 
-    public void updateTexts() {
+    private void updateTexts()
+    {
         textAction.text = viewModel.textButtonAction;
         textLife.text = viewModel.textLife;
+        textChangeLevel.text = viewModel.textChangeLevel;
+    }
+
+    private void checkPlayerInPortal() {
+
+        if (!viewModel.isPlayerInPortal || viewModel.currentPortal == null) {
+            buttonChangeLevel.gameObject.hidden();
+            return;
+        }
+        
+        buttonChangeLevel.gameObject.show();
     }
 
 

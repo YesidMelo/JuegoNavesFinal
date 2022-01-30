@@ -8,8 +8,11 @@ public interface PortalRepository {
     void setCurrentPortalGenerator(GameObject portalGenerator);
     void deletePortal(GameObject portal);
     void addPortal(GameObject portal);
+    void setCurrenPortalPlayer(PortalModel currentPortal);
     GameObject getCurrentPortalGenerator();
     List<GameObject> getAllPortalsGameObject();
+    bool isPlayerInPortal();
+    PortalModel getCurrentPortal();
 }
 
 public class PortalRepositoryImpl: PortalRepository {
@@ -26,4 +29,10 @@ public class PortalRepositoryImpl: PortalRepository {
     public void deletePortal(GameObject portal) => cache.deletePortal(portal: portal);
 
     public void addPortal(GameObject portal) => cache.addPortal(portal: portal);
+
+    public void setCurrenPortalPlayer(PortalModel currentPortal) => cache.setCurrenPortalPlayer(currentPortalPlayer: currentPortal);
+
+    public bool isPlayerInPortal() => cache.isPlayerInPortal();
+
+    public PortalModel getCurrentPortal() => cache.getCurrentPortal();
 }

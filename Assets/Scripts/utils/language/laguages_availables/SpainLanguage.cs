@@ -16,6 +16,7 @@ public class SpainLanguage : AbstractLanguage
         values[NameTagLanguage.ATTACK] = "Atacar";
         values[NameTagLanguage.CONFIGURATION] = "Configuracion";
         values[NameTagLanguage.CONTINUE] = "Continuar";
+        values[NameTagLanguage.CHANGE_LEVEL] = "Cambiar nivel";
         values[NameTagLanguage.CREATE_GAME] = "Crear juego";
         values[NameTagLanguage.DEFENSE] = "Defender";
         values[NameTagLanguage.DELETE] = "Eliminar";

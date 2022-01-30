@@ -6,10 +6,13 @@ public interface PortalDatasourceCache {
     
     List<PortalModel> getListPortalsByLevel(Level currentLevel);
     void setCurrentPortalGenerator(GameObject portalGenerator);
+    void setCurrenPortalPlayer(PortalModel currentPortalPlayer);
     void deletePortal(GameObject portal);
     void addPortal(GameObject portal);
     GameObject getCurrentPortalGenerator();
     List<GameObject> getAllPortalsGameObject();
+    bool isPlayerInPortal();
+    PortalModel getCurrentPortal();
 }
 
 public class PortalDatasourceCacheImpl: PortalDatasourceCache
@@ -28,6 +31,8 @@ public class PortalDatasourceCacheImpl: PortalDatasourceCache
     private List<PortalModel> _listPortals = new List<PortalModel>();
     private GameObject _currentPortalGenerator;
     private List<GameObject> _listPortalsGameObject = new List<GameObject>();
+    private PortalModel _currentPortalPlayer;
+    private bool _playerInPortal = false;
 
     private PortalDatasourceCacheImpl() {
         initListPortals();
@@ -48,11 +53,6 @@ public class PortalDatasourceCacheImpl: PortalDatasourceCache
 
     public GameObject getCurrentPortalGenerator() => _currentPortalGenerator;
 
-    //private methods
-    private void initListPortals() {
-        _listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION1, levelDestination: Level.LEVEL1_SECTION2, positionX: 100f, positionY: 100f));
-        _listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION2, levelDestination: Level.LEVEL1_SECTION1, positionX: 100f, positionY: 100f));
-    }
 
     public List<GameObject> getAllPortalsGameObject() => _listPortalsGameObject;
 
@@ -67,4 +67,20 @@ public class PortalDatasourceCacheImpl: PortalDatasourceCache
         if (_listPortalsGameObject.Contains(portal)) return;
         _listPortalsGameObject.Add(portal);
     }
+
+    public void setCurrenPortalPlayer(PortalModel currentPortalPlayer)
+    {
+        _currentPortalPlayer = currentPortalPlayer;
+        _playerInPortal = currentPortalPlayer != null;
+    }
+
+    public bool isPlayerInPortal() => _playerInPortal;
+    public PortalModel getCurrentPortal() => _currentPortalPlayer;
+
+    //private methods
+    private void initListPortals() {
+        _listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION1, levelDestination: Level.LEVEL1_SECTION2, positionX: 100f, positionY: 100f));
+        _listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION2, levelDestination: Level.LEVEL1_SECTION1, positionX: 100f, positionY: 100f));
+    }
+
 }

@@ -38,6 +38,10 @@ public class PortalGeneratorUI : MonoBehaviour, PortalGeneratorViewModelDelegate
             portal.transform.position = new Vector3(currentPortal.positionX, currentPortal.positionY, 0f);
             portal.name = Constants.namePortal.addRandomString(length: 4);
             _viewModel.addPortal(portal: portal);
+
+            PortalUI portalUI = portal.GetComponent<PortalUI>();
+            if (portalUI == null) continue;
+            portalUI.currentPortal = currentPortal;
         }
     }
 

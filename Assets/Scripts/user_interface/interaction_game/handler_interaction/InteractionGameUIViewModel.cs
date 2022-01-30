@@ -16,18 +16,22 @@ public interface InteractionGameUIViewModel {
     Move currentMove { set; }
     StatusGame currentStatusGame { set; }
     Action currentAction { set;  }
+    bool isPlayerInPortal { get; }
+    PortalModel currentPortal { get; }
 
     Vector3 getInitialPosition { get; }
 
     // texts
     string textButtonAction { get; }
     string textLife { get; }
+    string textChangeLevel { get; }
 
     // public methods
 
     void changeAction();
     void changeEnemy();
     void changeLaser();
+    void changeLevel();
     void goToPause();
     void goToConfigSpaceCraft();
 
@@ -47,6 +51,9 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private SpacecraftPlayerChangeCurrentEnemyUseCase _changeCurrentEnemyUseCase = new SpacecraftPlayerChangeCurrentEnemyUseCaseImpl();
     private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
     private StatusGameIsGameOverUseCase isGameOverUseCase = new StatusGameIsGameOverUseCaseImpl();
+    private PortalIsPlayerInPortalUseCase isPlayerInPortalUseCase = new PortalIsPlayerInPortalUseCaseImpl();
+    private PortalGetCurrentPortalPlayerUseCase getCurrentPortalPlayerUseCase = new PortalGetCurrentPortalPlayerUseCaseImpl();
+    private LevelUpdateLevelUseCase updateLevelUseCase = new LevelUpdateLevelUseCaseImpl();
 
     private InteractionGameUIViewModelDelegate _myDelegate;
     private Move _currentMove;
@@ -81,6 +88,12 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
         _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.LIFE_PLAYER),
         _spacecraftPlayerGetLifeUseCase.invoke()
     );
+
+    public string textChangeLevel => _currentLangajeUseCase.invoke().getNameTag(nameTag: NameTagLanguage.CHANGE_LEVEL);
+
+    public bool isPlayerInPortal => isPlayerInPortalUseCase.invoke();
+
+    public PortalModel currentPortal => getCurrentPortalPlayerUseCase.invoke();
 
     // public methods
 
@@ -124,11 +137,18 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
         _myDelegate.goToGameOver();
     }
 
+    public void changeLevel()
+    {
+        if (!isPlayerInPortal) return;
+        if (getCurrentPortalPlayerUseCase.invoke() == null) return;
+        updateLevelUseCase.invoke(getCurrentPortalPlayerUseCase.invoke().levelDestination);
+    }
+
     // private methods
 
     private bool notExistsDelegate() {
         return _myDelegate == null;
     }
 
-   
+    
 }

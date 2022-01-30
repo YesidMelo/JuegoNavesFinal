@@ -11,16 +11,20 @@ public interface PortalUIViewModelDelegate {
 public interface PortalUIViewModel {
     PortalUIViewModelDelegate myDelegate { set; get; }
     Level getCurrentLevel { get; }
+    bool playerInPortal { get; }
     void changeLevel(Level level);
     public List<GameObject> getAllEnemies();
+    public void setCurrentPortal(PortalModel portalModel);
 }
 
 public class PortalUIViewModelImpl : PortalUIViewModel
 {
-    private GetAllEnemiesUseCase getAllEnemiesUseCase = new GetAllEnemiesUseCaseImpl();
-    private LevelUpdateLevelUseCase updateLevelUseCase = new LevelUpdateLevelUseCaseImpl();
-    private LevelGetCurrentLevelUseCase getCurrentLevelUseCase = new LevelGetCurrentLevelUseCaseImpl();
-    private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
+    private readonly GetAllEnemiesUseCase getAllEnemiesUseCase = new GetAllEnemiesUseCaseImpl();
+    private readonly LevelUpdateLevelUseCase updateLevelUseCase = new LevelUpdateLevelUseCaseImpl();
+    private readonly LevelGetCurrentLevelUseCase getCurrentLevelUseCase = new LevelGetCurrentLevelUseCaseImpl();
+    private readonly StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
+    private readonly PortalAddPlayerInPortalUseCase addPlayerInPortalUseCase = new PortalAddPlayerInPortalUseCaseImpl();
+    private readonly PortalIsPlayerInPortalUseCase isPlayerInPortalUseCase = new PortalIsPlayerInPortalUseCaseImpl();
 
 
     private PortalUIViewModelDelegate _myDelegate;
@@ -31,6 +35,8 @@ public class PortalUIViewModelImpl : PortalUIViewModel
     }
 
     public Level getCurrentLevel => getCurrentLevelUseCase.invoke();
+
+    public bool playerInPortal => isPlayerInPortalUseCase.invoke();
 
     public void changeLevel(Level level)
     {
@@ -55,4 +61,7 @@ public class PortalUIViewModelImpl : PortalUIViewModel
     }
 
     public List<GameObject> getAllEnemies() => getAllEnemiesUseCase.invoke();
+
+    public void setCurrentPortal(PortalModel portalModel) => addPlayerInPortalUseCase.invoke(currentPortal: portalModel);
+
 }

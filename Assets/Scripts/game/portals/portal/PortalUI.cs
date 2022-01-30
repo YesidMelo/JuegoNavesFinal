@@ -13,9 +13,9 @@ public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
 
 
     public Level currentLevel = Level.LEVEL1_SECTION1;
-    public Level levelToChange = Level.LEVEL1_SECTION1;
-    public bool updateLevel = false;
+    public bool playerInPortal = false;
 
+    public PortalModel currentPortal;
     private PortalUIViewModel _viewModel = new PortalUIViewModelImpl();
 
     void Start()
@@ -24,11 +24,22 @@ public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
         _viewModel.myDelegate = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentLevel = _viewModel.getCurrentLevel;
-        updateLevelInUnity();
+        playerInPortal = _viewModel.playerInPortal;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isAPlayer(collision: collision)) return;
+        _viewModel.setCurrentPortal(portalModel: currentPortal);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!isAPlayer(collision: collision)) return;
+        _viewModel.setCurrentPortal(portalModel: null);
     }
 
     //public methods
@@ -36,13 +47,7 @@ public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
     //private methods
 
     //ui unity methods
-    private void updateLevelInUnity() {
-        if (!updateLevel) return;
-        if (levelToChange == currentLevel) return;
-        updateLevel = false;
-        _viewModel.changeLevel(level: levelToChange);
-    }
-
+   
     //delegate methods
 
     public async Task deleteAllEnemies()
@@ -57,11 +62,14 @@ public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
             
             if (syncContext == null) continue;
             syncContext.Post(_ => {
-                Debug.Log($"Tienes un enemigo {currentEnemy.name}");
                 if (currentEnemy.name.Contains(Constants.nameSpawmerPoblation)) return;
                 Destroy(currentEnemy);
             }, null);
             await Task.Delay(Constants.timeAwaitDelete);
         }
+    }
+
+    private bool isAPlayer(Collider2D collision) {
+        return collision.gameObject.name.Contains(Constants.nameShieldPlayer);
     }
 }
