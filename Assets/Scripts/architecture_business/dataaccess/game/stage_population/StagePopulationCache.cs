@@ -75,8 +75,7 @@ public class StagePopulationCacheImpl : StagePopulationCache
         foreach (SpacecraftEnemy spacecraftEnemy in Enum.GetValues(typeof(SpacecraftEnemy))) {
             removeEnemyFromList(
                 model: model,
-                spacecraftEnemy: spacecraftEnemy,
-                gameObject: gameObject
+                spacecraftEnemy: spacecraftEnemy
             );
         }
 
@@ -154,13 +153,10 @@ public class StagePopulationCacheImpl : StagePopulationCache
 
     private void removeEnemyFromList(
         StagePopulationModel model, 
-        SpacecraftEnemy spacecraftEnemy, 
-        GameObject gameObject
+        SpacecraftEnemy spacecraftEnemy
     ) {
-        List<GameObject> currentListGameObject = model.dictionaryEnemies[spacecraftEnemy];
-        if (!currentListGameObject.Contains(gameObject)) return;
-        currentListGameObject.Remove(gameObject);
-        allEnemies.Remove(gameObject);
+        allEnemies.Clear();
+        model.dictionaryEnemies[spacecraftEnemy].Clear();
         model.dictionaryCounterEnemies[spacecraftEnemy] = model.dictionaryEnemies[spacecraftEnemy].Count; 
     }
 

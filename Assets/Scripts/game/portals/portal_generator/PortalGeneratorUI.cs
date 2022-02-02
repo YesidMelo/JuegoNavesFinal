@@ -19,6 +19,7 @@ public class PortalGeneratorUI : MonoBehaviour, PortalGeneratorViewModelDelegate
     void Update()
     {
         checkCurrentLevel();
+        checkIsGameChangedLevel();
     }
 
     //private methods
@@ -28,6 +29,12 @@ public class PortalGeneratorUI : MonoBehaviour, PortalGeneratorViewModelDelegate
         _viewModel.loadPortals();
     }
 
+    private void checkIsGameChangedLevel() {
+        if (!_viewModel.isGameChangedLevel) return;
+        _viewModel.changeLevel();
+    }
+
+
     //delegates
     public void generatePortals(List<PortalModel> portalModels)
     {
@@ -35,7 +42,7 @@ public class PortalGeneratorUI : MonoBehaviour, PortalGeneratorViewModelDelegate
             GameObject portal = Instantiate(prefabPortal);
 
             if (portal == null) continue;
-            portal.transform.position = new Vector3(currentPortal.positionX, currentPortal.positionY, 0f);
+            portal.transform.position = new Vector3(currentPortal.positionX, currentPortal.positionY, currentPortal.positionZ);
             portal.name = Constants.namePortal.addRandomString(length: 4);
             _viewModel.addPortal(portal: portal);
 
@@ -45,8 +52,7 @@ public class PortalGeneratorUI : MonoBehaviour, PortalGeneratorViewModelDelegate
         }
     }
 
-    public void deleteAllPortals(List<GameObject> allPortals)
-    {
+    public void deleteAllPortals(List<GameObject> allPortals) {
         try
         {
             GameObject[] listToDelete = allPortals.ToArray();
@@ -56,9 +62,27 @@ public class PortalGeneratorUI : MonoBehaviour, PortalGeneratorViewModelDelegate
                 Destroy(currentPortal);
                 _viewModel.deletePortal(portal: currentPortal);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             Debug.Log(e.Message);
         }
-
     }
+
+    public void deleteAllEnemies(List<GameObject> allEnemies) {
+        try
+        {
+            GameObject[] listToDelete = allEnemies.ToArray();
+
+            foreach (GameObject currentEnemy in listToDelete)
+            {
+                Destroy(currentEnemy);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
+    
 }

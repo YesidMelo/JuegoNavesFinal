@@ -36,8 +36,7 @@ public static class Constants
 
     //length random string enemies
     public static int lengthRandomNameEnemies = 5;
-
-    
+        
 
     #endregion
 
@@ -226,5 +225,11 @@ public static class Constants
     public const string nameSpriteBackgroundLevel1Section2 = "fondo_prueba1";
 
     public const string nameSpriteStructureEnemyLevel1Section1SecondLieutenants = "";
+    #endregion
+
+    #region position sprites in scene
+    public const float positionBackground = 1f;
+    public const float positionPortals= 0.5f;
+
     #endregion
 }

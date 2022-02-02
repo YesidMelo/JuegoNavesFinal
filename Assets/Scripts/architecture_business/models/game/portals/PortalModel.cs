@@ -8,6 +8,7 @@ public class PortalModel
     public Level levelDestination;
     public float positionX = 0f;
     public float positionY = 0f;
+    public float positionZ = Constants.positionPortals;
 
     public PortalModel(
         Level levelOrigin,

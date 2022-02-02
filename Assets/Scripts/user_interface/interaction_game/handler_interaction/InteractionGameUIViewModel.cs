@@ -43,17 +43,16 @@ public interface InteractionGameUIViewModel {
 public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 {
 
-    private CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
-    private CurrentLangajeUseCase _currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
-    private UpdateActionSpacecraftUseCase _updateActionSpacecraftUseCase = new UpdateActionSpacecraftUseCaseImpl();
-    private UpdateMovementJoysticUseCase _updateMovementJoysticUseCase = new UpdateMovementJoysticUseCaseImpl();
-    private SpacecraftPlayerGetLifeUseCase _spacecraftPlayerGetLifeUseCase = new SpacecraftPlayerGetLifeUseCaseImpl();
-    private SpacecraftPlayerChangeCurrentEnemyUseCase _changeCurrentEnemyUseCase = new SpacecraftPlayerChangeCurrentEnemyUseCaseImpl();
-    private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
-    private StatusGameIsGameOverUseCase isGameOverUseCase = new StatusGameIsGameOverUseCaseImpl();
-    private PortalIsPlayerInPortalUseCase isPlayerInPortalUseCase = new PortalIsPlayerInPortalUseCaseImpl();
-    private PortalGetCurrentPortalPlayerUseCase getCurrentPortalPlayerUseCase = new PortalGetCurrentPortalPlayerUseCaseImpl();
-    private LevelUpdateLevelUseCase updateLevelUseCase = new LevelUpdateLevelUseCaseImpl();
+    private readonly CurrentActionSpacecraftUseCase _currentActionSpacecraftUseCase = new CurrentActionSpacecraftUseCaseImpl();
+    private readonly CurrentLangajeUseCase _currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
+    private readonly UpdateActionSpacecraftUseCase _updateActionSpacecraftUseCase = new UpdateActionSpacecraftUseCaseImpl();
+    private readonly UpdateMovementJoysticUseCase _updateMovementJoysticUseCase = new UpdateMovementJoysticUseCaseImpl();
+    private readonly SpacecraftPlayerGetLifeUseCase _spacecraftPlayerGetLifeUseCase = new SpacecraftPlayerGetLifeUseCaseImpl();
+    private readonly SpacecraftPlayerChangeCurrentEnemyUseCase _changeCurrentEnemyUseCase = new SpacecraftPlayerChangeCurrentEnemyUseCaseImpl();
+    private readonly StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
+    private readonly StatusGameIsGameOverUseCase isGameOverUseCase = new StatusGameIsGameOverUseCaseImpl();
+    private readonly PortalIsPlayerInPortalUseCase isPlayerInPortalUseCase = new PortalIsPlayerInPortalUseCaseImpl();
+    private readonly PortalGetCurrentPortalPlayerUseCase getCurrentPortalPlayerUseCase = new PortalGetCurrentPortalPlayerUseCaseImpl();
 
     private InteractionGameUIViewModelDelegate _myDelegate;
     private Move _currentMove;
@@ -141,7 +140,9 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     {
         if (!isPlayerInPortal) return;
         if (getCurrentPortalPlayerUseCase.invoke() == null) return;
-        updateLevelUseCase.invoke(getCurrentPortalPlayerUseCase.invoke().levelDestination);
+        updateStatusUseCase.invoke(statusGame: StatusGame.CHANGE_LEVEL);
+
+        //updateLevelUseCase.invoke(getCurrentPortalPlayerUseCase.invoke().levelDestination);
     }
 
     // private methods
