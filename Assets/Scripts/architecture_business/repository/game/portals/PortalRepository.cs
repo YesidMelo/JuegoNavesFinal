@@ -13,6 +13,7 @@ public interface PortalRepository {
     List<GameObject> getAllPortalsGameObject();
     bool isPlayerInPortal();
     PortalModel getCurrentPortal();
+    void clearCache();
 }
 
 public class PortalRepositoryImpl: PortalRepository {
@@ -35,4 +36,6 @@ public class PortalRepositoryImpl: PortalRepository {
     public bool isPlayerInPortal() => cache.isPlayerInPortal();
 
     public PortalModel getCurrentPortal() => cache.getCurrentPortal();
+
+    public void clearCache() => cache.clearCache();
 }

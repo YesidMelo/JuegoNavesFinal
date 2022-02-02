@@ -10,6 +10,8 @@ public interface PauseUIViewModelDelegate {
     Task deleteAllEnemies();
     Task deleteCurrentPlayer();
     Task deleteCurrentSpawmPopulation();
+    Task deleteCurrentPortalGenerator();
+    Task deleteCurrentPortals();
 }
 
 public interface PauseUIViewModel {
@@ -24,21 +26,26 @@ public interface PauseUIViewModel {
     List<GameObject> getAllElementToDelete();
     GameObject currentPlayer();
     GameObject currentSpawmPopulation();
+    GameObject currentPortalGenerator();
+    List<GameObject> currentPortals();
 }
 
 public class PauseUIViewModelImpl : PauseUIViewModel
 {
 
-    private CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
-    private DeleteCurrentPlayerUseCase deleteCurrentPlayerUseCase = new DeleteCurrentPlayerUseCaseImpl();
-    private DeleteCurrentSpawmPopulationUseCase deleteCurrentSpawmPopulationUseCase = new DeleteCurrentSpawmPopulationUseCaseImpl();
-    private GetAllEnemiesUseCase getAllEnemiesUseCase = new GetAllEnemiesUseCaseImpl();
-    private GetCurrentPlayerUseCase currentPlayerUseCase = new GetCurrentPlayerUseCaseImpl();
-    private GetCurrentSpawmPopulationUseCase spawmPopulationUseCase = new GetCurrentSpawmPopulationUseCaseImpl();
-    private SaveGameUseCase saveGameUseCase = new SaveGameUseCaseImpl();
-    private StagePopulationClearCacheUseCase stagePopulationClearUseCase = new StagePopulationClearCacheUseCaseImpl();
-    private StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
-    private SaveGameClearCachesGameUseCase clearCachesGameUseCase = new SaveGameClearCachesGameUseCaseImpl();
+    private readonly CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
+    private readonly DeleteCurrentPlayerUseCase deleteCurrentPlayerUseCase = new DeleteCurrentPlayerUseCaseImpl();
+    private readonly DeleteCurrentSpawmPopulationUseCase deleteCurrentSpawmPopulationUseCase = new DeleteCurrentSpawmPopulationUseCaseImpl();
+    private readonly GetAllEnemiesUseCase getAllEnemiesUseCase = new GetAllEnemiesUseCaseImpl();
+    private readonly GetCurrentPlayerUseCase currentPlayerUseCase = new GetCurrentPlayerUseCaseImpl();
+    private readonly GetCurrentSpawmPopulationUseCase spawmPopulationUseCase = new GetCurrentSpawmPopulationUseCaseImpl();
+    private readonly SaveGameUseCase saveGameUseCase = new SaveGameUseCaseImpl();
+    private readonly StagePopulationClearCacheUseCase stagePopulationClearUseCase = new StagePopulationClearCacheUseCaseImpl();
+    private readonly StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
+    private readonly SaveGameClearCachesGameUseCase clearCachesGameUseCase = new SaveGameClearCachesGameUseCaseImpl();
+    private readonly PortalGetCurrentPortalGeneratorUseCase getCurrentPortalGeneratorUseCase = new PortalGetCurrentPortalGeneratorUseCaseImpl();
+    private readonly PortalGetAllListPortalsGameObjectUseCase getAllListPortalsGameObjectUseCase = new PortalGetAllListPortalsGameObjectUseCaseImpl();
+
 
     PauseUIViewModelDelegate _myDelegate;
 
@@ -75,6 +82,8 @@ public class PauseUIViewModelImpl : PauseUIViewModel
                 await saveGameUseCase.invoke();
                 await _myDelegate.deleteCurrentPlayer();
                 await _myDelegate.deleteCurrentSpawmPopulation();
+                await _myDelegate.deleteCurrentPortalGenerator();
+                await _myDelegate.deleteCurrentPortals();
                 await Task.Delay(100);
                 await deleteCurrentPlayerUseCase.invoke();
                 await deleteCurrentSpawmPopulationUseCase.invoke();
@@ -97,4 +106,8 @@ public class PauseUIViewModelImpl : PauseUIViewModel
     public List<GameObject> getAllElementToDelete() => getAllEnemiesUseCase.invoke();
     public GameObject currentPlayer() => currentPlayerUseCase.invoke();
     public GameObject currentSpawmPopulation() => spawmPopulationUseCase.invoke();
+
+    public GameObject currentPortalGenerator() => getCurrentPortalGeneratorUseCase.invoke();
+
+    public List<GameObject> currentPortals() => getAllListPortalsGameObjectUseCase.invoke();
 }

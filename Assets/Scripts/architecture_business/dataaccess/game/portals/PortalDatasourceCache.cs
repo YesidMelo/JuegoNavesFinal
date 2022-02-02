@@ -13,6 +13,7 @@ public interface PortalDatasourceCache {
     List<GameObject> getAllPortalsGameObject();
     bool isPlayerInPortal();
     PortalModel getCurrentPortal();
+    void clearCache();
 }
 
 public class PortalDatasourceCacheImpl: PortalDatasourceCache
@@ -83,4 +84,12 @@ public class PortalDatasourceCacheImpl: PortalDatasourceCache
         _listPortals.Add(new PortalModel(levelOrigin: Level.LEVEL1_SECTION2, levelDestination: Level.LEVEL1_SECTION1, positionX: 100f, positionY: 100f));
     }
 
+    public void clearCache()
+    {
+        _listPortals.Clear();
+        _currentPortalGenerator = null;
+        _currentPortalPlayer = null;
+        _playerInPortal = false;
+        _listPortalsGameObject.Clear();
+    }
 }

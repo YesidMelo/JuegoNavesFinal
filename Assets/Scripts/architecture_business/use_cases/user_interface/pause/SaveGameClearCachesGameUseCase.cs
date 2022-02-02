@@ -29,11 +29,14 @@ public class SaveGameClearCachesGameUseCaseImpl : SaveGameClearCachesGameUseCase
     private SpacecraftPlayerStorageRepository spacecraftPlayerStorageRepository = new SpacecraftPlayerStorageRepositoryImpl();
     private SpacecraftPlayerStructureRepository spacecraftPlayerStructureRepository = new SpacecraftPlayerStructureRepositoryImpl();
 
+    //portals
+    private PortalRepository portalRepository = new PortalRepositoryImpl();
     public async Task invoke()
     {
         levelRepository.clearCache();
         clearEnemyCache();
         clearPlayerCache();
+        clearPortalCache();
     }
 
     //private methods
@@ -55,5 +58,9 @@ public class SaveGameClearCachesGameUseCaseImpl : SaveGameClearCachesGameUseCase
         spacecraftPlayerShieldRepository.clearCache();
         spacecraftPlayerStorageRepository.clearCache();
         spacecraftPlayerStructureRepository.clearCache();
+    }
+
+    private void clearPortalCache() {
+        portalRepository.clearCache();
     }
 }

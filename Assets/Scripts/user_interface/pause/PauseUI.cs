@@ -91,4 +91,20 @@ public class PauseUI : AbstractCanvas, PauseUIViewModelDelegate
             Destroy(current);
         }, null);
     }
+
+    public async Task deleteCurrentPortalGenerator()
+    {
+        syncContext.Post(_ => {
+            Destroy(viewModel.currentPortalGenerator());
+        }, null);
+    }
+
+    public async Task deleteCurrentPortals()
+    {
+        syncContext.Post(_ => {
+            foreach (GameObject currentPortal in viewModel.currentPortals()) {
+                Destroy(currentPortal);
+            }
+        }, null);
+    }
 }
