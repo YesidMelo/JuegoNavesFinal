@@ -50,7 +50,7 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
         if (_currentPortalGenerator != null) return;
         _currentPortalGenerator = Instantiate(prefabPortalGenerator, Constants.positionPortalGeneratorPosition, Quaternion.identity);
         _currentPortalGenerator.transform.name = Constants.namePortalGenerator;
-        viewModel.setCurrentPortalGenerator(portalGenerator: _currentSpawnerPoblation);
+        viewModel.setCurrentPortalGenerator(portalGenerator: _currentPortalGenerator);
         
     }
 
