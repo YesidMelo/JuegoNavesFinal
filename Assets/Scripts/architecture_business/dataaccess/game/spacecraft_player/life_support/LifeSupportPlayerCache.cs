@@ -5,6 +5,7 @@ using UnityEngine;
 public interface LifeSupportPlayerCache {
     LifeSupportPlayer getCurrentLifeSupport();
     LifeSupportModel currentLifeSupportModel { get; }
+    void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel);
 }
 
 public class LifeSupportPlayerCacheImpl : LifeSupportPlayerCache
@@ -34,4 +35,10 @@ public class LifeSupportPlayerCacheImpl : LifeSupportPlayerCache
     }
 
     public LifeSupportPlayer getCurrentLifeSupport() => _currentLifeSupport;
+
+    public void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel)
+    {
+        if (lifeSupportModel == null) return;
+        _currentLifeSupportModel = lifeSupportModel;
+    }
 }

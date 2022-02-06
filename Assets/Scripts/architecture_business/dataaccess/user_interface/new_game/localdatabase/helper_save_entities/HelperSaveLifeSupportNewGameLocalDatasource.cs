@@ -22,6 +22,7 @@ public class HelperSaveLifeSupportNewGameLocalDatasource {
     public async Task<bool> saveLifeSupport()
     {
         LifeSupportEntity lifeSupportEntity = new LifeSupportEntity();
+        lifeSupportEntity.id = lifeSupportModel.id;
         lifeSupportEntity.gameModelId = idGameModel;
         lifeSupportEntity.lifeSupportId = lifeSupportModel.currentLifeSupport.getIdDB();
         await databaseManager.deleteElementsWithCondition<RadarEntitty>(conditions: getListConditions());

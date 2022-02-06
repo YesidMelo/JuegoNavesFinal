@@ -21,13 +21,14 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
         return instance;
     }
 
-    private HelperLoadLaserLoadGameDatabase helperLoadLaserLoadGameDatabase = new HelperLoadLaserLoadGameDatabase();
-    private HelperLoadLifeLoadGameDatabase helperLoadLifeLoadGameDatabase = new HelperLoadLifeLoadGameDatabase();
-    private HelperLoadMotorLoadGameDatabase helperLoadMotorLoadGameDatabase = new HelperLoadMotorLoadGameDatabase();
-    private HelperLoadRadarLoadGameDatabase helperLoadRadarLoadGameDatabase = new HelperLoadRadarLoadGameDatabase();
-    private HelperLoadShieldLoadGameDatabase helperLoadShieldLoadGameDatabase = new HelperLoadShieldLoadGameDatabase();
-    private HelperLoadStorageLoadGameDatabase helperLoadStorageLoadGameDatabase = new HelperLoadStorageLoadGameDatabase();
-    private HelperLoadStructureLoadGameDatabase helperLoadStructureLoadGameDatabase = new HelperLoadStructureLoadGameDatabase();
+    private readonly HelperLoadLaserLoadGameDatabase helperLoadLaserLoadGameDatabase = new HelperLoadLaserLoadGameDatabase();
+    private readonly HelperLoadLifeLoadGameDatabase helperLoadLifeLoadGameDatabase = new HelperLoadLifeLoadGameDatabase();
+    private readonly HelperLoadLifeSupportLoadGameDatabase helperLoadLifeSupportLoadGameDatabase = new HelperLoadLifeSupportLoadGameDatabase();
+    private readonly HelperLoadMotorLoadGameDatabase helperLoadMotorLoadGameDatabase = new HelperLoadMotorLoadGameDatabase();
+    private readonly HelperLoadRadarLoadGameDatabase helperLoadRadarLoadGameDatabase = new HelperLoadRadarLoadGameDatabase();
+    private readonly HelperLoadShieldLoadGameDatabase helperLoadShieldLoadGameDatabase = new HelperLoadShieldLoadGameDatabase();
+    private readonly HelperLoadStorageLoadGameDatabase helperLoadStorageLoadGameDatabase = new HelperLoadStorageLoadGameDatabase();
+    private readonly HelperLoadStructureLoadGameDatabase helperLoadStructureLoadGameDatabase = new HelperLoadStructureLoadGameDatabase();
 
     private LoadGameDatabaseDatasourceImpl() { }
 
@@ -51,6 +52,7 @@ public class LoadGameDatabaseDatasourceImpl : LoadGameDatabaseDatasource
         await helperLoadShieldLoadGameDatabase.initValues(gameModel: gameModel).loadShield();
         await helperLoadStorageLoadGameDatabase.initValues(gameModel: gameModel).loadStorage();
         await helperLoadStructureLoadGameDatabase.initValues(gameModel: gameModel).loadStructure();
+        await helperLoadLifeSupportLoadGameDatabase.initValues(gameModel: gameModel).loadLifeSupport();
         return gameModel;
     }
 }

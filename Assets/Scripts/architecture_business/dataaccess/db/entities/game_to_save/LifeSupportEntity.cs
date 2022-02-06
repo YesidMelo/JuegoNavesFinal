@@ -5,7 +5,7 @@ using UnityEngine;
 public class LifeSupportEntity : BaseDBEntity {
 
     [PrimaryKey]
-    public long id;
+    public long? id;
 
     [NotNull]
     public long? gameModelId;

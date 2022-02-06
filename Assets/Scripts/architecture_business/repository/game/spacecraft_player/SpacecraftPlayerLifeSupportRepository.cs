@@ -5,6 +5,7 @@ using UnityEngine;
 public interface SpacecraftPlayerLifeSupportRepository {
     LifeSupportModel currentLifeSupportModel { get; }
     LifeSupportPlayer getCurrentLifeSupport();
+    void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel);
     void clearCache();
 }
 
@@ -18,4 +19,5 @@ public class SpacecraftPlayerLifeSupportRepositoryImpl : SpacecraftPlayerLifeSup
 
     public LifeSupportPlayer getCurrentLifeSupport() => cache.getCurrentLifeSupport();
 
+    public void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel) => cache.setCurrentLifeSupportModel(lifeSupportModel: lifeSupportModel);
 }

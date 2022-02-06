@@ -16,7 +16,9 @@ public static class LifeSupportEnumExtentions
         }
     }
 
-    public static LifeSupportPlayer findLifeSupportById(this LifeSupportPlayer _, long id) {
+    public static LifeSupportPlayer findLifeSupportById(this LifeSupportPlayer _, long? id) {
+        if (id == null) return LifeSupportPlayer.TYPE_1;
+
         foreach (LifeSupportPlayer itemIndex in Enum.GetValues(typeof(LifeSupportPlayer))) {
             if (itemIndex.getIdDB() != id) continue;
             return itemIndex;
