@@ -6,6 +6,7 @@ public interface LifeSupportPlayerCache {
     LifeSupportPlayer getCurrentLifeSupport();
     LifeSupportModel currentLifeSupportModel { get; }
     void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel);
+    bool playerIsUnderAttack();
 }
 
 public class LifeSupportPlayerCacheImpl : LifeSupportPlayerCache
@@ -26,6 +27,7 @@ public class LifeSupportPlayerCacheImpl : LifeSupportPlayerCache
 
     private LifeSupportModel _currentLifeSupportModel = new LifeSupportModel();
     private LifeSupportPlayer _currentLifeSupport;
+    private bool _playerIsUnderAttack = false;
 
     public LifeSupportModel currentLifeSupportModel {
         get {
@@ -41,4 +43,6 @@ public class LifeSupportPlayerCacheImpl : LifeSupportPlayerCache
         if (lifeSupportModel == null) return;
         _currentLifeSupportModel = lifeSupportModel;
     }
+
+    public bool playerIsUnderAttack() => _playerIsUnderAttack;
 }

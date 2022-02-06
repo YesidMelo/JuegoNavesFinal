@@ -196,6 +196,10 @@ public static class Constants
     public static long lifeSupportPlayerType2Id = 2;
     public static long lifeSupportPlayerType3Id = 3;
 
+    public static float lifeSupportPlayerType1PercentageOfRepair = 0.01f;
+    public static float lifeSupportPlayerType2PercentageOfRepair = 0.02f;
+    public static float lifeSupportPlayerType3PercentageOfRepair = 0.03f;
+
     #endregion
 
     #region all times in miliseconds
@@ -207,6 +211,11 @@ public static class Constants
     public static int timeAwaitCheckScencePopulation = 300;
     public static int timeAwaitCreateNewPrefab = 100;
     public static int timeAwaitDelete= 100;
+
+    //speed lifeSupport
+    public static long timeLifeSupportPlayerType1 = 3000;
+    public static long timeLifeSupportPlayerType2 = 2000;
+    public static long timeLifeSupportPlayerType3 = 1000;
 
     #endregion
 

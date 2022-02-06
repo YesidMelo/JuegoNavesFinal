@@ -7,6 +7,7 @@ public interface SpacecraftPlayerLifeSupportRepository {
     LifeSupportPlayer getCurrentLifeSupport();
     void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel);
     void clearCache();
+    bool playerIsUnderAttack();
 }
 
 public class SpacecraftPlayerLifeSupportRepositoryImpl : SpacecraftPlayerLifeSupportRepository {
@@ -18,6 +19,8 @@ public class SpacecraftPlayerLifeSupportRepositoryImpl : SpacecraftPlayerLifeSup
     public void clearCache() => LifeSupportPlayerCacheImpl.destroyInstance();
 
     public LifeSupportPlayer getCurrentLifeSupport() => cache.getCurrentLifeSupport();
+
+    public bool playerIsUnderAttack() => cache.playerIsUnderAttack();
 
     public void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel) => cache.setCurrentLifeSupportModel(lifeSupportModel: lifeSupportModel);
 }

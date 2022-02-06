@@ -16,6 +16,8 @@ public interface SpacecraftPlayerLifeCache
     public void updateCurrentLife(float currentLife);
     public void restoreLife();
     public void clearCache();
+
+    public bool lifeIsMaxLife();
 }
 
 public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
@@ -33,6 +35,7 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
 
     private float _maxLife = 1000;
     private float _life = 0;
+    private bool _lifeIsMaxLife = false;
     private StructurePlayer _currentStructure = StructurePlayer.TYPE_1;
     private LifeModel _currentLifeModel = new LifeModel();
 
@@ -43,11 +46,13 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
     public float maxLife => _maxLife;
 
     public StructurePlayer currentStructure => _currentStructure;
+    public bool lifeIsMaxLife() => _lifeIsMaxLife;
 
     public LifeModel currentLifeModel {
         get {
             _currentLifeModel.life = _life;
             _currentLifeModel.maxLife = _maxLife;
+            checkIfLifeIsMaxLife();
             return _currentLifeModel;
         }
     }
@@ -57,6 +62,7 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         _life = 0;
         _currentStructure = StructurePlayer.TYPE_1;
         _currentLifeModel = new LifeModel();
+        checkIfLifeIsMaxLife();
     }
 
     public void addLife(float life)
@@ -71,17 +77,20 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         }
         _life = finalLife;
         _currentLifeModel.life = life;
+        checkIfLifeIsMaxLife();
     }
 
     public void addStructureLife(StructurePlayer structure)
     {
         _currentStructure = structure;
         elementsLife();
+        checkIfLifeIsMaxLife();
     }
 
     public bool loadLife() {
         if (_currentLifeModel.life == 0 && _currentLifeModel.maxLife == 0) {
             elementsLife();
+            checkIfLifeIsMaxLife();
         }
         return true;
     }
@@ -98,22 +107,26 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         }
         _life = finalLife;
         _currentLifeModel.life = life;
+        checkIfLifeIsMaxLife();
     }
 
     public void updateCurrentLife(float currentLife)
     {
         _life = currentLife;
         _currentLifeModel.life = life;
+        checkIfLifeIsMaxLife();
     }
 
     public void setCurrentLifeModel(LifeModel lifeModel) { 
         _currentLifeModel = lifeModel;
         _life = _currentLifeModel.life;
+        checkIfLifeIsMaxLife();
     }
 
     public void restoreLife()
     {
         _life = _maxLife;
+        checkIfLifeIsMaxLife();
     }
 
     //private methods
@@ -148,4 +161,7 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         }
     }
 
+    private void checkIfLifeIsMaxLife() {
+        _lifeIsMaxLife = _life >= _maxLife;
+    }
 }
