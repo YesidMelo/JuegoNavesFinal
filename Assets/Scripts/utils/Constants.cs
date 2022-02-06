@@ -189,6 +189,15 @@ public static class Constants
 
     #endregion
 
+    #region all LifeSupport
+    
+    //player
+    public static long lifeSupportPlayerType1Id = 1;
+    public static long lifeSupportPlayerType2Id = 2;
+    public static long lifeSupportPlayerType3Id = 3;
+
+    #endregion
+
     #region all times in miliseconds
     //Splash
     public static int timeAwaitSplash = 5000;

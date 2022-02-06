@@ -9,6 +9,7 @@ public class GameModel {
 
     public LaserModel laserModel;
     public LifeModel lifeModel;
+    public LifeSupportModel lifeSupportModel;
     public MotorModel motorModel;
     public RadarModel radarModel;
     public ShieldModel shieldModel;

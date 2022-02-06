@@ -10,14 +10,15 @@ public interface SaveGameUseCase {
 
 public class SaveGameUseCaseImpl : SaveGameUseCase
 {
-    private NewGameRepository newGameRepository = new NewGameRepositoryImpl();
-    private SpacecraftPlayerLaserRepository repoLaserPlayer = new SpacecraftPlayerLaserRepositoryImpl();
-    private SpacecraftPlayerLifeRepository repoLifePlayer = new SpacecraftPlayerLifeRepositoryImpl();
-    private SpacecraftPlayerMotorRepository repoMotorPlayer = new SpacecraftPlayerMotorRepositoryImpl();
-    private SpacecraftPlayerRadarRepository repoRadar = new SpacecraftPlayerRadarRepositoryImpl();
-    private SpacecraftPlayerShieldRepository repoShield = new SpacecraftPlayerShieldRepositoryImpl();
-    private SpacecraftPlayerStorageRepository repoStorage = new SpacecraftPlayerStorageRepositoryImpl();
-    private SpacecraftPlayerStructureRepository repoStructure = new SpacecraftPlayerStructureRepositoryImpl();
+    private readonly NewGameRepository newGameRepository = new NewGameRepositoryImpl();
+    private readonly SpacecraftPlayerLaserRepository repoLaserPlayer = new SpacecraftPlayerLaserRepositoryImpl();
+    private readonly SpacecraftPlayerLifeRepository repoLifePlayer = new SpacecraftPlayerLifeRepositoryImpl();
+    private readonly SpacecraftPlayerMotorRepository repoMotorPlayer = new SpacecraftPlayerMotorRepositoryImpl();
+    private readonly SpacecraftPlayerRadarRepository repoRadar = new SpacecraftPlayerRadarRepositoryImpl();
+    private readonly SpacecraftPlayerShieldRepository repoShield = new SpacecraftPlayerShieldRepositoryImpl();
+    private readonly SpacecraftPlayerStorageRepository repoStorage = new SpacecraftPlayerStorageRepositoryImpl();
+    private readonly SpacecraftPlayerStructureRepository repoStructure = new SpacecraftPlayerStructureRepositoryImpl();
+    private readonly SpacecraftPlayerLifeSupportRepository repoLifeSupport = new SpacecraftPlayerLifeSupportRepositoryImpl();
 
     public async Task<bool> invoke() {
         GameModel gameModelToSave = await newGameRepository.getCurrentNewGameModel();
@@ -36,6 +37,7 @@ public class SaveGameUseCaseImpl : SaveGameUseCase
             gameModel.shieldModel = repoShield.currentShieldModel;
             gameModel.storageModel = repoStorage.currentStorageModel;
             gameModel.structureModel = repoStructure.currentStructureModel;
+            gameModel.lifeSupportModel = repoLifeSupport.currentLifeSupportModel;
             return gameModel;
         } catch (Exception e) {
             Debug.LogError(e.Message);

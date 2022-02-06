@@ -9,8 +9,6 @@ public interface NewGameRepository {
     Task<GameModel> getCurrentNewGameModel();
 
     Task<bool> saveGame(GameModel gameModel);
-    Task<bool> loadGame();
-    Task<bool> loadListGamesAvailables();
 
 }
 
@@ -23,10 +21,6 @@ public class NewGameRepositoryImpl : NewGameRepository
     public async Task<GameModel> getCurrentNewGameModel() { 
         return await cache.currentNewGameModel(); 
     }
-
-    public async Task<bool> loadGame() => await localDatasource.loadGame();
-
-    public async Task<bool> loadListGamesAvailables() => await localDatasource.loadListGamesAvailables();
 
     public async Task<bool> saveGame(GameModel gameModel) => await localDatasource.saveGame(gameModel: gameModel);
 

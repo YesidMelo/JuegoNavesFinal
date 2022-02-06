@@ -6,39 +6,28 @@ using UnityEngine;
 
 public interface NewGameLocalDatasource {
     Task<bool> saveGame(GameModel gameModel);
-    Task<bool> loadGame();
-    Task<bool> loadListGamesAvailables();
 }
 
 public class NewGameLocalDatasourceImpl : NewGameLocalDatasource
 {
 
-    private HelperNewGameLocalDatasource helperNewGameLocalDatasource = new HelperNewGameLocalDatasource();
-    private HelperSaveLaserNewGameLocalDatasource helperSaveLaserNewGame = new HelperSaveLaserNewGameLocalDatasource();
-    private HelperSaveLifeNewGameLocalDatasource helperSaveLifeNewGameLocalDatasource = new HelperSaveLifeNewGameLocalDatasource();
-    private HelperSaveMotorNewGameLocalDatasource helperSaveMotorNewGameLocalDatasource = new HelperSaveMotorNewGameLocalDatasource();
-    private HelperSaveRadarNewGameLocalDatasource helperSaveRadarNewGameLocalDatasource = new HelperSaveRadarNewGameLocalDatasource();
-    private HelperSaveShieldNewGameLocalDatasource helperSaveShieldNewGameLocalDatasource = new HelperSaveShieldNewGameLocalDatasource();
-    private HelperSaveStorageNewGameLocalDatasource helperSaveStorageNewGameLocalDatasource = new HelperSaveStorageNewGameLocalDatasource();
-    private HelperSaveStructureNewGameLocalDatasource helperSaveStructureNewGameLocalDatasource = new HelperSaveStructureNewGameLocalDatasource();
-    public async Task<bool> loadGame()
-    {
-        await Task.Delay(1000);
-        return true;
-    }
-
-    public async Task<bool> loadListGamesAvailables()
-    {
-        await Task.Delay(1000);
-        return true;
-    }
-
+    private readonly HelperNewGameLocalDatasource helperNewGameLocalDatasource = new HelperNewGameLocalDatasource();
+    private readonly HelperSaveLaserNewGameLocalDatasource helperSaveLaserNewGame = new HelperSaveLaserNewGameLocalDatasource();
+    private readonly HelperSaveLifeNewGameLocalDatasource helperSaveLifeNewGameLocalDatasource = new HelperSaveLifeNewGameLocalDatasource();
+    private readonly HelperSaveMotorNewGameLocalDatasource helperSaveMotorNewGameLocalDatasource = new HelperSaveMotorNewGameLocalDatasource();
+    private readonly HelperSaveRadarNewGameLocalDatasource helperSaveRadarNewGameLocalDatasource = new HelperSaveRadarNewGameLocalDatasource();
+    private readonly HelperSaveShieldNewGameLocalDatasource helperSaveShieldNewGameLocalDatasource = new HelperSaveShieldNewGameLocalDatasource();
+    private readonly HelperSaveStorageNewGameLocalDatasource helperSaveStorageNewGameLocalDatasource = new HelperSaveStorageNewGameLocalDatasource();
+    private readonly HelperSaveStructureNewGameLocalDatasource helperSaveStructureNewGameLocalDatasource = new HelperSaveStructureNewGameLocalDatasource();
+    private readonly HelperSaveLifeSupportNewGameLocalDatasource helperSaveLifeSupportNewGameLocalDatasource = new HelperSaveLifeSupportNewGameLocalDatasource();
+    
     public async Task<bool> saveGame(GameModel gameModel)
     {
         try {
             long idGame = await helperNewGameLocalDatasource.saveGameEntity(gameModel: gameModel);
             await helperSaveLaserNewGame.initValues(laserModel: gameModel.laserModel, idGameModel: idGame).saveLaserModel();
             await helperSaveLifeNewGameLocalDatasource.initValues(lifeModel: gameModel.lifeModel, idGameModel: idGame).saveLife();
+            await helperSaveLifeSupportNewGameLocalDatasource.initValues(lifeSupportModel: gameModel.lifeSupportModel, idGameModel: idGame).saveLifeSupport();
             await helperSaveMotorNewGameLocalDatasource.initValues(motorModel: gameModel.motorModel, idGameModel: idGame).saveMotors();
             await helperSaveRadarNewGameLocalDatasource.initValues(radarModel: gameModel.radarModel, idGameModel: idGame).saveRadar();
             await helperSaveShieldNewGameLocalDatasource.initValues(shieldModel: gameModel.shieldModel, idGameModel: idGame).saveShield();

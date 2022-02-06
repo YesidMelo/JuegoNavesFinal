@@ -52,6 +52,7 @@ public class DatabaseLocalDatasourceImpl : DatabaseLocalDatasource {
             typeof(GameEntity),
             typeof(LaserEntity),
             typeof(LifeEntity),
+            typeof(LifeSupportEntity),
             typeof(MotorEntity),
             typeof(RadarEntitty),
             typeof(ShieldEntity),

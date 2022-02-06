@@ -9,28 +9,31 @@ public interface SaveGameClearCachesGameUseCase {
 
 public class SaveGameClearCachesGameUseCaseImpl : SaveGameClearCachesGameUseCase
 {
-    private LevelRepository levelRepository = new LevelRepositoryImpl();
+    private readonly LevelRepository levelRepository = new LevelRepositoryImpl();
 
     //enemies
-    private SpacecraftEnemyLaserRepository spacecraftEnemyLaserRepository = new SpacecraftEnemyLaserRepositoryImpl();
-    private SpacecraftEnemyLifeRepository spacecraftEnemyLifeRepository = new SpacecraftEnemyLifeRepositoryImpl();
-    private SpacecraftEnemyMotorRepository spacecraftEnemyMotorRepository = new SpacecraftEnemyMotorRepositoryImpl();
-    private SpacecraftEnemyRadarRepository spacecraftEnemyRadarRepository = new SpacecraftEnemyRadarRepositoryImpl();
-    private SpacecraftEnemyShieldRepository spacecraftEnemyShieldRepository = new SpacecraftEnemyShieldRepositoryImpl();
-    private SpacecraftEnemyStorageRepository spacecraftEnemyStorageRepository = new SpacecraftEnemyStorageRepositoryImpl();
-    private SpacecraftEnemyStructureRepository spacecraftEnemyStructureRepository = new SpacecraftEnemyStructureRepositoryImpl();
+    private readonly SpacecraftEnemyLaserRepository spacecraftEnemyLaserRepository = new SpacecraftEnemyLaserRepositoryImpl();
+    private readonly SpacecraftEnemyLifeRepository spacecraftEnemyLifeRepository = new SpacecraftEnemyLifeRepositoryImpl();
+    private readonly SpacecraftEnemyMotorRepository spacecraftEnemyMotorRepository = new SpacecraftEnemyMotorRepositoryImpl();
+    private readonly SpacecraftEnemyRadarRepository spacecraftEnemyRadarRepository = new SpacecraftEnemyRadarRepositoryImpl();
+    private readonly SpacecraftEnemyShieldRepository spacecraftEnemyShieldRepository = new SpacecraftEnemyShieldRepositoryImpl();
+    private readonly SpacecraftEnemyStorageRepository spacecraftEnemyStorageRepository = new SpacecraftEnemyStorageRepositoryImpl();
+    private readonly SpacecraftEnemyStructureRepository spacecraftEnemyStructureRepository = new SpacecraftEnemyStructureRepositoryImpl();
 
     //player
-    private SpacecraftPlayerLaserRepository spacecraftPlayerLaserRepository = new SpacecraftPlayerLaserRepositoryImpl();
-    private SpacecraftPlayerLifeRepository spacecraftPlayerLifeRepository = new SpacecraftPlayerLifeRepositoryImpl();
-    private SpacecraftPlayerMotorRepository spacecraftPlayerMotorRepository = new SpacecraftPlayerMotorRepositoryImpl();
-    private SpacecraftPlayerRadarRepository spacecraftPlayerRadarRepository = new SpacecraftPlayerRadarRepositoryImpl();
-    private SpacecraftPlayerShieldRepository spacecraftPlayerShieldRepository = new SpacecraftPlayerShieldRepositoryImpl();
-    private SpacecraftPlayerStorageRepository spacecraftPlayerStorageRepository = new SpacecraftPlayerStorageRepositoryImpl();
-    private SpacecraftPlayerStructureRepository spacecraftPlayerStructureRepository = new SpacecraftPlayerStructureRepositoryImpl();
+    private readonly SpacecraftPlayerLaserRepository spacecraftPlayerLaserRepository = new SpacecraftPlayerLaserRepositoryImpl();
+    private readonly SpacecraftPlayerLifeRepository spacecraftPlayerLifeRepository = new SpacecraftPlayerLifeRepositoryImpl();
+    private readonly SpacecraftPlayerMotorRepository spacecraftPlayerMotorRepository = new SpacecraftPlayerMotorRepositoryImpl();
+    private readonly SpacecraftPlayerRadarRepository spacecraftPlayerRadarRepository = new SpacecraftPlayerRadarRepositoryImpl();
+    private readonly SpacecraftPlayerShieldRepository spacecraftPlayerShieldRepository = new SpacecraftPlayerShieldRepositoryImpl();
+    private readonly SpacecraftPlayerStorageRepository spacecraftPlayerStorageRepository = new SpacecraftPlayerStorageRepositoryImpl();
+    private readonly SpacecraftPlayerStructureRepository spacecraftPlayerStructureRepository = new SpacecraftPlayerStructureRepositoryImpl();
+    private readonly SpacecraftPlayerLifeSupportRepository spacecraftPlayerLifeSupportRepository = new SpacecraftPlayerLifeSupportRepositoryImpl();
 
     //portals
-    private PortalRepository portalRepository = new PortalRepositoryImpl();
+    private readonly PortalRepository portalRepository = new PortalRepositoryImpl();
+
+
     public async Task invoke()
     {
         levelRepository.clearCache();
@@ -58,6 +61,7 @@ public class SaveGameClearCachesGameUseCaseImpl : SaveGameClearCachesGameUseCase
         spacecraftPlayerShieldRepository.clearCache();
         spacecraftPlayerStorageRepository.clearCache();
         spacecraftPlayerStructureRepository.clearCache();
+        spacecraftPlayerLifeSupportRepository.clearCache();
     }
 
     private void clearPortalCache() {

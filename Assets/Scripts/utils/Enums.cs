@@ -210,3 +210,15 @@ public enum StructurePlayer
     TYPE_4,
     TYPE_5,
 }
+
+public enum LifeSupportPlayer { 
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+}
+
+public enum LifeSupportEnemy {
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+}
