@@ -21,6 +21,7 @@ public interface InteractionInterfaceUserRepository {
     void setCurrentPlayer(GameObject currentPlayer);
     void setCurrentSpawmPopulation(GameObject spawmPopulation);
     void setCurrentPortalGenerator(GameObject spawmPopulation);
+    void clearCache();
 }
 
 public class InteractionInterfaceUserRepositoryImpl : InteractionInterfaceUserRepository
@@ -36,6 +37,8 @@ public class InteractionInterfaceUserRepositoryImpl : InteractionInterfaceUserRe
     public GameObject currentSpawmPopulation => interactionInterfaceUserCache.currentSpawmPopulation;
 
     public GameObject currentPortalGenerator => interactionInterfaceUserCache.currentPortalGenerator;
+
+    public void clearCache() => InteractionInterfaceUserCacheImpl.destroyInstance();
 
     public async Task deleteCurrentPlayer() => await interactionInterfaceUserCache.deleteCurrentPlayer();
 

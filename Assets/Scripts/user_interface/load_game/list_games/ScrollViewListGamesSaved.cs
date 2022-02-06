@@ -12,6 +12,7 @@ public class ScrollViewListGamesSaved : MonoBehaviour, ItemListViewGameSavedDele
     public GameObject prefabItemListGameSaved;
     private ListViewAdapterGamesSaved listViewAdapterGamesSaved = new ListViewAdapterGamesSaved();
     private ScrollViewListGamesSavedDelegate myDelegate;
+    private List<ItemListViewGameSaved> listViewGameSaveds = new List<ItemListViewGameSaved>();
 
     //default
     public void Start()
@@ -31,6 +32,7 @@ public class ScrollViewListGamesSaved : MonoBehaviour, ItemListViewGameSavedDele
     }
 
     public void updateListGamesSaved(List<GameModel> listGameModel) {
+        deleteAllItemsFromList();
         listViewAdapterGamesSaved.setListGamesSaved(listItemGameSaved: listGameSaved(listGameModel: listGameModel));
         Vector2 currentSize = new Vector2(listViewAdapterGamesSaved.width(), listViewAdapterGamesSaved.heigth());
         getRectTransformContentScroll().sizeDelta = currentSize;
@@ -41,7 +43,6 @@ public class ScrollViewListGamesSaved : MonoBehaviour, ItemListViewGameSavedDele
         return contentScrollView.GetComponent<RectTransform>();
     }
     private List<ItemListViewGameSaved> listGameSaved(List<GameModel> listGameModel) {
-        List<ItemListViewGameSaved> listViewGameSaveds = new List<ItemListViewGameSaved>();
         float currentPositionY = 0f;
         foreach (GameModel currentGameModel in listGameModel) {
             GameObject currentItem = createItemFromGameObject();
@@ -78,6 +79,15 @@ public class ScrollViewListGamesSaved : MonoBehaviour, ItemListViewGameSavedDele
         currentPosition -= item.heigth();
         return currentPosition;
     }
+
+    private void deleteAllItemsFromList() {
+        foreach (ItemListViewGameSaved item in listViewGameSaveds) {
+            Destroy(item.gameObject);
+        }
+        listViewGameSaveds.Clear();
+    }
+
+    //delegates
 
     public void deleteGame(GameModel gameModel)
     {

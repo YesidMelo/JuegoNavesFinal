@@ -25,6 +25,8 @@ public class SpacecraftPlayerShieldCacheImpl : SpacecraftPlayerShieldCache
         return _instance;
     }
 
+    public static void destroyInstance() => _instance = null;
+
     private ShieldPlayer _currentShield;
     private ShieldModel _currentShieldModel = new ShieldModel();
 

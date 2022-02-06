@@ -21,6 +21,9 @@ public class SpacecraftEnemyStructureCacheImpl : SpacecraftEnemyStructureCache
         }
         return instance;
     }
+
+    public static void destroyInstance() => instance = null;
+
     private Dictionary<IdentificatorModel, StructureEnemy> _dictionaryStructures = new Dictionary<IdentificatorModel, StructureEnemy>();
 
     public StructureEnemy currentStructure(IdentificatorModel identificator) => _dictionaryStructures[identificator];

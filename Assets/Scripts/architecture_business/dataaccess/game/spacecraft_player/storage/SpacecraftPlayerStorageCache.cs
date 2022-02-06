@@ -25,6 +25,8 @@ public class SpacecraftPlayerStorageCacheImpl : SpacecraftPlayerStorageCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     //variables
 
     private StoragePlayer _currentStorage = StoragePlayer.TYPE_1;

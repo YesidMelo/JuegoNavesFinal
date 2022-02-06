@@ -25,7 +25,10 @@ public class SpacecraftEnemyRadarRepositoryImpl : SpacecraftEnemyRadarRepository
         cachePlayer.addPlayer(identificator, gameObject);
     }
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() {
+        SpacecraftEnemyRadarCacheImpl.destroyInstance();
+        SpacecraftEnemyRadarPlayerCacheImpl.destroyInstance();
+    }
 
     public GameObject currentPlayer(IdentificatorModel identificator) => cachePlayer.currentPlayer(identificator);
 

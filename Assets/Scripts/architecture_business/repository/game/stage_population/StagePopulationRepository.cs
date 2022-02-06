@@ -41,6 +41,9 @@ public class StagePopulationRepositoryImpl : StagePopulationRepository
     public void removeAllEnemies(List<GameObject> enemies) => cache.removeAllEnemies(enemies: enemies);
 
     public void removeEnemy(GameObject gameObject, Level level) => cache.removeEnemy(gameObject: gameObject, level: level);
-    public bool clearCache() => cache.clearCache();
+    public bool clearCache() {
+        StagePopulationCacheImpl.destroyInstance();
+        return true;
+    }
 
 }

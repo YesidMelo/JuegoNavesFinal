@@ -15,6 +15,8 @@ public class ListViewAdapterGamesSaved
     //public methods
 
     public void setListGamesSaved(List<ItemListViewGameSaved> listItemGameSaved) {
+        _currentHeigth = 0f;
+        _currentWidth = 0f;
         this.listGamesSaved = listItemGameSaved;
         calculateWidthAndHeigth();
     }

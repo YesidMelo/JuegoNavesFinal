@@ -12,7 +12,7 @@ public class SpacecraftEnemyStructureRepositoryImpl : SpacecraftEnemyStructureRe
 
     private SpacecraftEnemyStructureCache cache = SpacecraftEnemyStructureCacheImpl.getInstance();
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftEnemyStructureCacheImpl.destroyInstance();
 
     public StructureEnemy currentStructure(IdentificatorModel identificator) => cache.currentStructure(identificator);
 

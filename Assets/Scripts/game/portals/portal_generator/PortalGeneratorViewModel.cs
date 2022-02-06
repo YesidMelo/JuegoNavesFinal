@@ -52,7 +52,6 @@ public class PortalGeneratorViewModelImpl : PortalGeneratorViewModel
         _myDelegate.deleteAllEnemies(allEnemies: getAllEnemiesUseCase.invoke());
         var currentPortal = getCurrentPortalPlayerUseCase.invoke();
         if (currentPortal == null) return;
-        updateLevelUseCase.invoke(level: currentPortal.levelDestination);
         updateStatusUseCase.invoke(statusGame: StatusGame.IN_GAME);
     }
 

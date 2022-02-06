@@ -21,6 +21,8 @@ public class NewGameCacheImpl : NewGameCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private GameModel _currentNewGameModel;
 
     public async Task<GameModel> currentNewGameModel() {

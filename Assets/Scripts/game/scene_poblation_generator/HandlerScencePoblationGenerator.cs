@@ -77,8 +77,7 @@ public class HandlerScencePoblationGenerator : MonoBehaviour,
         if (prefabEnemy == null) return null;
 
         GameObject spacecraft = Instantiate(prefabEnemy);
-        //spacecraft.transform.position = new Vector3(Functions.generateRandomPosionX(), Functions.generateRandomPosionY(), 0);
-        spacecraft.transform.position = new Vector3(100,100, 0);
+        spacecraft.transform.position = new Vector3(Functions.generateRandomPosionX(), Functions.generateRandomPosionY(), 0);
         HandlerSpacecraftEnemy handler = spacecraft.GetComponent<HandlerSpacecraftEnemy>();
 
         if (handler == null)

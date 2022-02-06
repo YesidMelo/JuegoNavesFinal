@@ -23,6 +23,8 @@ public class SpacecraftEnemyRadarPlayerCacheImpl : SpacecraftEnemyRadarPlayerCac
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private Dictionary<IdentificatorModel, List<GameObject>> _currentListPlayer = new Dictionary<IdentificatorModel, List<GameObject>>();
     private Dictionary<IdentificatorModel, GameObject> _currentPlayer = new Dictionary<IdentificatorModel, GameObject>();
 

@@ -24,6 +24,8 @@ public class SpacecraftPlayerStructureCacheImpl : SpacecraftPlayerStructureCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     // variables
     private StructurePlayer _currentStructure = StructurePlayer.TYPE_1;
     private StructureModel _currentStructureModel = new StructureModel();

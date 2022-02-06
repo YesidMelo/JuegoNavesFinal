@@ -21,6 +21,8 @@ public class SpacecraftEnemyShieldCacheImpl : SpacecraftEnemyShieldCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private Dictionary<IdentificatorModel, ShieldEnemy> _dictionaryShield = new Dictionary<IdentificatorModel, ShieldEnemy>();
 
     public ShieldEnemy currentShield(IdentificatorModel identificator) => _dictionaryShield[identificator];

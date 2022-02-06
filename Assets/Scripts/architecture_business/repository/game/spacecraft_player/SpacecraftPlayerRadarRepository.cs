@@ -45,7 +45,10 @@ public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarReposito
 
     public void clearCache() => cache.clearCache();
 
-    public void clearElementsRadar() => cache.clearElementsRadar();
+    public void clearElementsRadar() {
+        SpacecraftPlayerRadarCacheImpl.destroyInstance();
+        SpacecraftPlayerRadarEnemiesCacheImpl.destroyInstance();
+    }
 
     public bool loadElementsRadar() => cache.loadElementsRadar();
 

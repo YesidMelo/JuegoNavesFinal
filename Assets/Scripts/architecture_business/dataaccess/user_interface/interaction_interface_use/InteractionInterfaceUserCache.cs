@@ -37,6 +37,8 @@ public class InteractionInterfaceUserCacheImpl : InteractionInterfaceUserCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     // class
 
     private Action _currentActionSpacecraft = Action.STOP;

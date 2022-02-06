@@ -24,6 +24,8 @@ public class SpacecraftPlayerRadarEnemiesCacheImpl : SpacecraftPlayerRadarEnemie
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private List<GameObject> _listEnemies = new List<GameObject>();
     private GameObject _currentEnemy = null;
 

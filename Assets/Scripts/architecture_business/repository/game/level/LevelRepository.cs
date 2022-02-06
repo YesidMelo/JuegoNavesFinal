@@ -13,7 +13,7 @@ public class LevelRepositoryImpl : LevelRepository
 
     public Level getCurrentLevel => cache.getCurrentLevel;
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => LevelCacheImpl.destroyInstance();
 
-    public void updateLevel(Level level) => cache.updateLevel(level);
+    public void updateLevel(Level level) => cache.updateLevel(level: level);
 }

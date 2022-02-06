@@ -32,6 +32,8 @@ public class SpacecraftPlayerRadarCacheImpl : SpacecraftPlayerRadarCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private List<GameObject> _listElementsRadar = new List<GameObject>();
     private RadarModel radarModel = new RadarModel();
     

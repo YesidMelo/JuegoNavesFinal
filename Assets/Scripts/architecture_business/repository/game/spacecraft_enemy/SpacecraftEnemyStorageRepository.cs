@@ -12,7 +12,7 @@ public class SpacecraftEnemyStorageRepositoryImpl : SpacecraftEnemyStorageReposi
 {
     private SpacecraftEnemyStorageCache cache = SpacecraftEnemyStorageCacheImpl.getInstance();
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftEnemyStorageCacheImpl.destroyInstance();
 
     public StorageEnemy currentStorage(IdentificatorModel identificator) => cache.currentStorage(identificator);
 

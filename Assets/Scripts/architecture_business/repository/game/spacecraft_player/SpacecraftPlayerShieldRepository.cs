@@ -19,7 +19,7 @@ public class SpacecraftPlayerShieldRepositoryImpl : SpacecraftPlayerShieldReposi
     public ShieldPlayer currentShield => cache.currentShield;
 
     public ShieldModel currentShieldModel => cache.currentShieldModel;
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftPlayerShieldCacheImpl.destroyInstance();
     public bool loadShield() => cache.loadShield();
     public void setCurrentShield(ShieldModel shieldModel) => cache.setCurrentShieldModel(shieldModel: shieldModel);
     public void setShield(ShieldPlayer shield) => cache.setShield(shield);

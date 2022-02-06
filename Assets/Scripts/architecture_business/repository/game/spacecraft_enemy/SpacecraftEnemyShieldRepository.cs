@@ -12,7 +12,7 @@ public class SpacecraftEnemyShieldRepositoryImpl : SpacecraftEnemyShieldReposito
 {
     private SpacecraftEnemyShieldCache cache = SpacecraftEnemyShieldCacheImpl.getInstance();
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftEnemyShieldCacheImpl.destroyInstance();
 
     public ShieldEnemy currentShield(IdentificatorModel identificator) => cache.currentShield(identificator);
 

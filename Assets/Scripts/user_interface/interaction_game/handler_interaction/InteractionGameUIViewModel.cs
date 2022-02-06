@@ -53,6 +53,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
     private readonly StatusGameIsGameOverUseCase isGameOverUseCase = new StatusGameIsGameOverUseCaseImpl();
     private readonly PortalIsPlayerInPortalUseCase isPlayerInPortalUseCase = new PortalIsPlayerInPortalUseCaseImpl();
     private readonly PortalGetCurrentPortalPlayerUseCase getCurrentPortalPlayerUseCase = new PortalGetCurrentPortalPlayerUseCaseImpl();
+    private readonly LevelUpdateLevelUseCase updateLevelUseCase = new LevelUpdateLevelUseCaseImpl();
 
     private InteractionGameUIViewModelDelegate _myDelegate;
     private Move _currentMove;
@@ -141,8 +142,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
         if (!isPlayerInPortal) return;
         if (getCurrentPortalPlayerUseCase.invoke() == null) return;
         updateStatusUseCase.invoke(statusGame: StatusGame.CHANGE_LEVEL);
-
-        //updateLevelUseCase.invoke(getCurrentPortalPlayerUseCase.invoke().levelDestination);
+        updateLevelUseCase.invoke(getCurrentPortalPlayerUseCase.invoke().levelDestination);
     }
 
     // private methods

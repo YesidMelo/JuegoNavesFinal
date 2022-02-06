@@ -28,7 +28,9 @@ public class PortalDatasourceCacheImpl: PortalDatasourceCache
         }
         return instance;
     }
-        
+
+    public static void destroyInstance() => instance = null;
+
     private List<PortalModel> _listPortals = new List<PortalModel>();
     private GameObject _currentPortalGenerator;
     private List<GameObject> _listPortalsGameObject = new List<GameObject>();

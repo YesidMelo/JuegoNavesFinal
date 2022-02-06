@@ -8,12 +8,15 @@ public interface SpacecraftEnemyRepository {
     SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator);
 
     void setSpacecraft(IdentificatorModel identificator, SpacecraftEnemy spacecraft);
+    void clearCache();
 }
 
 public class SpacecraftEnemyRepositoryImpl : SpacecraftEnemyRepository
 {
 
     private SpacecraftEnemyCache cache = SpacecraftEnemyCacheImpl.getInstance();
+
+    public void clearCache() => SpacecraftEnemyCacheImpl.destroyInstance();
 
     public SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator) => cache.currentSpacecraft(identificator);
 

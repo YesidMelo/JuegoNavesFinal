@@ -25,6 +25,8 @@ public class SpacecraftPlayerLaserCacheImpl : SpacecraftPlayerLaserCache {
         return _instance;
     }
 
+    public static void destroyInstance() => _instance = null;
+
     private List<LaserPlayer> _listLasers = new List<LaserPlayer>();
     private float _mediaImpactLaser = 1;
     private LaserPlayer _finalImpactLaser = LaserPlayer.TYPE_1;

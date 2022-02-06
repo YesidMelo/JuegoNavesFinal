@@ -19,6 +19,8 @@ public class StatusGameDatasourceCacheImpl : StatusGameDatasourceCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private StatusGameDatasourceCacheImpl() { }
 
     private StatusGame _currentStatusGame;

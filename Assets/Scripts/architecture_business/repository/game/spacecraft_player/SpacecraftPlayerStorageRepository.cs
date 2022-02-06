@@ -17,7 +17,7 @@ public class SpacecraftPlayerStorageRepositoryImpl : SpacecraftPlayerStorageRepo
     public StoragePlayer currentStorage => cache.currentStorage;
 
     public StorageModel currentStorageModel => cache.currentStorageModel;
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftPlayerStorageCacheImpl.destroyInstance();
     public bool loadStorage() => cache.loadStorage();
     public void setCurrentStorageModel(StorageModel storageModel) => cache.setCurrentStorageModel(storageModel: storageModel);
     public void updateStorage(StoragePlayer storage) => cache.updateStorage(storage);

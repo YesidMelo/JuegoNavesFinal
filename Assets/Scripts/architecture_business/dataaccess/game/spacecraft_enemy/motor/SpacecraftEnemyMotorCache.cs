@@ -22,6 +22,8 @@ public class SpacecraftEnemyMotorCacheImpl : SpacecraftEnemyMotorCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private Dictionary<IdentificatorModel, float> _dictionarySpeed = new Dictionary<IdentificatorModel, float>();
     private Dictionary<IdentificatorModel, MotorEnemy> _dictionaryMotors = new Dictionary<IdentificatorModel, MotorEnemy>();
     private Dictionary<IdentificatorModel, SpacecraftEnemy> _dictionarySpacecraft = new Dictionary<IdentificatorModel, SpacecraftEnemy>();

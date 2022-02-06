@@ -28,6 +28,7 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
     private CurrentLangajeUseCase currentLangajeUseCase = new CurrentLangajeUseCaseImpl();
     private LoadGamesSavesUseCase loadGamesSavesUseCase = new LoadGamesSavesUseCaseImpl();
     private LoadGameSavedUseCase loadGameSavedUseCase = new LoadGameSavedUseCaseImpl();
+    private DeleteGameUseCase deleteGameUseCase = new DeleteGameUseCaseImpl();
 
     private LoadGameUIViewModelDelegate _myDelegate;
     public LoadGameUIViewModelDelegate myDelegate { set => _myDelegate = value; }
@@ -67,6 +68,8 @@ public class LoadGameUIViewModelImpl : LoadGameUIViewModel
 
     public async Task deleteGame(GameModel gameModel) {
         if (notExistsDelegate()) return;
+        await deleteGameUseCase.invoke(gameModel: gameModel);
+        await loadListGames();
         Debug.Log($"juego eliminar : {gameModel.namePlayer}");
     }
 

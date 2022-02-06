@@ -28,6 +28,8 @@ public class StagePopulationCacheImpl : StagePopulationCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private List<StagePopulationModel> stagePopulationModels = new List<StagePopulationModel>();
 
     private List<GameObject> allEnemies = new List<GameObject>();

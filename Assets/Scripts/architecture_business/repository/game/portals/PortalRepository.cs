@@ -37,5 +37,5 @@ public class PortalRepositoryImpl: PortalRepository {
 
     public PortalModel getCurrentPortal() => cache.getCurrentPortal();
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => PortalDatasourceCacheImpl.destroyInstance();
 }

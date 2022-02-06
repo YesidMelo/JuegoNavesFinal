@@ -24,7 +24,7 @@ public class SpacecraftEnemyCacheImpl : SpacecraftEnemyCache
         return instance;
     }
 
-   
+    public static void destroyInstance() => instance = null;
 
     //private variables
     private Dictionary<IdentificatorModel, SpacecraftEnemy> _dictionarySpacecrafts = new Dictionary<IdentificatorModel, SpacecraftEnemy>();

@@ -25,6 +25,8 @@ public class SpacecraftEnemyLasersCacheImpl : SpacecraftEnemyLasersCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     //variables
 
     private Dictionary<IdentificatorModel, SpacecraftEnemy> _dictionarySpacecraft = new Dictionary<IdentificatorModel, SpacecraftEnemy>();

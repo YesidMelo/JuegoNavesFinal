@@ -26,6 +26,8 @@ public class SpacecraftEnemyRadarCacheImpl : SpacecraftEnemyRadarCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private Dictionary<IdentificatorModel, int> _dictionaryRadius = new Dictionary<IdentificatorModel, int>();
     private Dictionary<IdentificatorModel, RadarEnemy> _dictionaryRadar = new Dictionary<IdentificatorModel, RadarEnemy>();
     private Dictionary<IdentificatorModel, SpacecraftEnemy> _dictionarySpacecraft = new Dictionary<IdentificatorModel, SpacecraftEnemy>();

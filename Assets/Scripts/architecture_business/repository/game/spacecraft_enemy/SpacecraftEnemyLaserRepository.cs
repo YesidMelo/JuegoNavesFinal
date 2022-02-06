@@ -14,7 +14,7 @@ public class SpacecraftEnemyLaserRepositoryImpl : SpacecraftEnemyLaserRepository
 {
     private SpacecraftEnemyLasersCache cache = SpacecraftEnemyLasersCacheImpl.getInstance();
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftEnemyLasersCacheImpl.destroyInstance();
 
     public SpacecraftEnemy currentSpacecraft(IdentificatorModel identificator) => cache.currentSpacecraft(identificator);
 

@@ -23,6 +23,8 @@ public class HandlerUserInterfaceCacheImpl : HandlerUserInterfaceCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private Camera _currentMainCamera;
     
     public Camera getCurrentMainCamera => _currentMainCamera;

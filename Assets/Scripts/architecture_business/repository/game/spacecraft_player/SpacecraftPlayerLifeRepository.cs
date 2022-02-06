@@ -29,7 +29,7 @@ public class SpacecraftPlayerLifeRepositoryImpl : SpacecraftPlayerLifeRepository
 
     public void addLife(float life) => cache.addLife(life);
     public void addStructureLife(StructurePlayer structure) => cache.addStructureLife(structure);
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftPlayerLifeCacheImpl.destroyInstance();
     public bool loadLife() => cache.loadLife();
     public void quitLife(float life) => cache.quitLife(life: life);
     public void restoreLife() => cache.restoreLife();

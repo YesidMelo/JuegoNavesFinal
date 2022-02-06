@@ -13,7 +13,7 @@ public class SpacecraftEnemyMotorRepositoryImpl: SpacecraftEnemyMotorRepository 
 
     private SpacecraftEnemyMotorCache cache = SpacecraftEnemyMotorCacheImpl.getInstance();
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftEnemyMotorCacheImpl.destroyInstance();
 
     public MotorEnemy currentMotor(IdentificatorModel identificator) => cache.currentMotor(identificator);
 

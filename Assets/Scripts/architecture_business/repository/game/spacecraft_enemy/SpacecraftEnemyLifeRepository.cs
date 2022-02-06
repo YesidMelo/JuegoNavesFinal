@@ -21,7 +21,7 @@ public class SpacecraftEnemyLifeRepositoryImpl : SpacecraftEnemyLifeRepository  
 
     public void addLife(IdentificatorModel identificator, int life) => cache.addLife(identificator, life);
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftEnemyLifeCacheImpl.destroyInstance();
 
     public float currentLife(IdentificatorModel identificator) => cache.currentLife(identificator);
 

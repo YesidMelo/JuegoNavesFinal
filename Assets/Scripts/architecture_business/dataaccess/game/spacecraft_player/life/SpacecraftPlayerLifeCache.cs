@@ -29,6 +29,8 @@ public class SpacecraftPlayerLifeCacheImpl : SpacecraftPlayerLifeCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private float _maxLife = 1000;
     private float _life = 0;
     private StructurePlayer _currentStructure = StructurePlayer.TYPE_1;

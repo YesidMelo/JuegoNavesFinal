@@ -31,6 +31,8 @@ public class SpacecraftEnemyLifeCacheImpl : SpacecraftEnemyLifeCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private Dictionary<IdentificatorModel, float> _dictionaryCurrentLife = new Dictionary<IdentificatorModel, float>();
     private Dictionary<IdentificatorModel, float> _dictionorayMaxLife = new Dictionary<IdentificatorModel, float>();
     private Dictionary<IdentificatorModel, SpacecraftEnemy> _dictionarySpacecraft = new Dictionary<IdentificatorModel, SpacecraftEnemy>();

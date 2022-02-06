@@ -22,6 +22,8 @@ public class LevelCacheImpl : LevelCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private Level _currentLevel;
 
     public Level getCurrentLevel => _currentLevel;

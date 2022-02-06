@@ -25,7 +25,7 @@ public class SpacecraftPlayerLaserRepositoryImpl : SpacecraftPlayerLaserReposito
 
     public LaserModel currentLaserModel => cache.currentLaserModel;
 
-    public void clearCache() => cache.clearCache();
+    public void clearCache() => SpacecraftPlayerLaserCacheImpl.destroyInstance();
 
     public bool loadLasers() => cache.loadLasers();
 

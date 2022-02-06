@@ -26,6 +26,8 @@ public class SpacecraftPlayerMotorCacheImpl : SpacecraftPlayerMotorCache
         return instance;
     }
 
+    public static void destroyInstance() => instance = null;
+
     private float _speedMotor = 1;
     private List<MotorPlayer> _listMotors = new List<MotorPlayer>();
     private MotorModel _currentMotorModel = new MotorModel();
