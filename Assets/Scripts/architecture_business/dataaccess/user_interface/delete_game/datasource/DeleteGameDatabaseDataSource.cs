@@ -22,6 +22,7 @@ public class DeleteGameDatabaseDataSourceImpl : DeleteGameDatabaseDataSource
         try
         {
             await DatabaseManagerImpl.getInstance().deleteElementsWithCondition<LifeEntity>(conditions: getListConditionPartsSpacecraft(gameId: (long)gameModel.id));
+            await DatabaseManagerImpl.getInstance().deleteElementsWithCondition<LifeSupportEntity>(conditions: getListConditionPartsSpacecraft(gameId: (long)gameModel.id));
             await DatabaseManagerImpl.getInstance().deleteElementsWithCondition<LaserEntity>(conditions: getListConditionPartsSpacecraft(gameId: (long)gameModel.id));
             await DatabaseManagerImpl.getInstance().deleteElementsWithCondition<MotorEntity>(conditions: getListConditionPartsSpacecraft(gameId: (long)gameModel.id));
             await DatabaseManagerImpl.getInstance().deleteElementsWithCondition<RadarEntitty>(conditions: getListConditionPartsSpacecraft(gameId: (long)gameModel.id));
