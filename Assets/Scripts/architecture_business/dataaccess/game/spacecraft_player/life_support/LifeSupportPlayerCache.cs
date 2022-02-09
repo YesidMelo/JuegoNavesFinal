@@ -7,6 +7,8 @@ public interface LifeSupportPlayerCache {
     LifeSupportModel currentLifeSupportModel { get; }
     void setCurrentLifeSupportModel(LifeSupportModel lifeSupportModel);
     bool playerIsUnderAttack();
+
+    void updatePlayerIsUnderAttack(bool playerIsUnderAttack);
 }
 
 public class LifeSupportPlayerCacheImpl : LifeSupportPlayerCache
@@ -45,4 +47,6 @@ public class LifeSupportPlayerCacheImpl : LifeSupportPlayerCache
     }
 
     public bool playerIsUnderAttack() => _playerIsUnderAttack;
+
+    public void updatePlayerIsUnderAttack(bool playerIsUnderAttack) => _playerIsUnderAttack = playerIsUnderAttack;
 }

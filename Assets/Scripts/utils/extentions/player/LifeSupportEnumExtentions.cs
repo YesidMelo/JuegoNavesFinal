@@ -36,6 +36,17 @@ public static class LifeSupportEnumExtentions
                 return Constants.timeLifeSupportPlayerType1;
         }
     }
+    
+    public static long getSpeedEnableReparation(this LifeSupportPlayer lifeSupportPlayer) {
+        switch (lifeSupportPlayer) {
+            case LifeSupportPlayer.TYPE_2:
+                return Constants.timeLifeSupportEnableReparationPlayerType2;
+            case LifeSupportPlayer.TYPE_3:
+                return Constants.timeLifeSupportEnableReparationPlayerType3;
+            default:
+                return Constants.timeLifeSupportEnableReparationPlayerType1;
+        }
+    }
 
     public static float percentageOfRepair(this LifeSupportPlayer lifeSupportPlayer ) {
         switch (lifeSupportPlayer)

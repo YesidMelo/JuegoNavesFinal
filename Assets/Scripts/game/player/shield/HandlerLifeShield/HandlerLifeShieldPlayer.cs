@@ -8,6 +8,7 @@ public class HandlerLifeShieldPlayer : MonoBehaviour, HandlerLifeShieldPlayerVie
 {
     public HandlerShieldPlayer handlerShieldPlayer;
     public List<ListenerShieldPlayer> shieldsAvailable;
+    public bool playerIsUnderAttack;
 
     private HandlerLifeShieldPlayerViewModel viewModel = new HandlerLifeShieldPlayerViewModelImpl();
     private ListenerShieldPlayer _currentListenerShieldPlayer;
@@ -17,7 +18,12 @@ public class HandlerLifeShieldPlayer : MonoBehaviour, HandlerLifeShieldPlayerVie
         viewModel.myDelegate = this;
         setDelegatesInShield();
     }
-
+    private void Update()
+    {
+        if (viewModel == null) return;
+        viewModel.checkIfPlayerIsUnderAttack();
+        playerIsUnderAttack = viewModel.playerIsUnderAttack;
+    }
     //public methods
     //private methods
     private void setDelegatesInShield() {

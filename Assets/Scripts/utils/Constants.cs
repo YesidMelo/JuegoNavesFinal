@@ -217,6 +217,10 @@ public static class Constants
     public static long timeLifeSupportPlayerType2 = 2000;
     public static long timeLifeSupportPlayerType3 = 1000;
 
+    public static long timeLifeSupportEnableReparationPlayerType1 = 9000;
+    public static long timeLifeSupportEnableReparationPlayerType2 = 8000;
+    public static long timeLifeSupportEnableReparationPlayerType3 = 7000;
+
     #endregion
 
     #region dimentions

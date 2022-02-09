@@ -18,7 +18,7 @@ public interface LifeSupportPlayerUIViewModel {
 public class LifeSupportPlayerUIViewModelImpl : LifeSupportPlayerUIViewModel
 {
     private readonly LifeSupportPlayerGetCurrentTypeUseCase getCurrentTypeUseCase = new LifeSupportPlayerGetCurrentTypeUseCaseImpl();
-    private readonly LifeSupportPlayerPlayerIsUnderAttackUseCase playerIsUnderAttackUseCase = new LifeSupportPlayerPlayerIsUnderAttackUseCaseImpl();
+    private readonly SpacecraftPlayerLifeSupportPlayerIsUnderAttackUseCase playerIsUnderAttackUseCase = new SpacecraftPlayerLifeSupportPlayerIsUnderAttackUseCaseImpl();
     private readonly SpacecraftPlayerLifeIsMaxLifeUseCase lifeIsMaxLifeUseCase = new SpacecraftPlayerLifeIsMaxLifeUseCaseImpl();
     private readonly SpacecraftPlayerAddLifeUseCase addLifeUseCase = new SpacecraftPlayerAddLifeUseCaseImpl();
 
@@ -43,14 +43,15 @@ public class LifeSupportPlayerUIViewModelImpl : LifeSupportPlayerUIViewModel
         if (lifeIsMaxLife) return;
         if (playerIsUnderAttack) return;
         DateTime now = DateTime.Now;
-        if (!iCanStartNextUpdate(now: now)) return;
+        if (!nowIsMajorOrEqualsNextUpdate(now: now)) return;
         _nextUpdate = now.AddMilliseconds(getCurrentLifeSupport.getSpeedReparation());
         addLifeUseCase.invoke();
     }
 
     //private methods 
 
-    private bool iCanStartNextUpdate(DateTime now) {
+    //Method that checks if now is minor or equals to _nextUpdate datetime
+    private bool nowIsMajorOrEqualsNextUpdate(DateTime now) {
         return DateTime.Compare(now, _nextUpdate) == 1;
     }
 
