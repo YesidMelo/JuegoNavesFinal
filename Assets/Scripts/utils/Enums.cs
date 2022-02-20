@@ -52,6 +52,47 @@ public enum Level {
     LEVEL1_SECTION2,
 }
 
+public enum LifeSupportPlayer
+{
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+}
+
+public enum LifeSupportEnemy
+{
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+}
+
+/// <summary>
+/// Creation of source by game
+/// 
+/// Notations
+/// M-> Material
+/// R-> Refination
+/// 
+/// When material is pure is notation when name complete
+/// example: Material_1
+/// 
+/// When material is refinated set Refination{number_refination}_{R,M}{number_material_or _refination1}_{R,M}{number_material_or _refination2}
+/// example refination when materials base:
+/// Refination1_M1_M2
+/// 
+/// example refination when refination
+/// Refination3_R1_R2
+/// 
+/// </summary>
+public enum Material { 
+    MATERIAL_1,
+    MATERIAL_2,
+    MATERIAL_3,
+    REFINATION1_M1_M2,
+    REFINATION2_M2_M3,
+    REFINATION3_R1_R2
+}
+
 public enum Move { 
     BOTTOM,
     FORWARD_ENEMY,
@@ -209,16 +250,4 @@ public enum StructurePlayer
     TYPE_3,
     TYPE_4,
     TYPE_5,
-}
-
-public enum LifeSupportPlayer { 
-    TYPE_1,
-    TYPE_2,
-    TYPE_3,
-}
-
-public enum LifeSupportEnemy {
-    TYPE_1,
-    TYPE_2,
-    TYPE_3,
 }

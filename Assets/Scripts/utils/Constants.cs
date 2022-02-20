@@ -177,6 +177,13 @@ public static class Constants
     public static long storagePlayerIdDBType3 = 3;
     public static long storagePlayerIdDBType4 = 4;
     public static long storagePlayerIdDBType5 = 5;
+
+    //StoragePlayer capacity
+    public static int storagePlayerCapacityType1 = 500;
+    public static int storagePlayerCapacityType2 = 1000;
+    public static int storagePlayerCapacityType3 = 1500;
+    public static int storagePlayerCapacityType4 = 2000;
+    public static int storagePlayerCapacityType5 = 2500;
     #endregion
 
     #region all structures

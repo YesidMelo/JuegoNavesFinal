@@ -27,4 +27,18 @@ public static class StoragePlayerEnumExtentions {
         return StoragePlayer.TYPE_1;
     }
 
+    public static int getMaxCapacity(this StoragePlayer storagePlayer) {
+        switch (storagePlayer) {
+            case StoragePlayer.TYPE_2:
+                return Constants.storagePlayerCapacityType2;
+            case StoragePlayer.TYPE_3:
+                return Constants.storagePlayerCapacityType3;
+            case StoragePlayer.TYPE_4:
+                return Constants.storagePlayerCapacityType4;
+            case StoragePlayer.TYPE_5:
+                return Constants.storagePlayerCapacityType5;
+            default:
+                return Constants.storagePlayerCapacityType1;
+        }
+    }
 }
