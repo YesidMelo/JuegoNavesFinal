@@ -30,12 +30,16 @@ public static class Constants
     //string spawmer poblation
     public static string nameSpawmerPoblation = "spawmerPoblation";
 
+    //string materials
+    public static string nameMaterialSprite = "material_{0}";
+
     //string portal
     public static string namePortalGenerator = "portalGenerator";
     public static string namePortal = "portal";
 
     //length random string enemies
     public static int lengthRandomNameEnemies = 5;
+
         
 
     #endregion

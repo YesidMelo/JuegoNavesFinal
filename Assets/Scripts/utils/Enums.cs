@@ -85,9 +85,21 @@ public enum LifeSupportEnemy
 /// 
 /// </summary>
 public enum Material { 
+    NONE,
     MATERIAL_1,
     MATERIAL_2,
     MATERIAL_3,
+    MATERIAL_4,
+    MATERIAL_5,
+    MATERIAL_6,
+    MATERIAL_7,
+    MATERIAL_8,
+    MATERIAL_9,
+    MATERIAL_10,
+    MATERIAL_11,
+    MATERIAL_12,
+    MATERIAL_13,
+    MATERIAL_14,
     REFINATION1_M1_M2,
     REFINATION2_M2_M3,
     REFINATION3_R1_R2
