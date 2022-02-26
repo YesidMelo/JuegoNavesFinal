@@ -9,17 +9,22 @@ public interface MaterialsUIViewModel {
     MaterialsUIViewModelDelegate myDelegate { set; }
 
     Material currentMaterial { get; }
-    void selectMaterialRandom();
-
+    void destroyMaterial(GameObject currentMaterial);
 }
 
 public class MaterialUIViewModelImpl: MaterialsUIViewModel {
 
     //uses cases
+    private MaterialGetRandomMaterialUseCase getRandomMaterialUseCase = new MaterialGetRandomMaterialUseCaseImpl();
+    private MaterialSpawmerRemoveMaterialUseCase removeMaterialUseCase = new MaterialSpawmerRemoveMaterialUseCaseImpl();
 
     //variables
     private MaterialsUIViewModelDelegate _myDelegate;
     private Material _currentMaterial;
+
+    public MaterialUIViewModelImpl() {
+        _currentMaterial = getRandomMaterialUseCase.invoke();
+    }
 
     //public methods
     public MaterialsUIViewModelDelegate myDelegate { 
@@ -30,12 +35,11 @@ public class MaterialUIViewModelImpl: MaterialsUIViewModel {
         get => _currentMaterial; 
     }
 
-    public void selectMaterialRandom()
+    public void destroyMaterial(GameObject currentMaterial)
     {
-        if (_currentMaterial != Material.NONE) return;
-        _currentMaterial = Material.MATERIAL_1.getRandomMaterial();
-        Debug.Log("MAterial actual");
+        removeMaterialUseCase.invoke(currentMaterial: currentMaterial, material: _currentMaterial);
     }
+
 
     //private methods
 }

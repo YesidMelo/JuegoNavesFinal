@@ -38,10 +38,4 @@ public static class MaterialEnumExtentions
         return listSpriteMaterials[0];
     }
 
-    public static Material getRandomMaterial(this Material currentMaterial) {
-        Array listMaterials = Enum.GetValues(typeof(Material));
-        System.Random random = new System.Random();
-        Material material = (Material)listMaterials.GetValue(random.Next(listMaterials.Length));
-        return material;
-    }
 }

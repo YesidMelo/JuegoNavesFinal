@@ -33,6 +33,9 @@ public class SaveGameClearCachesGameUseCaseImpl : SaveGameClearCachesGameUseCase
     //portals
     private readonly PortalRepository portalRepository = new PortalRepositoryImpl();
 
+    //materials
+    private readonly MaterialSpawmerRepository materialSpawmerRepository = new MaterialSpawmerRepositoryImpl();
+    private readonly MaterialRepository materialRepository = new MaterialRepositoryImpl();
 
     public async Task invoke()
     {
@@ -40,6 +43,7 @@ public class SaveGameClearCachesGameUseCaseImpl : SaveGameClearCachesGameUseCase
         clearEnemyCache();
         clearPlayerCache();
         clearPortalCache();
+        clearMaterial();
     }
 
     //private methods
@@ -66,5 +70,10 @@ public class SaveGameClearCachesGameUseCaseImpl : SaveGameClearCachesGameUseCase
 
     private void clearPortalCache() {
         portalRepository.clearCache();
+    }
+
+    private void clearMaterial() {
+        materialSpawmerRepository.clearCache();
+        materialRepository.clearCache();
     }
 }

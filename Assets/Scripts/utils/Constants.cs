@@ -32,6 +32,7 @@ public static class Constants
 
     //string materials
     public static string nameMaterialSprite = "material_{0}";
+    public static string nameMaterialSpawmer = "spawmerMaterial";
 
     //string portal
     public static string namePortalGenerator = "portalGenerator";

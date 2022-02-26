@@ -20,7 +20,6 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     private void Awake()
     {
         _viewModel.myDelegate = this;
-        _viewModel.selectMaterialRandom();
     }
 
     void Start()
@@ -35,6 +34,10 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     }
 
     //public methods
+    public Material getCurrentMaterial
+    {
+        get => _viewModel.currentMaterial;
+    }
 
     //private methods
 

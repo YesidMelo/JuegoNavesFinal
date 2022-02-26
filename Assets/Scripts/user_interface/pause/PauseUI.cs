@@ -107,4 +107,21 @@ public class PauseUI : AbstractCanvas, PauseUIViewModelDelegate
             }
         }, null);
     }
+
+    public async Task deleteCurrentMaterials()
+    {
+        syncContext.Post(_ => {
+            foreach (GameObject currentMaterial in viewModel.currentAllMaterials())
+            {
+                Destroy(currentMaterial);
+            }
+        }, null);
+    }
+
+    public async Task deleteCurrentMaterialSpawmer()
+    {
+        syncContext.Post(_ => {
+            Destroy(viewModel.currentSpawmMaterial());
+        }, null);
+    }
 }

@@ -12,6 +12,8 @@ public interface PauseUIViewModelDelegate {
     Task deleteCurrentSpawmPopulation();
     Task deleteCurrentPortalGenerator();
     Task deleteCurrentPortals();
+    Task deleteCurrentMaterials();
+    Task deleteCurrentMaterialSpawmer();
 }
 
 public interface PauseUIViewModel {
@@ -27,7 +29,9 @@ public interface PauseUIViewModel {
     GameObject currentPlayer();
     GameObject currentSpawmPopulation();
     GameObject currentPortalGenerator();
+    GameObject currentSpawmMaterial();
     List<GameObject> currentPortals();
+    List<GameObject> currentAllMaterials();
 }
 
 public class PauseUIViewModelImpl : PauseUIViewModel
@@ -45,6 +49,8 @@ public class PauseUIViewModelImpl : PauseUIViewModel
     private readonly SaveGameClearCachesGameUseCase clearCachesGameUseCase = new SaveGameClearCachesGameUseCaseImpl();
     private readonly PortalGetCurrentPortalGeneratorUseCase getCurrentPortalGeneratorUseCase = new PortalGetCurrentPortalGeneratorUseCaseImpl();
     private readonly PortalGetAllListPortalsGameObjectUseCase getAllListPortalsGameObjectUseCase = new PortalGetAllListPortalsGameObjectUseCaseImpl();
+    private readonly MaterialSpawmerGetAllMaterialsUseCase getAllMaterialsUseCase = new MaterialSpawmerGetAllMaterialsUseCaseImpl();
+    private readonly MaterialSpawmerGetCurrentMaterialGeneratorUseCase getCurrentMaterialGeneratorUseCase = new MaterialSpawmerGetCurrentMaterialGeneratorUseCaseImpl();
 
 
     PauseUIViewModelDelegate _myDelegate;
@@ -84,6 +90,8 @@ public class PauseUIViewModelImpl : PauseUIViewModel
                 await _myDelegate.deleteCurrentSpawmPopulation();
                 await _myDelegate.deleteCurrentPortalGenerator();
                 await _myDelegate.deleteCurrentPortals();
+                await _myDelegate.deleteCurrentMaterials();
+                await _myDelegate.deleteCurrentMaterialSpawmer();
                 await Task.Delay(100);
                 await deleteCurrentPlayerUseCase.invoke();
                 await deleteCurrentSpawmPopulationUseCase.invoke();
@@ -110,4 +118,8 @@ public class PauseUIViewModelImpl : PauseUIViewModel
     public GameObject currentPortalGenerator() => getCurrentPortalGeneratorUseCase.invoke();
 
     public List<GameObject> currentPortals() => getAllListPortalsGameObjectUseCase.invoke();
+
+    public List<GameObject> currentAllMaterials() => getAllMaterialsUseCase.invoke();
+
+    public GameObject currentSpawmMaterial() => getCurrentMaterialGeneratorUseCase.invoke();
 }

@@ -9,10 +9,12 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
     public HandlerCameraPlayer handlerCameraPlayer;
     public InteractionGameUI interactionGameUI;
     public GameObject prefabPortalGenerator;
+    public GameObject prefabMaterialSpawmer;
 
     private GameObject _currentSpacecraftPlayer;
     private GameObject _currentSpawnerPoblation;
     private GameObject _currentPortalGenerator;
+    private GameObject _currentSpawmerMaterial;
     private InteractionGameConfigLevelViewModel viewModel = new InteractionGameConfigLevelViewModelImpl();
 
     private void Awake()
@@ -21,6 +23,7 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
         instanceSpacecraftPlayer();
         instanceSpawmerPoblation();
         instancePortalGenerator();
+        instanceSpawmerMaterial();
         configCameraPlayer();
     }
 
@@ -57,6 +60,14 @@ public class InteractionGameConfigLevel : MonoBehaviour, InteractionGameConfigLe
     private void configCameraPlayer() {
         if (handlerCameraPlayer == null) return;
         handlerCameraPlayer.currentPlayer = _currentSpacecraftPlayer;
+    }
+
+    private void instanceSpawmerMaterial() {
+        _currentSpawmerMaterial = viewModel.currentMaterialGenerator;
+        if (_currentSpawmerMaterial != null) return;
+        _currentSpawmerMaterial = Instantiate(prefabMaterialSpawmer, Constants.positionSpawmerPosition, Quaternion.identity);
+        _currentSpawmerMaterial.transform.name = Constants.nameMaterialSpawmer;
+        viewModel.setCurrentMaterialGenerator(materialGenerator: _currentSpawmerMaterial);
     }
 
 }
