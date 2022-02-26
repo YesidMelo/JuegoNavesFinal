@@ -8,7 +8,8 @@ public interface SpawmerMaterialsUIDelegate {
 
 public class SpawmerMaterialsUI : MonoBehaviour, SpawmerMaterialUIViewModelDelegate
 {
-    public GameModel prefabMaterial;
+    public GameObject prefabMaterial;
+    public int numberMaterials;
 
     //variables
     public SpawmerMaterialsUIDelegate myDelegate;
@@ -23,6 +24,13 @@ public class SpawmerMaterialsUI : MonoBehaviour, SpawmerMaterialUIViewModelDeleg
         _viewModel.setCurrentMaterialSpawmer(gameObject);
     }
 
+    private void Update()
+    {
+        if (_viewModel.isAllMaterialsInLevel()) return;
+        if (_viewModel.isCreateMaterial()) return;
+        createMaterial();
+    }
+
     private void OnDestroy()
     {
         _viewModel.deleteSpawmerMaterial();
@@ -31,4 +39,10 @@ public class SpawmerMaterialsUI : MonoBehaviour, SpawmerMaterialUIViewModelDeleg
     //public methods
 
     //private methods
+
+    private void createMaterial() {
+        _viewModel.setIsCreateMaterial(isCreateMaterial: true);
+        GameObject instance = Instantiate(prefabMaterial);
+        _viewModel.setIsCreateMaterial(isCreateMaterial: false);
+    }
 }

@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MaterialSpawmerAddMaterialUseCase : MonoBehaviour
+public interface MaterialSpawmerAddMaterialUseCase {
+    void invoke(GameObject currentMaterial, Material material);
+}
+public class MaterialSpawmerAddMaterialUseCaseImpl : MaterialSpawmerAddMaterialUseCase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private MaterialSpawmerRepository materialSpawmerRepository = new MaterialSpawmerRepositoryImpl();
+    private LevelRepository levelRepository = new LevelRepositoryImpl();
+    public void invoke(GameObject currentMaterial, Material material) {
+        materialSpawmerRepository.addMaterial(
+            materialObject: currentMaterial, 
+            material: material,
+            level: levelRepository.getCurrentLevel
+        );
     }
 }

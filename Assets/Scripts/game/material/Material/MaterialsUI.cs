@@ -25,12 +25,12 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     void Start()
     {
         spriteRenderer.sprite = _viewModel.currentMaterial.getSpriteByMaterial(listSpriteMaterials: listSprites);
+        _viewModel.addMaterialToSpawmer(currentMaterial: gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        _viewModel.destroyMaterial(currentMaterial: gameObject);
     }
 
     //public methods
