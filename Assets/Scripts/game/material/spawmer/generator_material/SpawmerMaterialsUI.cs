@@ -67,7 +67,7 @@ public class SpawmerMaterialsUI : MonoBehaviour, SpawmerMaterialUIViewModelDeleg
                     continue;
                 }
                 materialsUI.updateMaterial(material: current.Key);
-                _viewModel.addMaterialToSpawmer(material: current.Key, gameObject: materialInstance);
+                _viewModel.addMaterialToSpawmer(material: current.Key, materialGameObject: materialInstance);
             }
         }
     }
