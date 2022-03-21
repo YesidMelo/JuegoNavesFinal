@@ -8,8 +8,9 @@ public interface MaterialSpawmerIsAllMaterials1InLevelUseCase {
 
 public class MaterialSpawmerIsAllMaterialsInLevelUseCaseImpl : MaterialSpawmerIsAllMaterials1InLevelUseCase
 {
-    private MaterialSpawmerRepository materialSpawmerRepository = new MaterialSpawmerRepositoryImpl();
+    private readonly MaterialSpawmerRepository materialSpawmerRepository = new MaterialSpawmerRepositoryImpl();
+    private readonly LevelRepository levelRepository = new LevelRepositoryImpl();
 
-    public bool invoke() => materialSpawmerRepository.isAllMaterialsInLevel();
+    public bool invoke() => materialSpawmerRepository.isAllMaterialsInLevel(level: levelRepository.getCurrentLevel);
 
 }

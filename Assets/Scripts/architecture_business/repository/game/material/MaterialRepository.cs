@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface MaterialRepository {
-    Material getRandomMaterial();
+    Material getRandomMaterial(Level level);
     void clearCache();
 }
 
@@ -13,5 +13,5 @@ public class MaterialRepositoryImpl : MaterialRepository
 
     public void clearCache() => cache.destroyInstance();
 
-    public Material getRandomMaterial() => cache.getRandomMaterial();
+    public Material getRandomMaterial(Level level) => cache.getRandomMaterial(level: level);
 }

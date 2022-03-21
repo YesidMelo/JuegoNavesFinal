@@ -6,7 +6,8 @@ public interface MaterialSpawmerRepository {
 
     GameObject getCurrentMaterialSpawmer();
     List<GameObject> getAllListMaterial();
-    bool isAllMaterialsInLevel();
+    List<string> getListNumberMaterialsByLevel(Level level);
+    bool isAllMaterialsInLevel(Level level);
     void setCurrentMaterialSpawmer(GameObject materialSpawmer);
     void addMaterial(GameObject materialObject, Level level, Material material);
     void removeMaterial(GameObject gameObject, Level level, Material material);
@@ -17,7 +18,15 @@ public class MaterialSpawmerRepositoryImpl: MaterialSpawmerRepository {
 
     private MaterialSpawmerCache materialSpawmerCache = MaterialSpawmerCacheImpl.getInstance();
 
-    public void addMaterial(GameObject materialObject, Level level, Material material) => materialSpawmerCache.addMaterial(materialObject: materialObject, level: level, material: material);
+    public void addMaterial(
+        GameObject materialObject, 
+        Level level, 
+        Material material
+    ) => materialSpawmerCache.addMaterial(
+        materialObject: materialObject,
+        level: level,
+        material: material
+    );
 
     public void clearCache() => materialSpawmerCache.destroyInstance();
 
@@ -25,7 +34,9 @@ public class MaterialSpawmerRepositoryImpl: MaterialSpawmerRepository {
 
     public GameObject getCurrentMaterialSpawmer() => materialSpawmerCache.currentSpawmerGenerator;
 
-    public bool isAllMaterialsInLevel() => materialSpawmerCache.isAllMaterialsInLevel();
+    public List<string> getListNumberMaterialsByLevel(Level level) => materialSpawmerCache.getListNumberMaterialsByLevel(level: level);
+
+    public bool isAllMaterialsInLevel(Level level) => materialSpawmerCache.isAllMaterialsInLevel(level: level);
 
     public void removeMaterial(GameObject gameObject, Level level, Material material) => materialSpawmerCache.removeMaterial(gameObject: gameObject, level: level, material: material);
 

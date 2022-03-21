@@ -233,6 +233,9 @@ public static class Constants
     public static long timeLifeSupportEnableReparationPlayerType2 = 8000;
     public static long timeLifeSupportEnableReparationPlayerType3 = 7000;
 
+    //speed material
+    public static double timeMaterialSpawmGeneration = 5000.0;
+
     #endregion
 
     #region dimentions

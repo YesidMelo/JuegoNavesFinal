@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface MaterialsCache {
 
-    Material getRandomMaterial();
+    Material getRandomMaterial(Level level);
     void destroyInstance();
 }
 
@@ -25,12 +25,23 @@ public class MaterialsCacheImpl : MaterialsCache {
     private MaterialsCacheImpl() { }
 
     //public methods
-    public Material getRandomMaterial()
+    public Material getRandomMaterial(Level level)
     {
         Array listMaterials = Enum.GetValues(typeof(Material));
+        List<Material> materialAvailableBySpawm = new List<Material>();
+        
+        foreach (Material currentMaterial in listMaterials) {
+            if (level.getMaxMaterial(currentMaterial) <= 0) continue;
+            materialAvailableBySpawm.Add(currentMaterial);
+        }
+
+        if (materialAvailableBySpawm.Count == 0) {
+            return Material.NONE;
+        }
+
         System.Random random = new System.Random();
-        Material material = (Material)listMaterials.GetValue(random.Next(listMaterials.Length));
-        return material;
+        Material finishMaterial = materialAvailableBySpawm[random.Next(materialAvailableBySpawm.Count)];
+        return finishMaterial;
     }
 
     public void destroyInstance() => instance = null;

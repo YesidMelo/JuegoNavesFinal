@@ -10,6 +10,7 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     //ui variables
     public List<Sprite> listSprites = new List<Sprite>();
     public SpriteRenderer spriteRenderer;
+    public Material currentMaterial;
 
 
     //variables
@@ -25,6 +26,7 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     void Start()
     {
         spriteRenderer.sprite = _viewModel.currentMaterial.getSpriteByMaterial(listSpriteMaterials: listSprites);
+        currentMaterial = _viewModel.currentMaterial;
         _viewModel.addMaterialToSpawmer(currentMaterial: gameObject);
     }
 
