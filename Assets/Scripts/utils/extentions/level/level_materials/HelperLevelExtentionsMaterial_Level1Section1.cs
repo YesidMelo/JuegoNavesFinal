@@ -11,6 +11,8 @@ public class HelperLevelExtentionsMaterial_Level1Section1 : HelperLevelExtention
         switch (material) {
             case Material.MATERIAL_1:
                 return 1;
+            case Material.MATERIAL_2:
+                return 1;
             default:
                 return 0;
         }

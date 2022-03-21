@@ -7,6 +7,7 @@ public interface MaterialSpawmerRepository {
     GameObject getCurrentMaterialSpawmer();
     List<GameObject> getAllListMaterial();
     List<string> getListNumberMaterialsByLevel(Level level);
+    Dictionary<Material, int> bringMissingMaterial(Level level);
     bool isAllMaterialsInLevel(Level level);
     void setCurrentMaterialSpawmer(GameObject materialSpawmer);
     void addMaterial(GameObject materialObject, Level level, Material material);
@@ -27,6 +28,8 @@ public class MaterialSpawmerRepositoryImpl: MaterialSpawmerRepository {
         level: level,
         material: material
     );
+
+    public Dictionary<Material, int> bringMissingMaterial(Level level) => materialSpawmerCache.bringMissingMaterial(level: level);
 
     public void clearCache() => materialSpawmerCache.destroyInstance();
 

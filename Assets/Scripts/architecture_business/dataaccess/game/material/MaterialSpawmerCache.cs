@@ -7,7 +7,7 @@ public interface MaterialSpawmerCache {
     GameObject currentSpawmerGenerator { get; set; }
     List<GameObject> listAllMaterials();
     List<string> getListNumberMaterialsByLevel(Level level);
-
+    Dictionary<Material, int> bringMissingMaterial(Level level);
     bool isAllMaterialsInLevel(Level level);
     void addMaterial(GameObject materialObject, Level level, Material material);
     void removeMaterial(GameObject gameObject, Level level, Material material);
@@ -102,6 +102,24 @@ public class MaterialSpawmerCacheImpl: MaterialSpawmerCache {
         return listMaterials;
     }
 
+    public Dictionary<Material, int> bringMissingMaterial(Level level)
+    {
+        Dictionary<Material, int> toCreate = new Dictionary<Material, int>();
+        MaterialSpawmer1Model materialSpawmer = getFilterMaterialByLevel(level: level);
+        if (materialSpawmer == null) { 
+            return toCreate;
+        }
+
+        foreach (Material currentMaterial in Enum.GetValues(typeof(Material))) {
+            if (isAllMaterialSpawmer1Model(materialSpawmer: materialSpawmer, material: currentMaterial)) continue;
+            int maxMaterial = materialSpawmer.level.getMaxMaterial(material: currentMaterial);
+            int currentMaterials = materialSpawmer.counterMaterialsInLevel[currentMaterial];
+            toCreate[currentMaterial] = maxMaterial - currentMaterials;
+        }
+
+        return toCreate;
+    }
+
     //private methods
     private bool isAllMaterialSpawmer1Model(MaterialSpawmer1Model materialSpawmer, Material material) {
         int maxMaterial = materialSpawmer.level.getMaxMaterial(material: material);
@@ -130,5 +148,4 @@ public class MaterialSpawmerCacheImpl: MaterialSpawmerCache {
         }
         return null;
     }
-
 }

@@ -55,8 +55,21 @@ public class SpawmerMaterialsUI : MonoBehaviour, SpawmerMaterialUIViewModelDeleg
     private void generateMaterials()
     {
         if (isAllMaterialsInLevel) return;
-        GameObject materialInstance = Instantiate(prefabMaterial);
-        
+        Dictionary<Material, int> bringMissingMaterials = _viewModel.getBringMissingMaterials;
+
+        foreach (KeyValuePair < Material, int> current in bringMissingMaterials) {
+            for (int counter = 0; counter < current.Value; counter++) {
+                GameObject materialInstance = Instantiate(prefabMaterial);
+                MaterialsUI materialsUI = materialInstance.GetComponent<MaterialsUI>();
+                if (materialsUI == null)
+                {
+                    Destroy(materialInstance);
+                    continue;
+                }
+                materialsUI.updateMaterial(material: current.Key);
+                _viewModel.addMaterialToSpawmer(material: current.Key, gameObject: materialInstance);
+            }
+        }
     }
 
     //delegates

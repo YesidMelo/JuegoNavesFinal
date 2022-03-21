@@ -10,23 +10,18 @@ public interface MaterialsUIViewModel {
 
     Material currentMaterial { get; }
     void destroyMaterial(GameObject currentMaterial);
-    void addMaterialToSpawmer(GameObject currentMaterial);
+    void addMaterialToSpawmer(Material material);
 }
 
 public class MaterialUIViewModelImpl: MaterialsUIViewModel {
 
     //uses cases
-    private readonly MaterialGetRandomMaterialUseCase getRandomMaterialUseCase = new MaterialGetRandomMaterialUseCaseImpl();
-    private readonly MaterialSpawmerAddMaterialUseCase addMaterialUseCase = new MaterialSpawmerAddMaterialUseCaseImpl();
     private readonly MaterialSpawmerRemoveMaterialUseCase removeMaterialUseCase = new MaterialSpawmerRemoveMaterialUseCaseImpl();
 
     //variables
     private MaterialsUIViewModelDelegate _myDelegate;
-    private readonly Material _currentMaterial;
+    private Material _currentMaterial;
 
-    public MaterialUIViewModelImpl() {
-        _currentMaterial = getRandomMaterialUseCase.invoke();
-    }
 
     //public methods
     public MaterialsUIViewModelDelegate myDelegate { 
@@ -37,11 +32,8 @@ public class MaterialUIViewModelImpl: MaterialsUIViewModel {
         get => _currentMaterial; 
     }
 
-    public void addMaterialToSpawmer(GameObject currentMaterial) {
-        addMaterialUseCase.invoke(
-            material: _currentMaterial,
-            currentMaterial: currentMaterial
-        );
+    public void addMaterialToSpawmer(Material material) {
+        _currentMaterial = material;
     }
 
     public void destroyMaterial(GameObject currentMaterial)

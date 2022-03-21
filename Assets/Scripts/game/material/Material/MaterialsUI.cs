@@ -26,8 +26,11 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     void Start()
     {
         spriteRenderer.sprite = _viewModel.currentMaterial.getSpriteByMaterial(listSpriteMaterials: listSprites);
+    }
+
+    private void Update()
+    {
         currentMaterial = _viewModel.currentMaterial;
-        _viewModel.addMaterialToSpawmer(currentMaterial: gameObject);
     }
 
     private void OnDestroy()
@@ -39,6 +42,12 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     public Material getCurrentMaterial
     {
         get => _viewModel.currentMaterial;
+    }
+
+    public void updateMaterial(Material material) {
+        _viewModel.addMaterialToSpawmer(material: material);
+        spriteRenderer.sprite = _viewModel.currentMaterial.getSpriteByMaterial(listSpriteMaterials: listSprites);
+        //transform.position = new Vector3();
     }
 
     //private methods
