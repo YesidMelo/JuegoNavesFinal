@@ -26,8 +26,6 @@ public interface SpacecraftPlayerRadarRepository {
     #region materials
     List<GameObject> listMaterials { get; }
     GameObject currentMaterial { get; }
-    void addMaterial(GameObject material);
-    void removeMaterial(GameObject material);
     void changeMaterial();
     #endregion
 
@@ -37,7 +35,7 @@ public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarReposito
 {
     private readonly SpacecraftPlayerRadarCache cache = SpacecraftPlayerRadarCacheImpl.getInstance();
     private readonly SpacecraftPlayerRadarEnemiesCache cacheEnemies = SpacecraftPlayerRadarEnemiesCacheImpl.getInstance();
-    private readonly SpacecraftPlayerRadarMaterialCache cacheMaterials = SpacecraftPlayerRadarMaterialCacheImpl.getInstance();
+    private readonly SpacecraftPlayerRadarMaterialCache1 cacheMaterials = SpacecraftPlayerRadarMaterialCacheImpl1.getInstance();
 
     #region generic
     public List<GameObject> getListObjectsRadar => cache.getListObjectsRadar;
@@ -47,16 +45,19 @@ public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarReposito
     public void addElementToRadar(GameObject gameObject) { 
         cache.addElementToRadar(gameObject);
         cacheEnemies.addEnemy(gameObject);
+        cacheMaterials.addMaterial(gameObject);
     }
     public void clearCache() => cache.clearCache();
     public void clearElementsRadar() {
         SpacecraftPlayerRadarCacheImpl.destroyInstance();
         SpacecraftPlayerRadarEnemiesCacheImpl.destroyInstance();
+        SpacecraftPlayerRadarMaterialCacheImpl1.destroyInstance();
     }
     public bool loadElementsRadar() => cache.loadElementsRadar();
     public void removeElementFromRadar(GameObject gameObject) {
         cache.removeElementFromRadar(gameObject);
         cacheEnemies.removeEnemy(gameObject);
+        cacheMaterials.removeMaterial(gameObject);
     }
     public void setCurrentRadarModel(RadarModel radarModel) => cache.setCurrentRadarModel(radarModel: radarModel);
     public void updateCurrentRadarPlayer(RadarPlayer radarPlayer) => cache.updateCurrentRadar(radarPlayer);
@@ -73,10 +74,6 @@ public class SpacecraftPlayerRadarRepositoryImpl : SpacecraftPlayerRadarReposito
     public List<GameObject> listMaterials => cacheMaterials.listMaterials;
 
     public GameObject currentMaterial => cacheMaterials.currentMaterial;
-
-    public void addMaterial(GameObject material) => cacheMaterials.addMaterial(material: material);
-
-    public void removeMaterial(GameObject material) => cacheMaterials.removeMaterial(material: material);
 
     public void changeMaterial() => cacheMaterials.changeMaterial();
     #endregion
