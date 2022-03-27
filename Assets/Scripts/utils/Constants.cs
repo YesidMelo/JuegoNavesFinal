@@ -9,6 +9,7 @@ public static class Constants
     
     public static string nameSpacecraft = "spacecraft";
     public static string namePatrolPoint = "patrolPoint";
+    public static string nameMaterial = "material";
 
     //strings enemy
     public static string nameEnemyCapital = "Enemy";
@@ -40,6 +41,7 @@ public static class Constants
 
     //length random string enemies
     public static int lengthRandomNameEnemies = 5;
+    public static int lengthRandomNameMaterials = 7;
 
         
 

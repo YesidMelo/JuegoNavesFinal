@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -59,13 +60,18 @@ public class SpawmerMaterialsUI : MonoBehaviour, SpawmerMaterialUIViewModelDeleg
 
         foreach (KeyValuePair < Material, int> current in bringMissingMaterials) {
             for (int counter = 0; counter < current.Value; counter++) {
+                
                 GameObject materialInstance = Instantiate(prefabMaterial);
+                materialInstance.transform.position = new Vector3(Functions.generateRandomPosionX(), Functions.generateRandomPosionY(), 0);
+
                 MaterialsUI materialsUI = materialInstance.GetComponent<MaterialsUI>();
                 if (materialsUI == null)
                 {
                     Destroy(materialInstance);
                     continue;
                 }
+                
+                materialInstance.name = $"{Constants.nameMaterial}_".addRandomString(Constants.lengthRandomNameMaterials);
                 materialsUI.updateMaterial(material: current.Key);
                 _viewModel.addMaterialToSpawmer(material: current.Key, materialGameObject: materialInstance);
             }
@@ -84,5 +90,8 @@ public class SpawmerMaterialsUI : MonoBehaviour, SpawmerMaterialUIViewModelDeleg
             Destroy(currentMaterial);
         }
     }
+
+    //private methods
+
 }
     
