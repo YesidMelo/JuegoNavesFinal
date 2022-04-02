@@ -10,7 +10,7 @@ public interface MaterialSpawmerCache {
     Dictionary<Material, int> bringMissingMaterial(Level level);
     bool isAllMaterialsInLevel(Level level);
     void addMaterial(GameObject materialObject, Level level, Material material);
-    void removeMaterial(GameObject gameObject, Level level, Material material);
+    void removeMaterial(GameObject gameObject, Material material);
     void destroyInstance();
 }
 
@@ -59,19 +59,21 @@ public class MaterialSpawmerCacheImpl: MaterialSpawmerCache {
 
     public void destroyInstance() => instance = null;
 
-    public void removeMaterial(GameObject gameObject, Level level, Material material)
+    public void removeMaterial(GameObject gameObject, Material material)
     {
-        MaterialSpawmer1Model materialSpawmer = getFilterMaterialByLevel(level: level);
+        foreach (Level level in Enum.GetValues(typeof(Level))) {
+            MaterialSpawmer1Model materialSpawmer = getFilterMaterialByLevel(level: level);
 
-        if (materialSpawmer == null) return;
-        
-        if (!materialSpawmer.dictionaryGameObjects[material].Contains(gameObject)) return;
+            if (materialSpawmer == null) continue;
 
-        materialSpawmer.dictionaryGameObjects[material].Remove(gameObject);
-        materialSpawmer.counterMaterialsInLevel[material] = materialSpawmer.dictionaryGameObjects[material].Count;
-        _listAllMaterials.Remove(gameObject);
-        isAllMaterialSpawmer1Model(materialSpawmer: materialSpawmer, material: material);
-        
+            if (!materialSpawmer.dictionaryGameObjects[material].Contains(gameObject)) continue;
+
+            materialSpawmer.dictionaryGameObjects[material].Remove(gameObject);
+            materialSpawmer.counterMaterialsInLevel[material] = materialSpawmer.dictionaryGameObjects[material].Count;
+            _listAllMaterials.Remove(gameObject);
+            isAllMaterialSpawmer1Model(materialSpawmer: materialSpawmer, material: material);
+            return;
+        }
     }
 
     public List<GameObject> listAllMaterials() => _listAllMaterials;

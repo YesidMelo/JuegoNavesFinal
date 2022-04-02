@@ -58,10 +58,12 @@ public class PortalUI : MonoBehaviour, PortalUIViewModelDelegate
             currentListEnemies.Add(current);
         }
 
+        Debug.Log($" materiales actuales {currentListEnemies.Count}");
+
         foreach (GameObject currentEnemy in currentListEnemies) {
             
             if (syncContext == null) continue;
-            syncContext.Post(_ => {
+            syncContext.Post(_ => { 
                 if (currentEnemy.name.Contains(Constants.nameSpawmerPoblation)) return;
                 Destroy(currentEnemy);
             }, null);

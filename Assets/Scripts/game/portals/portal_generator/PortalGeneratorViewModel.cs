@@ -6,6 +6,7 @@ public interface PortalGeneratorViewModelDelegate {
     void generatePortals(List<PortalModel> portalModels);
     void deleteAllPortals(List<GameObject> allPortals);
     void deleteAllEnemies(List<GameObject> allEnemies);
+    void deleteAllMaterials(List<GameObject> allMaterials);
 }
 
 public interface PortalGeneratorViewModel {
@@ -30,8 +31,8 @@ public class PortalGeneratorViewModelImpl : PortalGeneratorViewModel
     private readonly StatusGameIsGameChangedLevelUseCase isGameChangedLevelUseCase = new StatusGameIsGameChangedLevelUseCaseImpl();
     private readonly StatusGameUpdateStatusUseCase updateStatusUseCase = new StatusGameUpdateStatusUseCaseImpl();
     private readonly GetAllEnemiesUseCase getAllEnemiesUseCase = new GetAllEnemiesUseCaseImpl();
-    private readonly LevelUpdateLevelUseCase updateLevelUseCase = new LevelUpdateLevelUseCaseImpl();
     private readonly PortalGetCurrentPortalPlayerUseCase getCurrentPortalPlayerUseCase = new PortalGetCurrentPortalPlayerUseCaseImpl();
+    private readonly MaterialSpawmerGetAllMaterialsUseCase getAllMaterialsUseCase = new MaterialSpawmerGetAllMaterialsUseCaseImpl();
 
     private PortalGeneratorViewModelDelegate _myDelegate;
 
@@ -50,6 +51,7 @@ public class PortalGeneratorViewModelImpl : PortalGeneratorViewModel
     {
         if (_myDelegate == null) return;
         _myDelegate.deleteAllEnemies(allEnemies: getAllEnemiesUseCase.invoke());
+        _myDelegate.deleteAllMaterials(allMaterials: getAllMaterialsUseCase.invoke());
         var currentPortal = getCurrentPortalPlayerUseCase.invoke();
         if (currentPortal == null) return;
         updateStatusUseCase.invoke(statusGame: StatusGame.IN_GAME);

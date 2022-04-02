@@ -47,7 +47,6 @@ public class MaterialsUI : MonoBehaviour, MaterialsUIViewModelDelegate
     public void updateMaterial(Material material) {
         _viewModel.addMaterialToSpawmer(material: material);
         spriteRenderer.sprite = _viewModel.currentMaterial.getSpriteByMaterial(listSpriteMaterials: listSprites);
-        //transform.position = new Vector3();
     }
 
     //private methods

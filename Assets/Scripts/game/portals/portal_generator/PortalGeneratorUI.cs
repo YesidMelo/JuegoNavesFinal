@@ -84,5 +84,21 @@ public class PortalGeneratorUI : MonoBehaviour, PortalGeneratorViewModelDelegate
             Debug.Log(e.Message);
         }
     }
-    
+
+    public void deleteAllMaterials(List<GameObject> allMaterials)
+    {
+        try
+        {
+            GameObject[] listToDelete = allMaterials.ToArray();
+
+            foreach (GameObject currentEnemy in listToDelete)
+            {
+                Destroy(currentEnemy);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+        }
+    }
 }
