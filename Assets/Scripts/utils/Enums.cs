@@ -3,6 +3,7 @@ public enum Action
     ATTACK,
     CHANGE_ENEMY,
     DEFENSE,
+    MATERIAL_COLLECTION,
     FORDWARD,
     PATROL,
     STOP,

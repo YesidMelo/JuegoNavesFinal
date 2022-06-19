@@ -30,7 +30,6 @@ public interface InteractionGameUIViewModel {
 
     void changeAction();
     void changeEnemy();
-    void changeLaser();
     void changeLevel();
     void goToPause();
     void goToConfigSpaceCraft();
@@ -74,14 +73,7 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 
     //texts
     public string textButtonAction {
-        get {
-            switch (_currentActionSpacecraftUseCase.invoke()) {
-                case Action.DEFENSE:
-                    return _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.ATTACK);
-                default:
-                    return _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.DEFENSE);
-            }
-        }
+        get => getCurrentStringButtonAction();
     }
 
     public string textLife => string.Format(
@@ -114,7 +106,6 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 
     public void changeEnemy() => _changeCurrentEnemyUseCase.invoke();
 
-    public void changeLaser() {}
 
     public void goToConfigSpaceCraft()
     {
@@ -149,6 +140,16 @@ public class InteractionGameUIViewModelImpl : InteractionGameUIViewModel
 
     private bool notExistsDelegate() {
         return _myDelegate == null;
+    }
+
+    private string getCurrentStringButtonAction() {
+        switch (_currentActionSpacecraftUseCase.invoke())
+        {
+            case Action.DEFENSE:
+                return _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.ATTACK);
+            default:
+                return _currentLangajeUseCase.invoke().getNameTag(NameTagLanguage.DEFENSE);
+        }
     }
 
     

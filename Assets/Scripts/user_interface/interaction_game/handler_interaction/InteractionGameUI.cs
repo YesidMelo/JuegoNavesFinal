@@ -55,13 +55,10 @@ public class InteractionGameUI : AbstractCanvas, InteractionGameUIViewModelDeleg
 
     public void clickPause() => viewModel.goToPause();
 
-    public void clickConfig() => viewModel.goToConfigSpaceCraft();
-
     public void clickChangeEnemy() => viewModel.changeEnemy();
 
-    public void clickChangeAction() => viewModel.changeAction();
+    public void clickChangeActionAttackDefence() => viewModel.changeAction();
 
-    public void clickChangeLaser() => viewModel.changeLaser();
     public void clickChangeLevel() => viewModel.changeLevel();
 
     // private methods
